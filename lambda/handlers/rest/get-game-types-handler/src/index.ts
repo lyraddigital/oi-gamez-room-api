@@ -1,14 +1,20 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+import { APIGatewayProxyResult } from "aws-lambda";
 
-export const handler = async (
-  event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
-  return await Promise.resolve<APIGatewayProxyResult>({
-    statusCode: 200,
-    headers: {
-      "access-control-allow-origin": "http://localhost:3000",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({}),
-  });
+import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
+
+import { validateEnvironment } from "./configuration";
+import { getAllGameTypes } from "./repositories";
+
+validateEnvironment();
+
+export const handler = async (): Promise<APIGatewayProxyResult> => {
+  try {
+    return corsOkResponseWithData(await getAllGameTypes());
+  } catch (e) {
+    console.log(e);
+
+    return fatalErrorResponse(
+      "Unknown issue while trying to check the status of a game code."
+    );
+  }
 };
