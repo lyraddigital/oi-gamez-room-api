@@ -4,7 +4,7 @@ import { Construct } from "constructs";
 import { ResourcePaths } from "../constants";
 import { RoomsRestApiProps } from "../props";
 
-import { GetGameTypesLambda } from "./handlers";
+import { CreateRoomLambda, GetGameTypesLambda } from "./handlers";
 
 export class RoomsRestApi extends Construct {
   constructor(scope: Construct, id: string, props: RoomsRestApiProps) {
@@ -16,10 +16,17 @@ export class RoomsRestApi extends Construct {
     });
 
     const gameTypesResource = api.root.addResource(ResourcePaths.gameTypes);
+    const roomsResource = api.root.addResource(ResourcePaths.rooms);
 
     new GetGameTypesLambda(this, "GetGameTypesLambda", {
       table: props.table,
       resource: gameTypesResource,
+      allowedOrigins: props.allowedOrigins,
+    });
+
+    new CreateRoomLambda(this, "CreateRoomLambda", {
+      table: props.table,
+      resource: roomsResource,
       allowedOrigins: props.allowedOrigins,
     });
   }

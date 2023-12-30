@@ -37,4 +37,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
   gameTypes: {
     pk: stringAttribute("GameTypes"),
   },
+  unavailableRoomCodes: {
+    pk: stringAttribute("UnavailableDivisionAndGroupCodes"),
+  },
 };

@@ -5,15 +5,19 @@ interface CommonFieldNames {
   sk: string;
 }
 
-interface GameTypesFieldValues {
-  pk: AttributeValue.SMember;
-}
-
 interface GameTypesFieldNames {
   gameTypeId: string;
   name: string;
   description: string;
   iconUrl: string;
+}
+
+interface GameTypesFieldValues {
+  pk: AttributeValue.SMember;
+}
+
+interface UnavailableRoomCodesFieldValues {
+  pk: AttributeValue.SMember;
 }
 
 export interface DynamoFieldNames {
@@ -23,4 +27,5 @@ export interface DynamoFieldNames {
 
 export interface DynamoFieldValues {
   gameTypes: GameTypesFieldValues;
+  unavailableRoomCodes: UnavailableRoomCodesFieldValues;
 }
