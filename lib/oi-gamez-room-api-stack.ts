@@ -1,16 +1,19 @@
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cdk from "aws-cdk-lib";
+import { Construct } from "constructs";
+
+import { RoomsRestApi, RoomTable } from "./constructs";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    const roomTable = new RoomTable(this, "RoomTable");
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'OiGamezRoomApiQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    new RoomsRestApi(this, "RoomRestApi", {
+      table: roomTable.table,
+      account: this.account,
+      region: this.region,
+      allowedOrigins: "http://localhost:3000",
+    });
   }
 }
