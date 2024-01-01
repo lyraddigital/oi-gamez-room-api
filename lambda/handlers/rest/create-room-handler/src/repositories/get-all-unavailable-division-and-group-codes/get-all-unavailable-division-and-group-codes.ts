@@ -9,7 +9,9 @@ import {
 
 import { mapFromDynamoToUnavailableRoomCode } from "../../mappers";
 
-export const getAllUnavailableRoomCodes = async (): Promise<string[]> => {
+export const getAllUnavailableDivisionAndGroupCodes = async (): Promise<
+  string[]
+> => {
   const queryCommandInput: QueryCommandInput = {
     TableName: DYNAMO_TABLE_NAME,
     KeyConditionExpression: "#pk = :pk",

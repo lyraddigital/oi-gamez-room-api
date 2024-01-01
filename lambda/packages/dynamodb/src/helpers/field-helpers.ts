@@ -1,6 +1,6 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
-import { DynamoFieldNames, DynamoFieldValues } from "./types";
+import { DynamoFieldNames, DynamoFieldValues, DynamoKeys } from "./types";
 
 const stringAttribute = (stringValue: string): AttributeValue.SMember => ({
   S: stringValue,
@@ -31,6 +31,9 @@ export const dynamoFieldNames: DynamoFieldNames = {
     description: "Description",
     iconUrl: "IconUrl",
   },
+  availableDivisionCodes: {
+    subCodes: "Subcodes",
+  },
 };
 
 export const dynamoFieldValues: DynamoFieldValues = {
@@ -40,4 +43,16 @@ export const dynamoFieldValues: DynamoFieldValues = {
   unavailableRoomCodes: {
     pk: stringAttribute("UnavailableDivisionAndGroupCodes"),
   },
+  availableDivisionCodes: {
+    pk: (divisionCode: string) =>
+      stringAttribute(`AvailableDivisionCode#${divisionCode}`),
+    sk: (groupCode: string) => stringAttribute(`#GroupCode#${groupCode}`),
+  },
+};
+
+export const keys: DynamoKeys = {
+  availableDivisionCodes: (divisionRoomCode, groupRoomCode) => ({
+    PK: dynamoFieldValues.availableDivisionCodes.pk(divisionRoomCode),
+    SK: dynamoFieldValues.availableDivisionCodes.sk(groupRoomCode),
+  }),
 };

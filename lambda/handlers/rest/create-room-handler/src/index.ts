@@ -3,18 +3,46 @@ import { APIGatewayProxyResult } from "aws-lambda";
 import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
 
 import { validateEnvironment } from "./configuration";
-import { getAllUnavailableRoomCodes } from "./repositories";
+import {
+  getAllUnavailableDivisionAndGroupCodes,
+  getUniqueRoomCode,
+} from "./repositories";
+import {
+  getAnAvailableDivisionAndGroupCode,
+  handleErrorResponse,
+} from "./services";
 
 validateEnvironment();
 
 export const handler = async (): Promise<APIGatewayProxyResult> => {
   try {
-    return corsOkResponseWithData(await getAllUnavailableRoomCodes());
+    const unavailableDivisionAndGroupCodes =
+      await getAllUnavailableDivisionAndGroupCodes();
+    const [divisionCode, groupCode] = getAnAvailableDivisionAndGroupCode(
+      unavailableDivisionAndGroupCodes
+    );
+    const [roomCode, isRoomCodeGroupExhaused] = await getUniqueRoomCode(
+      divisionCode,
+      groupCode
+    );
+
+    // await createRoom(
+    //   {
+    //     gameTypeId: 1,
+    //     code: "AAAA",
+    //     hostUsername: "daryl_duck",
+    //     name: "Some Room",
+    //     minNumberOfPlayers: 2,
+    //     maxNumberOfPlayers: 2,
+    //     ttl: 449959595,
+    //   },
+    //   isRoomCodeGroupExhaused
+    // );
+
+    return corsOkResponseWithData({ roomCode, isRoomCodeGroupExhaused });
   } catch (e) {
     console.log(e);
 
-    return fatalErrorResponse(
-      "Unknown issue while trying to check the status of a game code."
-    );
+    return fatalErrorResponse(handleErrorResponse(e));
   }
 };
