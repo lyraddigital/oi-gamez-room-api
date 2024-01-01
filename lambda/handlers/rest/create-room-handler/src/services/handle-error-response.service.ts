@@ -1,6 +1,5 @@
 export const handleErrorResponse = (e: unknown) => {
-  let errorMessage =
-    "Unknown issue while trying to check the status of a game code.";
+  let errorMessage = "Unknown issue while trying to create the room.";
   const exceptionName = (e as Error)?.name;
 
   if (exceptionName === "RoomsExhaustedError") {

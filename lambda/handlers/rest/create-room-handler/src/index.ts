@@ -4,6 +4,7 @@ import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
 
 import { validateEnvironment } from "./configuration";
 import {
+  createRoom,
   getAllUnavailableDivisionAndGroupCodes,
   getUniqueRoomCode,
 } from "./repositories";
@@ -26,18 +27,14 @@ export const handler = async (): Promise<APIGatewayProxyResult> => {
       groupCode
     );
 
-    // await createRoom(
-    //   {
-    //     gameTypeId: 1,
-    //     code: "AAAA",
-    //     hostUsername: "daryl_duck",
-    //     name: "Some Room",
-    //     minNumberOfPlayers: 2,
-    //     maxNumberOfPlayers: 2,
-    //     ttl: 449959595,
-    //   },
-    //   isRoomCodeGroupExhaused
-    // );
+    await createRoom(
+      {
+        code: "AAAA",
+        hostUsername: "daryl_duck",
+        epochExpiry: 449959595,
+      },
+      isRoomCodeGroupExhaused
+    );
 
     return corsOkResponseWithData({ roomCode, isRoomCodeGroupExhaused });
   } catch (e) {

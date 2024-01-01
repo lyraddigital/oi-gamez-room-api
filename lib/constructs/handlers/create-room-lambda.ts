@@ -29,7 +29,12 @@ export class CreateRoomLambda extends Construct {
     const dbTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.table.tableArn],
-      actions: ["dynamodb:Query", "dynamodb:GetItem"],
+      actions: [
+        "dynamodb:Query",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+      ],
     });
 
     createRoomLambda.lambdaFunction.addToRolePolicy(dbTablePolicyDocument);

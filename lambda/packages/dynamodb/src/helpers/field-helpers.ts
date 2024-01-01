@@ -1,9 +1,24 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
-import { DynamoFieldNames, DynamoFieldValues, DynamoKeys } from "./types";
+import {
+  DynamoConditionalExpressions,
+  DynamoFieldNames,
+  DynamoFieldValues,
+  DynamoKeys,
+} from "./types";
+
+const numberAttribute = (numberValue: number): AttributeValue.NMember => ({
+  N: numberValue.toString(),
+});
 
 const stringAttribute = (stringValue: string): AttributeValue.SMember => ({
   S: stringValue,
+});
+
+const stringSetAttribute = (
+  stringValues: string[]
+): AttributeValue.SSMember => ({
+  SS: stringValues,
 });
 
 export const getDynamoString = (
@@ -24,6 +39,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
   common: {
     pk: "PK",
     sk: "SK",
+    ttl: "TTL",
   },
   gameType: {
     gameTypeId: "GameTypeId",
@@ -34,19 +50,50 @@ export const dynamoFieldNames: DynamoFieldNames = {
   availableDivisionCodes: {
     subCodes: "Subcodes",
   },
+  room: {
+    code: "RoomCode",
+    hostUsername: "HostUsername",
+  },
+  user: {
+    username: "Username",
+  },
 };
 
 export const dynamoFieldValues: DynamoFieldValues = {
+  common: {
+    ttl: (ttl: number) => numberAttribute(ttl),
+  },
   gameTypes: {
     pk: stringAttribute("GameTypes"),
   },
   unavailableRoomCodes: {
     pk: stringAttribute("UnavailableDivisionAndGroupCodes"),
+    sk: (roomDivisionAndGroupCode: string) =>
+      stringAttribute(roomDivisionAndGroupCode),
   },
   availableDivisionCodes: {
     pk: (divisionCode: string) =>
       stringAttribute(`AvailableDivisionCode#${divisionCode}`),
     sk: (groupCode: string) => stringAttribute(`#GroupCode#${groupCode}`),
+    subCodes: (subCodes: string[]) => stringSetAttribute(subCodes),
+  },
+  room: {
+    pk: (code: string) => stringAttribute(`Room#${code}`),
+    sk: stringAttribute("#Metadata"),
+    code: (code: string) => stringAttribute(code),
+    hostUsername: (hostUsername: string) => stringAttribute(hostUsername),
+  },
+  user: {
+    pk: (roomCode: string) => stringAttribute(`Room#${roomCode}`),
+    sk: (username: string) => stringAttribute(`#User#${username}`),
+    username: (username: string) => stringAttribute(username),
+  },
+};
+
+export const expressions: DynamoConditionalExpressions = {
+  common: {
+    keysExists: `attribute_exists(${dynamoFieldNames.common.pk}) AND attribute_exists(${dynamoFieldNames.common.sk})`,
+    keysDoNotExists: `attribute_not_exists(${dynamoFieldNames.common.pk}) AND attribute_not_exists(${dynamoFieldNames.common.sk})`,
   },
 };
 
