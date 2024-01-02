@@ -34,6 +34,12 @@
       ],
       "@oigamez/responses": [
         "./lambda/packages/responses/src"
+      ],
+      "@oigamez/services": [
+        "./lambda/packages/services/src"
+      ],
+      "@oigamez/validators": [
+        "./lambda/packages/validators/src"
       ]
     }
   },
