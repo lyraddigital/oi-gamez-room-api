@@ -5,4 +5,6 @@ export interface RoomsRestApiProps {
   account: string;
   region: string;
   allowedOrigins: string;
+  roomSessionCookieDomain: string;
+  roomSessionCookieName: string;
 }

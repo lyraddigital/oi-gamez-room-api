@@ -17,12 +17,16 @@ export class CreateRoomLambda extends Construct {
     const createRoomLambda = new RestAPIHandlerFunction(this, "RestAPI", {
       handlerFileLocation: HandlerFilePaths.createRoom,
       handlerFunctionName: HandlerFunctionNames.createRoom,
-      method: "GET",
+      method: "POST",
       resource: props.resource,
       environment: {
-        [EnvironmentVariables.getGameTypes.tableName]: props.table.tableName,
-        [EnvironmentVariables.getGameTypes.corsAllowedOrigins]:
+        [EnvironmentVariables.createRoom.tableName]: props.table.tableName,
+        [EnvironmentVariables.createRoom.corsAllowedOrigins]:
           props.allowedOrigins,
+        [EnvironmentVariables.createRoom.sessionCookieName]:
+          props.sessionCookieName,
+        [EnvironmentVariables.createRoom.sessionCookieDomain]:
+          props.sessionCookieDomain,
       },
     });
 

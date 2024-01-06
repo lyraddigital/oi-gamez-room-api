@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import {
   corsBadRequestResponse,
-  corsOkResponseWithData,
+  corsOkResponseWithCookieData,
   fatalErrorResponse,
 } from "@oigamez/responses";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
@@ -26,7 +26,7 @@ export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   let username: string | undefined;
-  const origin = event?.headers ? event.headers["origin"] : undefined;
+  const origin = event?.headers ? event.headers["Origin"] : undefined;
 
   try {
     if (event.body) {
@@ -64,9 +64,7 @@ export const handler = async (
       isRoomCodeGroupExhaused
     );
 
-    const sessionId = "wofijwfoiwjfoiwjfoiwjfoiwjfowifj"; // This will be encrypted eventually. encodeRoomCodeUsername(roomCode, username!);
-
-    return corsOkResponseWithData({ sessionId });
+    return corsOkResponseWithCookieData({ roomCode }, username!);
   } catch (e) {
     console.log(e);
 

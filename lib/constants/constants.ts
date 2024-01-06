@@ -1,10 +1,18 @@
 interface EnvironmentVariables {
   getGameTypes: GetGameTypesEnvironmentVariables;
+  createRoom: CreateRoomEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
   tableName: string;
   corsAllowedOrigins: string;
+}
+
+interface CreateRoomEnvironmentVariables {
+  tableName: string;
+  corsAllowedOrigins: string;
+  sessionCookieName: string;
+  sessionCookieDomain: string;
 }
 
 interface HandlerFilePaths {
@@ -30,6 +38,12 @@ export const EnvironmentVariables: EnvironmentVariables = {
   getGameTypes: {
     tableName: "DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+  },
+  createRoom: {
+    tableName: "DYNAMO_TABLE_NAME",
+    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+    sessionCookieName: "COOKIE_NAME",
+    sessionCookieDomain: "COOKIE_DOMAIN",
   },
 };
 

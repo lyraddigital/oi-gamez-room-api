@@ -28,6 +28,8 @@ export class RoomsRestApi extends Construct {
       table: props.table,
       resource: roomsResource,
       allowedOrigins: props.allowedOrigins,
+      sessionCookieDomain: props.roomSessionCookieDomain,
+      sessionCookieName: props.roomSessionCookieName,
     });
   }
 }

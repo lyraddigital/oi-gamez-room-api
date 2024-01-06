@@ -1,4 +1,6 @@
 import {
+  verifyCookieDomain,
+  verifyCookieName,
   verifyCorsAllowedOrigin,
   verifyDynamoTableName,
 } from "@oigamez/configuration";
@@ -6,4 +8,6 @@ import {
 export const validateEnvironment = (): void => {
   verifyCorsAllowedOrigin();
   verifyDynamoTableName();
+  verifyCookieName();
+  verifyCookieDomain();
 };
