@@ -14,6 +14,7 @@ import {
 } from "@oigamez/dynamodb";
 
 import { RoomToCreate } from "../../models";
+import { RoomStatus } from "@oigamez/models";
 
 const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
   Put: {
@@ -34,6 +35,9 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       ),
       [dynamoFieldNames.room.visibility]: dynamoFieldValues.room.visibility(
         roomToCreate.isPublic
+      ),
+      [dynamoFieldNames.room.status]: dynamoFieldValues.room.status(
+        RoomStatus.NotAvailable
       ),
       [dynamoFieldNames.common.ttl]: dynamoFieldValues.common.ttl(
         roomToCreate.epochExpiry

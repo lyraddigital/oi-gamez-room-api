@@ -57,6 +57,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
   room: {
     code: "RoomCode",
     hostUsername: "HostUsername",
+    status: "Status",
     title: "Title",
     visibility: "IsVisible",
   },
@@ -88,6 +89,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
     sk: stringAttribute("#Metadata"),
     code: (code: string) => stringAttribute(code),
     hostUsername: (hostUsername: string) => stringAttribute(hostUsername),
+    status: (status: string) => stringAttribute(status),
     title: (title: string) => stringAttribute(title),
     visibility: (isVisible: boolean) => booleanAttribute(isVisible),
   },
