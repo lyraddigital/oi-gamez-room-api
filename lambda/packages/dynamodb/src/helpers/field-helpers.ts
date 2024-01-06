@@ -21,6 +21,10 @@ const stringSetAttribute = (
   SS: stringValues,
 });
 
+const booleanAttribute = (boolValue: boolean): AttributeValue.BOOLMember => ({
+  BOOL: boolValue,
+});
+
 export const getDynamoString = (
   dynamoField?: AttributeValue,
   defaultValue: string = ""
@@ -53,6 +57,8 @@ export const dynamoFieldNames: DynamoFieldNames = {
   room: {
     code: "RoomCode",
     hostUsername: "HostUsername",
+    title: "Title",
+    visibility: "IsVisible",
   },
   user: {
     username: "Username",
@@ -82,6 +88,8 @@ export const dynamoFieldValues: DynamoFieldValues = {
     sk: stringAttribute("#Metadata"),
     code: (code: string) => stringAttribute(code),
     hostUsername: (hostUsername: string) => stringAttribute(hostUsername),
+    title: (title: string) => stringAttribute(title),
+    visibility: (isVisible: boolean) => booleanAttribute(isVisible),
   },
   user: {
     pk: (roomCode: string) => stringAttribute(`Room#${roomCode}`),

@@ -4,9 +4,13 @@ import {
   validateUsername,
 } from "@oigamez/validators";
 
+import { CreateRoomPayload } from "../models";
+import { validateRoomTitle } from "./room-title.validator";
+import { validateRoomVisibility } from "./room-visibility.validator";
+
 export const validateRequest = (
   origin?: string,
-  username?: string
+  payload?: CreateRoomPayload
 ): ValidationResult => {
   const originValidationResult = validateOrigin(origin);
 
@@ -14,12 +18,34 @@ export const validateRequest = (
     return originValidationResult;
   }
 
-  const usernameValidationResult = validateUsername(username);
-
-  if (!usernameValidationResult.isSuccessful) {
+  if (!payload) {
     return {
       isSuccessful: false,
-      errorMessages: usernameValidationResult.errorMessages,
+      errorMessages: ["Missing payload from request"],
+    };
+  }
+
+  const errorMessages: string[] = [];
+  const usernameValidationResult = validateUsername(payload!.hostUsername);
+  const titleValidationResult = validateRoomTitle(payload!.title);
+  const isPublicValidationResult = validateRoomVisibility(payload!.isPublic);
+
+  if (!usernameValidationResult.isSuccessful) {
+    errorMessages.push(...usernameValidationResult.errorMessages);
+  }
+
+  if (!titleValidationResult.isSuccessful) {
+    errorMessages.push(...titleValidationResult.errorMessages);
+  }
+
+  if (!isPublicValidationResult.isSuccessful) {
+    errorMessages.push(...isPublicValidationResult.errorMessages);
+  }
+
+  if (errorMessages.length > 0) {
+    return {
+      isSuccessful: false,
+      errorMessages,
     };
   }
 

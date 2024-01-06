@@ -25,18 +25,17 @@ validateEnvironment();
 export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  let username: string | undefined;
+  let payload: CreateRoomPayload | undefined;
   const origin = event?.headers ? event.headers["Origin"] : undefined;
 
   try {
     if (event.body) {
       try {
-        const payload = JSON.parse(event.body) as CreateRoomPayload;
-        username = payload.hostUsername;
+        payload = JSON.parse(event.body) as CreateRoomPayload;
       } catch {}
     }
 
-    const validationResult = validateRequest(origin, username);
+    const validationResult = validateRequest(origin, payload);
 
     if (!validationResult.isSuccessful) {
       return corsBadRequestResponse(validationResult.errorMessages);
@@ -58,13 +57,15 @@ export const handler = async (
     await createRoom(
       {
         code: roomCode,
-        hostUsername: username!,
+        title: payload!.title!,
+        hostUsername: payload!.hostUsername!,
         epochExpiry: roomEpochExpiry,
+        isPublic: payload!.isPublic!,
       },
       isRoomCodeGroupExhaused
     );
 
-    return corsOkResponseWithCookieData({ roomCode }, username!);
+    return corsOkResponseWithCookieData({ roomCode }, payload!.hostUsername!);
   } catch (e) {
     console.log(e);
 

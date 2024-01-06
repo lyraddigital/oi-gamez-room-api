@@ -15,40 +15,50 @@ import {
 
 import { RoomToCreate } from "../../models";
 
-const createNewRoomEntry = (
-  roomCode: string,
-  username: string,
-  epochTimeInSeconds: number
-): TransactWriteItem => ({
+const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
   Put: {
     TableName: DYNAMO_TABLE_NAME,
     Item: {
-      [dynamoFieldNames.common.pk]: dynamoFieldValues.room.pk(roomCode),
+      [dynamoFieldNames.common.pk]: dynamoFieldValues.room.pk(
+        roomToCreate.code
+      ),
       [dynamoFieldNames.common.sk]: dynamoFieldValues.room.sk,
-      [dynamoFieldNames.room.code]: dynamoFieldValues.room.code(roomCode),
-      [dynamoFieldNames.room.hostUsername]:
-        dynamoFieldValues.room.hostUsername(username),
-      [dynamoFieldNames.common.ttl]:
-        dynamoFieldValues.common.ttl(epochTimeInSeconds),
+      [dynamoFieldNames.room.code]: dynamoFieldValues.room.code(
+        roomToCreate.code
+      ),
+      [dynamoFieldNames.room.title]: dynamoFieldValues.room.title(
+        roomToCreate.title
+      ),
+      [dynamoFieldNames.room.hostUsername]: dynamoFieldValues.room.hostUsername(
+        roomToCreate.hostUsername
+      ),
+      [dynamoFieldNames.room.visibility]: dynamoFieldValues.room.visibility(
+        roomToCreate.isPublic
+      ),
+      [dynamoFieldNames.common.ttl]: dynamoFieldValues.common.ttl(
+        roomToCreate.epochExpiry
+      ),
     },
     ConditionExpression: expressions.common.keysDoNotExists,
   },
 });
 
-const createNewUserEntry = (
-  roomCode: string,
-  username: string,
-  epochTimeInSeconds: number
-): TransactWriteItem => ({
+const createNewUserEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
   Put: {
     TableName: DYNAMO_TABLE_NAME,
     Item: {
-      [dynamoFieldNames.common.pk]: dynamoFieldValues.user.pk(roomCode),
-      [dynamoFieldNames.common.sk]: dynamoFieldValues.user.sk(username),
-      [dynamoFieldNames.user.username]:
-        dynamoFieldValues.user.username(username),
-      [dynamoFieldNames.common.ttl]:
-        dynamoFieldValues.common.ttl(epochTimeInSeconds),
+      [dynamoFieldNames.common.pk]: dynamoFieldValues.user.pk(
+        roomToCreate.code
+      ),
+      [dynamoFieldNames.common.sk]: dynamoFieldValues.user.sk(
+        roomToCreate.hostUsername
+      ),
+      [dynamoFieldNames.user.username]: dynamoFieldValues.user.username(
+        roomToCreate.hostUsername
+      ),
+      [dynamoFieldNames.common.ttl]: dynamoFieldValues.common.ttl(
+        roomToCreate.epochExpiry
+      ),
     },
     ConditionExpression: expressions.common.keysDoNotExists,
   },
@@ -95,15 +105,13 @@ export const createRoom = async (
   canSetDivisionAndGroupCodeAsUnavailable: boolean = false
 ): Promise<void> => {
   const roomCode = roomToCreate.code;
-  const username = roomToCreate.hostUsername;
-  const epochTimeInSeconds = roomToCreate.epochExpiry;
   const divisionRoomCode = roomCode[0];
   const groupRoomCode = roomCode[1];
   const roomSubCode = roomCode.substring(2);
 
   const transactionItems: TransactWriteItem[] = [
-    createNewRoomEntry(roomCode, username, epochTimeInSeconds),
-    createNewUserEntry(roomCode, username, epochTimeInSeconds),
+    createNewRoomEntry(roomToCreate),
+    createNewUserEntry(roomToCreate),
     createRoomAvailabilityUpdateEntry(
       divisionRoomCode,
       groupRoomCode,

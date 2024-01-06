@@ -20,6 +20,8 @@ interface GameTypesFieldNames {
 interface RoomFieldNames {
   code: string;
   hostUsername: string;
+  title: string;
+  visibility: string;
 }
 
 interface UserFieldNames {
@@ -45,6 +47,8 @@ interface RoomFieldValues {
   sk: AttributeValue.SMember;
   code: (code: string) => AttributeValue.SMember;
   hostUsername: (hostUsername: string) => AttributeValue.SMember;
+  title: (title: string) => AttributeValue.SMember;
+  visibility: (isVisible: boolean) => AttributeValue.BOOLMember;
 }
 
 interface UnavailableRoomCodesFieldValues {
