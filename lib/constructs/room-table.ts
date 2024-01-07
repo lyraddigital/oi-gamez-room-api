@@ -5,10 +5,12 @@ import {
   TableV2,
 } from "aws-cdk-lib/aws-dynamodb";
 
+import { RoomTableProps } from "../props";
+
 export class RoomTable extends Construct {
   public table: TableV2;
 
-  constructor(scope: Construct, id: string) {
+  constructor(scope: Construct, id: string, props: RoomTableProps) {
     super(scope, id);
 
     this.table = new TableV2(this, "OIGamezRoomData", {
@@ -19,7 +21,7 @@ export class RoomTable extends Construct {
     });
 
     this.table.addGlobalSecondaryIndex({
-      indexName: "HostedRooms-index",
+      indexName: props.hostedRoomsIndexName,
       partitionKey: { name: "HostUsername", type: AttributeType.STRING },
       sortKey: { name: "Status", type: AttributeType.STRING },
     });

@@ -5,6 +5,7 @@ import {
   EnvironmentVariables,
   HandlerFilePaths,
   HandlerFunctionNames,
+  IndexNames,
 } from "../../constants";
 import { CreateRoomLambdaProps } from "../../props";
 
@@ -27,6 +28,8 @@ export class CreateRoomLambda extends Construct {
           props.sessionCookieName,
         [EnvironmentVariables.createRoom.sessionCookieDomain]:
           props.sessionCookieDomain,
+        [EnvironmentVariables.createRoom.hostRoomIndexName]:
+          props.hostRoomIndexName,
       },
     });
 
@@ -41,6 +44,15 @@ export class CreateRoomLambda extends Construct {
       ],
     });
 
+    const dbHostRoomIndexPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [`${props.table.tableArn}/index/${IndexNames.hostedRooms}`],
+      actions: ["dynamodb:Query"],
+    });
+
     createRoomLambda.lambdaFunction.addToRolePolicy(dbTablePolicyDocument);
+    createRoomLambda.lambdaFunction.addToRolePolicy(
+      dbHostRoomIndexPolicyDocument
+    );
   }
 }

@@ -7,4 +7,5 @@ export interface RoomsRestApiProps {
   allowedOrigins: string;
   roomSessionCookieDomain: string;
   roomSessionCookieName: string;
+  hostRoomIndexName: string;
 }

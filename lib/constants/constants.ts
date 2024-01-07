@@ -13,6 +13,7 @@ interface CreateRoomEnvironmentVariables {
   corsAllowedOrigins: string;
   sessionCookieName: string;
   sessionCookieDomain: string;
+  hostRoomIndexName: string;
 }
 
 interface HandlerFilePaths {
@@ -29,6 +30,11 @@ interface HandlerFunctionNames {
   getGameTypes: string;
   createRoom: string;
 }
+
+interface IndexNames {
+  hostedRooms: string;
+}
+
 export const ResourcePaths: ResourcePaths = {
   gameTypes: "game-types",
   rooms: "rooms",
@@ -44,6 +50,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
     sessionCookieName: "COOKIE_NAME",
     sessionCookieDomain: "COOKIE_DOMAIN",
+    hostRoomIndexName: "HOST_ROOM_INDEX_NAME",
   },
 };
 
@@ -56,4 +63,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
 export const HandlerFunctionNames: HandlerFunctionNames = {
   getGameTypes: "handler",
   createRoom: "handler",
+};
+
+export const IndexNames: IndexNames = {
+  hostedRooms: "HostedRooms-index",
 };
