@@ -17,5 +17,11 @@ export class RoomTable extends Construct {
       dynamoStream: StreamViewType.OLD_IMAGE,
       timeToLiveAttribute: "TTL",
     });
+
+    this.table.addGlobalSecondaryIndex({
+      indexName: "HostedRooms-index",
+      partitionKey: { name: "HostUsername", type: AttributeType.STRING },
+      sortKey: { name: "Status", type: AttributeType.STRING },
+    });
   }
 }

@@ -6,10 +6,22 @@ export const validateUsername = (username?: string): ValidationResult => {
       isSuccessful: false,
       errorMessages: ["Username is required"],
     };
-  } else if (username.length < 2) {
+  }
+
+  const errorMessages: string[] = [];
+
+  if (username.length < 2) {
+    errorMessages.push("Username must be at least 2 characters");
+  }
+
+  if (username.length > 12) {
+    errorMessages.push("Username must be no more than 12 characters");
+  }
+
+  if (errorMessages.length > 0) {
     return {
       isSuccessful: false,
-      errorMessages: ["Username must be at least 2 characters"],
+      errorMessages,
     };
   }
 
