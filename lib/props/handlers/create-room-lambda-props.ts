@@ -6,4 +6,5 @@ export interface CreateRoomLambdaProps extends CorsProps, LambdaHandlerProps {
   sessionCookieDomain: string;
   sessionCookieName: string;
   hostRoomIndexName: string;
+  connectWindowInSeconds: number;
 }

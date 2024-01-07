@@ -12,9 +12,9 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
+import { RoomStatus } from "@oigamez/models";
 
 import { RoomToCreate } from "../../models";
-import { RoomStatus } from "@oigamez/models";
 
 const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
   Put: {

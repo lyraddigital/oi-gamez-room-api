@@ -10,6 +10,7 @@ interface GetGameTypesEnvironmentVariables {
 
 interface CreateRoomEnvironmentVariables {
   tableName: string;
+  connectWindowInSeconds: string;
   corsAllowedOrigins: string;
   sessionCookieName: string;
   sessionCookieDomain: string;
@@ -47,6 +48,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
   },
   createRoom: {
     tableName: "DYNAMO_TABLE_NAME",
+    connectWindowInSeconds: "CONNECT_WINDOW_IN_SECONDS",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
     sessionCookieName: "COOKIE_NAME",
     sessionCookieDomain: "COOKIE_DOMAIN",

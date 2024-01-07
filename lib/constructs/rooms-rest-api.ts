@@ -28,6 +28,7 @@ export class RoomsRestApi extends Construct {
       table: props.table,
       resource: roomsResource,
       allowedOrigins: props.allowedOrigins,
+      connectWindowInSeconds: props.connectWindowInSeconds,
       sessionCookieDomain: props.roomSessionCookieDomain,
       sessionCookieName: props.roomSessionCookieName,
       hostRoomIndexName: props.hostRoomIndexName,

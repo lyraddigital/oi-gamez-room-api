@@ -1,1 +1,1 @@
-export * from "./milliseconds-to-seconds";
+export * from "./increment-and-convert-to-seconds";

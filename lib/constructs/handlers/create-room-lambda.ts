@@ -30,6 +30,8 @@ export class CreateRoomLambda extends Construct {
           props.sessionCookieDomain,
         [EnvironmentVariables.createRoom.hostRoomIndexName]:
           props.hostRoomIndexName,
+        [EnvironmentVariables.createRoom.connectWindowInSeconds]:
+          props.connectWindowInSeconds.toString(),
       },
     });
 

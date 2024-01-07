@@ -1,11 +1,12 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { CONNECT_WINDOW_IN_SECONDS } from "@oigamez/configuration";
 import {
   corsBadRequestResponse,
   corsOkResponseWithCookieData,
   fatalErrorResponse,
 } from "@oigamez/responses";
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
+import { incrementAndReturnInSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { CreateRoomPayload } from "./models";
@@ -13,6 +14,7 @@ import {
   createRoom,
   getAllUnavailableDivisionAndGroupCodes,
   getUniqueRoomCode,
+  isUsernameHosting,
 } from "./repositories";
 import {
   getAnAvailableDivisionAndGroupCode,
@@ -41,8 +43,17 @@ export const handler = async (
       return corsBadRequestResponse(validationResult.errorMessages);
     }
 
-    const roomEpochExpiry = convertFromMillisecondsToSeconds(
-      event.requestContext.requestTimeEpoch
+    const isAlreadyHosting = await isUsernameHosting(payload!.hostUsername!);
+
+    if (isAlreadyHosting) {
+      return corsBadRequestResponse([
+        "Cannot create room. You are already hosting a room",
+      ]);
+    }
+
+    const roomEpochExpiry = incrementAndReturnInSeconds(
+      event.requestContext.requestTimeEpoch,
+      CONNECT_WINDOW_IN_SECONDS
     );
     const unavailableDivisionAndGroupCodes =
       await getAllUnavailableDivisionAndGroupCodes();

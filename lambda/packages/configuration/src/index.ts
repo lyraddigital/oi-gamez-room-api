@@ -1,3 +1,4 @@
+export * from "./connect-window-in-seconds";
 export * from "./cookie-domain";
 export * from "./cookie-name";
 export * from "./cors-allowed-origin";
