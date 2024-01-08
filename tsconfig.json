@@ -44,6 +44,9 @@
       "@oigamez/responses": [
         "./lambda/packages/responses/src"
       ],
+      "@oigamez/rule-sets": [
+        "./lambda/packages/rule-sets/src"
+      ],
       "@oigamez/services": [
         "./lambda/packages/services/src"
       ],

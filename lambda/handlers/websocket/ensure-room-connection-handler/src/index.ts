@@ -10,6 +10,7 @@ import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { validateRequest } from "./validators";
+import { runEnsureRoomConnectionRuleSet } from "./rule-sets";
 
 validateEnvironment();
 
@@ -33,6 +34,12 @@ export const handler = async (
 
     const ttl = convertFromMillisecondsToSeconds(epochTime);
     const [room, users] = await getRoomAndPlayers(roomCode!, ttl);
+
+    const ruleSetResult = runEnsureRoomConnectionRuleSet(room, users);
+
+    if (!ruleSetResult.isSuccessful) {
+      return badRequestResponse(ruleSetResult.errorMessages);
+    }
 
     return okResponse();
   } catch (e) {
