@@ -5,14 +5,11 @@ import {
   DynamoFieldNames,
   DynamoFieldValues,
   DynamoKeys,
+  RecordType,
 } from "./types";
 
 const numberAttribute = (numberValue: number): AttributeValue.NMember => ({
   N: numberValue.toString(),
-});
-
-const stringAttribute = (stringValue: string): AttributeValue.SMember => ({
-  S: stringValue,
 });
 
 const stringSetAttribute = (
@@ -23,6 +20,10 @@ const stringSetAttribute = (
 
 const booleanAttribute = (boolValue: boolean): AttributeValue.BOOLMember => ({
   BOOL: boolValue,
+});
+
+const stringAttribute = (stringValue: string): AttributeValue.SMember => ({
+  S: stringValue,
 });
 
 export const getDynamoString = (
@@ -51,6 +52,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
     pk: "PK",
     sk: "SK",
     ttl: "TTL",
+    type: "Type",
   },
   gameType: {
     gameTypeId: "GameTypeId",
@@ -79,17 +81,20 @@ export const dynamoFieldValues: DynamoFieldValues = {
   },
   gameTypes: {
     pk: stringAttribute("GameTypes"),
+    type: stringAttribute(RecordType.gameType),
   },
   unavailableRoomCodes: {
     pk: stringAttribute("UnavailableDivisionAndGroupCodes"),
     sk: (roomDivisionAndGroupCode: string) =>
       stringAttribute(roomDivisionAndGroupCode),
+    type: stringAttribute(RecordType.unavailableRoomCode),
   },
   availableDivisionCodes: {
     pk: (divisionCode: string) =>
       stringAttribute(`AvailableDivisionCode#${divisionCode}`),
     sk: (groupCode: string) => stringAttribute(`#GroupCode#${groupCode}`),
     subCodes: (subCodes: string[]) => stringSetAttribute(subCodes),
+    type: stringAttribute(RecordType.availableDivisionCode),
   },
   room: {
     pk: (code: string) => stringAttribute(`Room#${code}`),
@@ -99,11 +104,13 @@ export const dynamoFieldValues: DynamoFieldValues = {
     status: (status: string) => stringAttribute(status),
     title: (title: string) => stringAttribute(title),
     visibility: (isVisible: boolean) => booleanAttribute(isVisible),
+    type: stringAttribute(RecordType.room),
   },
   user: {
     pk: (roomCode: string) => stringAttribute(`Room#${roomCode}`),
     sk: (username: string) => stringAttribute(`#User#${username}`),
     username: (username: string) => stringAttribute(username),
+    type: stringAttribute(RecordType.user),
   },
 };
 

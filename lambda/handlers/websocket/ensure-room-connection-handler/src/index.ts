@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { getRoom } from "@oigamez/repositories";
+import { getRoomAndPlayers } from "@oigamez/repositories";
 import {
   badRequestResponse,
   okResponse,
@@ -32,7 +32,7 @@ export const handler = async (
     }
 
     const ttl = convertFromMillisecondsToSeconds(epochTime);
-    const room = await getRoom(roomCode!, ttl);
+    const [room, users] = await getRoomAndPlayers(roomCode!, ttl);
 
     return okResponse();
   } catch (e) {

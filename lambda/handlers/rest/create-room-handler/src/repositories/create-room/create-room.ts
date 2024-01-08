@@ -42,6 +42,7 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       [dynamoFieldNames.common.ttl]: dynamoFieldValues.common.ttl(
         roomToCreate.epochExpiry
       ),
+      [dynamoFieldNames.common.type]: dynamoFieldValues.room.type,
     },
     ConditionExpression: expressions.common.keysDoNotExists,
   },
@@ -63,6 +64,7 @@ const createNewUserEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       [dynamoFieldNames.common.ttl]: dynamoFieldValues.common.ttl(
         roomToCreate.epochExpiry
       ),
+      [dynamoFieldNames.common.type]: dynamoFieldValues.user.type,
     },
     ConditionExpression: expressions.common.keysDoNotExists,
   },
@@ -99,6 +101,8 @@ const createRoomDivisionAndGroupUnavailableEntry = (
       [dynamoFieldNames.common.sk]: dynamoFieldValues.unavailableRoomCodes.sk(
         roomDivisionAndGroupCode
       ),
+      [dynamoFieldNames.common.type]:
+        dynamoFieldValues.unavailableRoomCodes.type,
     },
     ConditionExpression: expressions.common.keysDoNotExists,
   },
