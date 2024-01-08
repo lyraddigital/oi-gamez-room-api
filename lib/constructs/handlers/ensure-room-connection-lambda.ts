@@ -9,6 +9,7 @@ import {
 import { EnsureRoomConnectionLambdaProps } from "../../props";
 
 import { WebsocketAPIHandlerFunction } from "./websocket-api-handler-function";
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 export class EnsureRoomConnectionLambda extends Construct {
   public lambdaFunction: NodejsFunction;
@@ -20,9 +21,9 @@ export class EnsureRoomConnectionLambda extends Construct {
   ) {
     super(scope, id);
 
-    const connectToHandlerFunction = new WebsocketAPIHandlerFunction(
+    const ensureRoomConnectionHandlerFunction = new WebsocketAPIHandlerFunction(
       this,
-      "ConnectToHandlerFunction",
+      "EnsureRoomConnectionHandlerFunction",
       {
         handlerFileLocation: HandlerFilePaths.ensureRoomConnection,
         handlerFunctionName: HandlerFunctionNames.ensureRoomConnection,
@@ -33,6 +34,16 @@ export class EnsureRoomConnectionLambda extends Construct {
       }
     );
 
-    this.lambdaFunction = connectToHandlerFunction.lambdaFunction;
+    const dbTablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.table.tableArn],
+      actions: ["dynamodb:Query"],
+    });
+
+    ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
+      dbTablePolicyDocument
+    );
+
+    this.lambdaFunction = ensureRoomConnectionHandlerFunction.lambdaFunction;
   }
 }

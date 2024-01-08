@@ -32,8 +32,14 @@
       "@oigamez/dynamodb": [
         "./lambda/packages/dynamodb/src"
       ],
+      "@oigamez/mappers": [
+        "./lambda/packages/mappers/src"
+      ],
       "@oigamez/models": [
         "./lambda/packages/models/src"
+      ],
+      "@oigamez/repositories": [
+        "./lambda/packages/repositories/src"
       ],
       "@oigamez/responses": [
         "./lambda/packages/responses/src"

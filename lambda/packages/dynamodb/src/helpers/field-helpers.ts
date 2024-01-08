@@ -39,6 +39,13 @@ export const getDynamoInt = (
   return dynamoField?.N ? parseInt(dynamoField.N) : defaultValue;
 };
 
+export const getDynamoBoolean = (
+  dynamoField?: AttributeValue,
+  defaultValue: boolean = false
+): boolean => {
+  return dynamoField?.BOOL || defaultValue;
+};
+
 export const dynamoFieldNames: DynamoFieldNames = {
   common: {
     pk: "PK",

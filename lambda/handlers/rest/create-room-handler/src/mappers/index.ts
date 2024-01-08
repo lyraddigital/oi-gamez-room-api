@@ -1,1 +1,1 @@
-export * from "./unavailable-room-code-mapper";
+export * from "./unavailable-room-code.mapper";
