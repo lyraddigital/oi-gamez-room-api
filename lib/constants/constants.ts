@@ -1,6 +1,7 @@
 interface EnvironmentVariables {
   getGameTypes: GetGameTypesEnvironmentVariables;
   createRoom: CreateRoomEnvironmentVariables;
+  ensureRoomConnection: EnsureRoomEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -17,9 +18,14 @@ interface CreateRoomEnvironmentVariables {
   hostRoomIndexName: string;
 }
 
+interface EnsureRoomEnvironmentVariables {
+  tableName: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
+  ensureRoomConnection: string;
 }
 
 interface ResourcePaths {
@@ -30,6 +36,7 @@ interface ResourcePaths {
 interface HandlerFunctionNames {
   getGameTypes: string;
   createRoom: string;
+  ensureRoomConnection: string;
 }
 
 interface IndexNames {
@@ -54,17 +61,23 @@ export const EnvironmentVariables: EnvironmentVariables = {
     sessionCookieDomain: "COOKIE_DOMAIN",
     hostRoomIndexName: "HOST_ROOM_INDEX_NAME",
   },
+  ensureRoomConnection: {
+    tableName: "DYNAMO_TABLE_NAME",
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
   getGameTypes:
     "../../../lambda/handlers/rest/get-game-types-handler/src/index.ts",
   createRoom: "../../../lambda/handlers/rest/create-room-handler/src/index.ts",
+  ensureRoomConnection:
+    "../../../lambda/handlers/websocket/ensure-room-connection-handler/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
   getGameTypes: "handler",
   createRoom: "handler",
+  ensureRoomConnection: "handler",
 };
 
 export const IndexNames: IndexNames = {

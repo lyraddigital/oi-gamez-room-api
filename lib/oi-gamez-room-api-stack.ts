@@ -1,7 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 
-import { RoomsRestApi, RoomTable } from "./constructs";
+import { RoomsRestApi, RoomsSocketApi, RoomTable } from "./constructs";
 import { IndexNames } from "./constants";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
@@ -22,6 +22,10 @@ export class OiGamezRoomApiStack extends cdk.Stack {
         "m7cqhw04n6.execute-api.ap-southeast-2.amazonaws.com",
       roomSessionCookieName: "RoomSessionCookie",
       hostRoomIndexName: IndexNames.hostedRooms,
+    });
+
+    new RoomsSocketApi(this, "RoomSocketApi", {
+      table: roomTable.table,
     });
   }
 }
