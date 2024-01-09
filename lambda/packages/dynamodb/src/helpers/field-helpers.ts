@@ -59,6 +59,8 @@ export const dynamoFieldNames: DynamoFieldNames = {
     name: "Name",
     description: "Description",
     iconUrl: "IconUrl",
+    minNumberOfUsers: "MinNumberOfUsers",
+    maxNumberOfUsers: "MaxNumberOfUsers",
   },
   availableDivisionCodes: {
     subCodes: "Subcodes",
@@ -66,6 +68,9 @@ export const dynamoFieldNames: DynamoFieldNames = {
   room: {
     code: "RoomCode",
     hostUsername: "HostUsername",
+    curNumOfUsers: "CurNumberOfUsers",
+    minNumOfUsers: "MinNumberOfUsers",
+    maxNumOfUsers: "MaxNumberOfUsers",
     status: "Status",
     title: "Title",
     visibility: "IsVisible",
@@ -81,6 +86,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
   },
   gameTypes: {
     pk: stringAttribute("GameTypes"),
+    sk: (gameTypeId: number) => stringAttribute(`#${gameTypeId}`),
     type: stringAttribute(RecordType.gameType),
   },
   unavailableRoomCodes: {
@@ -101,6 +107,9 @@ export const dynamoFieldValues: DynamoFieldValues = {
     sk: stringAttribute("#Metadata"),
     code: (code: string) => stringAttribute(code),
     hostUsername: (hostUsername: string) => stringAttribute(hostUsername),
+    curNumOfUsers: (curNumOfUsers: number) => numberAttribute(curNumOfUsers),
+    minNumOfUsers: (minNumOfUsers: number) => numberAttribute(minNumOfUsers),
+    maxNumOfUsers: (maxNumOfUsers: number) => numberAttribute(maxNumOfUsers),
     status: (status: string) => stringAttribute(status),
     title: (title: string) => stringAttribute(title),
     visibility: (isVisible: boolean) => booleanAttribute(isVisible),

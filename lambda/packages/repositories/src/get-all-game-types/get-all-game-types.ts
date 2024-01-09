@@ -7,8 +7,8 @@ import {
   dynamoFieldValues,
 } from "@oigamez/dynamodb";
 
-import { GameType } from "../../models";
-import { mapFromDynamoToGameType } from "../../mappers";
+import { mapFromDynamoToGameType } from "@oigamez/mappers";
+import { GameType } from "@oigamez/models";
 
 export const getAllGameTypes = async (): Promise<GameType[]> => {
   const queryCommandInput: QueryCommandInput = {

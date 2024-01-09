@@ -13,9 +13,10 @@ import { CreateRoomPayload } from "./models";
 import {
   createRoom,
   getAllUnavailableDivisionAndGroupCodes,
+  getRoomHostingData,
   getUniqueRoomCode,
-  isUsernameHosting,
 } from "./repositories";
+import { runCreateRoomRuleSet } from "./rule-sets";
 import {
   getAnAvailableDivisionAndGroupCode,
   handleErrorResponse,
@@ -43,12 +44,15 @@ export const handler = async (
       return corsBadRequestResponse(validationResult.errorMessages);
     }
 
-    const isAlreadyHosting = await isUsernameHosting(payload!.hostUsername!);
+    const [gameType, isAlreadyHosting] = await getRoomHostingData(
+      payload!.gameTypeId!,
+      payload!.hostUsername!
+    );
 
-    if (isAlreadyHosting) {
-      return corsBadRequestResponse([
-        "Cannot create room. You are already hosting a room",
-      ]);
+    const ruleSetResult = runCreateRoomRuleSet(gameType, isAlreadyHosting);
+
+    if (!ruleSetResult.isSuccessful) {
+      return corsBadRequestResponse(ruleSetResult.errorMessages);
     }
 
     const roomEpochExpiry = incrementAndReturnInSeconds(
@@ -70,6 +74,8 @@ export const handler = async (
         code: roomCode,
         title: payload!.title!,
         hostUsername: payload!.hostUsername!,
+        minNumOfUsers: gameType!.minNumOfUsers,
+        maxNumOfUsers: gameType!.maxNumOfUsers,
         epochExpiry: roomEpochExpiry,
         isPublic: payload!.isPublic!,
       },

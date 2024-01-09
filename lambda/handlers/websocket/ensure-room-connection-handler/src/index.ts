@@ -35,7 +35,11 @@ export const handler = async (
     const ttl = convertFromMillisecondsToSeconds(epochTime);
     const [room, users] = await getRoomAndPlayers(roomCode!, ttl);
 
-    const ruleSetResult = runEnsureRoomConnectionRuleSet(room, users);
+    const ruleSetResult = runEnsureRoomConnectionRuleSet(
+      username!,
+      room,
+      users
+    );
 
     if (!ruleSetResult.isSuccessful) {
       return badRequestResponse(ruleSetResult.errorMessages);

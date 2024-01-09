@@ -33,6 +33,12 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       [dynamoFieldNames.room.hostUsername]: dynamoFieldValues.room.hostUsername(
         roomToCreate.hostUsername
       ),
+      [dynamoFieldNames.room.curNumOfUsers]:
+        dynamoFieldValues.room.curNumOfUsers(0),
+      [dynamoFieldNames.room.minNumOfUsers]:
+        dynamoFieldValues.room.minNumOfUsers(roomToCreate.minNumOfUsers),
+      [dynamoFieldNames.room.maxNumOfUsers]:
+        dynamoFieldValues.room.maxNumOfUsers(roomToCreate.maxNumOfUsers),
       [dynamoFieldNames.room.visibility]: dynamoFieldValues.room.visibility(
         roomToCreate.isPublic
       ),

@@ -3,5 +3,7 @@ export interface RoomToCreate {
   title: string;
   hostUsername: string;
   isPublic: boolean;
+  minNumOfUsers: number;
+  maxNumOfUsers: number;
   epochExpiry: number;
 }

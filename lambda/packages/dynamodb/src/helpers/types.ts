@@ -16,11 +16,16 @@ interface GameTypesFieldNames {
   name: string;
   description: string;
   iconUrl: string;
+  minNumberOfUsers: string;
+  maxNumberOfUsers: string;
 }
 
 interface RoomFieldNames {
   code: string;
   hostUsername: string;
+  curNumOfUsers: string;
+  maxNumOfUsers: string;
+  minNumOfUsers: string;
   status: string;
   title: string;
   visibility: string;
@@ -43,6 +48,7 @@ interface AvailableDivisionCodeFieldValues {
 
 interface GameTypesFieldValues {
   pk: AttributeValue.SMember;
+  sk: (gameTypeId: number) => AttributeValue.SMember;
   type: AttributeValue.SMember;
 }
 
@@ -51,6 +57,9 @@ interface RoomFieldValues {
   sk: AttributeValue.SMember;
   code: (code: string) => AttributeValue.SMember;
   hostUsername: (hostUsername: string) => AttributeValue.SMember;
+  curNumOfUsers: (curNumOfUsers: number) => AttributeValue.NMember;
+  maxNumOfUsers: (maxNumOfUsers: number) => AttributeValue.NMember;
+  minNumOfUsers: (minNumOfUsers: number) => AttributeValue.NMember;
   status: (status: string) => AttributeValue.SMember;
   title: (title: string) => AttributeValue.SMember;
   visibility: (isVisible: boolean) => AttributeValue.BOOLMember;

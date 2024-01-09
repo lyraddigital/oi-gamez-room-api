@@ -5,8 +5,7 @@ import {
   getDynamoInt,
   getDynamoString,
 } from "@oigamez/dynamodb";
-
-import { GameType } from "../models";
+import { GameType } from "@oigamez/models";
 
 export const mapFromDynamoToGameType = (
   dynamoRecord: Record<string, AttributeValue>
@@ -18,5 +17,11 @@ export const mapFromDynamoToGameType = (
       dynamoRecord[dynamoFieldNames.gameType.description]
     ),
     iconUrl: getDynamoString(dynamoRecord[dynamoFieldNames.gameType.iconUrl]),
+    minNumOfUsers: getDynamoInt(
+      dynamoRecord[dynamoFieldNames.gameType.minNumberOfUsers]
+    ),
+    maxNumOfUsers: getDynamoInt(
+      dynamoRecord[dynamoFieldNames.gameType.maxNumberOfUsers]
+    ),
   };
 };
