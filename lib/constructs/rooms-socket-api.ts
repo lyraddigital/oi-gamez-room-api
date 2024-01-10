@@ -26,7 +26,9 @@ export class RoomsSocketApi extends Construct {
       this,
       "EnsureRoomConnectionLambda",
       {
-        table: props.table,
+        connectionTable: props.connectionTable,
+        roomTable: props.roomTable,
+        updatedConnectWindowInSeconds: props.updatedConnectWindowInSeconds,
       }
     );
 

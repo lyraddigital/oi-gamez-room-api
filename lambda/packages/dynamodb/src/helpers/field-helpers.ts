@@ -54,6 +54,13 @@ export const dynamoFieldNames: DynamoFieldNames = {
     ttl: "TTL",
     type: "Type",
   },
+  connection: {
+    pk: "PK",
+    sk: "SK",
+    ttl: "TTL",
+    username: "Username",
+    connectionId: "ConnectionId",
+  },
   gameType: {
     gameTypeId: "GameTypeId",
     name: "Name",
@@ -82,6 +89,13 @@ export const dynamoFieldNames: DynamoFieldNames = {
 
 export const dynamoFieldValues: DynamoFieldValues = {
   common: {
+    ttl: (ttl: number) => numberAttribute(ttl),
+  },
+  connection: {
+    pk: (roomCode: string) => stringAttribute(`RoomCode#${roomCode}`),
+    sk: (username: string) => stringAttribute(`#User#${username}`),
+    username: (username: string) => stringAttribute(username),
+    connectionId: (connectionId: string) => stringAttribute(connectionId),
     ttl: (ttl: number) => numberAttribute(ttl),
   },
   gameTypes: {

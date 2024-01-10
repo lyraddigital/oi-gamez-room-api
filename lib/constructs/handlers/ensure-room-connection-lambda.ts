@@ -28,20 +28,34 @@ export class EnsureRoomConnectionLambda extends Construct {
         handlerFileLocation: HandlerFilePaths.ensureRoomConnection,
         handlerFunctionName: HandlerFunctionNames.ensureRoomConnection,
         environment: {
-          [EnvironmentVariables.ensureRoomConnection.tableName]:
-            props.table.tableName,
+          [EnvironmentVariables.ensureRoomConnection.connectionTableName]:
+            props.connectionTable.tableName,
+          [EnvironmentVariables.ensureRoomConnection.roomTableName]:
+            props.roomTable.tableName,
+          [EnvironmentVariables.ensureRoomConnection.updatedConnectionWindow]:
+            props.updatedConnectWindowInSeconds.toString(),
         },
       }
     );
 
-    const dbTablePolicyDocument = new PolicyStatement({
+    const roomTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
-      resources: [props.table.tableArn],
-      actions: ["dynamodb:Query"],
+      resources: [props.roomTable.tableArn],
+      actions: ["dynamodb:Query", "dynamodb:UpdateItem"],
+    });
+
+    const connectionTablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.connectionTable.tableArn],
+      actions: ["dynamodb:PutItem"],
     });
 
     ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
-      dbTablePolicyDocument
+      roomTablePolicyDocument
+    );
+
+    ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
+      connectionTablePolicyDocument
     );
 
     this.lambdaFunction = ensureRoomConnectionHandlerFunction.lambdaFunction;

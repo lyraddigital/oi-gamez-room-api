@@ -7,6 +7,14 @@ interface CommonFieldNames {
   ttl: string;
 }
 
+interface ConnectionFieldNames {
+  pk: string;
+  sk: string;
+  ttl: string;
+  username: string;
+  connectionId: string;
+}
+
 interface AvailableDivisionCodeFieldNames {
   subCodes: string;
 }
@@ -36,6 +44,14 @@ interface UserFieldNames {
 }
 
 interface CommonFieldValues {
+  ttl: (ttl: number) => AttributeValue.NMember;
+}
+
+interface ConnectionFieldValues {
+  pk: (roomCode: string) => AttributeValue.SMember;
+  sk: (username: string) => AttributeValue.SMember;
+  username: (username: string) => AttributeValue.SMember;
+  connectionId: (connectionId: string) => AttributeValue.SMember;
   ttl: (ttl: number) => AttributeValue.NMember;
 }
 
@@ -103,6 +119,7 @@ export interface DynamoConditionalExpressions {
 
 export interface DynamoFieldNames {
   common: CommonFieldNames;
+  connection: ConnectionFieldNames;
   gameType: GameTypesFieldNames;
   availableDivisionCodes: AvailableDivisionCodeFieldNames;
   room: RoomFieldNames;
@@ -111,6 +128,7 @@ export interface DynamoFieldNames {
 
 export interface DynamoFieldValues {
   common: CommonFieldValues;
+  connection: ConnectionFieldValues;
   availableDivisionCodes: AvailableDivisionCodeFieldValues;
   gameTypes: GameTypesFieldValues;
   unavailableRoomCodes: UnavailableRoomCodesFieldValues;

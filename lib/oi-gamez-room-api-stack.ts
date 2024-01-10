@@ -1,7 +1,12 @@
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 
-import { RoomsRestApi, RoomsSocketApi, RoomTable } from "./constructs";
+import {
+  ConnectionTable,
+  RoomsRestApi,
+  RoomsSocketApi,
+  RoomTable,
+} from "./constructs";
 import { IndexNames } from "./constants";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
@@ -11,6 +16,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     const roomTable = new RoomTable(this, "RoomTable", {
       hostedRoomsIndexName: IndexNames.hostedRooms,
     });
+
+    const connectionTable = new ConnectionTable(this, "ConnectionTable");
 
     new RoomsRestApi(this, "RoomRestApi", {
       table: roomTable.table,
@@ -25,7 +32,9 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     });
 
     new RoomsSocketApi(this, "RoomSocketApi", {
-      table: roomTable.table,
+      roomTable: roomTable.table,
+      connectionTable: connectionTable.table,
+      updatedConnectWindowInSeconds: 21600,
     });
   }
 }

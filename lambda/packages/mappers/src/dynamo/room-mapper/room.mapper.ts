@@ -2,9 +2,10 @@ import { AttributeValue } from "@aws-sdk/client-dynamodb";
 import {
   dynamoFieldNames,
   getDynamoBoolean,
+  getDynamoInt,
   getDynamoString,
 } from "@oigamez/dynamodb";
-import { Room } from "@oigamez/models";
+import { Room, RoomStatus } from "@oigamez/models";
 
 export const mapFromDynamoToRoom = (
   dynamoRecord: Record<string, AttributeValue>
@@ -16,6 +17,18 @@ export const mapFromDynamoToRoom = (
     ),
     isPublic: getDynamoBoolean(dynamoRecord[dynamoFieldNames.room.visibility]),
     code: getDynamoString(dynamoRecord[dynamoFieldNames.room.code]),
-    status: getDynamoString(dynamoRecord[dynamoFieldNames.room.status]),
+    curNumOfUsers: getDynamoInt(
+      dynamoRecord[dynamoFieldNames.room.curNumOfUsers]
+    ),
+    epochExpiry: getDynamoInt(dynamoRecord[dynamoFieldNames.common.ttl]),
+    minNumOfUsers: getDynamoInt(
+      dynamoRecord[dynamoFieldNames.room.minNumOfUsers]
+    ),
+    maxNumOfUsers: getDynamoInt(
+      dynamoRecord[dynamoFieldNames.room.maxNumOfUsers]
+    ),
+    status: getDynamoString(
+      dynamoRecord[dynamoFieldNames.room.status]
+    ) as RoomStatus,
   };
 };

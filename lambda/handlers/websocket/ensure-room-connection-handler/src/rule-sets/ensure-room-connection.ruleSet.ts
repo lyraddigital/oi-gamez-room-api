@@ -2,7 +2,7 @@ import { Room, RoomStatus, User } from "@oigamez/models";
 import { RuleSetResult } from "@oigamez/rule-sets";
 
 export const runEnsureRoomConnectionRuleSet = (
-  username: string,
+  isUserHost: boolean,
   room?: Room,
   users?: User[]
 ): RuleSetResult => {
@@ -15,9 +15,7 @@ export const runEnsureRoomConnectionRuleSet = (
     };
   }
 
-  const isUserHost = room.hostUsername.toLowerCase() == username.toLowerCase();
-
-  if (!isUserHost && room.status === RoomStatus.Available) {
+  if (!isUserHost && room.status === RoomStatus.NotAvailable) {
     return {
       isSuccessful: false,
       errorMessages: [

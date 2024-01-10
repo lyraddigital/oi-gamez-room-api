@@ -19,7 +19,9 @@ interface CreateRoomEnvironmentVariables {
 }
 
 interface EnsureRoomEnvironmentVariables {
-  tableName: string;
+  connectionTableName: string;
+  roomTableName: string;
+  updatedConnectionWindow: string;
 }
 
 interface HandlerFilePaths {
@@ -62,7 +64,9 @@ export const EnvironmentVariables: EnvironmentVariables = {
     hostRoomIndexName: "HOST_ROOM_INDEX_NAME",
   },
   ensureRoomConnection: {
-    tableName: "DYNAMO_TABLE_NAME",
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    roomTableName: "DYNAMO_TABLE_NAME",
+    updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
   },
 };
 
