@@ -45,13 +45,14 @@ export const handler = async (
       return badRequestResponse(ruleSetResult.errorMessages);
     }
 
-    const ttlInConnectionWindow = ttl < room!.epochExpiry;
-    const adjustedTTL = !isHost
-      ? room!.epochExpiry
-      : ttl + UPDATED_CONNECT_WINDOW_IN_SECONDS;
+    const ttlInConnectionWindow =
+      ttl + UPDATED_CONNECT_WINDOW_IN_SECONDS < room!.epochExpiry;
+    const adjustedTTL =
+      !isHost || !ttlInConnectionWindow
+        ? room!.epochExpiry
+        : ttl + UPDATED_CONNECT_WINDOW_IN_SECONDS;
 
-    // TODO: Work out when to update the ttl for the records. It's still updating it everyt ime
-    // when it shouldn't.
+    // TODO: Test this logic again when a user joins a room.
     await establishUserConnection(
       room!,
       username!,
