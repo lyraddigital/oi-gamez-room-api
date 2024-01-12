@@ -9,7 +9,7 @@ import {
 import { mapFromDynamoToRoom, mapFromDynamoToUser } from "@oigamez/mappers";
 import { Room, User } from "@oigamez/models";
 
-export const getRoomAndPlayers = async (
+export const getRoomAndUsers = async (
   roomCode: string,
   ttl: number
 ): Promise<[Room | undefined, User[]]> => {

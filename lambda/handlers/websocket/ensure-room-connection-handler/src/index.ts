@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "@oigamez/configuration";
-import { getRoomAndPlayers } from "@oigamez/repositories";
+import { getRoomAndUsers } from "@oigamez/repositories";
 import {
   badRequestResponse,
   okResponse,
@@ -37,7 +37,7 @@ export const handler = async (
     }
 
     const ttl = convertFromMillisecondsToSeconds(epochTime);
-    const [room, users] = await getRoomAndPlayers(roomCode!, ttl);
+    const [room, users] = await getRoomAndUsers(roomCode!, ttl);
     const isHost = isUserHost(room, username);
     const ruleSetResult = runEnsureRoomConnectionRuleSet(isHost, room, users);
 
