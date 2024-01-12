@@ -45,8 +45,7 @@ export const handler = async (
       return badRequestResponse(ruleSetResult.errorMessages);
     }
 
-    const ttlInConnectionWindow =
-      ttl + UPDATED_CONNECT_WINDOW_IN_SECONDS < room!.epochExpiry;
+    const ttlInConnectionWindow = ttl < room!.epochExpiry;
     const adjustedTTL =
       !isHost || !ttlInConnectionWindow
         ? room!.epochExpiry

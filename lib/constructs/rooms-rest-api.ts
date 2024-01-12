@@ -5,6 +5,7 @@ import { ResourcePaths } from "../constants";
 import { RoomsRestApiProps } from "../props";
 
 import { CreateRoomLambda, GetGameTypesLambda } from "./handlers";
+import { JoinRoomLambda } from "./handlers/join-room-lambda";
 
 export class RoomsRestApi extends Construct {
   constructor(scope: Construct, id: string, props: RoomsRestApiProps) {
@@ -17,6 +18,7 @@ export class RoomsRestApi extends Construct {
 
     const gameTypesResource = api.root.addResource(ResourcePaths.gameTypes);
     const roomsResource = api.root.addResource(ResourcePaths.rooms);
+    const roomResource = roomsResource.addResource(ResourcePaths.room);
 
     new GetGameTypesLambda(this, "GetGameTypesLambda", {
       table: props.table,
@@ -32,6 +34,14 @@ export class RoomsRestApi extends Construct {
       sessionCookieDomain: props.roomSessionCookieDomain,
       sessionCookieName: props.roomSessionCookieName,
       hostRoomIndexName: props.hostRoomIndexName,
+    });
+
+    new JoinRoomLambda(this, "JoinRoomLambda", {
+      table: props.table,
+      resource: roomResource,
+      allowedOrigins: props.allowedOrigins,
+      sessionCookieDomain: props.roomSessionCookieDomain,
+      sessionCookieName: props.roomSessionCookieName,
     });
   }
 }

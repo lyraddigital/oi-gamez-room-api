@@ -10,6 +10,7 @@ import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { JoinRoomPayload } from "./models";
+import { addUserToRoom } from "./repositories";
 import { runJoinRoomRuleSet } from "./rule-sets";
 import { validateRequest } from "./validators";
 
@@ -40,39 +41,13 @@ export const handler = async (
 
     const ttl = convertFromMillisecondsToSeconds(requestTimeEpoch);
     const [room, users] = await getRoomAndUsers(roomCode!, ttl);
-
-    const ruleSetResult = runJoinRoomRuleSet(room, users);
+    const ruleSetResult = runJoinRoomRuleSet(payload!.username!, room, users);
 
     if (!ruleSetResult.isSuccessful) {
       return corsBadRequestResponse(ruleSetResult.errorMessages);
     }
 
-    // const roomEpochExpiry = incrementAndReturnInSeconds(
-    //   event.requestContext.requestTimeEpoch,
-    //   CONNECT_WINDOW_IN_SECONDS
-    // );
-    // const unavailableDivisionAndGroupCodes =
-    //   await getAllUnavailableDivisionAndGroupCodes();
-    // const [divisionCode, groupCode] = getAnAvailableDivisionAndGroupCode(
-    //   unavailableDivisionAndGroupCodes
-    // );
-    // const [roomCode, isRoomCodeGroupExhaused] = await getUniqueRoomCode(
-    //   divisionCode,
-    //   groupCode
-    // );
-
-    // await createRoom(
-    //   {
-    //     code: roomCode,
-    //     title: payload!.title!,
-    //     hostUsername: payload!.hostUsername!,
-    //     minNumOfUsers: gameType!.minNumOfUsers,
-    //     maxNumOfUsers: gameType!.maxNumOfUsers,
-    //     epochExpiry: roomEpochExpiry,
-    //     isPublic: payload!.isPublic!,
-    //   },
-    //   isRoomCodeGroupExhaused
-    // );
+    await addUserToRoom(room!.code, payload!.username!, ttl);
 
     return corsOkResponseWithCookieData({}, payload!.username!);
   } catch (e) {
