@@ -1,6 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "@oigamez/configuration";
 import { getRoomAndUsers } from "@oigamez/repositories";
 import {
   badRequestResponse,
@@ -10,7 +9,10 @@ import {
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import { establishUserConnection } from "./repositories";
+import {
+  establishHostConnection,
+  establishJoinerConnection,
+} from "./repositories";
 import { runEnsureRoomConnectionRuleSet } from "./rule-sets";
 import { isUserHost } from "./services";
 import { validateRequest } from "./validators";
@@ -45,21 +47,11 @@ export const handler = async (
       return badRequestResponse(ruleSetResult.errorMessages);
     }
 
-    const ttlInConnectionWindow = ttl < room!.epochExpiry;
-    const adjustedTTL =
-      !isHost || !ttlInConnectionWindow
-        ? room!.epochExpiry
-        : ttl + UPDATED_CONNECT_WINDOW_IN_SECONDS;
-
-    // TODO: Test this logic again when a user joins a room.
-    await establishUserConnection(
-      room!,
-      username!,
-      isHost,
-      connectionId!,
-      ttlInConnectionWindow,
-      adjustedTTL
-    );
+    if (isHost) {
+      await establishHostConnection(room!, username!, connectionId!, ttl);
+    } else {
+      await establishJoinerConnection(room!, username!, connectionId!);
+    }
 
     return okResponse();
   } catch (e) {
