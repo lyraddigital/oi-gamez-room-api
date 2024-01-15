@@ -4,7 +4,11 @@ import { Construct } from "constructs";
 import { ResourcePaths } from "../constants";
 import { RoomsRestApiProps } from "../props";
 
-import { CreateRoomLambda, GetGameTypesLambda } from "./handlers";
+import {
+  CreateRoomLambda,
+  GetGameTypesLambda,
+  GetRoomStatusLambda,
+} from "./handlers";
 import { JoinRoomLambda } from "./handlers/join-room-lambda";
 
 export class RoomsRestApi extends Construct {
@@ -34,6 +38,12 @@ export class RoomsRestApi extends Construct {
       sessionCookieDomain: props.roomSessionCookieDomain,
       sessionCookieName: props.roomSessionCookieName,
       hostRoomIndexName: props.hostRoomIndexName,
+    });
+
+    new GetRoomStatusLambda(this, "GetRoomStatusLambda", {
+      table: props.table,
+      resource: roomsResource,
+      allowedOrigins: props.allowedOrigins,
     });
 
     new JoinRoomLambda(this, "JoinRoomLambda", {

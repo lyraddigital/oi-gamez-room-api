@@ -1,6 +1,7 @@
 interface EnvironmentVariables {
   getGameTypes: GetGameTypesEnvironmentVariables;
   createRoom: CreateRoomEnvironmentVariables;
+  getRoomStatus: GetRoomStatusEnvironmentVariables;
   joinRoom: JoinRoomEnvironmentVariables;
   ensureRoomConnection: EnsureRoomEnvironmentVariables;
 }
@@ -19,6 +20,11 @@ interface CreateRoomEnvironmentVariables {
   hostRoomIndexName: string;
 }
 
+interface GetRoomStatusEnvironmentVariables {
+  tableName: string;
+  corsAllowedOrigins: string;
+}
+
 interface JoinRoomEnvironmentVariables {
   tableName: string;
   corsAllowedOrigins: string;
@@ -35,6 +41,7 @@ interface EnsureRoomEnvironmentVariables {
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
+  getRoomStatus: string;
   joinRoom: string;
   ensureRoomConnection: string;
 }
@@ -48,6 +55,7 @@ interface ResourcePaths {
 interface HandlerFunctionNames {
   getGameTypes: string;
   createRoom: string;
+  getRoomStatus: string;
   joinRoom: string;
   ensureRoomConnection: string;
 }
@@ -75,6 +83,10 @@ export const EnvironmentVariables: EnvironmentVariables = {
     sessionCookieDomain: "COOKIE_DOMAIN",
     hostRoomIndexName: "HOST_ROOM_INDEX_NAME",
   },
+  getRoomStatus: {
+    tableName: "DYNAMO_TABLE_NAME",
+    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+  },
   joinRoom: {
     tableName: "DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
@@ -92,6 +104,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
   getGameTypes:
     "../../../lambda/handlers/rest/get-game-types-handler/src/index.ts",
   createRoom: "../../../lambda/handlers/rest/create-room-handler/src/index.ts",
+  getRoomStatus:
+    "../../../lambda/handlers/rest/get-room-status-handler/src/index.ts",
   joinRoom: "../../../lambda/handlers/rest/join-room-handler/src/index.ts",
   ensureRoomConnection:
     "../../../lambda/handlers/websocket/ensure-room-connection-handler/src/index.ts",
@@ -100,6 +114,7 @@ export const HandlerFilePaths: HandlerFilePaths = {
 export const HandlerFunctionNames: HandlerFunctionNames = {
   getGameTypes: "handler",
   createRoom: "handler",
+  getRoomStatus: "handler",
   joinRoom: "handler",
   ensureRoomConnection: "handler",
 };

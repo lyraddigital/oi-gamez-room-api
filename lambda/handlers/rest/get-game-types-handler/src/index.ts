@@ -15,7 +15,7 @@ export const handler = async (): Promise<APIGatewayProxyResult> => {
     console.log(e);
 
     return fatalErrorResponse(
-      "Unknown issue while trying to check the status of a game code."
+      "Unknown issue while trying to get all the game types."
     );
   }
 };
