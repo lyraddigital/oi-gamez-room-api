@@ -1,36 +1,42 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { getRoomAndUsers } from "@oigamez/repositories";
+import {
+  clearRoomData,
+  getRoomAndUsers,
+  removeUserFromRoom,
+} from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
-  corsOkResponseWithExpiredCookie,
+  corsOkResponse,
   fatalErrorResponse,
 } from "@oigamez/responses";
-import {
-  convertFromMillisecondsToSeconds,
-  getDataFromCookie,
-} from "@oigamez/services";
+import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import { removeUserFromRoom } from "./repositories";
+import { LeaveRoomPayload } from "./models";
 import { runLeaveRoomRuleSet } from "./rule-sets";
 import { validateRequest } from "./validators";
-import { COOKIE_NAME } from "@oigamez/configuration";
 
 validateEnvironment();
 
 export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  const origin = event?.headers ? event.headers["Origin"] : undefined;
-  const requestTimeEpoch = event.requestContext.requestTimeEpoch;
-  const roomCode = event.pathParameters
-    ? event.pathParameters["roomCode"]
-    : undefined;
-  const username = getDataFromCookie(event, COOKIE_NAME);
-
   try {
-    const validationResult = validateRequest(origin, roomCode, username);
+    let payload: LeaveRoomPayload | undefined;
+    const origin = event?.headers ? event.headers["Origin"] : undefined;
+    const requestTimeEpoch = event.requestContext.requestTimeEpoch;
+    const roomCode = event.pathParameters
+      ? event.pathParameters["roomCode"]
+      : undefined;
+
+    if (event.body) {
+      try {
+        payload = JSON.parse(event.body) as LeaveRoomPayload;
+      } catch {}
+    }
+
+    const validationResult = validateRequest(origin, roomCode, payload);
 
     if (!validationResult.isSuccessful) {
       return corsBadRequestResponse(validationResult.errorMessages);
@@ -38,19 +44,19 @@ export const handler = async (
 
     const ttl = convertFromMillisecondsToSeconds(requestTimeEpoch);
     const [room, users] = await getRoomAndUsers(roomCode!, ttl);
-    const ruleSetResult = runLeaveRoomRuleSet(username!, room, users);
+    const ruleSetResult = runLeaveRoomRuleSet(payload!.username!, room, users);
 
     if (!ruleSetResult.isSuccessful) {
       return corsBadRequestResponse(ruleSetResult.errorMessages);
     }
 
-    // TODO: We need to prevent the same cookie being sent for the same domain
-    // Maybe we put the room code into the cookie name as well as the configured value.
-    // Secondly when we are making the host leave before the game starts, we need to remove all users
-    // as well as the room data. Not just the host user.
-    await removeUserFromRoom(room!, username!);
+    if (room!.hostUsername === payload!.username!) {
+      await clearRoomData(room!, users);
+    } else {
+      await removeUserFromRoom(room!, payload!.username!);
+    }
 
-    return corsOkResponseWithExpiredCookie(204, {});
+    return corsOkResponse(204);
   } catch (e) {
     console.log(e);
 

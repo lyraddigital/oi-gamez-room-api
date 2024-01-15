@@ -3,7 +3,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { getRoomAndUsers } from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
-  corsOkResponseWithCookieData,
+  corsOkResponse,
   fatalErrorResponse,
 } from "@oigamez/responses";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
@@ -19,14 +19,14 @@ validateEnvironment();
 export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  let payload: JoinRoomPayload | undefined;
-  const origin = event?.headers ? event.headers["Origin"] : undefined;
-  const requestTimeEpoch = event.requestContext.requestTimeEpoch;
-  const roomCode = event.pathParameters
-    ? event.pathParameters["roomCode"]
-    : undefined;
-
   try {
+    let payload: JoinRoomPayload | undefined;
+    const origin = event?.headers ? event.headers["Origin"] : undefined;
+    const requestTimeEpoch = event.requestContext.requestTimeEpoch;
+    const roomCode = event.pathParameters
+      ? event.pathParameters["roomCode"]
+      : undefined;
+
     if (event.body) {
       try {
         payload = JSON.parse(event.body) as JoinRoomPayload;
@@ -49,7 +49,7 @@ export const handler = async (
 
     await addUserToRoom(room!.code, payload!.username!, ttl);
 
-    return corsOkResponseWithCookieData({}, payload!.username!);
+    return corsOkResponse();
   } catch (e) {
     console.log(e);
 

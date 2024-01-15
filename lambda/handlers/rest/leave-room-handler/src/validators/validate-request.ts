@@ -5,10 +5,12 @@ import {
   validateUsername,
 } from "@oigamez/validators";
 
+import { LeaveRoomPayload } from "../models";
+
 export const validateRequest = (
   origin?: string,
   roomCode?: string,
-  username?: string
+  payload?: LeaveRoomPayload
 ): ValidationResult => {
   const originValidationResult = validateOrigin(origin);
 
@@ -16,8 +18,15 @@ export const validateRequest = (
     return originValidationResult;
   }
 
+  if (!payload) {
+    return {
+      isSuccessful: false,
+      errorMessages: ["Missing payload from request"],
+    };
+  }
+
   const errorMessages: string[] = [];
-  const usernameValidationResult = validateUsername(username);
+  const usernameValidationResult = validateUsername(payload!.username);
   const roomCodeValidationResult = validateRoomCode(roomCode);
 
   if (!usernameValidationResult.isSuccessful) {

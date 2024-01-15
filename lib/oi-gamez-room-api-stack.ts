@@ -26,9 +26,6 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       region: this.region,
       connectWindowInSeconds: 30,
       allowedOrigins: "http://localhost:3000",
-      roomSessionCookieDomain:
-        "m7cqhw04n6.execute-api.ap-southeast-2.amazonaws.com",
-      roomSessionCookieName: "RoomSessionCookie",
       hostRoomIndexName: IndexNames.hostedRooms,
     });
 

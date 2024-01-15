@@ -16,8 +16,6 @@ interface CreateRoomEnvironmentVariables {
   tableName: string;
   connectWindowInSeconds: string;
   corsAllowedOrigins: string;
-  sessionCookieName: string;
-  sessionCookieDomain: string;
   hostRoomIndexName: string;
 }
 
@@ -29,16 +27,12 @@ interface GetRoomStatusEnvironmentVariables {
 interface JoinRoomEnvironmentVariables {
   tableName: string;
   corsAllowedOrigins: string;
-  sessionCookieName: string;
-  sessionCookieDomain: string;
 }
 
 interface LeaveRoomEnvironmentVariables {
   tableName: string;
   connectionTableName: string;
   corsAllowedOrigins: string;
-  sessionCookieName: string;
-  sessionCookieDomain: string;
 }
 
 interface EnsureRoomEnvironmentVariables {
@@ -90,8 +84,6 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: "DYNAMO_TABLE_NAME",
     connectWindowInSeconds: "CONNECT_WINDOW_IN_SECONDS",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
-    sessionCookieName: "COOKIE_NAME",
-    sessionCookieDomain: "COOKIE_DOMAIN",
     hostRoomIndexName: "HOST_ROOM_INDEX_NAME",
   },
   getRoomStatus: {
@@ -101,15 +93,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
   joinRoom: {
     tableName: "DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
-    sessionCookieName: "COOKIE_NAME",
-    sessionCookieDomain: "COOKIE_DOMAIN",
   },
   leaveRoom: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
-    sessionCookieName: "COOKIE_NAME",
-    sessionCookieDomain: "COOKIE_DOMAIN",
   },
   ensureRoomConnection: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",

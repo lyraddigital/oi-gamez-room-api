@@ -3,7 +3,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { CONNECT_WINDOW_IN_SECONDS } from "@oigamez/configuration";
 import {
   corsBadRequestResponse,
-  corsOkResponseWithCookieData,
+  corsOkResponseWithData,
   fatalErrorResponse,
 } from "@oigamez/responses";
 import { incrementAndReturnInSeconds } from "@oigamez/services";
@@ -82,7 +82,7 @@ export const handler = async (
       isRoomCodeGroupExhaused
     );
 
-    return corsOkResponseWithCookieData({ roomCode }, payload!.hostUsername!);
+    return corsOkResponseWithData({ roomCode });
   } catch (e) {
     console.log(e);
 

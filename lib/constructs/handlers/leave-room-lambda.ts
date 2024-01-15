@@ -25,10 +25,6 @@ export class LeaveRoomLambda extends Construct {
           props.connectionTable.tableName,
         [EnvironmentVariables.leaveRoom.corsAllowedOrigins]:
           props.allowedOrigins,
-        [EnvironmentVariables.leaveRoom.sessionCookieName]:
-          props.sessionCookieName,
-        [EnvironmentVariables.leaveRoom.sessionCookieDomain]:
-          props.sessionCookieDomain,
       },
     });
 

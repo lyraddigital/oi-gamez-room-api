@@ -24,10 +24,6 @@ export class CreateRoomLambda extends Construct {
         [EnvironmentVariables.createRoom.tableName]: props.table.tableName,
         [EnvironmentVariables.createRoom.corsAllowedOrigins]:
           props.allowedOrigins,
-        [EnvironmentVariables.createRoom.sessionCookieName]:
-          props.sessionCookieName,
-        [EnvironmentVariables.createRoom.sessionCookieDomain]:
-          props.sessionCookieDomain,
         [EnvironmentVariables.createRoom.hostRoomIndexName]:
           props.hostRoomIndexName,
         [EnvironmentVariables.createRoom.connectWindowInSeconds]:

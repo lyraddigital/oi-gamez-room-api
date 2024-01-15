@@ -1,4 +1,4 @@
-import { Room, User } from "@oigamez/models";
+import { Room, RoomStatus, User } from "@oigamez/models";
 import { RuleSetResult } from "@oigamez/rule-sets";
 
 export const runLeaveRoomRuleSet = (
@@ -10,6 +10,8 @@ export const runLeaveRoomRuleSet = (
 
   if (!room) {
     errorMessages.push("Cannot leave room. The room could not be found.");
+  } else if (room!.status !== RoomStatus.Available) {
+    errorMessages.push("Cannot leave room. The room has to be available.");
   } else {
     const existingUser = users.find((u) => u.username === username);
 

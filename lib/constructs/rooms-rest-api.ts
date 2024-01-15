@@ -36,14 +36,12 @@ export class RoomsRestApi extends Construct {
       resource: roomsResource,
       allowedOrigins: props.allowedOrigins,
       connectWindowInSeconds: props.connectWindowInSeconds,
-      sessionCookieDomain: props.roomSessionCookieDomain,
-      sessionCookieName: props.roomSessionCookieName,
       hostRoomIndexName: props.hostRoomIndexName,
     });
 
     new GetRoomStatusLambda(this, "GetRoomStatusLambda", {
       table: props.table,
-      resource: roomsResource,
+      resource: roomResource,
       allowedOrigins: props.allowedOrigins,
     });
 
@@ -51,8 +49,6 @@ export class RoomsRestApi extends Construct {
       table: props.table,
       resource: roomResource,
       allowedOrigins: props.allowedOrigins,
-      sessionCookieDomain: props.roomSessionCookieDomain,
-      sessionCookieName: props.roomSessionCookieName,
     });
 
     new LeaveRoomLambda(this, "LeaveRoomLambda", {
@@ -60,8 +56,6 @@ export class RoomsRestApi extends Construct {
       connectionTable: props.connectionTable,
       resource: roomResource,
       allowedOrigins: props.allowedOrigins,
-      sessionCookieDomain: props.roomSessionCookieDomain,
-      sessionCookieName: props.roomSessionCookieName,
     });
   }
 }

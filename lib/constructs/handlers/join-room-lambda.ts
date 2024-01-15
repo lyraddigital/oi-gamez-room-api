@@ -23,10 +23,6 @@ export class JoinRoomLambda extends Construct {
         [EnvironmentVariables.joinRoom.tableName]: props.table.tableName,
         [EnvironmentVariables.joinRoom.corsAllowedOrigins]:
           props.allowedOrigins,
-        [EnvironmentVariables.joinRoom.sessionCookieName]:
-          props.sessionCookieName,
-        [EnvironmentVariables.joinRoom.sessionCookieDomain]:
-          props.sessionCookieDomain,
       },
     });
 

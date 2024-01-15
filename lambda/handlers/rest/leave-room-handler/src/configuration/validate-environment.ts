@@ -1,6 +1,4 @@
 import {
-  verifyCookieDomain,
-  verifyCookieName,
   verifyCorsAllowedOrigin,
   verifyDynamoConnectionTableName,
   verifyDynamoTableName,
@@ -10,6 +8,4 @@ export const validateEnvironment = (): void => {
   verifyCorsAllowedOrigin();
   verifyDynamoTableName();
   verifyDynamoConnectionTableName();
-  verifyCookieName();
-  verifyCookieDomain();
 };
