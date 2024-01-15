@@ -21,6 +21,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
 
     new RoomsRestApi(this, "RoomRestApi", {
       table: roomTable.table,
+      connectionTable: connectionTable.table,
       account: this.account,
       region: this.region,
       connectWindowInSeconds: 30,

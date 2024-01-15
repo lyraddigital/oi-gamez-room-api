@@ -5,6 +5,7 @@ import {
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
+  keys,
 } from "@oigamez/dynamodb";
 import { Room, RoomStatus } from "@oigamez/models";
 
@@ -15,10 +16,7 @@ export const updateRoomHostDetails = (
   return {
     Update: {
       TableName: DYNAMO_TABLE_NAME,
-      Key: {
-        [dynamoFieldNames.common.pk]: dynamoFieldValues.room.pk(room.code),
-        [dynamoFieldNames.common.sk]: dynamoFieldValues.room.sk,
-      },
+      Key: keys.room(room.code),
       UpdateExpression:
         "SET #ttl = :ttl, #status = :status, #curNumOfUsers = :curNumOfUsers",
       ConditionExpression: expressions.common.keysExists,

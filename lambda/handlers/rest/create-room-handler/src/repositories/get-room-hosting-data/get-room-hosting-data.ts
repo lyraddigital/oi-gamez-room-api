@@ -13,6 +13,7 @@ import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
+  keys,
 } from "@oigamez/dynamodb";
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
 import { GameType } from "@oigamez/models";
@@ -23,10 +24,7 @@ export const getRoomHostingData = async (
 ): Promise<[GameType | undefined, boolean]> => {
   const getItemCommandInput: GetItemCommandInput = {
     TableName: DYNAMO_TABLE_NAME,
-    Key: {
-      [dynamoFieldNames.common.pk]: dynamoFieldValues.gameTypes.pk,
-      [dynamoFieldNames.common.sk]: dynamoFieldValues.gameTypes.sk(gameTypeId),
-    },
+    Key: keys.gameType(gameTypeId),
   };
 
   const queryIndexCommandInput: QueryCommandInput = {

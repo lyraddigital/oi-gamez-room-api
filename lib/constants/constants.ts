@@ -3,6 +3,7 @@ interface EnvironmentVariables {
   createRoom: CreateRoomEnvironmentVariables;
   getRoomStatus: GetRoomStatusEnvironmentVariables;
   joinRoom: JoinRoomEnvironmentVariables;
+  leaveRoom: LeaveRoomEnvironmentVariables;
   ensureRoomConnection: EnsureRoomEnvironmentVariables;
 }
 
@@ -32,6 +33,14 @@ interface JoinRoomEnvironmentVariables {
   sessionCookieDomain: string;
 }
 
+interface LeaveRoomEnvironmentVariables {
+  tableName: string;
+  connectionTableName: string;
+  corsAllowedOrigins: string;
+  sessionCookieName: string;
+  sessionCookieDomain: string;
+}
+
 interface EnsureRoomEnvironmentVariables {
   connectionTableName: string;
   roomTableName: string;
@@ -43,6 +52,7 @@ interface HandlerFilePaths {
   createRoom: string;
   getRoomStatus: string;
   joinRoom: string;
+  leaveRoom: string;
   ensureRoomConnection: string;
 }
 
@@ -57,6 +67,7 @@ interface HandlerFunctionNames {
   createRoom: string;
   getRoomStatus: string;
   joinRoom: string;
+  leaveRoom: string;
   ensureRoomConnection: string;
 }
 
@@ -93,6 +104,13 @@ export const EnvironmentVariables: EnvironmentVariables = {
     sessionCookieName: "COOKIE_NAME",
     sessionCookieDomain: "COOKIE_DOMAIN",
   },
+  leaveRoom: {
+    tableName: "DYNAMO_TABLE_NAME",
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+    sessionCookieName: "COOKIE_NAME",
+    sessionCookieDomain: "COOKIE_DOMAIN",
+  },
   ensureRoomConnection: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     roomTableName: "DYNAMO_TABLE_NAME",
@@ -107,6 +125,7 @@ export const HandlerFilePaths: HandlerFilePaths = {
   getRoomStatus:
     "../../../lambda/handlers/rest/get-room-status-handler/src/index.ts",
   joinRoom: "../../../lambda/handlers/rest/join-room-handler/src/index.ts",
+  leaveRoom: "../../../lambda/handlers/rest/leave-room-handler/src/index.ts",
   ensureRoomConnection:
     "../../../lambda/handlers/websocket/ensure-room-connection-handler/src/index.ts",
 };
@@ -116,6 +135,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   createRoom: "handler",
   getRoomStatus: "handler",
   joinRoom: "handler",
+  leaveRoom: "handler",
   ensureRoomConnection: "handler",
 };
 

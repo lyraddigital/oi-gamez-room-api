@@ -137,8 +137,21 @@ export interface DynamoFieldValues {
 }
 
 export interface DynamoKeys {
+  connection: (
+    roomCode: string,
+    username: string
+  ) => DynamoKey & Record<string, AttributeValue>;
+  gameType: (gameTypeId: number) => DynamoKey & Record<string, AttributeValue>;
+  room: (roomCode: string) => DynamoKey & Record<string, AttributeValue>;
+  user: (
+    roomCode: string,
+    username: string
+  ) => DynamoKey & Record<string, AttributeValue>;
   availableDivisionCodes: (
     divisionRoomCode: string,
     groupRoomCode: string
+  ) => DynamoKey & Record<string, AttributeValue>;
+  unavailableDivisionCodes: (
+    roomDivisionAndGroupCode: string
   ) => DynamoKey & Record<string, AttributeValue>;
 }

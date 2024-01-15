@@ -5,6 +5,7 @@ import {
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
+  keys,
 } from "@oigamez/dynamodb";
 import { Room } from "@oigamez/models";
 
@@ -16,10 +17,7 @@ export const updateUserTTL = (
   return {
     Update: {
       TableName: DYNAMO_TABLE_NAME,
-      Key: {
-        [dynamoFieldNames.common.pk]: dynamoFieldValues.user.pk(room.code),
-        [dynamoFieldNames.common.sk]: dynamoFieldValues.user.sk(username),
-      },
+      Key: keys.user(room.code, username),
       UpdateExpression: "SET #ttl = :ttl",
       ConditionExpression: expressions.common.keysExists,
       ExpressionAttributeNames: {

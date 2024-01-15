@@ -5,6 +5,7 @@ import {
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
+  keys,
 } from "@oigamez/dynamodb";
 import { Room } from "@oigamez/models";
 
@@ -12,10 +13,7 @@ export const updateRoomUserCount = (room: Room): TransactWriteItem => {
   return {
     Update: {
       TableName: DYNAMO_TABLE_NAME,
-      Key: {
-        [dynamoFieldNames.common.pk]: dynamoFieldValues.room.pk(room.code),
-        [dynamoFieldNames.common.sk]: dynamoFieldValues.room.sk,
-      },
+      Key: keys.room(room.code),
       UpdateExpression: "ADD #curNumOfUsers :curNumOfUsers",
       ConditionExpression: expressions.common.keysExists,
       ExpressionAttributeNames: {

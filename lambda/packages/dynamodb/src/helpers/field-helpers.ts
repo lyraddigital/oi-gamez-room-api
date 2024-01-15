@@ -145,8 +145,28 @@ export const expressions: DynamoConditionalExpressions = {
 };
 
 export const keys: DynamoKeys = {
+  connection: (roomCode, username) => ({
+    PK: dynamoFieldValues.connection.pk(roomCode),
+    SK: dynamoFieldValues.connection.sk(username),
+  }),
+  gameType: (gameTypeId) => ({
+    PK: dynamoFieldValues.gameTypes.pk,
+    SK: dynamoFieldValues.gameTypes.sk(gameTypeId),
+  }),
+  room: (roomCode) => ({
+    PK: dynamoFieldValues.room.pk(roomCode),
+    SK: dynamoFieldValues.room.sk,
+  }),
+  user: (roomCode, username) => ({
+    PK: dynamoFieldValues.user.pk(roomCode),
+    SK: dynamoFieldValues.user.sk(username),
+  }),
   availableDivisionCodes: (divisionRoomCode, groupRoomCode) => ({
     PK: dynamoFieldValues.availableDivisionCodes.pk(divisionRoomCode),
     SK: dynamoFieldValues.availableDivisionCodes.sk(groupRoomCode),
+  }),
+  unavailableDivisionCodes: (roomDivisionAndGroupCode) => ({
+    PK: dynamoFieldValues.unavailableRoomCodes.pk,
+    SK: dynamoFieldValues.unavailableRoomCodes.sk(roomDivisionAndGroupCode),
   }),
 };

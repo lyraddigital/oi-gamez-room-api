@@ -1,11 +1,7 @@
 import { GetItemCommand, GetItemCommandInput } from "@aws-sdk/client-dynamodb";
 
 import { DYNAMO_TABLE_NAME } from "@oigamez/configuration";
-import {
-  dbClient,
-  dynamoFieldNames,
-  dynamoFieldValues,
-} from "@oigamez/dynamodb";
+import { dbClient, keys } from "@oigamez/dynamodb";
 
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
 import { GameType } from "@oigamez/models";
@@ -15,10 +11,7 @@ export const getGameTypeById = async (
 ): Promise<GameType | undefined> => {
   const getItemCommandInput: GetItemCommandInput = {
     TableName: DYNAMO_TABLE_NAME,
-    Key: {
-      [dynamoFieldNames.common.pk]: dynamoFieldValues.gameTypes.pk,
-      [dynamoFieldNames.common.sk]: dynamoFieldValues.gameTypes.sk(gameTypeId),
-    },
+    Key: keys.gameType(gameTypeId),
   };
 
   const command = new GetItemCommand(getItemCommandInput);
