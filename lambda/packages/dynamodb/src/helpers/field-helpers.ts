@@ -106,7 +106,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
   unavailableRoomCodes: {
     pk: stringAttribute("UnavailableDivisionAndGroupCodes"),
     sk: (roomDivisionAndGroupCode: string) =>
-      stringAttribute(roomDivisionAndGroupCode),
+      stringAttribute(`#${roomDivisionAndGroupCode}`),
     type: stringAttribute(RecordType.unavailableRoomCode),
   },
   availableDivisionCodes: {

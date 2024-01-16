@@ -144,7 +144,7 @@ export const HandlerFilePaths: HandlerFilePaths = {
   ensureRoomConnection:
     "../../../lambda/handlers/websocket/ensure-room-connection-handler/src/index.ts",
   roomDeleteStream:
-    "../../../lambda/handlers/dynamo-db/room-deleted-handler/src/index.ts",
+    "../../lambda/handlers/dynamo-db/room-deleted-handler/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {

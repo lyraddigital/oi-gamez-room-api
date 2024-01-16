@@ -9,6 +9,7 @@ import {
 } from "./constructs";
 import { IndexNames } from "./constants";
 import { ExpiredConnectionCleanupLambda } from "./constructs/handlers/expired-connection-cleanup-lambda";
+import { RoomDeleteStreamLambda } from "./constructs/room-delete-stream-lambda";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -38,10 +39,14 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       updatedConnectWindowInSeconds: 21600,
     });
 
-    new ExpiredConnectionCleanupLambda(this, "ExpiredConnectionCleanupLambda", {
+    new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {
       table: roomTable.table,
-      connectionTable: connectionTable.table,
-      connectionIndexName: IndexNames.connection,
     });
+
+    // new ExpiredConnectionCleanupLambda(this, "ExpiredConnectionCleanupLambda", {
+    //   table: roomTable.table,
+    //   connectionTable: connectionTable.table,
+    //   connectionIndexName: IndexNames.connection,
+    // });
   }
 }
