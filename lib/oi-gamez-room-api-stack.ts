@@ -43,10 +43,10 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       table: roomTable.table,
     });
 
-    // new ExpiredConnectionCleanupLambda(this, "ExpiredConnectionCleanupLambda", {
-    //   table: roomTable.table,
-    //   connectionTable: connectionTable.table,
-    //   connectionIndexName: IndexNames.connection,
-    // });
+    new ExpiredConnectionCleanupLambda(this, "ExpiredConnectionCleanupLambda", {
+      table: roomTable.table,
+      connectionTable: connectionTable.table,
+      connectionIndexName: IndexNames.connection,
+    });
   }
 }
