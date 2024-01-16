@@ -1,1 +1,1 @@
-export * from "./remove-room-data-for-code";
+export * from "./release-room-code";

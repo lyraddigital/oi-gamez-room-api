@@ -1,7 +1,10 @@
 import { DynamoDBStreamEvent } from "aws-lambda";
 import { RecordType, dynamoFieldNames } from "@oigamez/dynamodb";
 
-import { removeRoomDataForCode } from "./repositories";
+import { validateEnvironment } from "./configuration";
+import { releaseRoomCode } from "./repositories";
+
+validateEnvironment();
 
 export const handler = async (
   dynamoEvent: DynamoDBStreamEvent
@@ -19,7 +22,7 @@ export const handler = async (
       const hasRoomCode = !!roomCode;
 
       if (isRoom && hasRoomCode) {
-        await removeRoomDataForCode(roomCode);
+        await releaseRoomCode(roomCode);
       }
     }
   }

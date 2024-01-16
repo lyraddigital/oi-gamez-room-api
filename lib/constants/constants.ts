@@ -6,6 +6,7 @@ interface EnvironmentVariables {
   joinRoom: JoinRoomEnvironmentVariables;
   leaveRoom: LeaveRoomEnvironmentVariables;
   ensureRoomConnection: EnsureRoomEnvironmentVariables;
+  roomDeleteStream: RoomDeleteStreamEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -48,6 +49,10 @@ interface EnsureRoomEnvironmentVariables {
   updatedConnectionWindow: string;
 }
 
+interface RoomDeleteStreamEnvironmentVariables {
+  tableName: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -56,6 +61,7 @@ interface HandlerFilePaths {
   leaveRoom: string;
   ensureRoomConnection: string;
   expiredConnectionCleanup: string;
+  roomDeleteStream: string;
 }
 
 interface ResourcePaths {
@@ -72,6 +78,7 @@ interface HandlerFunctionNames {
   leaveRoom: string;
   ensureRoomConnection: string;
   expiredConnectionCleanup: string;
+  roomDeleteStream: string;
 }
 
 interface IndexNames {
@@ -119,6 +126,9 @@ export const EnvironmentVariables: EnvironmentVariables = {
     roomTableName: "DYNAMO_TABLE_NAME",
     updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
   },
+  roomDeleteStream: {
+    tableName: "DYNAMO_TABLE_NAME",
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -133,6 +143,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
   leaveRoom: "../../../lambda/handlers/rest/leave-room-handler/src/index.ts",
   ensureRoomConnection:
     "../../../lambda/handlers/websocket/ensure-room-connection-handler/src/index.ts",
+  roomDeleteStream:
+    "../../../lambda/handlers/dynamo-db/room-deleted-handler/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -143,6 +155,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   joinRoom: "handler",
   leaveRoom: "handler",
   ensureRoomConnection: "handler",
+  roomDeleteStream: "handler",
 };
 
 export const IndexNames: IndexNames = {
