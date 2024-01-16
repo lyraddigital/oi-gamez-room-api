@@ -22,8 +22,8 @@ export class ExpiredConnectionCleanupLambda extends Construct {
 
     const lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
       runtime: Runtime.NODEJS_18_X,
-      handler: HandlerFilePaths.expiredConnectionCleanup,
-      entry: join(__dirname, HandlerFunctionNames.expiredConnectionCleanup),
+      handler: HandlerFunctionNames.expiredConnectionCleanup,
+      entry: join(__dirname, HandlerFilePaths.expiredConnectionCleanup),
       environment: {
         [EnvironmentVariables.expiredConnectionCleanup.tableName]:
           props.table.tableName,
