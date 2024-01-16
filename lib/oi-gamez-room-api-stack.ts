@@ -8,6 +8,7 @@ import {
   RoomTable,
 } from "./constructs";
 import { IndexNames } from "./constants";
+import { ExpiredConnectionCleanupLambda } from "./constructs/handlers/expired-connection-cleanup-lambda";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -17,7 +18,9 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       hostedRoomsIndexName: IndexNames.hostedRooms,
     });
 
-    const connectionTable = new ConnectionTable(this, "ConnectionTable");
+    const connectionTable = new ConnectionTable(this, "ConnectionTable", {
+      connectionsIndexName: IndexNames.connection,
+    });
 
     new RoomsRestApi(this, "RoomRestApi", {
       table: roomTable.table,
@@ -33,6 +36,12 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       roomTable: roomTable.table,
       connectionTable: connectionTable.table,
       updatedConnectWindowInSeconds: 21600,
+    });
+
+    new ExpiredConnectionCleanupLambda(this, "ExpiredConnectionCleanupLambda", {
+      table: roomTable.table,
+      connectionTable: connectionTable.table,
+      connectionIndexName: IndexNames.connection,
     });
   }
 }

@@ -1,3 +1,4 @@
+export * from "./connection-table-props";
 export * from "./handlers";
 export * from "./rooms-rest-api-props";
 export * from "./rooms-socket-api-props";
