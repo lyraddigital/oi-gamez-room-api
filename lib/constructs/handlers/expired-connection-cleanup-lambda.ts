@@ -41,7 +41,7 @@ export class ExpiredConnectionCleanupLambda extends Construct {
       description:
         "Rule that clears out expired connections and potentially any rooms associated to it.",
       targets: [new aws_events_targets.LambdaFunction(lambdaFunction)],
-      schedule: Schedule.rate(Duration.minutes(2)),
+      schedule: Schedule.rate(Duration.minutes(1)),
     });
   }
 }
