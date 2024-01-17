@@ -21,6 +21,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
 
     const connectionTable = new ConnectionTable(this, "ConnectionTable", {
       connectionsIndexName: IndexNames.connection,
+      lastDisconnectedIndexName: IndexNames.lastDisconnected,
     });
 
     new RoomsRestApi(this, "RoomRestApi", {
@@ -47,7 +48,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     new ExpiredConnectionCleanupLambda(this, "ExpiredConnectionCleanupLambda", {
       table: roomTable.table,
       connectionTable: connectionTable.table,
-      connectionIndexName: IndexNames.connection,
+      lastDisconnectedIndexName: IndexNames.lastDisconnected,
     });
   }
 }

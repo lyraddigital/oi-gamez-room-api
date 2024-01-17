@@ -1,11 +1,11 @@
 import {
   verifyDynamoConnectionTableName,
-  verifyDynamoConnectionIndexName,
+  verifyDynamoLastDisconnectedIndexName,
   verifyDynamoTableName,
 } from "@oigamez/configuration";
 
 export const validateEnvironment = (): void => {
   verifyDynamoTableName();
+  verifyDynamoLastDisconnectedIndexName();
   verifyDynamoConnectionTableName();
-  verifyDynamoConnectionIndexName();
 };

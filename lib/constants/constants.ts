@@ -25,7 +25,7 @@ interface CreateRoomEnvironmentVariables {
 interface ExpiredConnectionCleanupEnvironmentVariables {
   tableName: string;
   connectionTableName: string;
-  connectionIndexName: string;
+  lastDisconnectedIndexName: string;
 }
 
 interface GetRoomStatusEnvironmentVariables {
@@ -115,7 +115,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
   expiredConnectionCleanup: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    connectionIndexName: "CONNECTION_DYNAMO_INDEX_NAME",
+    lastDisconnectedIndexName: "CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME",
   },
   getRoomStatus: {
     tableName: "DYNAMO_TABLE_NAME",

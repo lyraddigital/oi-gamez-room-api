@@ -29,8 +29,8 @@ export class ExpiredConnectionCleanupLambda extends Construct {
           props.table.tableName,
         [EnvironmentVariables.expiredConnectionCleanup.connectionTableName]:
           props.connectionTable.tableName,
-        [EnvironmentVariables.expiredConnectionCleanup.connectionIndexName]:
-          props.connectionIndexName,
+        [EnvironmentVariables.expiredConnectionCleanup
+          .lastDisconnectedIndexName]: props.lastDisconnectedIndexName,
       },
       bundling: {
         format: OutputFormat.ESM,
