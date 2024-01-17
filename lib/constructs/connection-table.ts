@@ -20,5 +20,11 @@ export class ConnectionTable extends Construct {
       partitionKey: { name: "ConnectionId", type: AttributeType.STRING },
       sortKey: { name: "PK", type: AttributeType.STRING },
     });
+
+    this.table.addGlobalSecondaryIndex({
+      indexName: props.lastDisconnectedIndexName,
+      partitionKey: { name: "LastDisconnected", type: AttributeType.NUMBER },
+      sortKey: { name: "PK", type: AttributeType.STRING },
+    });
   }
 }
