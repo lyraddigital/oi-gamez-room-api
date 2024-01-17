@@ -1,7 +1,11 @@
-import { TransactWriteItem } from "@aws-sdk/client-dynamodb";
+import {
+  UpdateItemCommand,
+  UpdateItemCommandInput,
+} from "@aws-sdk/client-dynamodb";
 
 import { CONNECTION_DYNAMO_TABLE_NAME } from "@oigamez/configuration";
 import {
+  dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
@@ -10,22 +14,24 @@ import {
 
 import { RoomConnection } from "../models";
 
-export const updateConnectionDisconnectionTime = (
+export const updateConnectionDisconnectionTime = async (
   connection: RoomConnection,
   ttl: number
-): TransactWriteItem => {
-  return {
-    Update: {
-      TableName: CONNECTION_DYNAMO_TABLE_NAME,
-      Key: keys.connection(connection.roomCode, connection.username),
-      UpdateExpression: "SET #lastDisconnected = :lastDisconnected",
-      ConditionExpression: expressions.common.keysExists,
-      ExpressionAttributeNames: {
-        "#lastDisconnected": dynamoFieldNames.connection.lastDisconnected,
-      },
-      ExpressionAttributeValues: {
-        ":lastDisconnected": dynamoFieldValues.connection.lastDisconnected(ttl),
-      },
+): Promise<void> => {
+  const updateItemCommandInput: UpdateItemCommandInput = {
+    TableName: CONNECTION_DYNAMO_TABLE_NAME,
+    Key: keys.connection(connection.roomCode, connection.username),
+    UpdateExpression: "SET #lastDisconnected = :lastDisconnected",
+    ConditionExpression: expressions.common.keysExists,
+    ExpressionAttributeNames: {
+      "#lastDisconnected": dynamoFieldNames.connection.lastDisconnected,
+    },
+    ExpressionAttributeValues: {
+      ":lastDisconnected": dynamoFieldValues.connection.lastDisconnected(ttl),
     },
   };
+
+  const queryCommand = new UpdateItemCommand(updateItemCommandInput);
+
+  await dbClient.send(queryCommand);
 };

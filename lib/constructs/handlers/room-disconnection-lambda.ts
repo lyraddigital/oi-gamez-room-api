@@ -38,14 +38,24 @@ export class RoomDisconnectionLambda extends Construct {
 
     const connectionTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
+      resources: [props.connectionTable.tableArn],
+      actions: ["dynamodb:UpdateItem"],
+    });
+
+    const connectionIndexPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
       resources: [
         `${props.connectionTable.tableArn}/index/${props.connectionTableIndexName}`,
       ],
-      actions: ["dynamodb:Query", "dynamodb:UpdateItem"],
+      actions: ["dynamodb:Query"],
     });
 
     roomDisconnectionHandlerFunction.lambdaFunction.addToRolePolicy(
       connectionTablePolicyDocument
+    );
+
+    roomDisconnectionHandlerFunction.lambdaFunction.addToRolePolicy(
+      connectionIndexPolicyDocument
     );
 
     this.lambdaFunction = roomDisconnectionHandlerFunction.lambdaFunction;
