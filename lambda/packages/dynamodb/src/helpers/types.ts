@@ -12,6 +12,7 @@ interface ConnectionFieldNames {
   sk: string;
   ttl: string;
   username: string;
+  roomCode: string;
   connectionId: string;
   lastDisconnected: string;
 }
@@ -52,6 +53,7 @@ interface ConnectionFieldValues {
   pk: (roomCode: string) => AttributeValue.SMember;
   sk: (username: string) => AttributeValue.SMember;
   username: (username: string) => AttributeValue.SMember;
+  roomCode: (roomCode: string) => AttributeValue.SMember;
   connectionId: (connectionId: string) => AttributeValue.SMember;
   lastDisconnected: (lastDisconnected: number) => AttributeValue.NMember;
   ttl: (ttl: number) => AttributeValue.NMember;

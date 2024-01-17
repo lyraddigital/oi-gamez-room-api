@@ -35,6 +35,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
 
     new RoomsSocketApi(this, "RoomSocketApi", {
       roomTable: roomTable.table,
+      connectionTableIndexName: IndexNames.connection,
       connectionTable: connectionTable.table,
       updatedConnectWindowInSeconds: 21600,
     });

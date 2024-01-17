@@ -19,6 +19,8 @@ export const createOrUpdateRoomConnection = (
         ),
         [dynamoFieldNames.connection.sk]:
           dynamoFieldValues.connection.sk(username),
+        [dynamoFieldNames.connection.roomCode]:
+          dynamoFieldValues.connection.roomCode(room.code),
         [dynamoFieldNames.connection.username]:
           dynamoFieldValues.connection.username(username),
         [dynamoFieldNames.connection.connectionId]:

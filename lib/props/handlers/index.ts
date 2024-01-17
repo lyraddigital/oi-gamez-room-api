@@ -7,3 +7,4 @@ export * from "./leave-room-lambda-props";
 export * from "./ensure-room-connection-lambda-props";
 export * from "./get-game-types-lambda-props";
 export * from "./rest-api-handler-function-props";
+export * from "./room-disconnection-lambda-props";

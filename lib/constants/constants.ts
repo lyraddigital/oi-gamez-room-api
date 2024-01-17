@@ -7,6 +7,7 @@ interface EnvironmentVariables {
   leaveRoom: LeaveRoomEnvironmentVariables;
   ensureRoomConnection: EnsureRoomEnvironmentVariables;
   roomDeleteStream: RoomDeleteStreamEnvironmentVariables;
+  roomDisconnection: RoomDisconnectionEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -53,6 +54,11 @@ interface RoomDeleteStreamEnvironmentVariables {
   tableName: string;
 }
 
+interface RoomDisconnectionEnvironmentVariables {
+  connectionTableName: string;
+  connectionIndexName: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -61,6 +67,7 @@ interface HandlerFilePaths {
   leaveRoom: string;
   ensureRoomConnection: string;
   expiredConnectionCleanup: string;
+  roomDisconnection: string;
   roomDeleteStream: string;
 }
 
@@ -79,6 +86,7 @@ interface HandlerFunctionNames {
   ensureRoomConnection: string;
   expiredConnectionCleanup: string;
   roomDeleteStream: string;
+  roomDisconnection: string;
 }
 
 interface IndexNames {
@@ -129,6 +137,10 @@ export const EnvironmentVariables: EnvironmentVariables = {
   roomDeleteStream: {
     tableName: "DYNAMO_TABLE_NAME",
   },
+  roomDisconnection: {
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    connectionIndexName: "CONNECTION_DYNAMO_INDEX_NAME",
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -145,6 +157,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../../lambda/handlers/websocket/ensure-room-connection-handler/src/index.ts",
   roomDeleteStream:
     "../../lambda/handlers/dynamo-db/room-deleted-handler/src/index.ts",
+  roomDisconnection:
+    "../../../lambda/handlers/websocket/room-disconnection-handler/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -156,6 +170,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   leaveRoom: "handler",
   ensureRoomConnection: "handler",
   roomDeleteStream: "handler",
+  roomDisconnection: "handler",
 };
 
 export const IndexNames: IndexNames = {

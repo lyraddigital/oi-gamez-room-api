@@ -3,7 +3,10 @@ import { WebSocketLambdaIntegration } from "aws-cdk-lib/aws-apigatewayv2-integra
 import { Construct } from "constructs";
 
 import { RoomSocketApiProps } from "../props";
-import { EnsureRoomConnectionLambda } from "./handlers";
+import {
+  EnsureRoomConnectionLambda,
+  RoomDisconnectionLambda,
+} from "./handlers";
 
 export class RoomsSocketApi extends Construct {
   public webSocketApi: WebSocketApi;
@@ -32,10 +35,26 @@ export class RoomsSocketApi extends Construct {
       }
     );
 
+    const disconnectRoomLambda = new RoomDisconnectionLambda(
+      this,
+      "RoomDisconnectionLambda",
+      {
+        connectionTable: props.connectionTable,
+        connectionTableIndexName: props.connectionTableIndexName,
+      }
+    );
+
     this.webSocketApi.addRoute("$connect", {
       integration: new WebSocketLambdaIntegration(
         "LambdaIntegration",
         ensureRoomLambda.lambdaFunction
+      ),
+    });
+
+    this.webSocketApi.addRoute("$disconnect", {
+      integration: new WebSocketLambdaIntegration(
+        "LambdaIntegration",
+        disconnectRoomLambda.lambdaFunction
       ),
     });
 

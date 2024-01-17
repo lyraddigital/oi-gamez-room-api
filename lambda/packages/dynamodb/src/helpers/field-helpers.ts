@@ -59,6 +59,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
     sk: "SK",
     ttl: "TTL",
     username: "Username",
+    roomCode: "RoomCode",
     connectionId: "ConnectionId",
     lastDisconnected: "LastDisconnected",
   },
@@ -97,6 +98,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
     sk: (username: string) => stringAttribute(`#User#${username}`),
     username: (username: string) => stringAttribute(username),
     connectionId: (connectionId: string) => stringAttribute(connectionId),
+    roomCode: (roomCode: string) => stringAttribute(roomCode),
     lastDisconnected: (lastDisconnected: number) =>
       numberAttribute(lastDisconnected),
     ttl: (ttl: number) => numberAttribute(ttl),
