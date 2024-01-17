@@ -3,8 +3,8 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { getRoomAndUsers } from "@oigamez/repositories";
 import {
   badRequestResponse,
-  corsOkResponse,
   fatalErrorResponse,
+  okResponse,
 } from "@oigamez/responses";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
@@ -53,7 +53,7 @@ export const handler = async (
       await establishJoinerConnection(room!, username!, connectionId!);
     }
 
-    return corsOkResponse();
+    return okResponse();
   } catch (e) {
     console.log(e);
 

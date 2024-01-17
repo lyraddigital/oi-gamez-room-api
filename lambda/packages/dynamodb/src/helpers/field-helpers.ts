@@ -60,6 +60,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
     ttl: "TTL",
     username: "Username",
     connectionId: "ConnectionId",
+    lastDisconnected: "LastDisconnected",
   },
   gameType: {
     gameTypeId: "GameTypeId",
@@ -96,6 +97,8 @@ export const dynamoFieldValues: DynamoFieldValues = {
     sk: (username: string) => stringAttribute(`#User#${username}`),
     username: (username: string) => stringAttribute(username),
     connectionId: (connectionId: string) => stringAttribute(connectionId),
+    lastDisconnected: (lastDisconnected: number) =>
+      numberAttribute(lastDisconnected),
     ttl: (ttl: number) => numberAttribute(ttl),
   },
   gameTypes: {

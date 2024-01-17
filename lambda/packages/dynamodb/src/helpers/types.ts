@@ -13,6 +13,7 @@ interface ConnectionFieldNames {
   ttl: string;
   username: string;
   connectionId: string;
+  lastDisconnected: string;
 }
 
 interface AvailableDivisionCodeFieldNames {
@@ -52,6 +53,7 @@ interface ConnectionFieldValues {
   sk: (username: string) => AttributeValue.SMember;
   username: (username: string) => AttributeValue.SMember;
   connectionId: (connectionId: string) => AttributeValue.SMember;
+  lastDisconnected: (lastDisconnected: number) => AttributeValue.NMember;
   ttl: (ttl: number) => AttributeValue.NMember;
 }
 
