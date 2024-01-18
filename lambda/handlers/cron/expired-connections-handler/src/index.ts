@@ -3,6 +3,7 @@ import { EventBridgeEvent } from "aws-lambda";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
+import { getAllExpiredConnections } from "./repositories";
 
 validateEnvironment();
 
@@ -13,10 +14,11 @@ export const handler = async (
     const currentTimeInSeconds = convertFromMillisecondsToSeconds(
       Math.floor(new Date().getTime())
     );
+    const connections = await getAllExpiredConnections(currentTimeInSeconds);
+    // const [rooms, players] =
+    //   await getAllAvailableHostedRoomsAndUsersFromConnections(connections);
 
-    // We will use the ttl to find connections where the last disconnected time is less
-    // than the current time (stored in epoch seconds).
-    // From this list we will fetch all users associated to those connections
+    // await removeAllRoomsAndUsers(rooms, players);
 
     console.log("Current Epoch Seconds", currentTimeInSeconds);
   } catch (e) {

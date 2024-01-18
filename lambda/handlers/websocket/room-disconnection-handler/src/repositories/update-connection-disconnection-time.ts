@@ -11,8 +11,7 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
-
-import { RoomConnection } from "../models";
+import { RoomConnection } from "@oigamez/models";
 
 export const updateConnectionDisconnectionTime = async (
   connection: RoomConnection,

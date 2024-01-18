@@ -49,6 +49,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       table: roomTable.table,
       connectionTable: connectionTable.table,
       lastDisconnectedIndexName: IndexNames.lastDisconnected,
+      expiredDisconnectionWindowInSeconds: 60,
     });
   }
 }

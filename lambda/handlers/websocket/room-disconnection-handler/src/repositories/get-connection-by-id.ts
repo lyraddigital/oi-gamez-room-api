@@ -9,9 +9,8 @@ import {
   dynamoFieldNames,
   dynamoFieldValues,
 } from "@oigamez/dynamodb";
-
-import { RoomConnection } from "../models";
-import { mapFromDynamoToConnection } from "../mappers";
+import { mapFromDynamoToConnection } from "@oigamez/mappers";
+import { RoomConnection } from "@oigamez/models";
 
 export const getConnectionById = async (
   connectionId: string,
