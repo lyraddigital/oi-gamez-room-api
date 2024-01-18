@@ -15,12 +15,11 @@ export const handler = async (
       Math.floor(new Date().getTime())
     );
     const connections = await getAllExpiredConnections(currentTimeInSeconds);
+
     // const [rooms, players] =
     //   await getAllAvailableHostedRoomsAndUsersFromConnections(connections);
 
     // await removeAllRoomsAndUsers(rooms, players);
-
-    console.log("Current Epoch Seconds", currentTimeInSeconds);
   } catch (e) {
     console.log(e);
   }

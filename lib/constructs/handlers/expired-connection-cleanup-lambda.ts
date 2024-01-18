@@ -1,4 +1,5 @@
 import { Duration, aws_events_targets } from "aws-cdk-lib";
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
@@ -39,6 +40,14 @@ export class ExpiredConnectionCleanupLambda extends Construct {
         format: OutputFormat.ESM,
       },
     });
+
+    const dbConnectionTablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.connectionTable.tableArn],
+      actions: ["dynamodb:Scan"],
+    });
+
+    lambdaFunction.addToRolePolicy(dbConnectionTablePolicyDocument);
 
     new Rule(this, "ExpiredConnectionRule", {
       description:
