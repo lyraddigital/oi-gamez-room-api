@@ -21,14 +21,16 @@ export const handler = async (
     );
     const connections = await getAllExpiredConnections(currentTimeInSeconds);
     const hostedRooms = await getAllHostedRoomsFromConnections(connections);
-    const userOnlyConnections = connections.filter((c) =>
-      hostedRooms.find((r) => r.hostUsername !== c.username)
+    const userOnlyConnections = connections.filter(
+      (c) => !hostedRooms.find((r) => r.hostUsername === c.username)
     );
 
     if (hostedRooms.length > 0) {
       await publishAllHostDisconnections(hostedRooms);
     }
 
+    console.log("connections", connections);
+    console.log("hostedRooms", hostedRooms);
     console.log("userOnlyConnections", userOnlyConnections);
 
     if (userOnlyConnections.length > 0) {

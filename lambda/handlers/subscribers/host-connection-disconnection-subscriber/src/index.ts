@@ -11,8 +11,5 @@ export const handler = async (
   event: EventBridgeEvent<"room.host-disconnection", UserConnectionDetail>
 ): Promise<void> => {
   const { roomCode, username } = event.detail;
-
-  console.log("Host disconnection", roomCode, username);
-
   await removeUserConnection(roomCode, username);
 };
