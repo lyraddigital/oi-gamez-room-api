@@ -6,6 +6,7 @@ import {
   ExpiredConnectionCleanupLambda,
   RoomEventBus,
   RoomDeleteStreamLambda,
+  RoomEventBridgeSubscribers,
   RoomsRestApi,
   RoomsSocketApi,
   RoomTable,
@@ -54,6 +55,11 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       roomEventBus: roomEventBus.eventBus,
       lastDisconnectedIndexName: IndexNames.lastDisconnected,
       expiredDisconnectionWindowInSeconds: 60,
+    });
+
+    new RoomEventBridgeSubscribers(this, "RoomEventBridgeSubscribers", {
+      eventBus: roomEventBus.eventBus,
+      connectionTable: connectionTable.table,
     });
   }
 }

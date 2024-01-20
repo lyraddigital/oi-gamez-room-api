@@ -8,6 +8,7 @@ interface EnvironmentVariables {
   ensureRoomConnection: EnsureRoomEnvironmentVariables;
   roomDeleteStream: RoomDeleteStreamEnvironmentVariables;
   roomDisconnection: RoomDisconnectionEnvironmentVariables;
+  roomConnectionDisconnectionSubscriber: RoomConnectionDisconnectionSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -61,6 +62,10 @@ interface RoomDisconnectionEnvironmentVariables {
   connectionIndexName: string;
 }
 
+interface RoomConnectionDisconnectionSubscriberEnvironmentVariables {
+  connectionTableName: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -71,6 +76,7 @@ interface HandlerFilePaths {
   expiredConnectionCleanup: string;
   roomDisconnection: string;
   roomDeleteStream: string;
+  roomConnectionDisconnectionSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -89,6 +95,7 @@ interface HandlerFunctionNames {
   expiredConnectionCleanup: string;
   roomDeleteStream: string;
   roomDisconnection: string;
+  roomConnectionDisconnectionSubscriber: string;
 }
 
 interface IndexNames {
@@ -147,6 +154,9 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     connectionIndexName: "CONNECTION_DYNAMO_INDEX_NAME",
   },
+  roomConnectionDisconnectionSubscriber: {
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -165,6 +175,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../lambda/handlers/dynamo-db/room-deleted-handler/src/index.ts",
   roomDisconnection:
     "../../../lambda/handlers/websocket/room-disconnection-handler/src/index.ts",
+  roomConnectionDisconnectionSubscriber:
+    "../../../lambda/handlers/subscribers/room-connection-disconnection-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -177,6 +189,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   ensureRoomConnection: "handler",
   roomDeleteStream: "handler",
   roomDisconnection: "handler",
+  roomConnectionDisconnectionSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {

@@ -26,8 +26,13 @@ export const handler = async (
       rooms.find((r) => r.hostUsername !== c.username)
     );
 
-    await publishAllRoomDisconnections(roomCodes);
-    await publishAllUserDisconnections(userOnlyConnections);
+    if (roomCodes.length > 0) {
+      await publishAllRoomDisconnections(roomCodes);
+    }
+
+    if (userOnlyConnections.length > 0) {
+      await publishAllUserDisconnections(userOnlyConnections);
+    }
   } catch (e) {
     console.log(e);
   }

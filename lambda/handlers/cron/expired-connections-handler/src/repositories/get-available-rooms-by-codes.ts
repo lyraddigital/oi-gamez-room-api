@@ -16,8 +16,6 @@ import { Room } from "@oigamez/models";
 const getRooms = async (
   roomGetEntries: Record<string, AttributeValue>[]
 ): Promise<Room[]> => {
-  console.log("Calling getRooms");
-
   const batchGetItemCommandInput: BatchGetItemCommandInput = {
     RequestItems: {
       [DYNAMO_TABLE_NAME!]: {
