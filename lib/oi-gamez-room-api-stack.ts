@@ -3,13 +3,14 @@ import { Construct } from "constructs";
 
 import {
   ConnectionTable,
+  ExpiredConnectionCleanupLambda,
+  RoomEventBus,
+  RoomDeleteStreamLambda,
   RoomsRestApi,
   RoomsSocketApi,
   RoomTable,
 } from "./constructs";
 import { IndexNames } from "./constants";
-import { ExpiredConnectionCleanupLambda } from "./constructs/handlers/expired-connection-cleanup-lambda";
-import { RoomDeleteStreamLambda } from "./constructs/room-delete-stream-lambda";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -23,6 +24,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       connectionsIndexName: IndexNames.connection,
       lastDisconnectedIndexName: IndexNames.lastDisconnected,
     });
+
+    const roomEventBus = new RoomEventBus(this, "RoomEventBus");
 
     new RoomsRestApi(this, "RoomRestApi", {
       table: roomTable.table,
@@ -48,6 +51,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     new ExpiredConnectionCleanupLambda(this, "ExpiredConnectionCleanupLambda", {
       table: roomTable.table,
       connectionTable: connectionTable.table,
+      roomEventBus: roomEventBus.eventBus,
       lastDisconnectedIndexName: IndexNames.lastDisconnected,
       expiredDisconnectionWindowInSeconds: 60,
     });

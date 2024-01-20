@@ -1,0 +1,2 @@
+export const USER_DISCONNECTION_EB_NAME =
+  process.env.USER_DISCONNECTION_EB_NAME;

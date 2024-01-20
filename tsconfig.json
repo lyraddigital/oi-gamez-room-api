@@ -32,6 +32,9 @@
       "@oigamez/dynamodb": [
         "./lambda/packages/dynamodb/src"
       ],
+      "@oigamez/event-bridge": [
+        "./lambda/packages/event-bridge/src"
+      ],
       "@oigamez/mappers": [
         "./lambda/packages/mappers/src"
       ],

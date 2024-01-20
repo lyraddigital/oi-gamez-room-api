@@ -6,4 +6,5 @@ export * from "./dynamo-last-disconnected-index-name";
 export * from "./dynamo-connection-index-name";
 export * from "./expired-disconnection-window-in-seconds";
 export * from "./host-room-index-name";
+export * from "./user-disconnection-eb-name";
 export * from "./updated-connect-window";

@@ -35,6 +35,8 @@ export class ExpiredConnectionCleanupLambda extends Construct {
         [EnvironmentVariables.expiredConnectionCleanup
           .expiredDisconnectionWindoewInSeconds]:
           props.expiredDisconnectionWindowInSeconds.toString(),
+        [EnvironmentVariables.expiredConnectionCleanup.eventBusName]:
+          props.roomEventBus.eventBusName,
       },
       bundling: {
         format: OutputFormat.ESM,
@@ -47,7 +49,21 @@ export class ExpiredConnectionCleanupLambda extends Construct {
       actions: ["dynamodb:Scan"],
     });
 
+    const dbTablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.table.tableArn],
+      actions: ["dynamodb:BatchGetItem"],
+    });
+
+    const ebPutEventsPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.roomEventBus.eventBusArn],
+      actions: ["events:PutEvents"],
+    });
+
     lambdaFunction.addToRolePolicy(dbConnectionTablePolicyDocument);
+    lambdaFunction.addToRolePolicy(dbTablePolicyDocument);
+    lambdaFunction.addToRolePolicy(ebPutEventsPolicyDocument);
 
     new Rule(this, "ExpiredConnectionRule", {
       description:
