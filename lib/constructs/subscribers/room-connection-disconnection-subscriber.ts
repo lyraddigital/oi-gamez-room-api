@@ -40,7 +40,7 @@ export class RoomConnectionDisconnectionSubscriber extends Construct {
     const connectionTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.connectionTable.tableArn],
-      actions: ["dynamodb:Query", "dynamodb:BatchWriteItem"],
+      actions: ["dynamodb:DeleteItem"],
     });
 
     lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);

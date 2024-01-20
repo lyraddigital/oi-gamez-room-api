@@ -5,8 +5,8 @@ import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 import { validateEnvironment } from "./configuration";
 import { getAllExpiredConnections } from "./repositories";
 import {
-  getAllRoomsFromConnections,
-  publishAllRoomDisconnections,
+  getAllHostedRoomsFromConnections,
+  publishAllHostDisconnections,
   publishAllUserDisconnections,
 } from "./services";
 
@@ -20,14 +20,13 @@ export const handler = async (
       Math.floor(new Date().getTime())
     );
     const connections = await getAllExpiredConnections(currentTimeInSeconds);
-    const rooms = await getAllRoomsFromConnections(connections);
-    const roomCodes = rooms.map((r) => r.code);
+    const hostedRooms = await getAllHostedRoomsFromConnections(connections);
     const userOnlyConnections = connections.filter((c) =>
-      rooms.find((r) => r.hostUsername !== c.username)
+      hostedRooms.find((r) => r.hostUsername !== c.username)
     );
 
-    if (roomCodes.length > 0) {
-      await publishAllRoomDisconnections(roomCodes);
+    if (hostedRooms.length > 0) {
+      await publishAllHostDisconnections(hostedRooms);
     }
 
     if (userOnlyConnections.length > 0) {

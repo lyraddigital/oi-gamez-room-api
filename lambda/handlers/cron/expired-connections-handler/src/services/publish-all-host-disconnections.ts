@@ -5,20 +5,23 @@ import {
 } from "@aws-sdk/client-eventbridge";
 
 import { USER_DISCONNECTION_EB_NAME } from "@oigamez/configuration";
-import { client } from "@oigamez/event-bridge";
 
-export const publishAllRoomDisconnections = async (
-  roomCodes: string[]
+import { client } from "@oigamez/event-bridge";
+import { Room } from "@oigamez/models";
+
+export const publishAllHostDisconnections = async (
+  hostedRooms: Room[]
 ): Promise<void> => {
   const putEventsCommandInput: PutEventsCommandInput = {
     Entries: [
-      ...roomCodes.map<PutEventsRequestEntry>((rc) => ({
+      ...hostedRooms.map<PutEventsRequestEntry>((hr) => ({
         EventBusName: USER_DISCONNECTION_EB_NAME,
         Source: "room.expired-connection-handler",
         Detail: JSON.stringify({
-          roomCode: rc,
+          roomCode: hr.code,
+          hostUsername: hr.hostUsername,
         }),
-        DetailType: "room.room-disconnection",
+        DetailType: "room.host-disconnection",
       })),
     ],
   };

@@ -2,12 +2,16 @@ import { Room, RoomConnection } from "@oigamez/models";
 
 import { getAvailableRoomsByCodes } from "../repositories";
 
-export const getAllRoomsFromConnections = async (
+export const getAllHostedRoomsFromConnections = async (
   connections: RoomConnection[]
 ): Promise<Room[]> => {
   const uniqueRoomCodes = connections
     .map((c) => c.roomCode)
     .filter((rc, index, arr) => arr.indexOf(rc) === index);
 
-  return await getAvailableRoomsByCodes(uniqueRoomCodes);
+  const allRooms = await getAvailableRoomsByCodes(uniqueRoomCodes);
+
+  return allRooms.filter(
+    (r) => connections.findIndex((c) => c.username === r.hostUsername) >= 0
+  );
 };

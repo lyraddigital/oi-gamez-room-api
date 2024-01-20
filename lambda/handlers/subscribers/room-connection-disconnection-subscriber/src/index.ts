@@ -1,21 +1,15 @@
 import { EventBridgeEvent } from "aws-lambda";
 
+import { removeUserConnection } from "@oigamez/repositories";
+
 import { validateEnvironment } from "./configuration";
 import { RoomCodeDetail } from "./models";
-import {
-  getAllConnectionsForRoom,
-  removeUserConnections,
-} from "./repositories";
 
 validateEnvironment();
 
 export const handler = async (
-  event: EventBridgeEvent<"room.room-disconnection", RoomCodeDetail>
+  event: EventBridgeEvent<"room.host-disconnection", RoomCodeDetail>
 ): Promise<void> => {
-  const { roomCode } = event.detail;
-  const roomConnections = await getAllConnectionsForRoom(roomCode);
-
-  if (roomConnections.length > 0) {
-    await removeUserConnections(roomConnections);
-  }
+  const { roomCode, hostUsername } = event.detail;
+  await removeUserConnection(roomCode, hostUsername);
 };
