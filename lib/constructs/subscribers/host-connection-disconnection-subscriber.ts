@@ -10,29 +10,29 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
 } from "../../constants";
-import { RoomConnectionDisconnectionSubscriberProps } from "../../props";
+import { HostConnectionDisconnectionSubscriberProps } from "../../props";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 
-export class RoomConnectionDisconnectionSubscriber extends Construct {
+export class HostConnectionDisconnectionSubscriber extends Construct {
   constructor(
     scope: Construct,
     id: string,
-    props: RoomConnectionDisconnectionSubscriberProps
+    props: HostConnectionDisconnectionSubscriberProps
   ) {
     super(scope, id);
 
     const lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
       runtime: Runtime.NODEJS_18_X,
-      handler: HandlerFunctionNames.roomConnectionDisconnectionSubscriber,
+      handler: HandlerFunctionNames.hostConnectionDisconnectionSubscriber,
       entry: join(
         __dirname,
-        HandlerFilePaths.roomConnectionDisconnectionSubscriber
+        HandlerFilePaths.hostConnectionDisconnectionSubscriber
       ),
       bundling: {
         format: OutputFormat.ESM,
       },
       environment: {
-        [EnvironmentVariables.roomConnectionDisconnectionSubscriber
+        [EnvironmentVariables.hostConnectionDisconnectionSubscriber
           .connectionTableName]: props.connectionTable.tableName,
       },
     });

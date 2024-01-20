@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 
 import { RoomEventBridgeSubscribersProps } from "../../props";
 
-import { RoomConnectionDisconnectionSubscriber } from "./room-connection-disconnection-subscriber";
+import { HostConnectionDisconnectionSubscriber } from "./host-connection-disconnection-subscriber";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -12,9 +12,9 @@ export class RoomEventBridgeSubscribers extends Construct {
   ) {
     super(scope, id);
 
-    new RoomConnectionDisconnectionSubscriber(
+    new HostConnectionDisconnectionSubscriber(
       this,
-      "RoomConnectionDisconnectionSubscriber",
+      "HostConnectionDisconnectionSubscriber",
       {
         eventBus: props.eventBus,
         connectionTable: props.connectionTable,

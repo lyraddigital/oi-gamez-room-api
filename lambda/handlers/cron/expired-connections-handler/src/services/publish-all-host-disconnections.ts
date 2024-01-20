@@ -19,7 +19,7 @@ export const publishAllHostDisconnections = async (
         Source: "room.expired-connection-handler",
         Detail: JSON.stringify({
           roomCode: hr.code,
-          hostUsername: hr.hostUsername,
+          username: hr.hostUsername,
         }),
         DetailType: "room.host-disconnection",
       })),
