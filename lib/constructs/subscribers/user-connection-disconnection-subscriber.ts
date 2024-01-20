@@ -9,30 +9,30 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
 } from "../../constants";
-import { HostConnectionDisconnectionSubscriberProps } from "../../props";
+import { UserConnectionDisconnectionSubscriberProps } from "../../props";
 
-export class HostConnectionDisconnectionSubscriber extends Construct {
+export class UserConnectionDisconnectionSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;
 
   constructor(
     scope: Construct,
     id: string,
-    props: HostConnectionDisconnectionSubscriberProps
+    props: UserConnectionDisconnectionSubscriberProps
   ) {
     super(scope, id);
 
     this.lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
       runtime: Runtime.NODEJS_18_X,
-      handler: HandlerFunctionNames.hostConnectionDisconnectionSubscriber,
+      handler: HandlerFunctionNames.userConnectionDisconnectionSubscriber,
       entry: join(
         __dirname,
-        HandlerFilePaths.hostConnectionDisconnectionSubscriber
+        HandlerFilePaths.userConnectionDisconnectionSubscriber
       ),
       bundling: {
         format: OutputFormat.ESM,
       },
       environment: {
-        [EnvironmentVariables.hostConnectionDisconnectionSubscriber
+        [EnvironmentVariables.userConnectionDisconnectionSubscriber
           .connectionTableName]: props.connectionTable.tableName,
       },
     });

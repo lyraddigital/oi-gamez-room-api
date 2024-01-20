@@ -29,6 +29,8 @@ export const handler = async (
       await publishAllHostDisconnections(hostedRooms);
     }
 
+    console.log("userOnlyConnections", userOnlyConnections);
+
     if (userOnlyConnections.length > 0) {
       await publishAllUserDisconnections(userOnlyConnections);
     }
