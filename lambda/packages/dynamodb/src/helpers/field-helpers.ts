@@ -91,7 +91,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
     ttl: (ttl: number) => numberAttribute(ttl),
   },
   connection: {
-    pk: (roomCode: string) => stringAttribute(`RoomCode#${roomCode}`),
+    pk: (roomCode: string) => stringAttribute(`Room#${roomCode}`),
     sk: (username: string) => stringAttribute(`#User#${username}`),
     username: (username: string) => stringAttribute(username),
     connectionId: (connectionId: string) => stringAttribute(connectionId),

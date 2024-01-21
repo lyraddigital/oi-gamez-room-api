@@ -32,17 +32,26 @@ export class HostConnectionDisconnectionSubscriber extends Construct {
         format: OutputFormat.ESM,
       },
       environment: {
+        [EnvironmentVariables.hostConnectionDisconnectionSubscriber.tableName]:
+          props.table.tableName,
         [EnvironmentVariables.hostConnectionDisconnectionSubscriber
           .connectionTableName]: props.connectionTable.tableName,
       },
     });
 
+    const tablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.table.tableArn],
+      actions: ["dynamodb:DeleteItem", "dynamodb:UpdateItem"],
+    });
+
     const connectionTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.connectionTable.tableArn],
-      actions: ["dynamodb:DeleteItem"],
+      actions: ["dynamodb:Query", "dynamodb:DeleteItem"],
     });
 
+    this.lambdaFunction.addToRolePolicy(tablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
   }
 }

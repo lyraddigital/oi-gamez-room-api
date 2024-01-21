@@ -1,21 +1,29 @@
 import {
-  DeleteItemCommand,
-  DeleteItemCommandInput,
+  TransactWriteItemsCommand,
+  TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { CONNECTION_DYNAMO_TABLE_NAME } from "@oigamez/configuration";
-import { dbClient, keys } from "@oigamez/dynamodb";
+import { dbClient } from "@oigamez/dynamodb";
+
+import {
+  updateRoomUserCount,
+  removeUserConnection as dbRemoveUserConnection,
+} from "../transact-writes";
 
 export const removeUserConnection = async (
   roomCode: string,
   username: string
 ): Promise<void> => {
-  const deleteItemCommandInput: DeleteItemCommandInput = {
-    TableName: CONNECTION_DYNAMO_TABLE_NAME,
-    Key: keys.connection(roomCode, username),
+  const transactWriteItemsCommandInput: TransactWriteItemsCommandInput = {
+    TransactItems: [
+      dbRemoveUserConnection(roomCode, username),
+      updateRoomUserCount(roomCode, -1),
+    ],
   };
 
-  const deleteItemCommand = new DeleteItemCommand(deleteItemCommandInput);
+  const transactWriteItemsCommand = new TransactWriteItemsCommand(
+    transactWriteItemsCommandInput
+  );
 
-  await dbClient.send(deleteItemCommand);
+  await dbClient.send(transactWriteItemsCommand);
 };

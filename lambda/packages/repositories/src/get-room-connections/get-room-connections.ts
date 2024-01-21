@@ -11,21 +11,25 @@ import { RoomConnection } from "@oigamez/models";
 
 export const getRoomConnections = async (
   roomCode: string,
-  ttl: number
+  ttl?: number
 ): Promise<RoomConnection[]> => {
   const input: QueryCommandInput = {
     TableName: CONNECTION_DYNAMO_TABLE_NAME,
     KeyConditionExpression: "#pk = :pk",
-    FilterExpression: "#ttl > :ttl",
     ExpressionAttributeNames: {
       "#pk": dynamoFieldNames.connection.pk,
-      "#ttl": dynamoFieldNames.connection.ttl,
     },
     ExpressionAttributeValues: {
       ":pk": dynamoFieldValues.connection.pk(roomCode),
-      ":ttl": dynamoFieldValues.connection.ttl(ttl),
     },
   };
+
+  if (ttl) {
+    input.FilterExpression = "#ttl > :ttl";
+    input.ExpressionAttributeNames!["#ttl"] = dynamoFieldNames.connection.ttl;
+    input.ExpressionAttributeValues![":ttl"] =
+      dynamoFieldValues.connection.ttl(ttl);
+  }
 
   const command = new QueryCommand(input);
   const response = await dbClient.send(command);

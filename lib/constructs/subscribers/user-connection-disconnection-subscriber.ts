@@ -32,9 +32,17 @@ export class UserConnectionDisconnectionSubscriber extends Construct {
         format: OutputFormat.ESM,
       },
       environment: {
+        [EnvironmentVariables.userConnectionDisconnectionSubscriber.tableName]:
+          props.table.tableName,
         [EnvironmentVariables.userConnectionDisconnectionSubscriber
           .connectionTableName]: props.connectionTable.tableName,
       },
+    });
+
+    const tablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.table.tableArn],
+      actions: ["dynamodb:UpdateItem"],
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({
@@ -43,6 +51,7 @@ export class UserConnectionDisconnectionSubscriber extends Construct {
       actions: ["dynamodb:DeleteItem"],
     });
 
+    this.lambdaFunction.addToRolePolicy(tablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
   }
 }

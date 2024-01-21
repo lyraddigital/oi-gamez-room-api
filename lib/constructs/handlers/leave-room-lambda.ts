@@ -37,7 +37,7 @@ export class LeaveRoomLambda extends Construct {
     const dbConnectionTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.connectionTable.tableArn],
-      actions: ["dynamodb:DeleteItem"],
+      actions: ["dynamodb:Query", "dynamodb:DeleteItem"],
     });
 
     leaveRoomLambda.lambdaFunction.addToRolePolicy(dbTablePolicyDocument);

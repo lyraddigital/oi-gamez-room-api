@@ -54,7 +54,7 @@ export const handler = async (
     }
 
     if (room!.hostUsername === payload!.username!) {
-      await clearRoomData(room!, connections);
+      await clearRoomData(room!.code, connections);
     } else {
       await removeUserFromRoom(room!, payload!.username!);
     }

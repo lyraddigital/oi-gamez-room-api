@@ -20,6 +20,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         this,
         "HostConnectionDisconnectionSubscriber",
         {
+          table: props.table,
           connectionTable: props.connectionTable,
         }
       );
@@ -29,6 +30,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         this,
         "UserConnectionDisconnectionSubscriber",
         {
+          table: props.table,
           connectionTable: props.connectionTable,
         }
       );
