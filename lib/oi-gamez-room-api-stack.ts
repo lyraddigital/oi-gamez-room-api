@@ -60,6 +60,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     new RoomEventBridgeSubscribers(this, "RoomEventBridgeSubscribers", {
       eventBus: roomEventBus.eventBus,
       connectionTable: connectionTable.table,
+      table: roomTable.table,
     });
   }
 }

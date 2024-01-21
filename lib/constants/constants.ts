@@ -10,6 +10,7 @@ interface EnvironmentVariables {
   roomDisconnection: RoomDisconnectionEnvironmentVariables;
   hostConnectionDisconnectionSubscriber: HostConnectionDisconnectionSubscriberEnvironmentVariables;
   userConnectionDisconnectionSubscriber: UserConnectionDisconnectionSubscriberEnvironmentVariables;
+  userDisconnectionSubscriber: UserDisconnectionSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -71,6 +72,10 @@ interface UserConnectionDisconnectionSubscriberEnvironmentVariables {
   connectionTableName: string;
 }
 
+interface UserDisconnectionSubscriberEnvironmentVariables {
+  tableName: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -83,6 +88,7 @@ interface HandlerFilePaths {
   roomDeleteStream: string;
   hostConnectionDisconnectionSubscriber: string;
   userConnectionDisconnectionSubscriber: string;
+  userDisconnectionSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -103,6 +109,7 @@ interface HandlerFunctionNames {
   roomDisconnection: string;
   hostConnectionDisconnectionSubscriber: string;
   userConnectionDisconnectionSubscriber: string;
+  userDisconnectionSubscriber: string;
 }
 
 interface IndexNames {
@@ -167,6 +174,9 @@ export const EnvironmentVariables: EnvironmentVariables = {
   userConnectionDisconnectionSubscriber: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
   },
+  userDisconnectionSubscriber: {
+    tableName: "DYNAMO_TABLE_NAME",
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -189,6 +199,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../../lambda/handlers/subscribers/host-connection-disconnection-subscriber/src/index.ts",
   userConnectionDisconnectionSubscriber:
     "../../../lambda/handlers/subscribers/user-connection-disconnection-subscriber/src/index.ts",
+  userDisconnectionSubscriber:
+    "../../../lambda/handlers/subscribers/user-disconnection-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -203,6 +215,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   roomDisconnection: "handler",
   hostConnectionDisconnectionSubscriber: "handler",
   userConnectionDisconnectionSubscriber: "handler",
+  userDisconnectionSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {

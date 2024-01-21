@@ -6,6 +6,7 @@ import { RoomEventBridgeSubscribersProps } from "../../props";
 
 import { HostConnectionDisconnectionSubscriber } from "./host-connection-disconnection-subscriber";
 import { UserConnectionDisconnectionSubscriber } from "./user-connection-disconnection-subscriber";
+import { UserDisconnectionSubscriber } from "./user-disconnection-subscriber";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -15,29 +16,39 @@ export class RoomEventBridgeSubscribers extends Construct {
   ) {
     super(scope, id);
 
-    const hostLambdaFn = new HostConnectionDisconnectionSubscriber(
+    const hostConnectionDisconnectLambdaFn =
+      new HostConnectionDisconnectionSubscriber(
+        this,
+        "HostConnectionDisconnectionSubscriber",
+        {
+          connectionTable: props.connectionTable,
+        }
+      );
+
+    const userConnectionDisconnectLambdaFn =
+      new UserConnectionDisconnectionSubscriber(
+        this,
+        "UserConnectionDisconnectionSubscriber",
+        {
+          connectionTable: props.connectionTable,
+        }
+      );
+
+    const userDisconnectLambdaFn = new UserDisconnectionSubscriber(
       this,
-      "HostConnectionDisconnectionSubscriber",
+      "UserDisconnectionSubscriber",
       {
-        eventBus: props.eventBus,
-        connectionTable: props.connectionTable,
+        table: props.table,
       }
     );
 
-    const userLambdaFn = new UserConnectionDisconnectionSubscriber(
-      this,
-      "UserConnectionDisconnectionSubscriber",
-      {
-        eventBus: props.eventBus,
-        connectionTable: props.connectionTable,
-      }
-    );
-
-    new Rule(this, "HostDisconnectionSubscriberRule", {
+    new Rule(this, "HostConnectionDisconnectionSubscriberRule", {
       description:
         "Rule that subscribes to expired host connections from the connections table.",
       targets: [
-        new aws_events_targets.LambdaFunction(hostLambdaFn.lambdaFunction),
+        new aws_events_targets.LambdaFunction(
+          hostConnectionDisconnectLambdaFn.lambdaFunction
+        ),
       ],
       eventPattern: {
         source: ["room.expired-connection-handler"],
@@ -50,7 +61,12 @@ export class RoomEventBridgeSubscribers extends Construct {
       description:
         "Rule that subscribes to expired user connections from the connections table.",
       targets: [
-        new aws_events_targets.LambdaFunction(userLambdaFn.lambdaFunction),
+        new aws_events_targets.LambdaFunction(
+          userConnectionDisconnectLambdaFn.lambdaFunction
+        ),
+        new aws_events_targets.LambdaFunction(
+          userDisconnectLambdaFn.lambdaFunction
+        ),
       ],
       eventPattern: {
         source: ["room.expired-connection-handler"],

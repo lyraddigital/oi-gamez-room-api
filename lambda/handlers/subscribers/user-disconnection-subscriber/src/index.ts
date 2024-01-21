@@ -1,9 +1,9 @@
 import { EventBridgeEvent } from "aws-lambda";
 
 import { UserConnectionDetail } from "@oigamez/models";
-import { removeUserConnection } from "@oigamez/repositories";
 
 import { validateEnvironment } from "./configuration";
+import { removeIndividualUserRecord } from "./repositories";
 
 validateEnvironment();
 
@@ -11,5 +11,8 @@ export const handler = async (
   event: EventBridgeEvent<"room.user-disconnection", UserConnectionDetail>
 ): Promise<void> => {
   const { roomCode, username } = event.detail;
-  await removeUserConnection(roomCode, username);
+
+  console.log("user disconnection => remove user data", roomCode, username);
+
+  await removeIndividualUserRecord(roomCode, username);
 };
