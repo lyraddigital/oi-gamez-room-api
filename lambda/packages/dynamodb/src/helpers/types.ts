@@ -41,10 +41,6 @@ interface RoomFieldNames {
   visibility: string;
 }
 
-interface UserFieldNames {
-  username: string;
-}
-
 interface CommonFieldValues {
   ttl: (ttl: number) => AttributeValue.NMember;
 }
@@ -92,13 +88,6 @@ interface UnavailableRoomCodesFieldValues {
   type: AttributeValue.SMember;
 }
 
-interface UserFieldValues {
-  pk: (roomCode: string) => AttributeValue.SMember;
-  sk: (username: string) => AttributeValue.SMember;
-  username: (username: string) => AttributeValue.SMember;
-  type: AttributeValue.SMember;
-}
-
 interface DynamoKey {
   PK: AttributeValue.SMember;
   SK: AttributeValue.SMember;
@@ -112,7 +101,6 @@ interface CommonConditionalExpressions {
 export enum RecordType {
   gameType = "GameType",
   room = "Room",
-  user = "User",
   unavailableRoomCode = "UnavailableRoomCode",
   availableDivisionCode = "AvailableDivisionCode",
 }
@@ -127,7 +115,6 @@ export interface DynamoFieldNames {
   gameType: GameTypesFieldNames;
   availableDivisionCodes: AvailableDivisionCodeFieldNames;
   room: RoomFieldNames;
-  user: UserFieldNames;
 }
 
 export interface DynamoFieldValues {
@@ -137,7 +124,6 @@ export interface DynamoFieldValues {
   gameTypes: GameTypesFieldValues;
   unavailableRoomCodes: UnavailableRoomCodesFieldValues;
   room: RoomFieldValues;
-  user: UserFieldValues;
 }
 
 export interface DynamoKeys {
@@ -147,10 +133,6 @@ export interface DynamoKeys {
   ) => DynamoKey & Record<string, AttributeValue>;
   gameType: (gameTypeId: number) => DynamoKey & Record<string, AttributeValue>;
   room: (roomCode: string) => DynamoKey & Record<string, AttributeValue>;
-  user: (
-    roomCode: string,
-    username: string
-  ) => DynamoKey & Record<string, AttributeValue>;
   availableDivisionCodes: (
     divisionRoomCode: string,
     groupRoomCode: string

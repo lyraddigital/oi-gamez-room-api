@@ -1,10 +1,10 @@
-import { Room, RoomStatus, User } from "@oigamez/models";
+import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
 import { RuleSetResult } from "@oigamez/rule-sets";
 
 export const runLeaveRoomRuleSet = (
   username: string,
   room: Room | undefined,
-  users: User[]
+  connections: RoomConnection[]
 ): RuleSetResult => {
   const errorMessages: string[] = [];
 
@@ -13,7 +13,7 @@ export const runLeaveRoomRuleSet = (
   } else if (room!.status !== RoomStatus.Available) {
     errorMessages.push("Cannot leave room. The room has to be available.");
   } else {
-    const existingUser = users.find((u) => u.username === username);
+    const existingUser = connections.find((c) => c.username === username);
 
     if (!existingUser) {
       errorMessages.push("Cannot leave room. The user is not in the room");

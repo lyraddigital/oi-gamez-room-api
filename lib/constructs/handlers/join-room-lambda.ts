@@ -21,6 +21,8 @@ export class JoinRoomLambda extends Construct {
       resource: props.resource,
       environment: {
         [EnvironmentVariables.joinRoom.tableName]: props.table.tableName,
+        [EnvironmentVariables.joinRoom.connectionTableName]:
+          props.connectionTable.tableName,
         [EnvironmentVariables.joinRoom.corsAllowedOrigins]:
           props.allowedOrigins,
       },
@@ -32,6 +34,15 @@ export class JoinRoomLambda extends Construct {
       actions: ["dynamodb:Query", "dynamodb:PutItem"],
     });
 
+    const dbConnectionTablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.connectionTable.tableArn],
+      actions: ["dynamodb:Query"],
+    });
+
     joinRoomLambda.lambdaFunction.addToRolePolicy(dbTablePolicyDocument);
+    joinRoomLambda.lambdaFunction.addToRolePolicy(
+      dbConnectionTablePolicyDocument
+    );
   }
 }

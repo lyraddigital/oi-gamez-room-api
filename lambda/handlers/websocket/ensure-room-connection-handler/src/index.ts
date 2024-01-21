@@ -1,6 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { getRoomAndUsers } from "@oigamez/repositories";
 import {
   badRequestResponse,
   fatalErrorResponse,
@@ -16,6 +15,7 @@ import {
 import { runEnsureRoomConnectionRuleSet } from "./rule-sets";
 import { isUserHost } from "./services";
 import { validateRequest } from "./validators";
+import { getRoomByCode } from "@oigamez/repositories";
 
 validateEnvironment();
 
@@ -39,9 +39,9 @@ export const handler = async (
     }
 
     const ttl = convertFromMillisecondsToSeconds(epochTime);
-    const [room, users] = await getRoomAndUsers(roomCode!, ttl);
+    const room = await getRoomByCode(roomCode!, ttl);
     const isHost = isUserHost(room, username);
-    const ruleSetResult = runEnsureRoomConnectionRuleSet(isHost, room, users);
+    const ruleSetResult = runEnsureRoomConnectionRuleSet(isHost, room);
 
     if (!ruleSetResult.isSuccessful) {
       return badRequestResponse(ruleSetResult.errorMessages);

@@ -47,6 +47,7 @@ export class RoomsRestApi extends Construct {
 
     new JoinRoomLambda(this, "JoinRoomLambda", {
       table: props.table,
+      connectionTable: props.connectionTable,
       resource: roomResource,
       allowedOrigins: props.allowedOrigins,
     });

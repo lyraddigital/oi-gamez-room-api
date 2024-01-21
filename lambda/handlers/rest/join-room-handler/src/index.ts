@@ -1,16 +1,17 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { getRoomAndUsers } from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
   corsOkResponse,
   fatalErrorResponse,
 } from "@oigamez/responses";
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
+import {
+  convertFromMillisecondsToSeconds,
+  getRoomAndConnections,
+} from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { JoinRoomPayload } from "./models";
-import { addUserToRoom } from "./repositories";
 import { runJoinRoomRuleSet } from "./rule-sets";
 import { validateRequest } from "./validators";
 
@@ -40,14 +41,16 @@ export const handler = async (
     }
 
     const ttl = convertFromMillisecondsToSeconds(requestTimeEpoch);
-    const [room, users] = await getRoomAndUsers(roomCode!, ttl);
-    const ruleSetResult = runJoinRoomRuleSet(payload!.username!, room, users);
+    const [room, connections] = await getRoomAndConnections(roomCode!, ttl);
+    const ruleSetResult = runJoinRoomRuleSet(
+      payload!.username!,
+      room,
+      connections
+    );
 
     if (!ruleSetResult.isSuccessful) {
       return corsBadRequestResponse(ruleSetResult.errorMessages);
     }
-
-    await addUserToRoom(room!.code, payload!.username!, ttl);
 
     return corsOkResponse();
   } catch (e) {

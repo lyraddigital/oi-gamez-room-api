@@ -1,10 +1,10 @@
-import { Room, RoomStatus, User } from "@oigamez/models";
+import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
 import { RuleSetResult } from "@oigamez/rule-sets";
 
 export const runJoinRoomRuleSet = (
   username: string,
   room: Room | undefined,
-  users: User[]
+  connections: RoomConnection[]
 ): RuleSetResult => {
   const errorMessages: string[] = [];
 
@@ -15,7 +15,7 @@ export const runJoinRoomRuleSet = (
   } else if (room!.curNumOfUsers === room!.maxNumOfUsers) {
     errorMessages.push("Cannot join room. The room is full.");
   } else {
-    const existingUser = users.find((u) => u.username === username);
+    const existingUser = connections.find((c) => c.username === username);
 
     if (existingUser) {
       errorMessages.push("Cannot join room. The user is already in the room");

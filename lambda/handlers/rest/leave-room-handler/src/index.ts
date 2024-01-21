@@ -1,16 +1,15 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import {
-  clearRoomData,
-  getRoomAndUsers,
-  removeUserFromRoom,
-} from "@oigamez/repositories";
+import { clearRoomData, removeUserFromRoom } from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
   corsOkResponse,
   fatalErrorResponse,
 } from "@oigamez/responses";
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
+import {
+  convertFromMillisecondsToSeconds,
+  getRoomAndConnections,
+} from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { LeaveRoomPayload } from "./models";
@@ -43,15 +42,19 @@ export const handler = async (
     }
 
     const ttl = convertFromMillisecondsToSeconds(requestTimeEpoch);
-    const [room, users] = await getRoomAndUsers(roomCode!, ttl);
-    const ruleSetResult = runLeaveRoomRuleSet(payload!.username!, room, users);
+    const [room, connections] = await getRoomAndConnections(roomCode!, ttl);
+    const ruleSetResult = runLeaveRoomRuleSet(
+      payload!.username!,
+      room,
+      connections
+    );
 
     if (!ruleSetResult.isSuccessful) {
       return corsBadRequestResponse(ruleSetResult.errorMessages);
     }
 
     if (room!.hostUsername === payload!.username!) {
-      await clearRoomData(room!, users);
+      await clearRoomData(room!, connections);
     } else {
       await removeUserFromRoom(room!, payload!.username!);
     }

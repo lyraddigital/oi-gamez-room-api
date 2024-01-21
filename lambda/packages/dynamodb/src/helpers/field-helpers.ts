@@ -84,9 +84,6 @@ export const dynamoFieldNames: DynamoFieldNames = {
     title: "Title",
     visibility: "IsVisible",
   },
-  user: {
-    username: "Username",
-  },
 };
 
 export const dynamoFieldValues: DynamoFieldValues = {
@@ -134,12 +131,6 @@ export const dynamoFieldValues: DynamoFieldValues = {
     visibility: (isVisible: boolean) => booleanAttribute(isVisible),
     type: stringAttribute(RecordType.room),
   },
-  user: {
-    pk: (roomCode: string) => stringAttribute(`Room#${roomCode}`),
-    sk: (username: string) => stringAttribute(`#User#${username}`),
-    username: (username: string) => stringAttribute(username),
-    type: stringAttribute(RecordType.user),
-  },
 };
 
 export const expressions: DynamoConditionalExpressions = {
@@ -161,10 +152,6 @@ export const keys: DynamoKeys = {
   room: (roomCode) => ({
     PK: dynamoFieldValues.room.pk(roomCode),
     SK: dynamoFieldValues.room.sk,
-  }),
-  user: (roomCode, username) => ({
-    PK: dynamoFieldValues.user.pk(roomCode),
-    SK: dynamoFieldValues.user.sk(username),
   }),
   availableDivisionCodes: (divisionRoomCode, groupRoomCode) => ({
     PK: dynamoFieldValues.availableDivisionCodes.pk(divisionRoomCode),

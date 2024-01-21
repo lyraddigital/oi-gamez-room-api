@@ -8,9 +8,10 @@ import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "@oigamez/configuration";
 import { dbClient } from "@oigamez/dynamodb";
 import { Room, RoomStatus } from "@oigamez/models";
 
-import { createOrUpdateRoomConnection } from "./create-or-update-room-connection";
-import { updateRoomHostDetails } from "./update-room-host-details";
-import { updateUserTTL } from "./update-user-ttl";
+import {
+  createOrUpdateRoomConnection,
+  updateRoomHostDetails,
+} from "./transact-writes";
 
 export const establishHostConnection = async (
   room: Room,
@@ -29,7 +30,6 @@ export const establishHostConnection = async (
 
   if (isFirstHostConnection) {
     transactionWriteItems.push(updateRoomHostDetails(room, adjustedTTL));
-    transactionWriteItems.push(updateUserTTL(room, username, adjustedTTL));
   }
 
   const transactWriteItemsCommandInput: TransactWriteItemsCommandInput = {

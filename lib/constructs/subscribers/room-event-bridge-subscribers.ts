@@ -6,7 +6,6 @@ import { RoomEventBridgeSubscribersProps } from "../../props";
 
 import { HostConnectionDisconnectionSubscriber } from "./host-connection-disconnection-subscriber";
 import { UserConnectionDisconnectionSubscriber } from "./user-connection-disconnection-subscriber";
-import { UserDisconnectionSubscriber } from "./user-disconnection-subscriber";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -34,14 +33,6 @@ export class RoomEventBridgeSubscribers extends Construct {
         }
       );
 
-    const userDisconnectLambdaFn = new UserDisconnectionSubscriber(
-      this,
-      "UserDisconnectionSubscriber",
-      {
-        table: props.table,
-      }
-    );
-
     new Rule(this, "HostConnectionDisconnectionSubscriberRule", {
       description:
         "Rule that subscribes to expired host connections from the connections table.",
@@ -63,9 +54,6 @@ export class RoomEventBridgeSubscribers extends Construct {
       targets: [
         new aws_events_targets.LambdaFunction(
           userConnectionDisconnectLambdaFn.lambdaFunction
-        ),
-        new aws_events_targets.LambdaFunction(
-          userDisconnectLambdaFn.lambdaFunction
         ),
       ],
       eventPattern: {

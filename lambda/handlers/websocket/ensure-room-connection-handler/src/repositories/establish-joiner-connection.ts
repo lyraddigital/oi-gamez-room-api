@@ -7,9 +7,10 @@ import {
 import { dbClient } from "@oigamez/dynamodb";
 import { Room, RoomStatus } from "@oigamez/models";
 
-import { createOrUpdateRoomConnection } from "./create-or-update-room-connection";
-import { updateUserTTL } from "./update-user-ttl";
-import { updateRoomUserCount } from "./update-room-user-count";
+import {
+  createOrUpdateRoomConnection,
+  updateRoomUserCount,
+} from "./transact-writes";
 
 export const establishJoinerConnection = async (
   room: Room,
@@ -26,7 +27,6 @@ export const establishJoinerConnection = async (
   ];
 
   if (room.status === RoomStatus.Available) {
-    transactionWriteItems.push(updateUserTTL(room, username, room.epochExpiry));
     transactionWriteItems.push(updateRoomUserCount(room));
   }
 

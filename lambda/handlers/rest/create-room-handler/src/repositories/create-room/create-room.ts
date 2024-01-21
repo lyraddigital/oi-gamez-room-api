@@ -54,28 +54,6 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
   },
 });
 
-const createNewUserEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
-  Put: {
-    TableName: DYNAMO_TABLE_NAME,
-    Item: {
-      [dynamoFieldNames.common.pk]: dynamoFieldValues.user.pk(
-        roomToCreate.code
-      ),
-      [dynamoFieldNames.common.sk]: dynamoFieldValues.user.sk(
-        roomToCreate.hostUsername
-      ),
-      [dynamoFieldNames.user.username]: dynamoFieldValues.user.username(
-        roomToCreate.hostUsername
-      ),
-      [dynamoFieldNames.common.ttl]: dynamoFieldValues.common.ttl(
-        roomToCreate.epochExpiry
-      ),
-      [dynamoFieldNames.common.type]: dynamoFieldValues.user.type,
-    },
-    ConditionExpression: expressions.common.keysDoNotExists,
-  },
-});
-
 const createRoomAvailabilityUpdateEntry = (
   divisionRoomCode: string,
   groupRoomCode: string,
@@ -125,7 +103,6 @@ export const createRoom = async (
 
   const transactionItems: TransactWriteItem[] = [
     createNewRoomEntry(roomToCreate),
-    createNewUserEntry(roomToCreate),
     createRoomAvailabilityUpdateEntry(
       divisionRoomCode,
       groupRoomCode,

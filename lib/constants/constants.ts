@@ -40,6 +40,7 @@ interface GetRoomStatusEnvironmentVariables {
 
 interface JoinRoomEnvironmentVariables {
   tableName: string;
+  connectionTableName: string;
   corsAllowedOrigins: string;
 }
 
@@ -149,6 +150,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
   },
   joinRoom: {
     tableName: "DYNAMO_TABLE_NAME",
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
   },
   leaveRoom: {

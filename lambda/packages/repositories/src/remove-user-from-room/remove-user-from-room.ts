@@ -6,11 +6,7 @@ import {
 import { dbClient } from "@oigamez/dynamodb";
 import { Room } from "@oigamez/models";
 
-import {
-  removeRoomUser,
-  removeUserConnection,
-  updateRoomUserCount,
-} from "../transact-writes";
+import { removeUserConnection, updateRoomUserCount } from "../transact-writes";
 
 export const removeUserFromRoom = async (
   room: Room,
@@ -19,7 +15,6 @@ export const removeUserFromRoom = async (
   const transactWriteItemsCommandInput: TransactWriteItemsCommandInput = {
     TransactItems: [
       removeUserConnection(room.code, username),
-      removeRoomUser(room.code, username),
       updateRoomUserCount(room.code, -1),
     ],
   };
