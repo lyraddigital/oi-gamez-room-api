@@ -1,8 +1,11 @@
 import { EventBridgeEvent } from "aws-lambda";
 
 import { HostConnectionDetail } from "@oigamez/models";
-import { removeUserConnection } from "@oigamez/repositories";
-import { clearAllRoomDataForRoomCode } from "@oigamez/services";
+import {
+  clearRoomData,
+  getRoomConnections,
+  removeUserConnection,
+} from "@oigamez/repositories";
 
 import { validateEnvironment } from "./configuration";
 
@@ -12,9 +15,10 @@ export const handler = async (
   event: EventBridgeEvent<"room.host-disconnection", HostConnectionDetail>
 ): Promise<void> => {
   const { roomCode, username, removeRoom } = event.detail;
+  const connections = await getRoomConnections(roomCode);
 
   if (removeRoom) {
-    await clearAllRoomDataForRoomCode(roomCode);
+    await clearRoomData(roomCode, connections);
   } else {
     await removeUserConnection(roomCode, username);
   }
