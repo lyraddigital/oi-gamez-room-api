@@ -20,9 +20,10 @@ export const publishAllHostDisconnections = async (
         Detail: JSON.stringify({
           roomCode: hr.code,
           username: hr.hostUsername,
-          canRemoveRoom:
-            hr.status === RoomStatus.Available ||
-            hr.status === RoomStatus.NotAvailable,
+          removeRoom:
+            (hr.status === RoomStatus.Available ||
+              hr.status === RoomStatus.NotAvailable) &&
+            hr.curNumOfUsers === 1,
         }),
         DetailType: "room.host-disconnection",
       })),

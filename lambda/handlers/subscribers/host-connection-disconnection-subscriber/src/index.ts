@@ -11,9 +11,9 @@ validateEnvironment();
 export const handler = async (
   event: EventBridgeEvent<"room.host-disconnection", HostConnectionDetail>
 ): Promise<void> => {
-  const { roomCode, username, canRemoveRoom } = event.detail;
+  const { roomCode, username, removeRoom } = event.detail;
 
-  if (canRemoveRoom) {
+  if (removeRoom) {
     await clearAllRoomDataForRoomCode(roomCode);
   } else {
     await removeUserConnection(roomCode, username);
