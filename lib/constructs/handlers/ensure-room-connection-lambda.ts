@@ -51,7 +51,7 @@ export class EnsureRoomConnectionLambda extends Construct {
     const connectionTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.connectionTable.tableArn],
-      actions: ["dynamodb:PutItem"],
+      actions: ["dynamodb:GetItem", "dynamodb:PutItem"],
     });
 
     const ebPutEventsPolicyDocument = new PolicyStatement({

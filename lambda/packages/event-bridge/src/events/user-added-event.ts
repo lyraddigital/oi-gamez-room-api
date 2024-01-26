@@ -1,4 +1,5 @@
 import { EventGridEvent } from "./event-grid-event";
+import { EventGridEventType } from "./types";
 
 export class UserAddedEvent extends EventGridEvent {
   constructor(
@@ -6,6 +7,6 @@ export class UserAddedEvent extends EventGridEvent {
     public username: string,
     public gameTypeId: number
   ) {
-    super("room.user-added");
+    super(EventGridEventType.userAdded);
   }
 }

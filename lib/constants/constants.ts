@@ -116,6 +116,11 @@ interface IndexNames {
   lastDisconnected: string;
 }
 
+interface EventTypes {
+  hostRemoved: string;
+  userRemoved: string;
+}
+
 export const ResourcePaths: ResourcePaths = {
   gameTypes: "game-types",
   rooms: "rooms",
@@ -219,4 +224,9 @@ export const IndexNames: IndexNames = {
   hostedRooms: "HostedRooms-index",
   connection: "Connection-index",
   lastDisconnected: "LastDisconnected-index",
+};
+
+export const EventTypes: EventTypes = {
+  hostRemoved: "room.host-removed",
+  userRemoved: "room.user-removed",
 };

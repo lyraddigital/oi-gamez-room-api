@@ -2,6 +2,7 @@ import { aws_events_targets } from "aws-cdk-lib";
 import { Rule } from "aws-cdk-lib/aws-events";
 import { Construct } from "constructs";
 
+import { EventTypes } from "../../constants";
 import { RoomEventBridgeSubscribersProps } from "../../props";
 
 import { HostConnectionDisconnectionSubscriber } from "./host-connection-disconnection-subscriber";
@@ -35,32 +36,32 @@ export class RoomEventBridgeSubscribers extends Construct {
         }
       );
 
-    new Rule(this, "HostConnectionDisconnectionSubscriberRule", {
+    new Rule(this, "HostRemovedSubscriberRule", {
       description:
-        "Rule that subscribes to expired host connections from the connections table.",
+        "Rule that subscribes to a host being removed from the connections table.",
       targets: [
         new aws_events_targets.LambdaFunction(
           hostConnectionDisconnectLambdaFn.lambdaFunction
         ),
       ],
       eventPattern: {
-        source: ["room.expired-connection-handler"],
-        detailType: ["room.host-disconnection"],
+        source: [props.eventBusSourceName],
+        detailType: [EventTypes.hostRemoved],
       },
       eventBus: props.eventBus,
     });
 
-    new Rule(this, "UserDisconnectionSubscriberRule", {
+    new Rule(this, "UserRemovedSubscriberRule", {
       description:
-        "Rule that subscribes to expired user connections from the connections table.",
+        "Rule that subscribes to a user being removed from the connections table.",
       targets: [
         new aws_events_targets.LambdaFunction(
           userConnectionDisconnectLambdaFn.lambdaFunction
         ),
       ],
       eventPattern: {
-        source: ["room.expired-connection-handler"],
-        detailType: ["room.user-disconnection"],
+        source: [props.eventBusSourceName],
+        detailType: [EventTypes.userRemoved],
       },
       eventBus: props.eventBus,
     });

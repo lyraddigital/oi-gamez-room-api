@@ -27,6 +27,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     });
 
     const roomEventBus = new RoomEventBus(this, "RoomEventBus");
+    const ebEventSourceName = "room-service";
 
     new RoomsRestApi(this, "RoomRestApi", {
       table: roomTable.table,
@@ -44,7 +45,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       connectionTable: connectionTable.table,
       updatedConnectWindowInSeconds: 21600,
       eventBus: roomEventBus.eventBus,
-      ebEventSourceName: "room-service",
+      ebEventSourceName,
     });
 
     new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {
@@ -63,6 +64,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       eventBus: roomEventBus.eventBus,
       table: roomTable.table,
       connectionTable: connectionTable.table,
+      eventBusSourceName: ebEventSourceName,
     });
   }
 }
