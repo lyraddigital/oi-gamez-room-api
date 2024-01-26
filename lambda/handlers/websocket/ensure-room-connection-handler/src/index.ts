@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { RoomCreatedEvent, publishEvent } from "@oigamez/event-bridge";
 import {
   badRequestResponse,
   fatalErrorResponse,
@@ -16,6 +17,7 @@ import { runEnsureRoomConnectionRuleSet } from "./rule-sets";
 import { isUserHost } from "./services";
 import { validateRequest } from "./validators";
 import { getRoomByCode } from "@oigamez/repositories";
+import { RoomStatus } from "@oigamez/models";
 
 validateEnvironment();
 
@@ -48,7 +50,25 @@ export const handler = async (
     }
 
     if (isHost) {
-      await establishHostConnection(room!, username!, connectionId!, ttl);
+      const isFirstHostConnection = room!.status === RoomStatus.NotAvailable;
+
+      await establishHostConnection(
+        room!,
+        username!,
+        connectionId!,
+        isFirstHostConnection,
+        ttl
+      );
+
+      if (isFirstHostConnection) {
+        await publishEvent(
+          new RoomCreatedEvent(
+            room!.code,
+            room!.hostUsername!,
+            room!.gameTypeId!
+          )
+        );
+      }
     } else {
       await establishJoinerConnection(room!, username!, connectionId!);
     }

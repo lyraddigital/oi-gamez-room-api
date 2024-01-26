@@ -6,7 +6,7 @@ import {
 
 import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "@oigamez/configuration";
 import { dbClient } from "@oigamez/dynamodb";
-import { Room, RoomStatus } from "@oigamez/models";
+import { Room } from "@oigamez/models";
 
 import {
   createOrUpdateRoomConnection,
@@ -17,9 +17,9 @@ export const establishHostConnection = async (
   room: Room,
   username: string,
   connectionId: string,
+  isFirstHostConnection: boolean,
   updatedTTL: number
 ): Promise<void> => {
-  const isFirstHostConnection = room.status === RoomStatus.NotAvailable;
   const adjustedTTL = isFirstHostConnection
     ? updatedTTL + UPDATED_CONNECT_WINDOW_IN_SECONDS
     : room!.epochExpiry;

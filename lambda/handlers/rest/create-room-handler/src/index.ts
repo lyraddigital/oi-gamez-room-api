@@ -78,6 +78,7 @@ export const handler = async (
         maxNumOfUsers: gameType!.maxNumOfUsers,
         epochExpiry: roomEpochExpiry,
         isPublic: payload!.isPublic!,
+        gameTypeId: payload!.gameTypeId!,
       },
       isRoomCodeGroupExhaused
     );

@@ -5,6 +5,7 @@ export interface Room {
   epochExpiry: number;
   title: string;
   hostUsername: string;
+  gameTypeId: number;
   isPublic: boolean;
   curNumOfUsers: number;
   minNumOfUsers: number;

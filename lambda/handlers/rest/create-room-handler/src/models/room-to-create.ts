@@ -6,4 +6,5 @@ export interface RoomToCreate {
   minNumOfUsers: number;
   maxNumOfUsers: number;
   epochExpiry: number;
+  gameTypeId: number;
 }

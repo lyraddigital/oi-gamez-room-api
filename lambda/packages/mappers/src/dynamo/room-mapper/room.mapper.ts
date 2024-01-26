@@ -30,5 +30,6 @@ export const mapFromDynamoToRoom = (
     status: getDynamoString(
       dynamoRecord[dynamoFieldNames.room.status]
     ) as RoomStatus,
+    gameTypeId: getDynamoInt(dynamoRecord[dynamoFieldNames.room.gameTypeId]),
   };
 };

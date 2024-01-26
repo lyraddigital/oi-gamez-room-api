@@ -39,6 +39,7 @@ interface RoomFieldNames {
   status: string;
   title: string;
   visibility: string;
+  gameTypeId: string;
 }
 
 interface CommonFieldValues {
@@ -77,6 +78,7 @@ interface RoomFieldValues {
   maxNumOfUsers: (maxNumOfUsers: number) => AttributeValue.NMember;
   minNumOfUsers: (minNumOfUsers: number) => AttributeValue.NMember;
   status: (status: string) => AttributeValue.SMember;
+  gameTypeId: (gameTypeId: number) => AttributeValue.NMember;
   title: (title: string) => AttributeValue.SMember;
   visibility: (isVisible: boolean) => AttributeValue.BOOLMember;
   type: AttributeValue.SMember;

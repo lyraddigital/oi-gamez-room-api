@@ -53,6 +53,8 @@ interface EnsureRoomEnvironmentVariables {
   connectionTableName: string;
   roomTableName: string;
   updatedConnectionWindow: string;
+  eventBusName: string;
+  ebEventSourceName: string;
 }
 
 interface RoomDeleteStreamEnvironmentVariables {
@@ -157,6 +159,8 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     roomTableName: "DYNAMO_TABLE_NAME",
     updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
+    eventBusName: "EB_EB_NAME",
+    ebEventSourceName: "EB_EVENT_SOURCE_NAME",
   },
   roomDeleteStream: {
     tableName: "DYNAMO_TABLE_NAME",

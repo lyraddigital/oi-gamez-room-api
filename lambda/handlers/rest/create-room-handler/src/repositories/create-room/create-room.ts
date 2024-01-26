@@ -45,6 +45,9 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       [dynamoFieldNames.room.status]: dynamoFieldValues.room.status(
         RoomStatus.NotAvailable
       ),
+      [dynamoFieldNames.room.gameTypeId]: dynamoFieldValues.room.gameTypeId(
+        roomToCreate.gameTypeId
+      ),
       [dynamoFieldNames.common.ttl]: dynamoFieldValues.common.ttl(
         roomToCreate.epochExpiry
       ),

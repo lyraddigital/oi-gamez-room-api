@@ -43,6 +43,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       connectionTableIndexName: IndexNames.connection,
       connectionTable: connectionTable.table,
       updatedConnectWindowInSeconds: 21600,
+      eventBus: roomEventBus.eventBus,
+      ebEventSourceName: "room-service",
     });
 
     new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {
