@@ -3,4 +3,5 @@ export enum EventBridgeEventType {
   userAdded = "room.user-added",
   hostRemoved = "room.host-removed",
   userRemoved = "room.user-removed",
+  expiredConnections = "room.expired-connections",
 }

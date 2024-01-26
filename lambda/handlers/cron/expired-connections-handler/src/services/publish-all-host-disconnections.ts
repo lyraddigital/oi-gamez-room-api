@@ -1,35 +1,17 @@
-import {
-  PutEventsCommand,
-  PutEventsCommandInput,
-  PutEventsRequestEntry,
-} from "@aws-sdk/client-eventbridge";
-
-import { USER_DISCONNECTION_EB_NAME } from "@oigamez/configuration";
-
-import { client } from "@oigamez/event-bridge";
+import { HostRemovedEvent, publishEvents } from "@oigamez/event-bridge";
 import { Room, RoomStatus } from "@oigamez/models";
 
 export const publishAllHostDisconnections = async (
   hostedRooms: Room[]
 ): Promise<void> => {
-  const putEventsCommandInput: PutEventsCommandInput = {
-    Entries: [
-      ...hostedRooms.map<PutEventsRequestEntry>((hr) => ({
-        EventBusName: USER_DISCONNECTION_EB_NAME,
-        Source: "room.expired-connection-handler",
-        Detail: JSON.stringify({
-          roomCode: hr.code,
-          username: hr.hostUsername,
-          removeRoom:
-            (hr.status === RoomStatus.Available ||
-              hr.status === RoomStatus.NotAvailable) &&
-            hr.curNumOfUsers === 1,
-        }),
-        DetailType: "room.host-disconnection",
-      })),
-    ],
-  };
-  const command = new PutEventsCommand(putEventsCommandInput);
+  await publishEvents(
+    hostedRooms.map<HostRemovedEvent>((hr) => {
+      const shouldRemoveRoom =
+        (hr.status === RoomStatus.Available ||
+          hr.status === RoomStatus.NotAvailable) &&
+        hr.curNumOfUsers === 1;
 
-  await client.send(command);
+      return new HostRemovedEvent(hr.code, hr.hostUsername, shouldRemoveRoom);
+    })
+  );
 };

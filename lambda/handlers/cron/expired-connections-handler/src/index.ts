@@ -9,11 +9,12 @@ import {
   publishAllHostDisconnections,
   publishAllUserDisconnections,
 } from "./services";
+import { EventBridgeEventType } from "@oigamez/event-bridge";
 
 validateEnvironment();
 
 export const handler = async (
-  _: EventBridgeEvent<"Check Expired Connections", void>
+  _: EventBridgeEvent<EventBridgeEventType.expiredConnections, void>
 ): Promise<void> => {
   try {
     const currentTimeInSeconds = convertFromMillisecondsToSeconds(
