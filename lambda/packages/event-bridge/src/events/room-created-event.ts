@@ -1,12 +1,12 @@
-import { EventGridEvent } from "./event-grid-event";
-import { EventGridEventType } from "./types";
+import { EventBridgeEvent } from "./event-bridge-event";
+import { EventBridgeEventType } from "./types";
 
-export class RoomCreatedEvent extends EventGridEvent {
+export class RoomCreatedEvent extends EventBridgeEvent {
   constructor(
     public code: string,
     public host: string,
     public gameTypeId: number
   ) {
-    super(EventGridEventType.roomCreated);
+    super(EventBridgeEventType.roomCreated);
   }
 }

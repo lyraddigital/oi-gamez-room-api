@@ -8,8 +8,8 @@ interface EnvironmentVariables {
   ensureRoomConnection: EnsureRoomEnvironmentVariables;
   roomDeleteStream: RoomDeleteStreamEnvironmentVariables;
   roomDisconnection: RoomDisconnectionEnvironmentVariables;
-  hostConnectionDisconnectionSubscriber: HostConnectionDisconnectionSubscriberEnvironmentVariables;
-  userConnectionDisconnectionSubscriber: UserConnectionDisconnectionSubscriberEnvironmentVariables;
+  hostRemovedSubscriber: HostRemovedSubscriberEnvironmentVariables;
+  userRemovedSubscriber: UserRemovedSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -66,12 +66,12 @@ interface RoomDisconnectionEnvironmentVariables {
   connectionIndexName: string;
 }
 
-interface HostConnectionDisconnectionSubscriberEnvironmentVariables {
+interface HostRemovedSubscriberEnvironmentVariables {
   connectionTableName: string;
   tableName: string;
 }
 
-interface UserConnectionDisconnectionSubscriberEnvironmentVariables {
+interface UserRemovedSubscriberEnvironmentVariables {
   connectionTableName: string;
   tableName: string;
 }
@@ -86,8 +86,8 @@ interface HandlerFilePaths {
   expiredConnectionCleanup: string;
   roomDisconnection: string;
   roomDeleteStream: string;
-  hostConnectionDisconnectionSubscriber: string;
-  userConnectionDisconnectionSubscriber: string;
+  hostRemovedSubscriber: string;
+  userRemovedSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -106,8 +106,8 @@ interface HandlerFunctionNames {
   expiredConnectionCleanup: string;
   roomDeleteStream: string;
   roomDisconnection: string;
-  hostConnectionDisconnectionSubscriber: string;
-  userConnectionDisconnectionSubscriber: string;
+  hostRemovedSubscriber: string;
+  userRemovedSubscriber: string;
 }
 
 interface IndexNames {
@@ -174,11 +174,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     connectionIndexName: "CONNECTION_DYNAMO_INDEX_NAME",
   },
-  hostConnectionDisconnectionSubscriber: {
+  hostRemovedSubscriber: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
   },
-  userConnectionDisconnectionSubscriber: {
+  userRemovedSubscriber: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
   },
@@ -200,10 +200,10 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../lambda/handlers/dynamo-db/room-deleted-handler/src/index.ts",
   roomDisconnection:
     "../../../lambda/handlers/websocket/room-disconnection-handler/src/index.ts",
-  hostConnectionDisconnectionSubscriber:
-    "../../../lambda/handlers/subscribers/host-connection-disconnection-subscriber/src/index.ts",
-  userConnectionDisconnectionSubscriber:
-    "../../../lambda/handlers/subscribers/user-connection-disconnection-subscriber/src/index.ts",
+  hostRemovedSubscriber:
+    "../../../lambda/handlers/subscribers/host-removed-subscriber/src/index.ts",
+  userRemovedSubscriber:
+    "../../../lambda/handlers/subscribers/user-removed-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -216,8 +216,8 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   ensureRoomConnection: "handler",
   roomDeleteStream: "handler",
   roomDisconnection: "handler",
-  hostConnectionDisconnectionSubscriber: "handler",
-  userConnectionDisconnectionSubscriber: "handler",
+  hostRemovedSubscriber: "handler",
+  userRemovedSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {

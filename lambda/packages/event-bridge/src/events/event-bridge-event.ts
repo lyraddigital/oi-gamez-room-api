@@ -1,3 +1,3 @@
-export class EventGridEvent {
+export class EventBridgeEvent {
   constructor(public detailType: string) {}
 }

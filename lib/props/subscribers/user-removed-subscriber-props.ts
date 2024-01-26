@@ -1,6 +1,6 @@
 import { TableV2 } from "aws-cdk-lib/aws-dynamodb";
 
-export interface UserConnectionDisconnectionSubscriberProps {
+export interface UserRemovedSubscriberProps {
   table: TableV2;
   connectionTable: TableV2;
 }
