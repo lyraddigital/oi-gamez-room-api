@@ -44,6 +44,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       connectionTableIndexName: IndexNames.connection,
       connectionTable: connectionTable.table,
       updatedConnectWindowInSeconds: 21600,
+      account: this.account,
+      region: this.region,
     });
 
     new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {

@@ -25,6 +25,9 @@ export class RoomsSocketApi extends Construct {
       autoDeploy: true,
     });
 
+    const roomWebsocketEndpoint = `https://${this.webSocketApi.apiId}.execute-api.${props.region}.amazonaws.com/${webSocketApiStage.stageName}`;
+    const roomWebsocketApiPostArn = `arn:aws:execute-api:${props.region}:${props.account}:${this.webSocketApi.apiId}/${webSocketApiStage.stageName}/POST/@connections/*`;
+
     const ensureRoomLambda = new EnsureRoomConnectionLambda(
       this,
       "EnsureRoomConnectionLambda",
@@ -32,6 +35,8 @@ export class RoomsSocketApi extends Construct {
         connectionTable: props.connectionTable,
         roomTable: props.roomTable,
         updatedConnectWindowInSeconds: props.updatedConnectWindowInSeconds,
+        roomWebsocketEndpoint,
+        roomWebsocketApiPostArn,
       }
     );
 

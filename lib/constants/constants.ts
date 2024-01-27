@@ -54,6 +54,7 @@ interface EnsureRoomEnvironmentVariables {
   connectionTableName: string;
   roomTableName: string;
   updatedConnectionWindow: string;
+  roomWebsocketEndpoint: string;
 }
 
 interface RoomDeleteStreamEnvironmentVariables {
@@ -164,6 +165,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     roomTableName: "DYNAMO_TABLE_NAME",
     updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
+    roomWebsocketEndpoint: "ROOM_SOCKET_API_ENDPOINT",
   },
   roomDeleteStream: {
     tableName: "DYNAMO_TABLE_NAME",

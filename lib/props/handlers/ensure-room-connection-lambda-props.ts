@@ -4,4 +4,6 @@ export interface EnsureRoomConnectionLambdaProps {
   connectionTable: TableV2;
   roomTable: TableV2;
   updatedConnectWindowInSeconds: number;
+  roomWebsocketEndpoint: string;
+  roomWebsocketApiPostArn: string;
 }

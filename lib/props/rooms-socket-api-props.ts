@@ -5,4 +5,6 @@ export interface RoomSocketApiProps {
   roomTable: TableV2;
   connectionTableIndexName: string;
   updatedConnectWindowInSeconds: number;
+  account: string;
+  region: string;
 }
