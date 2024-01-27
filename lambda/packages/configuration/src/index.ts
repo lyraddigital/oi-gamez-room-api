@@ -8,4 +8,5 @@ export * from "./eb-eb-name";
 export * from "./eb-event-source-name";
 export * from "./expired-disconnection-window-in-seconds";
 export * from "./host-room-index-name";
+export * from "./room-socket-api-endpoint";
 export * from "./updated-connect-window";

@@ -26,6 +26,9 @@
       "./node_modules/@types"
     ],
     "paths": {
+      "@oigamez/communication": [
+        "./lambda/packages/communication/src"
+      ],
       "@oigamez/configuration": [
         "./lambda/packages/configuration/src"
       ],

@@ -1,12 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { UserJoinedEvent, broadcast } from "@oigamez/communication";
 import {
   badRequestResponse,
   fatalErrorResponse,
   okResponse,
 } from "@oigamez/responses";
 import { RoomStatus } from "@oigamez/models";
-import { getRoomByCode } from "@oigamez/repositories";
+import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
@@ -60,6 +61,14 @@ export const handler = async (
       );
     } else {
       await establishJoinerConnection(room!, username!, connectionId!);
+
+      const roomConnections = await getRoomConnections(room!.code, ttl);
+
+      await broadcast<UserJoinedEvent>(
+        roomConnections,
+        new UserJoinedEvent(username!),
+        [connectionId!]
+      );
     }
 
     return okResponse();
