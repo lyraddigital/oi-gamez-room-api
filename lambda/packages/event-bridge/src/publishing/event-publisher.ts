@@ -9,12 +9,6 @@ import { EB_EB_NAME, EB_EVENT_SOURCE_NAME } from "@oigamez/configuration";
 import { client } from "../client";
 import { EventBridgeEvent } from "../events";
 
-export const publishEvent = async <T extends EventBridgeEvent>(
-  payload: T
-): Promise<void> => {
-  await publishEvents([payload]);
-};
-
 export const publishEvents = async <T extends EventBridgeEvent>(
   items: T[]
 ): Promise<void> => {
