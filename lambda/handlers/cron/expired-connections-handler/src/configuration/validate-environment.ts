@@ -3,7 +3,8 @@ import {
   verifyDynamoLastDisconnectedIndexName,
   verifyDynamoTableName,
   verifyExpiredDisconnectionWindowInSeconds,
-  verifyUserDisconnectionEventBusName,
+  verifyEbName,
+  verifyEbEventSourceName,
 } from "@oigamez/configuration";
 
 export const validateEnvironment = (): void => {
@@ -11,5 +12,6 @@ export const validateEnvironment = (): void => {
   verifyDynamoLastDisconnectedIndexName();
   verifyDynamoConnectionTableName();
   verifyExpiredDisconnectionWindowInSeconds();
-  verifyUserDisconnectionEventBusName();
+  verifyEbName();
+  verifyEbEventSourceName();
 };

@@ -56,6 +56,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       roomEventBus: roomEventBus.eventBus,
       lastDisconnectedIndexName: IndexNames.lastDisconnected,
       expiredDisconnectionWindowInSeconds: 60,
+      eventBusEventSourceName: ebEventSourceName,
     });
 
     new RoomEventBridgeSubscribers(this, "RoomEventBridgeSubscribers", {

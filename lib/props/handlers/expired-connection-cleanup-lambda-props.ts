@@ -7,4 +7,5 @@ export interface ExpiredConnectionCleanupLambdaProps {
   lastDisconnectedIndexName: string;
   expiredDisconnectionWindowInSeconds: number;
   roomEventBus: IEventBus;
+  eventBusEventSourceName: string;
 }
