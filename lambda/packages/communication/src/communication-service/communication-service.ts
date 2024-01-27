@@ -38,5 +38,5 @@ export const broadcast = async <T>(
     sendCommunicationEvent(fc.connectionId, payload)
   );
 
-  await eventPromises;
+  await Promise.all(eventPromises);
 };
