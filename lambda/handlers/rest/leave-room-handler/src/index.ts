@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { broadcast, UserLeftEvent } from "@oigamez/communication";
 import { clearRoomData, removeUserFromRoom } from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
@@ -57,6 +58,18 @@ export const handler = async (
       await clearRoomData(room!.code, connections);
     } else {
       await removeUserFromRoom(room!, payload!.username!);
+
+      const userConnectionId = connections.find(
+        (c) => c.username === payload!.username!
+      )?.connectionId;
+
+      if (userConnectionId) {
+        await broadcast<UserLeftEvent>(
+          connections,
+          new UserLeftEvent(payload!.username!),
+          [userConnectionId!]
+        );
+      }
     }
 
     return corsOkResponse(204);

@@ -48,6 +48,7 @@ interface LeaveRoomEnvironmentVariables {
   tableName: string;
   connectionTableName: string;
   corsAllowedOrigins: string;
+  roomWebsocketEndpoint: string;
 }
 
 interface EnsureRoomEnvironmentVariables {
@@ -160,6 +161,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+    roomWebsocketEndpoint: "ROOM_SOCKET_API_ENDPOINT",
   },
   ensureRoomConnection: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",

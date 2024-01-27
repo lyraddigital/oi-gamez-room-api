@@ -29,6 +29,15 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     const roomEventBus = new RoomEventBus(this, "RoomEventBus");
     const ebEventSourceName = "room-service";
 
+    const webSocketApi = new RoomsSocketApi(this, "RoomSocketApi", {
+      roomTable: roomTable.table,
+      connectionTableIndexName: IndexNames.connection,
+      connectionTable: connectionTable.table,
+      updatedConnectWindowInSeconds: 21600,
+      account: this.account,
+      region: this.region,
+    });
+
     new RoomsRestApi(this, "RoomRestApi", {
       table: roomTable.table,
       connectionTable: connectionTable.table,
@@ -37,15 +46,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       connectWindowInSeconds: 30,
       allowedOrigins: "http://localhost:3000",
       hostRoomIndexName: IndexNames.hostedRooms,
-    });
-
-    new RoomsSocketApi(this, "RoomSocketApi", {
-      roomTable: roomTable.table,
-      connectionTableIndexName: IndexNames.connection,
-      connectionTable: connectionTable.table,
-      updatedConnectWindowInSeconds: 21600,
-      account: this.account,
-      region: this.region,
+      roomWebsocketApiPostArn: webSocketApi.roomWebsocketApiPostArn,
+      roomWebsocketEndpoint: webSocketApi.roomWebsocketEndpoint,
     });
 
     new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {
