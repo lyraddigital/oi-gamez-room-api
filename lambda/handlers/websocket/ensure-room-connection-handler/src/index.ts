@@ -1,17 +1,12 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import {
-  RoomCreatedEvent,
-  UserAddedEvent,
-  publishEvent,
-} from "@oigamez/event-bridge";
-import {
   badRequestResponse,
   fatalErrorResponse,
   okResponse,
 } from "@oigamez/responses";
 import { RoomStatus } from "@oigamez/models";
-import { getRoomByCode, getRoomConnection } from "@oigamez/repositories";
+import { getRoomByCode } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
@@ -63,27 +58,8 @@ export const handler = async (
         isFirstHostConnection,
         ttl
       );
-
-      if (isFirstHostConnection) {
-        await publishEvent(
-          new RoomCreatedEvent(
-            room!.code,
-            room!.hostUsername!,
-            room!.gameTypeId!
-          )
-        );
-      }
     } else {
-      const existingConnection = await getRoomConnection(room!.code, username!);
-      const hasExistingConnection = !!existingConnection;
-
       await establishJoinerConnection(room!, username!, connectionId!);
-
-      if (hasExistingConnection) {
-        await publishEvent(
-          new UserAddedEvent(room!.code, username!, room!.gameTypeId)
-        );
-      }
     }
 
     return okResponse();

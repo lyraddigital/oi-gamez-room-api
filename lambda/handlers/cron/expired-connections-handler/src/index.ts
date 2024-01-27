@@ -1,15 +1,15 @@
 import { EventBridgeEvent } from "aws-lambda";
 
+import { EventBridgeEventType } from "@oigamez/event-bridge";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { getAllExpiredConnections } from "./repositories";
+import { getAllHostedRoomsFromConnections } from "./services";
 import {
-  getAllHostedRoomsFromConnections,
-  publishAllHostDisconnections,
-  publishAllUserDisconnections,
+  publishAllHostExpirations,
+  publishAllUserExpirations,
 } from "./services";
-import { EventBridgeEventType } from "@oigamez/event-bridge";
 
 validateEnvironment();
 
@@ -27,11 +27,11 @@ export const handler = async (
     );
 
     if (hostedRooms.length > 0) {
-      await publishAllHostDisconnections(hostedRooms);
+      await publishAllHostExpirations(hostedRooms);
     }
 
     if (userOnlyConnections.length > 0) {
-      await publishAllUserDisconnections(userOnlyConnections);
+      await publishAllUserExpirations(userOnlyConnections);
     }
   } catch (e) {
     console.log(e);
