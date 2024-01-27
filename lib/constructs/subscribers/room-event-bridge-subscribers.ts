@@ -5,8 +5,8 @@ import { Construct } from "constructs";
 import { EventTypes } from "../../constants";
 import { RoomEventBridgeSubscribersProps } from "../../props";
 
-import { HostRemovedSubscriber } from "./host-removed-subscriber";
-import { UserRemovedSubscriber } from "./user-removed-subscriber";
+import { HostExpiredSubscriber } from "./host-expired-subscriber";
+import { UserExpiredSubscriber } from "./user-expired-subscriber";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -16,50 +16,50 @@ export class RoomEventBridgeSubscribers extends Construct {
   ) {
     super(scope, id);
 
-    const hostRemovedLambdaFn = new HostRemovedSubscriber(
+    const hostExpiredLambdaFn = new HostExpiredSubscriber(
       this,
-      "HostRemovedSubscriber",
+      "HostExpiredSubscriber",
       {
         table: props.table,
         connectionTable: props.connectionTable,
       }
     );
 
-    const userRemovedLambdaFn = new UserRemovedSubscriber(
+    const userExpiredLambdaFn = new UserExpiredSubscriber(
       this,
-      "UserRemovedSubscriberProps",
+      "UserExpiredSubscriberProps",
       {
         table: props.table,
         connectionTable: props.connectionTable,
       }
     );
 
-    new Rule(this, "HostRemovedSubscriberRule", {
+    new Rule(this, "HostExpiredSubscriberRule", {
       description:
         "Rule that subscribes to a host being removed from the connections table.",
       targets: [
         new aws_events_targets.LambdaFunction(
-          hostRemovedLambdaFn.lambdaFunction
+          hostExpiredLambdaFn.lambdaFunction
         ),
       ],
       eventPattern: {
         source: [props.eventBusSourceName],
-        detailType: [EventTypes.hostRemoved],
+        detailType: [EventTypes.hostConnectionExpired],
       },
       eventBus: props.eventBus,
     });
 
-    new Rule(this, "UserRemovedSubscriberRule", {
+    new Rule(this, "UserExpiredSubscriberRule", {
       description:
         "Rule that subscribes to a user being removed from the connections table.",
       targets: [
         new aws_events_targets.LambdaFunction(
-          userRemovedLambdaFn.lambdaFunction
+          userExpiredLambdaFn.lambdaFunction
         ),
       ],
       eventPattern: {
         source: [props.eventBusSourceName],
-        detailType: [EventTypes.userRemoved],
+        detailType: [EventTypes.userConnectionExpired],
       },
       eventBus: props.eventBus,
     });

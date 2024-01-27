@@ -9,25 +9,25 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
 } from "../../constants";
-import { UserRemovedSubscriberProps } from "../../props";
+import { HostExpiredSubscriberProps } from "../../props";
 
-export class UserRemovedSubscriber extends Construct {
+export class HostExpiredSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;
 
-  constructor(scope: Construct, id: string, props: UserRemovedSubscriberProps) {
+  constructor(scope: Construct, id: string, props: HostExpiredSubscriberProps) {
     super(scope, id);
 
     this.lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
       runtime: Runtime.NODEJS_18_X,
-      handler: HandlerFunctionNames.userRemovedSubscriber,
-      entry: join(__dirname, HandlerFilePaths.userRemovedSubscriber),
+      handler: HandlerFunctionNames.hostExpiredSubscriber,
+      entry: join(__dirname, HandlerFilePaths.hostExpiredSubscriber),
       bundling: {
         format: OutputFormat.ESM,
       },
       environment: {
-        [EnvironmentVariables.userRemovedSubscriber.tableName]:
+        [EnvironmentVariables.hostRemovedSubscriber.tableName]:
           props.table.tableName,
-        [EnvironmentVariables.userRemovedSubscriber.connectionTableName]:
+        [EnvironmentVariables.hostRemovedSubscriber.connectionTableName]:
           props.connectionTable.tableName,
       },
     });
@@ -35,13 +35,13 @@ export class UserRemovedSubscriber extends Construct {
     const tablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.table.tableArn],
-      actions: ["dynamodb:UpdateItem"],
+      actions: ["dynamodb:DeleteItem", "dynamodb:UpdateItem"],
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.connectionTable.tableArn],
-      actions: ["dynamodb:DeleteItem"],
+      actions: ["dynamodb:Query", "dynamodb:DeleteItem"],
     });
 
     this.lambdaFunction.addToRolePolicy(tablePolicyDocument);

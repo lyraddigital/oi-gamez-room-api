@@ -86,8 +86,8 @@ interface HandlerFilePaths {
   expiredConnectionCleanup: string;
   roomDisconnection: string;
   roomDeleteStream: string;
-  hostRemovedSubscriber: string;
-  userRemovedSubscriber: string;
+  hostExpiredSubscriber: string;
+  userExpiredSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -106,8 +106,8 @@ interface HandlerFunctionNames {
   expiredConnectionCleanup: string;
   roomDeleteStream: string;
   roomDisconnection: string;
-  hostRemovedSubscriber: string;
-  userRemovedSubscriber: string;
+  hostExpiredSubscriber: string;
+  userExpiredSubscriber: string;
 }
 
 interface IndexNames {
@@ -117,8 +117,8 @@ interface IndexNames {
 }
 
 interface EventTypes {
-  hostRemoved: string;
-  userRemoved: string;
+  hostConnectionExpired: string;
+  userConnectionExpired: string;
 }
 
 export const ResourcePaths: ResourcePaths = {
@@ -200,10 +200,10 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../lambda/handlers/dynamo-db/room-deleted-handler/src/index.ts",
   roomDisconnection:
     "../../../lambda/handlers/websocket/room-disconnection-handler/src/index.ts",
-  hostRemovedSubscriber:
-    "../../../lambda/handlers/subscribers/host-removed-subscriber/src/index.ts",
-  userRemovedSubscriber:
-    "../../../lambda/handlers/subscribers/user-removed-subscriber/src/index.ts",
+  hostExpiredSubscriber:
+    "../../../lambda/handlers/subscribers/host-expired-subscriber/src/index.ts",
+  userExpiredSubscriber:
+    "../../../lambda/handlers/subscribers/user-expired-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -216,8 +216,8 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   ensureRoomConnection: "handler",
   roomDeleteStream: "handler",
   roomDisconnection: "handler",
-  hostRemovedSubscriber: "handler",
-  userRemovedSubscriber: "handler",
+  hostExpiredSubscriber: "handler",
+  userExpiredSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {
@@ -227,6 +227,6 @@ export const IndexNames: IndexNames = {
 };
 
 export const EventTypes: EventTypes = {
-  hostRemoved: "room.host-removed",
-  userRemoved: "room.user-removed",
+  hostConnectionExpired: "room.host-connection-expired",
+  userConnectionExpired: "room.user-connection-expired",
 };
