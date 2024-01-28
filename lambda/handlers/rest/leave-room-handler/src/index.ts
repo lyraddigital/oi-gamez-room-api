@@ -2,6 +2,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import {
   broadcast,
+  disconnectAllConnections,
   disconnectConnection,
   UserLeftEvent,
 } from "@oigamez/communication";
@@ -60,6 +61,7 @@ export const handler = async (
 
     if (room!.hostUsername === payload!.username!) {
       await clearRoomData(room!.code, connections);
+      await disconnectAllConnections(connections);
     } else {
       await removeUserFromRoom(room!, payload!.username!);
 

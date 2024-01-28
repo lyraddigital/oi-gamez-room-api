@@ -37,9 +37,6 @@ export const broadcast = async <T>(
     (c) => !excludeConnectionIds.find((eci) => eci === c.connectionId)
   );
 
-  console.log("connections", connections);
-  console.log("filteredConnections", filteredConnections);
-
   const eventPromises = filteredConnections.map((fc) =>
     sendCommunicationEvent(fc.connectionId, payload)
   );
@@ -52,4 +49,13 @@ export const disconnectConnection = async (
 ): Promise<void> => {
   const command = new DeleteConnectionCommand({ ConnectionId: connectionId });
   await client.send(command);
+};
+
+export const disconnectAllConnections = async (
+  roomConnections: RoomConnection[]
+): Promise<void> => {
+  const rcPromises = roomConnections.map((rc) =>
+    disconnectConnection(rc.connectionId)
+  );
+  await Promise.all(rcPromises);
 };
