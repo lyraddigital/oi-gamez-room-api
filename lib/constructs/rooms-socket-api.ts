@@ -13,6 +13,7 @@ export class RoomsSocketApi extends Construct {
   public stageName: string;
   public roomWebsocketEndpoint: string;
   public roomWebsocketApiPostArn: string;
+  public roomWebsocketApiDeleteArn: string;
 
   constructor(scope: Construct, id: string, props: RoomSocketApiProps) {
     super(scope, id);
@@ -29,6 +30,7 @@ export class RoomsSocketApi extends Construct {
 
     this.roomWebsocketEndpoint = `https://${this.webSocketApi.apiId}.execute-api.${props.region}.amazonaws.com/${webSocketApiStage.stageName}`;
     this.roomWebsocketApiPostArn = `arn:aws:execute-api:${props.region}:${props.account}:${this.webSocketApi.apiId}/${webSocketApiStage.stageName}/POST/@connections/*`;
+    this.roomWebsocketApiDeleteArn = `arn:aws:execute-api:${props.region}:${props.account}:${this.webSocketApi.apiId}/${webSocketApiStage.stageName}/DELETE/@connections/*`;
 
     const ensureRoomLambda = new EnsureRoomConnectionLambda(
       this,

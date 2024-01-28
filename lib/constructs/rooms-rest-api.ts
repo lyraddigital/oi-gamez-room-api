@@ -59,6 +59,7 @@ export class RoomsRestApi extends Construct {
       allowedOrigins: props.allowedOrigins,
       roomWebsocketEndpoint: props.roomWebsocketEndpoint,
       roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+      roomWebsocketApiDeleteArn: props.roomWebsocketApiDeleteArn,
     });
   }
 }

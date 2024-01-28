@@ -1,4 +1,7 @@
-import { PostToConnectionCommand } from "@aws-sdk/client-apigatewaymanagementapi";
+import {
+  DeleteConnectionCommand,
+  PostToConnectionCommand,
+} from "@aws-sdk/client-apigatewaymanagementapi";
 
 import { RoomConnection } from "@oigamez/models";
 
@@ -34,9 +37,19 @@ export const broadcast = async <T>(
     (c) => !excludeConnectionIds.find((eci) => eci === c.connectionId)
   );
 
+  console.log("connections", connections);
+  console.log("filteredConnections", filteredConnections);
+
   const eventPromises = filteredConnections.map((fc) =>
     sendCommunicationEvent(fc.connectionId, payload)
   );
 
   await Promise.all(eventPromises);
+};
+
+export const disconnectConnection = async (
+  connectionId: string
+): Promise<void> => {
+  const command = new DeleteConnectionCommand({ ConnectionId: connectionId });
+  await client.send(command);
 };

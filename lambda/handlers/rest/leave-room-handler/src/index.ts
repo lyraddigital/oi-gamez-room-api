@@ -1,6 +1,10 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { broadcast, UserLeftEvent } from "@oigamez/communication";
+import {
+  broadcast,
+  disconnectConnection,
+  UserLeftEvent,
+} from "@oigamez/communication";
 import { clearRoomData, removeUserFromRoom } from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
@@ -69,6 +73,7 @@ export const handler = async (
           new UserLeftEvent(payload!.username!),
           [userConnectionId!]
         );
+        await disconnectConnection(userConnectionId);
       }
     }
 

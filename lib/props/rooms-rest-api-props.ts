@@ -10,4 +10,5 @@ export interface RoomsRestApiProps {
   hostRoomIndexName: string;
   roomWebsocketEndpoint: string;
   roomWebsocketApiPostArn: string;
+  roomWebsocketApiDeleteArn: string;
 }

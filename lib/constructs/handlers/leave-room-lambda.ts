@@ -44,7 +44,10 @@ export class LeaveRoomLambda extends Construct {
 
     const apiExecPolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
-      resources: [props.roomWebsocketApiPostArn],
+      resources: [
+        props.roomWebsocketApiPostArn,
+        props.roomWebsocketApiDeleteArn,
+      ],
       actions: ["execute-api:ManageConnections"],
     });
 
