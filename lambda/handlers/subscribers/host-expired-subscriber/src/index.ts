@@ -1,5 +1,10 @@
 import { EventBridgeEvent } from "aws-lambda";
 
+import { disconnectAllConnections } from "@oigamez/communication";
+import {
+  EventBridgeEventType,
+  HostConnectionExpiredEvent,
+} from "@oigamez/event-bridge";
 import {
   clearRoomData,
   getRoomConnections,
@@ -7,10 +12,6 @@ import {
 } from "@oigamez/repositories";
 
 import { validateEnvironment } from "./configuration";
-import {
-  EventBridgeEventType,
-  HostConnectionExpiredEvent,
-} from "@oigamez/event-bridge";
 
 validateEnvironment();
 
@@ -25,6 +26,8 @@ export const handler = async (
 
   if (shouldRemoveRoom) {
     await clearRoomData(roomCode, connections);
+
+    await sendCommunicationEvent();
   } else {
     await removeUserConnection(roomCode, username);
   }
