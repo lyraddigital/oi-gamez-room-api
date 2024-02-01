@@ -5,7 +5,4 @@ import { LambdaHandlerProps } from "./lambda-handler-props";
 
 export interface LeaveRoomLambdaProps extends CorsProps, LambdaHandlerProps {
   connectionTable: TableV2;
-  roomWebsocketEndpoint: string;
-  roomWebsocketApiPostArn: string;
-  roomWebsocketApiDeleteArn: string;
 }

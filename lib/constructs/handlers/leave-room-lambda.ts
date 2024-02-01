@@ -25,8 +25,6 @@ export class LeaveRoomLambda extends Construct {
           props.connectionTable.tableName,
         [EnvironmentVariables.leaveRoom.corsAllowedOrigins]:
           props.allowedOrigins,
-        [EnvironmentVariables.leaveRoom.roomWebsocketEndpoint]:
-          props.roomWebsocketEndpoint,
       },
     });
 
@@ -42,19 +40,9 @@ export class LeaveRoomLambda extends Construct {
       actions: ["dynamodb:Query", "dynamodb:DeleteItem"],
     });
 
-    const apiExecPolicyDocument = new PolicyStatement({
-      effect: Effect.ALLOW,
-      resources: [
-        props.roomWebsocketApiPostArn,
-        props.roomWebsocketApiDeleteArn,
-      ],
-      actions: ["execute-api:ManageConnections"],
-    });
-
     leaveRoomLambda.lambdaFunction.addToRolePolicy(dbTablePolicyDocument);
     leaveRoomLambda.lambdaFunction.addToRolePolicy(
       dbConnectionTablePolicyDocument
     );
-    leaveRoomLambda.lambdaFunction.addToRolePolicy(apiExecPolicyDocument);
   }
 }

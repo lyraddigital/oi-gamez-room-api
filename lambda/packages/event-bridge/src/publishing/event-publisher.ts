@@ -7,9 +7,9 @@ import {
 import { EB_EB_NAME, EB_EVENT_SOURCE_NAME } from "@oigamez/configuration";
 
 import { client } from "../client";
-import { EventBridgeEvent } from "../events";
+import { EventBridgeInternalEvent } from "../events";
 
-export const publishEvents = async <T extends EventBridgeEvent>(
+export const publishEvents = async <T extends EventBridgeInternalEvent>(
   items: T[]
 ): Promise<void> => {
   const putEventsCommandInput: PutEventsCommandInput = {

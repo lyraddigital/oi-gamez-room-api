@@ -1,3 +1,2 @@
-export * from "./user-joined-event";
-export * from "./user-left-event";
-export * from "./room-closed-event";
+export * from "./user-joined-communication-event";
+export * from "./user-left-communication-event";

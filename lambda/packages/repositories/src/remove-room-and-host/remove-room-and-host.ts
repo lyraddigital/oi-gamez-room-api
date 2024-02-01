@@ -1,23 +1,20 @@
 import {
-  TransactWriteItem,
   TransactWriteItemsCommand,
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
 import { dbClient } from "@oigamez/dynamodb";
-import { RoomConnection } from "@oigamez/models";
 import { removeRoom, removeUserConnection } from "../transact-writes";
 
-export const clearRoomData = async (
+export const removeRoomAndHost = async (
   roomCode: string,
-  connections: RoomConnection[]
+  hostUsername: string
 ): Promise<void> => {
-  const connectionWriteItems: TransactWriteItem[] = connections.map((u) =>
-    removeUserConnection(roomCode, u.username)
-  );
-
   const transactWriteItemsCommandInput: TransactWriteItemsCommandInput = {
-    TransactItems: [removeRoom(roomCode), ...connectionWriteItems],
+    TransactItems: [
+      removeUserConnection(roomCode, hostUsername),
+      removeRoom(roomCode),
+    ],
   };
 
   const transactWriteItemsCommand = new TransactWriteItemsCommand(

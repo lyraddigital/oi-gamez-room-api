@@ -1,13 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { UserJoinedEvent, broadcast } from "@oigamez/communication";
+import { UserJoinedInternalEvent, publishEvents } from "@oigamez/event-bridge";
 import {
   badRequestResponse,
   fatalErrorResponse,
   okResponse,
 } from "@oigamez/responses";
 import { RoomStatus } from "@oigamez/models";
-import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
+import { getRoomByCode } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
@@ -62,13 +62,11 @@ export const handler = async (
     } else {
       await establishJoinerConnection(room!, username!, connectionId!);
 
-      const roomConnections = await getRoomConnections(room!.code, ttl);
-
-      await broadcast<UserJoinedEvent>(
-        roomConnections,
-        new UserJoinedEvent(username!),
-        [connectionId!]
-      );
+      if (room!.status === RoomStatus.Available) {
+        await publishEvents<UserJoinedInternalEvent>([
+          new UserJoinedInternalEvent(room!.code, username!, room!.gameTypeId),
+        ]);
+      }
     }
 
     return okResponse();

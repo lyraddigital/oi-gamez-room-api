@@ -39,8 +39,6 @@ export class RoomsSocketApi extends Construct {
         connectionTable: props.connectionTable,
         roomTable: props.roomTable,
         updatedConnectWindowInSeconds: props.updatedConnectWindowInSeconds,
-        roomWebsocketEndpoint: this.roomWebsocketEndpoint,
-        roomWebsocketApiPostArn: this.roomWebsocketApiPostArn,
       }
     );
 

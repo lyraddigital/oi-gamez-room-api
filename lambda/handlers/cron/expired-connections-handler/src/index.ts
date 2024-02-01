@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { EventBridgeEventType } from "@oigamez/event-bridge";
+import { EventBridgeInternalEventType } from "@oigamez/event-bridge";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
@@ -14,7 +14,7 @@ import {
 validateEnvironment();
 
 export const handler = async (
-  _: EventBridgeEvent<EventBridgeEventType.expiredConnections, void>
+  _: EventBridgeEvent<EventBridgeInternalEventType.expiredConnections, void>
 ): Promise<void> => {
   try {
     const currentTimeInSeconds = convertFromMillisecondsToSeconds(

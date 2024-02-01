@@ -34,8 +34,6 @@ export class EnsureRoomConnectionLambda extends Construct {
             props.roomTable.tableName,
           [EnvironmentVariables.ensureRoomConnection.updatedConnectionWindow]:
             props.updatedConnectWindowInSeconds.toString(),
-          [EnvironmentVariables.ensureRoomConnection.roomWebsocketEndpoint]:
-            props.roomWebsocketEndpoint,
         },
       }
     );
@@ -52,22 +50,12 @@ export class EnsureRoomConnectionLambda extends Construct {
       actions: ["dynamodb:Query", "dynamodb:PutItem"],
     });
 
-    const apiExecPolicyDocument = new PolicyStatement({
-      effect: Effect.ALLOW,
-      resources: [props.roomWebsocketApiPostArn],
-      actions: ["execute-api:ManageConnections"],
-    });
-
     ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
       roomTablePolicyDocument
     );
 
     ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
       connectionTablePolicyDocument
-    );
-
-    ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
-      apiExecPolicyDocument
     );
 
     this.lambdaFunction = ensureRoomConnectionHandlerFunction.lambdaFunction;

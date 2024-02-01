@@ -1,8 +1,8 @@
 import { EventBridgeEvent } from "aws-lambda";
 
 import {
-  EventBridgeEventType,
-  UserConnectionExpiredEvent,
+  EventBridgeInternalEventType,
+  UserConnectionExpiredInternalEvent,
 } from "@oigamez/event-bridge";
 import { removeUserConnection } from "@oigamez/repositories";
 
@@ -12,8 +12,8 @@ validateEnvironment();
 
 export const handler = async (
   event: EventBridgeEvent<
-    EventBridgeEventType.userConnectionExpired,
-    UserConnectionExpiredEvent
+    EventBridgeInternalEventType.userConnectionExpired,
+    UserConnectionExpiredInternalEvent
   >
 ): Promise<void> => {
   const { roomCode, username } = event.detail;

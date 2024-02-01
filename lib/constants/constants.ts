@@ -48,14 +48,12 @@ interface LeaveRoomEnvironmentVariables {
   tableName: string;
   connectionTableName: string;
   corsAllowedOrigins: string;
-  roomWebsocketEndpoint: string;
 }
 
 interface EnsureRoomEnvironmentVariables {
   connectionTableName: string;
   roomTableName: string;
   updatedConnectionWindow: string;
-  roomWebsocketEndpoint: string;
 }
 
 interface RoomDeleteStreamEnvironmentVariables {
@@ -161,13 +159,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
-    roomWebsocketEndpoint: "ROOM_SOCKET_API_ENDPOINT",
   },
   ensureRoomConnection: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     roomTableName: "DYNAMO_TABLE_NAME",
     updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
-    roomWebsocketEndpoint: "ROOM_SOCKET_API_ENDPOINT",
   },
   roomDeleteStream: {
     tableName: "DYNAMO_TABLE_NAME",
@@ -229,6 +225,6 @@ export const IndexNames: IndexNames = {
 };
 
 export const EventTypes: EventTypes = {
-  hostConnectionExpired: "room.host-connection-expired",
-  userConnectionExpired: "room.user-connection-expired",
+  hostConnectionExpired: "room-internal.host-connection-expired",
+  userConnectionExpired: "room-internal.user-connection-expired",
 };

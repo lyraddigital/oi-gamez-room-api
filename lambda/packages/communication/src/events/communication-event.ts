@@ -1,5 +1,5 @@
-import { ActionTypes } from "./action-types";
+import { CommunicationActionTypes } from "./communication-action-types";
 
 export abstract class CommunicationEvent {
-  constructor(public action: ActionTypes) {}
+  constructor(public action: CommunicationActionTypes) {}
 }

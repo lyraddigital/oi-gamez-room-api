@@ -1,12 +1,11 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import {
-  broadcast,
-  disconnectAllConnections,
-  disconnectConnection,
-  UserLeftEvent,
-} from "@oigamez/communication";
-import { clearRoomData, removeUserFromRoom } from "@oigamez/repositories";
+  RoomRemovedInternalEvent,
+  UserLeftInternalEvent,
+  publishEvents,
+} from "@oigamez/event-bridge";
+import { removeRoomAndHost, removeUserFromRoom } from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
   corsOkResponse,
@@ -60,23 +59,36 @@ export const handler = async (
     }
 
     if (room!.hostUsername === payload!.username!) {
-      await clearRoomData(room!.code, connections);
-      await disconnectAllConnections(connections);
+      if (room!.curNumOfUsers === 1) {
+        await removeRoomAndHost(room!.code, payload!.username);
+
+        await publishEvents<RoomRemovedInternalEvent>([
+          new RoomRemovedInternalEvent(room!.code, room!.gameTypeId),
+        ]);
+      }
     } else {
       await removeUserFromRoom(room!, payload!.username!);
 
-      const userConnectionId = connections.find(
-        (c) => c.username === payload!.username!
-      )?.connectionId;
+      await publishEvents<UserLeftInternalEvent>([
+        new UserLeftInternalEvent(
+          room!.code,
+          payload!.username!,
+          room!.gameTypeId
+        ),
+      ]);
 
-      if (userConnectionId) {
-        await broadcast<UserLeftEvent>(
-          connections,
-          new UserLeftEvent(payload!.username!),
-          [userConnectionId!]
-        );
-        await disconnectConnection(userConnectionId);
-      }
+      // const userConnectionId = connections.find(
+      //   (c) => c.username === payload!.username!
+      // )?.connectionId;
+
+      // if (userConnectionId) {
+      //   await broadcast<UserLeftInternalEvent>(
+      //     connections,
+      //     new UserLeftInternalEvent(payload!.username!),
+      //     [userConnectionId!]
+      //   );
+      //   await disconnectConnection(userConnectionId);
+      // }
     }
 
     return corsOkResponse(204);

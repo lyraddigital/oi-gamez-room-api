@@ -8,7 +8,4 @@ export interface RoomsRestApiProps {
   allowedOrigins: string;
   connectWindowInSeconds: number;
   hostRoomIndexName: string;
-  roomWebsocketEndpoint: string;
-  roomWebsocketApiPostArn: string;
-  roomWebsocketApiDeleteArn: string;
 }

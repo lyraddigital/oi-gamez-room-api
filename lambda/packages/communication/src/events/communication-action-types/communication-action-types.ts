@@ -1,5 +1,4 @@
-export enum ActionTypes {
-  roomClosed = "roomClosed",
+export enum CommunicationActionTypes {
   userJoined = "userJoined",
   userLeft = "userLeft",
 }
