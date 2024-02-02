@@ -13,6 +13,7 @@ interface EnvironmentVariables {
   roomRemovedSubscriber: RoomRemovedSubscriberEnvironmentVariables;
   userJoinedSubscriber: UserJoinedSubscriberEnvironmentVariables;
   userLeftSubscriber: UserLeftSubscriberEnvironmentVariables;
+  hostChangedSubscriber: HostChangedSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -101,6 +102,11 @@ interface UserLeftSubscriberEnvironmentVariables {
   roomSocketApiEndpoint: string;
 }
 
+interface HostChangedSubscriberEnvironmentVariables {
+  connectionTableName: string;
+  roomSocketApiEndpoint: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -116,6 +122,7 @@ interface HandlerFilePaths {
   roomRemovedSubscriber: string;
   userJoinedSubscriber: string;
   userLeftSubscriber: string;
+  hostChangedSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -139,6 +146,7 @@ interface HandlerFunctionNames {
   roomRemovedSubscriber: string;
   userJoinedSubscriber: string;
   userLeftSubscriber: string;
+  hostChangedSubscriber: string;
 }
 
 interface IndexNames {
@@ -153,6 +161,7 @@ interface EventTypes {
   roomRemoved: string;
   userJoined: string;
   userLeft: string;
+  changeHost: string;
 }
 
 export const ResourcePaths: ResourcePaths = {
@@ -235,6 +244,10 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
   },
+  hostChangedSubscriber: {
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -263,6 +276,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../../lambda/handlers/subscribers/user-joined-subscriber/src/index.ts",
   userLeftSubscriber:
     "../../../lambda/handlers/subscribers/user-left-subscriber/src/index.ts",
+  hostChangedSubscriber:
+    "../../../lambda/handlers/subscribers/host-changed-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -280,6 +295,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   roomRemovedSubscriber: "handler",
   userJoinedSubscriber: "handler",
   userLeftSubscriber: "handler",
+  hostChangedSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {
@@ -294,4 +310,5 @@ export const EventTypes: EventTypes = {
   roomRemoved: "room-internal.room-removed",
   userJoined: "room-internal.user-joined",
   userLeft: "room-internal.user-left",
+  changeHost: "room-internal.change-host",
 };

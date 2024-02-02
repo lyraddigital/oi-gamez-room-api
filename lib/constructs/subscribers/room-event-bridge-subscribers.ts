@@ -10,6 +10,7 @@ import { UserExpiredSubscriber } from "./user-expired-subscriber";
 import { RoomRemovedSubscriber } from "./room-removed-subscriber";
 import { UserJoinedSubscriber } from "./user-joined-subscriber";
 import { UserLeftSubscriber } from "./user-left-subscriber";
+import { HostChangedSubscriber } from "./host-changed-subscriber";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -69,6 +70,16 @@ export class RoomEventBridgeSubscribers extends Construct {
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
         roomWebsocketApiDeleteArn: props.roomWebsocketApiDeleteArn,
+      }
+    );
+
+    const hostChangeLambdaFn = new HostChangedSubscriber(
+      this,
+      "HostChangedSubscriber",
+      {
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
       }
     );
 
@@ -141,6 +152,21 @@ export class RoomEventBridgeSubscribers extends Construct {
       eventPattern: {
         source: [props.eventBusSourceName],
         detailType: [EventTypes.userLeft],
+      },
+      eventBus: props.eventBus,
+    });
+
+    new Rule(this, "HostChangedSubscriberRule", {
+      description:
+        "Rule that subscribes to host being changed for a given room.",
+      targets: [
+        new aws_events_targets.LambdaFunction(
+          hostChangeLambdaFn.lambdaFunction
+        ),
+      ],
+      eventPattern: {
+        source: [props.eventBusSourceName],
+        detailType: [EventTypes.changeHost],
       },
       eventBus: props.eventBus,
     });

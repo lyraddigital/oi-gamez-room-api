@@ -1,3 +1,4 @@
+export * from "./host-changed-subscriber-props";
 export * from "./room-event-bridge-subscribers-props";
 export * from "./room-removed-subscriber-props";
 export * from "./host-expired-subscriber-props";
