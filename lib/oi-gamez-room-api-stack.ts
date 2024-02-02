@@ -72,6 +72,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       eventBusSourceName: ebEventSourceName,
       roomSocketApiEndpoint: webSocketApi.roomWebsocketEndpoint,
       roomWebsocketApiPostArn: webSocketApi.roomWebsocketApiPostArn,
+      roomWebsocketApiDeleteArn: webSocketApi.roomWebsocketApiDeleteArn,
     });
   }
 }

@@ -4,4 +4,5 @@ export interface UserLeftSubscriberProps {
   connectionTable: TableV2;
   roomSocketApiEndpoint: string;
   roomWebsocketApiPostArn: string;
+  roomWebsocketApiDeleteArn: string;
 }

@@ -22,6 +22,6 @@ export const handler = async (
   await removeUserConnection(roomCode, username);
 
   await publishEvents<UserLeftInternalEvent>([
-    new UserLeftInternalEvent(roomCode, username, gameTypeId),
+    new UserLeftInternalEvent(roomCode, username, undefined, gameTypeId),
   ]);
 };

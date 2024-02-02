@@ -23,9 +23,10 @@ export const handler = async (
   const { roomCode } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);
 
+  // Remove the connections from the database.
+
   await broadcast<RoomRemovedCommunicationEvent>(
     roomConnections,
-    new RoomRemovedCommunicationEvent(roomCode),
-    []
+    new RoomRemovedCommunicationEvent(roomCode)
   );
 };

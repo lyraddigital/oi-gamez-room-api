@@ -69,26 +69,18 @@ export const handler = async (
     } else {
       await removeUserFromRoom(room!, payload!.username!);
 
+      const userConnection = connections.find(
+        (c) => c.username === payload!.username!
+      );
+
       await publishEvents<UserLeftInternalEvent>([
         new UserLeftInternalEvent(
           room!.code,
           payload!.username!,
+          userConnection!.connectionId,
           room!.gameTypeId
         ),
       ]);
-
-      // const userConnectionId = connections.find(
-      //   (c) => c.username === payload!.username!
-      // )?.connectionId;
-
-      // if (userConnectionId) {
-      //   await broadcast<UserLeftInternalEvent>(
-      //     connections,
-      //     new UserLeftInternalEvent(payload!.username!),
-      //     [userConnectionId!]
-      //   );
-      //   await disconnectConnection(userConnectionId);
-      // }
     }
 
     return corsOkResponse(204);

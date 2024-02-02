@@ -1,6 +1,10 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { UserLeftCommunicationEvent, broadcast } from "@oigamez/communication";
+import {
+  UserLeftCommunicationEvent,
+  broadcast,
+  closeConnection,
+} from "@oigamez/communication";
 import {
   EventBridgeInternalEventType,
   UserLeftInternalEvent,
@@ -17,12 +21,15 @@ export const handler = async (
     UserLeftInternalEvent
   >
 ): Promise<void> => {
-  const { roomCode, username } = event.detail;
+  const { roomCode, username, connectionId } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);
 
   await broadcast<UserLeftCommunicationEvent>(
     roomConnections,
-    new UserLeftCommunicationEvent(username),
-    []
+    new UserLeftCommunicationEvent(username)
   );
+
+  if (connectionId) {
+    await closeConnection(connectionId);
+  }
 };

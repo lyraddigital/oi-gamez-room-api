@@ -22,10 +22,12 @@ export const handler = async (
 ): Promise<void> => {
   const { roomCode, username } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);
+  const filteredConnections = roomConnections.filter(
+    (rc) => rc.username !== username
+  );
 
   await broadcast<UserJoinedCommunicationEvent>(
-    roomConnections,
-    new UserJoinedCommunicationEvent(username),
-    []
+    filteredConnections,
+    new UserJoinedCommunicationEvent(username)
   );
 };

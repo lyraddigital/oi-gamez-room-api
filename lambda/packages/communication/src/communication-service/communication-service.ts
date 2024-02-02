@@ -30,16 +30,25 @@ const sendCommunicationEvent = async <T>(
 
 export const broadcast = async <T>(
   connections: RoomConnection[],
-  payload: T,
-  excludeConnectionIds: string[] = []
+  payload: T
 ): Promise<void> => {
-  const filteredConnections = connections.filter(
-    (c) => !excludeConnectionIds.find((eci) => eci === c.connectionId)
-  );
-
-  const eventPromises = filteredConnections.map((fc) =>
-    sendCommunicationEvent(fc.connectionId, payload)
+  const eventPromises = connections.map((c) =>
+    sendCommunicationEvent(c.connectionId, payload)
   );
 
   await Promise.all(eventPromises);
+};
+
+export const closeConnection = async (connectionId: string): Promise<void> => {
+  if (connectionId) {
+    try {
+      const command = new DeleteConnectionCommand({
+        ConnectionId: connectionId,
+      });
+
+      await client.send(command);
+    } catch (e: unknown) {
+      console.log("Error while trying to delete connection", e);
+    }
+  }
 };

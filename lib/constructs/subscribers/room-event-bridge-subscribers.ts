@@ -68,6 +68,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+        roomWebsocketApiDeleteArn: props.roomWebsocketApiDeleteArn,
       }
     );
 

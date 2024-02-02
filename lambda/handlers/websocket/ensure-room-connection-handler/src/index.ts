@@ -61,7 +61,7 @@ export const handler = async (
       );
     } else {
       const existingConnection = await getRoomConnection(room!.code, username!);
-      const isNewConnection = !!existingConnection;
+      const isNewConnection = !existingConnection;
 
       await establishJoinerConnection(room!, username!, connectionId!);
 
