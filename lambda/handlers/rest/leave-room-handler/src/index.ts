@@ -1,11 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import {
-  RoomRemovedInternalEvent,
-  UserLeftInternalEvent,
-  publishEvents,
-} from "@oigamez/event-bridge";
-import { removeRoomAndHost, removeUserFromRoom } from "@oigamez/repositories";
+import { RoomRemovedInternalEvent, publishEvents } from "@oigamez/event-bridge";
+import { removeRoomAndHost } from "@oigamez/repositories";
 import {
   corsBadRequestResponse,
   corsOkResponse,
@@ -19,6 +15,7 @@ import {
 import { validateEnvironment } from "./configuration";
 import { LeaveRoomPayload } from "./models";
 import { runLeaveRoomRuleSet } from "./rule-sets";
+import { changeHost, handleUserLeft } from "./services";
 import { validateRequest } from "./validators";
 
 validateEnvironment();
@@ -65,22 +62,11 @@ export const handler = async (
         await publishEvents<RoomRemovedInternalEvent>([
           new RoomRemovedInternalEvent(room!.code, room!.gameTypeId),
         ]);
+      } else {
+        await changeHost(room!, payload!.username!, connections);
       }
     } else {
-      await removeUserFromRoom(room!, payload!.username!);
-
-      const userConnection = connections.find(
-        (c) => c.username === payload!.username!
-      );
-
-      await publishEvents<UserLeftInternalEvent>([
-        new UserLeftInternalEvent(
-          room!.code,
-          payload!.username!,
-          userConnection!.connectionId,
-          room!.gameTypeId
-        ),
-      ]);
+      await handleUserLeft(room!, payload!.username!, connections);
     }
 
     return corsOkResponse(204);
