@@ -2,12 +2,14 @@ import {
   verifyDynamoTableName,
   verifyDynamoConnectionTableName,
   verifyUpdatedConnectWindowInSeconds,
-  verifyRoomSocketApiEndpoint,
+  verifyEbName,
+  verifyEbEventSourceName,
 } from "@oigamez/configuration";
 
 export const validateEnvironment = (): void => {
   verifyDynamoTableName();
   verifyDynamoConnectionTableName();
   verifyUpdatedConnectWindowInSeconds();
-  verifyRoomSocketApiEndpoint();
+  verifyEbName();
+  verifyEbEventSourceName();
 };

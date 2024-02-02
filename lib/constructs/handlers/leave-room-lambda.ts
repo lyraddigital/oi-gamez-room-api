@@ -25,6 +25,10 @@ export class LeaveRoomLambda extends Construct {
           props.connectionTable.tableName,
         [EnvironmentVariables.leaveRoom.corsAllowedOrigins]:
           props.allowedOrigins,
+        [EnvironmentVariables.leaveRoom.eventBusName]:
+          props.eventBus.eventBusName,
+        [EnvironmentVariables.leaveRoom.eventBusEventSourceName]:
+          props.eventBusEventSourceName,
       },
     });
 
@@ -40,9 +44,16 @@ export class LeaveRoomLambda extends Construct {
       actions: ["dynamodb:Query", "dynamodb:DeleteItem"],
     });
 
+    const ebPutEventsPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.eventBus.eventBusArn],
+      actions: ["events:PutEvents"],
+    });
+
     leaveRoomLambda.lambdaFunction.addToRolePolicy(dbTablePolicyDocument);
     leaveRoomLambda.lambdaFunction.addToRolePolicy(
       dbConnectionTablePolicyDocument
     );
+    leaveRoomLambda.lambdaFunction.addToRolePolicy(ebPutEventsPolicyDocument);
   }
 }

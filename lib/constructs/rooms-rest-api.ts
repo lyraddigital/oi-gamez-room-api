@@ -57,6 +57,8 @@ export class RoomsRestApi extends Construct {
       connectionTable: props.connectionTable,
       resource: roomResource,
       allowedOrigins: props.allowedOrigins,
+      eventBus: props.eventBus,
+      eventBusEventSourceName: props.eventBusSourceName,
     });
   }
 }

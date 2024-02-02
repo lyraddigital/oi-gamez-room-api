@@ -46,6 +46,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       connectWindowInSeconds: 30,
       allowedOrigins: "http://localhost:3000",
       hostRoomIndexName: IndexNames.hostedRooms,
+      eventBus: roomEventBus.eventBus,
+      eventBusSourceName: ebEventSourceName,
     });
 
     new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {

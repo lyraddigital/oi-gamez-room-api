@@ -34,6 +34,10 @@ export class EnsureRoomConnectionLambda extends Construct {
             props.roomTable.tableName,
           [EnvironmentVariables.ensureRoomConnection.updatedConnectionWindow]:
             props.updatedConnectWindowInSeconds.toString(),
+          [EnvironmentVariables.ensureRoomConnection.eventBusName]:
+            props.roomEventBus.eventBusName,
+          [EnvironmentVariables.ensureRoomConnection.eventBusEventSourceName]:
+            props.eventBusEventSourceName,
         },
       }
     );
@@ -50,12 +54,22 @@ export class EnsureRoomConnectionLambda extends Construct {
       actions: ["dynamodb:Query", "dynamodb:PutItem"],
     });
 
+    const ebPutEventsPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.roomEventBus.eventBusArn],
+      actions: ["events:PutEvents"],
+    });
+
     ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
       roomTablePolicyDocument
     );
 
     ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
       connectionTablePolicyDocument
+    );
+
+    ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
+      ebPutEventsPolicyDocument
     );
 
     this.lambdaFunction = ensureRoomConnectionHandlerFunction.lambdaFunction;

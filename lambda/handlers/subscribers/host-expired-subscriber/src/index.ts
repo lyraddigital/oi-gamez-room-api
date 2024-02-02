@@ -3,11 +3,11 @@ import { EventBridgeEvent } from "aws-lambda";
 import {
   EventBridgeInternalEventType,
   HostConnectionExpiredInternalEvent,
+  RoomRemovedInternalEvent,
+  UserLeftInternalEvent,
+  publishEvents,
 } from "@oigamez/event-bridge";
-import {
-  getRoomConnections,
-  removeUserConnection,
-} from "@oigamez/repositories";
+import { removeRoomAndHost, removeUserConnection } from "@oigamez/repositories";
 
 import { validateEnvironment } from "./configuration";
 
@@ -19,13 +19,19 @@ export const handler = async (
     HostConnectionExpiredInternalEvent
   >
 ): Promise<void> => {
-  const { roomCode, username, shouldRemoveRoom } = event.detail;
-  const connections = await getRoomConnections(roomCode);
+  const { roomCode, username, shouldRemoveRoom, gameTypeId } = event.detail;
 
   if (shouldRemoveRoom) {
-    // await clearRoomData(roomCode, connections);
-    // await sendCommunicationEvent();
+    await removeRoomAndHost(roomCode, username);
+
+    await publishEvents<RoomRemovedInternalEvent>([
+      new RoomRemovedInternalEvent(roomCode, gameTypeId),
+    ]);
   } else {
     await removeUserConnection(roomCode, username);
+
+    await publishEvents<UserLeftInternalEvent>([
+      new UserLeftInternalEvent(roomCode, username, gameTypeId),
+    ]);
   }
 };

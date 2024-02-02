@@ -25,10 +25,14 @@ export class UserExpiredSubscriber extends Construct {
         format: OutputFormat.ESM,
       },
       environment: {
-        [EnvironmentVariables.userRemovedSubscriber.tableName]:
+        [EnvironmentVariables.userExpiredSubscriber.tableName]:
           props.table.tableName,
-        [EnvironmentVariables.userRemovedSubscriber.connectionTableName]:
+        [EnvironmentVariables.userExpiredSubscriber.connectionTableName]:
           props.connectionTable.tableName,
+        [EnvironmentVariables.userExpiredSubscriber.eventBusName]:
+          props.roomEventBus.eventBusName,
+        [EnvironmentVariables.userExpiredSubscriber.eventBusEventSourceName]:
+          props.eventBusEventSourceName,
       },
     });
 
@@ -44,7 +48,14 @@ export class UserExpiredSubscriber extends Construct {
       actions: ["dynamodb:DeleteItem"],
     });
 
+    const ebPutEventsPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.roomEventBus.eventBusArn],
+      actions: ["events:PutEvents"],
+    });
+
     this.lambdaFunction.addToRolePolicy(tablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
+    this.lambdaFunction.addToRolePolicy(ebPutEventsPolicyDocument);
   }
 }

@@ -25,10 +25,14 @@ export class HostExpiredSubscriber extends Construct {
         format: OutputFormat.ESM,
       },
       environment: {
-        [EnvironmentVariables.hostRemovedSubscriber.tableName]:
+        [EnvironmentVariables.hostExpiredSubscriber.tableName]:
           props.table.tableName,
-        [EnvironmentVariables.hostRemovedSubscriber.connectionTableName]:
+        [EnvironmentVariables.hostExpiredSubscriber.connectionTableName]:
           props.connectionTable.tableName,
+        [EnvironmentVariables.hostExpiredSubscriber.eventBusName]:
+          props.roomEventBus.eventBusName,
+        [EnvironmentVariables.hostExpiredSubscriber.eventBusEventSourceName]:
+          props.eventBusEventSourceName,
       },
     });
 
@@ -44,7 +48,14 @@ export class HostExpiredSubscriber extends Construct {
       actions: ["dynamodb:Query", "dynamodb:DeleteItem"],
     });
 
+    const ebPutEventsPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.roomEventBus.eventBusArn],
+      actions: ["events:PutEvents"],
+    });
+
     this.lambdaFunction.addToRolePolicy(tablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
+    this.lambdaFunction.addToRolePolicy(ebPutEventsPolicyDocument);
   }
 }

@@ -33,7 +33,7 @@ export class ExpiredConnectionCleanupLambda extends Construct {
         [EnvironmentVariables.expiredConnectionCleanup
           .lastDisconnectedIndexName]: props.lastDisconnectedIndexName,
         [EnvironmentVariables.expiredConnectionCleanup
-          .expiredDisconnectionWindoewInSeconds]:
+          .expiredDisconnectionWindowInSeconds]:
           props.expiredDisconnectionWindowInSeconds.toString(),
         [EnvironmentVariables.expiredConnectionCleanup.eventBusName]:
           props.roomEventBus.eventBusName,

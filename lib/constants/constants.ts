@@ -8,8 +8,8 @@ interface EnvironmentVariables {
   ensureRoomConnection: EnsureRoomEnvironmentVariables;
   roomDeleteStream: RoomDeleteStreamEnvironmentVariables;
   roomDisconnection: RoomDisconnectionEnvironmentVariables;
-  hostRemovedSubscriber: HostRemovedSubscriberEnvironmentVariables;
-  userRemovedSubscriber: UserRemovedSubscriberEnvironmentVariables;
+  hostExpiredSubscriber: HostExpiredSubscriberEnvironmentVariables;
+  userExpiredSubscriber: UserExpiredSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -26,11 +26,11 @@ interface CreateRoomEnvironmentVariables {
 
 interface ExpiredConnectionCleanupEnvironmentVariables {
   tableName: string;
-  eventBusName: string;
-  eventBusEventSourceName: string;
   connectionTableName: string;
   lastDisconnectedIndexName: string;
-  expiredDisconnectionWindoewInSeconds: string;
+  expiredDisconnectionWindowInSeconds: string;
+  eventBusName: string;
+  eventBusEventSourceName: string;
 }
 
 interface GetRoomStatusEnvironmentVariables {
@@ -48,12 +48,16 @@ interface LeaveRoomEnvironmentVariables {
   tableName: string;
   connectionTableName: string;
   corsAllowedOrigins: string;
+  eventBusName: string;
+  eventBusEventSourceName: string;
 }
 
 interface EnsureRoomEnvironmentVariables {
   connectionTableName: string;
   roomTableName: string;
   updatedConnectionWindow: string;
+  eventBusName: string;
+  eventBusEventSourceName: string;
 }
 
 interface RoomDeleteStreamEnvironmentVariables {
@@ -65,14 +69,18 @@ interface RoomDisconnectionEnvironmentVariables {
   connectionIndexName: string;
 }
 
-interface HostRemovedSubscriberEnvironmentVariables {
+interface HostExpiredSubscriberEnvironmentVariables {
   connectionTableName: string;
   tableName: string;
+  eventBusName: string;
+  eventBusEventSourceName: string;
 }
 
-interface UserRemovedSubscriberEnvironmentVariables {
+interface UserExpiredSubscriberEnvironmentVariables {
   connectionTableName: string;
   tableName: string;
+  eventBusName: string;
+  eventBusEventSourceName: string;
 }
 
 interface HandlerFilePaths {
@@ -143,7 +151,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
     eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     lastDisconnectedIndexName: "CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME",
-    expiredDisconnectionWindoewInSeconds:
+    expiredDisconnectionWindowInSeconds:
       "EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS",
   },
   getRoomStatus: {
@@ -159,11 +167,15 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+    eventBusName: "EB_EB_NAME",
+    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
   },
   ensureRoomConnection: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     roomTableName: "DYNAMO_TABLE_NAME",
     updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
+    eventBusName: "EB_EB_NAME",
+    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
   },
   roomDeleteStream: {
     tableName: "DYNAMO_TABLE_NAME",
@@ -172,13 +184,17 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     connectionIndexName: "CONNECTION_DYNAMO_INDEX_NAME",
   },
-  hostRemovedSubscriber: {
+  hostExpiredSubscriber: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    eventBusName: "EB_EB_NAME",
+    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
   },
-  userRemovedSubscriber: {
+  userExpiredSubscriber: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    eventBusName: "EB_EB_NAME",
+    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
   },
 };
 
