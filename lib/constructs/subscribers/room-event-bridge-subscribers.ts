@@ -22,6 +22,8 @@ export class RoomEventBridgeSubscribers extends Construct {
       {
         table: props.table,
         connectionTable: props.connectionTable,
+        roomEventBus: props.eventBus,
+        eventBusEventSourceName: props.eventBusSourceName,
       }
     );
 
@@ -31,6 +33,8 @@ export class RoomEventBridgeSubscribers extends Construct {
       {
         table: props.table,
         connectionTable: props.connectionTable,
+        roomEventBus: props.eventBus,
+        eventBusEventSourceName: props.eventBusSourceName,
       }
     );
 

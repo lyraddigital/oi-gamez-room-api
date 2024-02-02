@@ -36,6 +36,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       updatedConnectWindowInSeconds: 21600,
       account: this.account,
       region: this.region,
+      roomEventBus: roomEventBus.eventBus,
+      eventBusEventSourceName: ebEventSourceName,
     });
 
     new RoomsRestApi(this, "RoomRestApi", {

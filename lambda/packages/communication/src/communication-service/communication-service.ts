@@ -43,19 +43,3 @@ export const broadcast = async <T>(
 
   await Promise.all(eventPromises);
 };
-
-export const disconnectConnection = async (
-  connectionId: string
-): Promise<void> => {
-  const command = new DeleteConnectionCommand({ ConnectionId: connectionId });
-  await client.send(command);
-};
-
-export const disconnectAllConnections = async (
-  roomConnections: RoomConnection[]
-): Promise<void> => {
-  const rcPromises = roomConnections.map((rc) =>
-    disconnectConnection(rc.connectionId)
-  );
-  await Promise.all(rcPromises);
-};
