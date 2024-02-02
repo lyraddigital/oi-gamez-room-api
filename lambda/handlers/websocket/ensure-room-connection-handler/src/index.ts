@@ -7,7 +7,7 @@ import {
   okResponse,
 } from "@oigamez/responses";
 import { RoomStatus } from "@oigamez/models";
-import { getRoomByCode } from "@oigamez/repositories";
+import { getRoomByCode, getRoomConnection } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
@@ -60,9 +60,12 @@ export const handler = async (
         ttl
       );
     } else {
+      const existingConnection = await getRoomConnection(room!.code, username!);
+      const isNewConnection = !!existingConnection;
+
       await establishJoinerConnection(room!, username!, connectionId!);
 
-      if (room!.status === RoomStatus.Available) {
+      if (room!.status === RoomStatus.Available && isNewConnection) {
         await publishEvents<UserJoinedInternalEvent>([
           new UserJoinedInternalEvent(room!.code, username!, room!.gameTypeId),
         ]);
