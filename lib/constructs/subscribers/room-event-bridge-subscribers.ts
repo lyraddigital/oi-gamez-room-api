@@ -7,6 +7,9 @@ import { RoomEventBridgeSubscribersProps } from "../../props";
 
 import { HostExpiredSubscriber } from "./host-expired-subscriber";
 import { UserExpiredSubscriber } from "./user-expired-subscriber";
+import { RoomRemovedSubscriber } from "./room-removed-subscriber";
+import { UserJoinedSubscriber } from "./user-joined-subscriber";
+import { UserLeftSubscriber } from "./user-left-subscriber";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -29,7 +32,7 @@ export class RoomEventBridgeSubscribers extends Construct {
 
     const userExpiredLambdaFn = new UserExpiredSubscriber(
       this,
-      "UserExpiredSubscriberProps",
+      "UserExpiredSubscriber",
       {
         table: props.table,
         connectionTable: props.connectionTable,
@@ -38,9 +41,39 @@ export class RoomEventBridgeSubscribers extends Construct {
       }
     );
 
+    const roomRemovedLambdaFn = new RoomRemovedSubscriber(
+      this,
+      "RoomRemovedSubscriber",
+      {
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+      }
+    );
+
+    const userJoinedLambdaFn = new UserJoinedSubscriber(
+      this,
+      "UserJoinedSubscriber",
+      {
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+      }
+    );
+
+    const userLeftLambdaFn = new UserLeftSubscriber(
+      this,
+      "UserLeftSubscriber",
+      {
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+      }
+    );
+
     new Rule(this, "HostExpiredSubscriberRule", {
       description:
-        "Rule that subscribes to a host being removed from the connections table.",
+        "Rule that subscribes to an expired host in the connections table.",
       targets: [
         new aws_events_targets.LambdaFunction(
           hostExpiredLambdaFn.lambdaFunction
@@ -55,7 +88,7 @@ export class RoomEventBridgeSubscribers extends Construct {
 
     new Rule(this, "UserExpiredSubscriberRule", {
       description:
-        "Rule that subscribes to a user being removed from the connections table.",
+        "Rule that subscribes to an expired user in the connections table.",
       targets: [
         new aws_events_targets.LambdaFunction(
           userExpiredLambdaFn.lambdaFunction
@@ -64,6 +97,49 @@ export class RoomEventBridgeSubscribers extends Construct {
       eventPattern: {
         source: [props.eventBusSourceName],
         detailType: [EventTypes.userConnectionExpired],
+      },
+      eventBus: props.eventBus,
+    });
+
+    new Rule(this, "RoomRemovedSubscriberRule", {
+      description:
+        "Rule that subscribes to a room being removed from the rooms table.",
+      targets: [
+        new aws_events_targets.LambdaFunction(
+          roomRemovedLambdaFn.lambdaFunction
+        ),
+      ],
+      eventPattern: {
+        source: [props.eventBusSourceName],
+        detailType: [EventTypes.roomRemoved],
+      },
+      eventBus: props.eventBus,
+    });
+
+    new Rule(this, "UserJoinedSubscriberRule", {
+      description:
+        "Rule that subscribes to a user being added to the connections table for the first time.",
+      targets: [
+        new aws_events_targets.LambdaFunction(
+          userJoinedLambdaFn.lambdaFunction
+        ),
+      ],
+      eventPattern: {
+        source: [props.eventBusSourceName],
+        detailType: [EventTypes.userJoined],
+      },
+      eventBus: props.eventBus,
+    });
+
+    new Rule(this, "UserLeftSubscriberRule", {
+      description:
+        "Rule that subscribes to a user being removed from the connections table.",
+      targets: [
+        new aws_events_targets.LambdaFunction(userLeftLambdaFn.lambdaFunction),
+      ],
+      eventPattern: {
+        source: [props.eventBusSourceName],
+        detailType: [EventTypes.userLeft],
       },
       eventBus: props.eventBus,
     });

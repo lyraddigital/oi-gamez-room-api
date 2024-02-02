@@ -10,6 +10,9 @@ interface EnvironmentVariables {
   roomDisconnection: RoomDisconnectionEnvironmentVariables;
   hostExpiredSubscriber: HostExpiredSubscriberEnvironmentVariables;
   userExpiredSubscriber: UserExpiredSubscriberEnvironmentVariables;
+  roomRemovedSubscriber: RoomRemovedSubscriberEnvironmentVariables;
+  userJoinedSubscriber: UserJoinedSubscriberEnvironmentVariables;
+  userLeftSubscriber: UserLeftSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -83,6 +86,21 @@ interface UserExpiredSubscriberEnvironmentVariables {
   eventBusEventSourceName: string;
 }
 
+interface RoomRemovedSubscriberEnvironmentVariables {
+  connectionTableName: string;
+  roomSocketApiEndpoint: string;
+}
+
+interface UserJoinedSubscriberEnvironmentVariables {
+  connectionTableName: string;
+  roomSocketApiEndpoint: string;
+}
+
+interface UserLeftSubscriberEnvironmentVariables {
+  connectionTableName: string;
+  roomSocketApiEndpoint: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -95,6 +113,9 @@ interface HandlerFilePaths {
   roomDeleteStream: string;
   hostExpiredSubscriber: string;
   userExpiredSubscriber: string;
+  roomRemovedSubscriber: string;
+  userJoinedSubscriber: string;
+  userLeftSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -115,6 +136,9 @@ interface HandlerFunctionNames {
   roomDisconnection: string;
   hostExpiredSubscriber: string;
   userExpiredSubscriber: string;
+  roomRemovedSubscriber: string;
+  userJoinedSubscriber: string;
+  userLeftSubscriber: string;
 }
 
 interface IndexNames {
@@ -126,6 +150,9 @@ interface IndexNames {
 interface EventTypes {
   hostConnectionExpired: string;
   userConnectionExpired: string;
+  roomRemoved: string;
+  userJoined: string;
+  userLeft: string;
 }
 
 export const ResourcePaths: ResourcePaths = {
@@ -196,6 +223,18 @@ export const EnvironmentVariables: EnvironmentVariables = {
     eventBusName: "EB_EB_NAME",
     eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
   },
+  roomRemovedSubscriber: {
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+  },
+  userJoinedSubscriber: {
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+  },
+  userLeftSubscriber: {
+    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
+    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -218,6 +257,12 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../../lambda/handlers/subscribers/host-expired-subscriber/src/index.ts",
   userExpiredSubscriber:
     "../../../lambda/handlers/subscribers/user-expired-subscriber/src/index.ts",
+  roomRemovedSubscriber:
+    "../../../lambda/handlers/subscribers/room-removed-subscriber/src/index.ts",
+  userJoinedSubscriber:
+    "../../../lambda/handlers/subscribers/user-joined-subscriber/src/index.ts",
+  userLeftSubscriber:
+    "../../../lambda/handlers/subscribers/user-left-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -232,6 +277,9 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   roomDisconnection: "handler",
   hostExpiredSubscriber: "handler",
   userExpiredSubscriber: "handler",
+  roomRemovedSubscriber: "handler",
+  userJoinedSubscriber: "handler",
+  userLeftSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {
@@ -243,4 +291,7 @@ export const IndexNames: IndexNames = {
 export const EventTypes: EventTypes = {
   hostConnectionExpired: "room-internal.host-connection-expired",
   userConnectionExpired: "room-internal.user-connection-expired",
+  roomRemoved: "room-internal.room-removed",
+  userJoined: "room-internal.user-joined",
+  userLeft: "room-internal.user-left",
 };

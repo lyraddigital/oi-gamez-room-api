@@ -70,6 +70,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       table: roomTable.table,
       connectionTable: connectionTable.table,
       eventBusSourceName: ebEventSourceName,
+      roomSocketApiEndpoint: webSocketApi.roomWebsocketEndpoint,
+      roomWebsocketApiPostArn: webSocketApi.roomWebsocketApiPostArn,
     });
   }
 }

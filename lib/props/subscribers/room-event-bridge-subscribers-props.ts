@@ -6,4 +6,6 @@ export interface RoomEventBridgeSubscribersProps {
   eventBusSourceName: string;
   table: TableV2;
   connectionTable: TableV2;
+  roomSocketApiEndpoint: string;
+  roomWebsocketApiPostArn: string;
 }
