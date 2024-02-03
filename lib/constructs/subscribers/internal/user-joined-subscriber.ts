@@ -8,26 +8,26 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
-} from "../../constants";
-import { RoomRemovedSubscriberProps } from "../../props";
+} from "../../../constants";
+import { UserJoinedSubscriberProps } from "../../../props";
 
-export class RoomRemovedSubscriber extends Construct {
+export class UserJoinedSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;
 
-  constructor(scope: Construct, id: string, props: RoomRemovedSubscriberProps) {
+  constructor(scope: Construct, id: string, props: UserJoinedSubscriberProps) {
     super(scope, id);
 
     this.lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
       runtime: Runtime.NODEJS_18_X,
-      handler: HandlerFunctionNames.roomRemovedSubscriber,
-      entry: join(__dirname, HandlerFilePaths.roomRemovedSubscriber),
+      handler: HandlerFunctionNames.userJoinedSubscriber,
+      entry: join(__dirname, HandlerFilePaths.userJoinedSubscriber),
       bundling: {
         format: OutputFormat.ESM,
       },
       environment: {
-        [EnvironmentVariables.roomRemovedSubscriber.connectionTableName]:
+        [EnvironmentVariables.userJoinedSubscriber.connectionTableName]:
           props.connectionTable.tableName,
-        [EnvironmentVariables.roomRemovedSubscriber.roomSocketApiEndpoint]:
+        [EnvironmentVariables.userJoinedSubscriber.roomSocketApiEndpoint]:
           props.roomSocketApiEndpoint,
       },
     });
@@ -40,10 +40,7 @@ export class RoomRemovedSubscriber extends Construct {
 
     const webSocketApiPostPolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
-      resources: [
-        props.roomWebsocketApiPostArn,
-        props.roomWebsocketApiDeleteArn,
-      ],
+      resources: [props.roomWebsocketApiPostArn],
       actions: ["execute-api:ManageConnections"],
     });
 

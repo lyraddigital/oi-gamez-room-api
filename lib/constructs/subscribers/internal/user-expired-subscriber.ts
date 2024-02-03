@@ -8,8 +8,8 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
-} from "../../constants";
-import { UserExpiredSubscriberProps } from "../../props";
+} from "../../../constants";
+import { UserExpiredSubscriberProps } from "../../../props";
 
 export class UserExpiredSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;

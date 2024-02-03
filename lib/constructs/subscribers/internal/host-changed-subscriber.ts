@@ -8,8 +8,8 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
-} from "../../constants";
-import { HostChangedSubscriberProps } from "../../props";
+} from "../../../constants";
+import { HostChangedSubscriberProps } from "../../../props";
 
 export class HostChangedSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;

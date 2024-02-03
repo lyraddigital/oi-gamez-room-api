@@ -183,8 +183,8 @@ export const EnvironmentVariables: EnvironmentVariables = {
   },
   expiredConnectionCleanup: {
     tableName: "DYNAMO_TABLE_NAME",
-    eventBusName: "EB_EB_NAME",
-    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
+    eventBusName: "EB_INTERNAL_EB_NAME",
+    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     lastDisconnectedIndexName: "CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME",
     expiredDisconnectionWindowInSeconds:
@@ -203,15 +203,15 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
-    eventBusName: "EB_EB_NAME",
-    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
+    eventBusName: "EB_INTERNAL_EB_NAME",
+    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
   },
   ensureRoomConnection: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
     roomTableName: "DYNAMO_TABLE_NAME",
     updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
-    eventBusName: "EB_EB_NAME",
-    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
+    eventBusName: "EB_INTERNAL_EB_NAME",
+    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
   },
   roomDeleteStream: {
     tableName: "DYNAMO_TABLE_NAME",
@@ -223,14 +223,14 @@ export const EnvironmentVariables: EnvironmentVariables = {
   hostExpiredSubscriber: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    eventBusName: "EB_EB_NAME",
-    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
+    eventBusName: "EB_INTERNAL_EB_NAME",
+    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
   },
   userExpiredSubscriber: {
     tableName: "DYNAMO_TABLE_NAME",
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    eventBusName: "EB_EB_NAME",
-    eventBusEventSourceName: "EB_EVENT_SOURCE_NAME",
+    eventBusName: "EB_INTERNAL_EB_NAME",
+    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
   },
   roomRemovedSubscriber: {
     connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
@@ -267,17 +267,17 @@ export const HandlerFilePaths: HandlerFilePaths = {
   roomDisconnection:
     "../../../lambda/handlers/websocket/room-disconnection-handler/src/index.ts",
   hostExpiredSubscriber:
-    "../../../lambda/handlers/subscribers/host-expired-subscriber/src/index.ts",
+    "../../../lambda/handlers/subscribers/internal/host-expired-subscriber/src/index.ts",
   userExpiredSubscriber:
-    "../../../lambda/handlers/subscribers/user-expired-subscriber/src/index.ts",
+    "../../../lambda/handlers/subscribers/internal/user-expired-subscriber/src/index.ts",
   roomRemovedSubscriber:
-    "../../../lambda/handlers/subscribers/room-removed-subscriber/src/index.ts",
+    "../../../lambda/handlers/subscribers/internal/room-removed-subscriber/src/index.ts",
   userJoinedSubscriber:
-    "../../../lambda/handlers/subscribers/user-joined-subscriber/src/index.ts",
+    "../../../lambda/handlers/subscribers/internal/user-joined-subscriber/src/index.ts",
   userLeftSubscriber:
-    "../../../lambda/handlers/subscribers/user-left-subscriber/src/index.ts",
+    "../../../lambda/handlers/subscribers/internal/user-left-subscriber/src/index.ts",
   hostChangedSubscriber:
-    "../../../lambda/handlers/subscribers/host-changed-subscriber/src/index.ts",
+    "../../../lambda/handlers/subscribers/internal/host-changed-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {

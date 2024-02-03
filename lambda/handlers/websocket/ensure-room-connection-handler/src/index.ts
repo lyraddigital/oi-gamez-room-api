@@ -1,6 +1,9 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { UserJoinedInternalEvent, publishEvents } from "@oigamez/event-bridge";
+import {
+  UserJoinedInternalEvent,
+  publishInternalEvents,
+} from "@oigamez/event-bridge";
 import {
   badRequestResponse,
   fatalErrorResponse,
@@ -76,7 +79,7 @@ export const handler = async (
       await establishJoinerConnection(room!, username!, connectionId!);
 
       if (room!.status === RoomStatus.Available && isNewConnection) {
-        await publishEvents<UserJoinedInternalEvent>([
+        await publishInternalEvents<UserJoinedInternalEvent>([
           new UserJoinedInternalEvent(room!.code, username!, room!.gameTypeId),
         ]);
       }

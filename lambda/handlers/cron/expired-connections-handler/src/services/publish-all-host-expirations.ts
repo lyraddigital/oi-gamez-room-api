@@ -1,5 +1,5 @@
 import {
-  publishEvents,
+  publishInternalEvents,
   HostConnectionExpiredInternalEvent,
 } from "@oigamez/event-bridge";
 import { Room, RoomStatus } from "@oigamez/models";
@@ -7,7 +7,7 @@ import { Room, RoomStatus } from "@oigamez/models";
 export const publishAllHostExpirations = async (
   hostedRooms: Room[]
 ): Promise<void> => {
-  await publishEvents(
+  await publishInternalEvents(
     hostedRooms.map<HostConnectionExpiredInternalEvent>((hr) => {
       const shouldRemoveRoom =
         (hr.status === RoomStatus.Available ||

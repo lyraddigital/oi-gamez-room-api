@@ -2,8 +2,8 @@ import { aws_events_targets } from "aws-cdk-lib";
 import { Rule } from "aws-cdk-lib/aws-events";
 import { Construct } from "constructs";
 
-import { EventTypes } from "../../constants";
-import { RoomEventBridgeSubscribersProps } from "../../props";
+import { EventTypes } from "../../../constants";
+import { RoomEventBridgeSubscribersProps } from "../../../props";
 
 import { HostExpiredSubscriber } from "./host-expired-subscriber";
 import { UserExpiredSubscriber } from "./user-expired-subscriber";

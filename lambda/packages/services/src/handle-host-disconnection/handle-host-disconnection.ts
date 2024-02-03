@@ -1,7 +1,7 @@
 import {
   HostChangeInternalEvent,
   RoomRemovedInternalEvent,
-  publishEvents,
+  publishInternalEvents,
 } from "@oigamez/event-bridge";
 import { RoomConnection } from "@oigamez/models";
 import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
@@ -22,7 +22,7 @@ const changeHost = async (
 
   if (nextHostUsername) {
     await updateRoomHost(roomCode, nextHostUsername);
-    await publishEvents<HostChangeInternalEvent>([
+    await publishInternalEvents<HostChangeInternalEvent>([
       new HostChangeInternalEvent(
         roomCode,
         hostUsername,
@@ -41,7 +41,7 @@ const closeRoom = async (
 ): Promise<void> => {
   await removeRoomAndHost(roomCode, hostUsername);
 
-  await publishEvents<RoomRemovedInternalEvent>([
+  await publishInternalEvents<RoomRemovedInternalEvent>([
     new RoomRemovedInternalEvent(roomCode, hostConnectionId, gameTypeId),
   ]);
 };

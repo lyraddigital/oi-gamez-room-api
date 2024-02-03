@@ -4,19 +4,26 @@ import {
   PutEventsRequestEntry,
 } from "@aws-sdk/client-eventbridge";
 
-import { EB_EB_NAME, EB_EVENT_SOURCE_NAME } from "@oigamez/configuration";
+import {
+  EB_INTERNAL_EB_NAME,
+  EB_INTERNAL_EVENT_SOURCE_NAME,
+} from "@oigamez/configuration";
 
 import { client } from "../client";
-import { EventBridgeInternalEvent } from "../events";
+import { EventBridgeExternalEvent, EventBridgeInternalEvent } from "../events";
 
-export const publishEvents = async <T extends EventBridgeInternalEvent>(
+const publishEvents = async <
+  T extends EventBridgeInternalEvent | EventBridgeExternalEvent
+>(
+  eventBusName: string,
+  eventBusSourceName: string,
   items: T[]
 ): Promise<void> => {
   const putEventsCommandInput: PutEventsCommandInput = {
     Entries: [
       ...items.map<PutEventsRequestEntry>((item: T) => ({
-        EventBusName: EB_EB_NAME,
-        Source: EB_EVENT_SOURCE_NAME,
+        EventBusName: eventBusName,
+        Source: eventBusSourceName,
         Detail: JSON.stringify(item),
         DetailType: item.detailType,
       })),
@@ -26,4 +33,24 @@ export const publishEvents = async <T extends EventBridgeInternalEvent>(
   const command = new PutEventsCommand(putEventsCommandInput);
 
   await client.send(command);
+};
+
+export const publishInternalEvents = async <T extends EventBridgeInternalEvent>(
+  items: T[]
+): Promise<void> => {
+  await publishEvents(
+    EB_INTERNAL_EB_NAME!,
+    EB_INTERNAL_EVENT_SOURCE_NAME!,
+    items
+  );
+};
+
+export const publishExternalEvents = async <T extends EventBridgeExternalEvent>(
+  items: T[]
+): Promise<void> => {
+  await publishEvents(
+    EB_INTERNAL_EB_NAME!,
+    EB_INTERNAL_EVENT_SOURCE_NAME!,
+    items
+  );
 };

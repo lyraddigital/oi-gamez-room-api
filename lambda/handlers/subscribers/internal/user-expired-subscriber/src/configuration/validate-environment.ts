@@ -1,11 +1,11 @@
 import {
   verifyDynamoConnectionTableName,
   verifyEbName,
-  verifyEbEventSourceName,
+  verifyEbInternalEventSourceName,
 } from "@oigamez/configuration";
 
 export const validateEnvironment = (): void => {
   verifyDynamoConnectionTableName();
   verifyEbName();
-  verifyEbEventSourceName();
+  verifyEbInternalEventSourceName();
 };

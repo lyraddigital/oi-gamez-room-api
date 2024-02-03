@@ -1,5 +1,5 @@
 import {
-  publishEvents,
+  publishInternalEvents,
   UserConnectionExpiredInternalEvent,
 } from "@oigamez/event-bridge";
 import { RoomConnection } from "@oigamez/models";
@@ -7,7 +7,7 @@ import { RoomConnection } from "@oigamez/models";
 export const publishAllUserExpirations = async (
   userConnections: RoomConnection[]
 ): Promise<void> => {
-  await publishEvents(
+  await publishInternalEvents(
     userConnections.map<UserConnectionExpiredInternalEvent>(
       (c: RoomConnection) => {
         return new UserConnectionExpiredInternalEvent(

@@ -8,26 +8,26 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
-} from "../../constants";
-import { UserLeftSubscriberProps } from "../../props";
+} from "../../../constants";
+import { RoomRemovedSubscriberProps } from "../../../props";
 
-export class UserLeftSubscriber extends Construct {
+export class RoomRemovedSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;
 
-  constructor(scope: Construct, id: string, props: UserLeftSubscriberProps) {
+  constructor(scope: Construct, id: string, props: RoomRemovedSubscriberProps) {
     super(scope, id);
 
     this.lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
       runtime: Runtime.NODEJS_18_X,
-      handler: HandlerFunctionNames.userLeftSubscriber,
-      entry: join(__dirname, HandlerFilePaths.userLeftSubscriber),
+      handler: HandlerFunctionNames.roomRemovedSubscriber,
+      entry: join(__dirname, HandlerFilePaths.roomRemovedSubscriber),
       bundling: {
         format: OutputFormat.ESM,
       },
       environment: {
-        [EnvironmentVariables.userLeftSubscriber.connectionTableName]:
+        [EnvironmentVariables.roomRemovedSubscriber.connectionTableName]:
           props.connectionTable.tableName,
-        [EnvironmentVariables.userLeftSubscriber.roomSocketApiEndpoint]:
+        [EnvironmentVariables.roomRemovedSubscriber.roomSocketApiEndpoint]:
           props.roomSocketApiEndpoint,
       },
     });
