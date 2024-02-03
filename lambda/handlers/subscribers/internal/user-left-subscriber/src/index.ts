@@ -7,7 +7,9 @@ import {
 } from "@oigamez/communication";
 import {
   EventBridgeInternalEventType,
+  UserLeftExternalEvent,
   UserLeftInternalEvent,
+  publishExternalEvents,
 } from "@oigamez/event-bridge";
 import { getRoomConnections } from "@oigamez/repositories";
 
@@ -21,7 +23,7 @@ export const handler = async (
     UserLeftInternalEvent
   >
 ): Promise<void> => {
-  const { roomCode, username, connectionId } = event.detail;
+  const { roomCode, username, connectionId, gameTypeId } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);
 
   await broadcast<UserLeftCommunicationEvent>(
@@ -32,4 +34,8 @@ export const handler = async (
   if (connectionId) {
     await closeConnection(connectionId);
   }
+
+  await publishExternalEvents<UserLeftExternalEvent>([
+    new UserLeftExternalEvent(roomCode, username, gameTypeId),
+  ]);
 };

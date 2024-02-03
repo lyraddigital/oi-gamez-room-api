@@ -4,6 +4,8 @@ import { IEventBus } from "aws-cdk-lib/aws-events";
 export interface RoomEventBridgeSubscribersProps {
   eventBus: IEventBus;
   eventBusSourceName: string;
+  externalEventBus: IEventBus;
+  externalEventBusEventSourceName: string;
   table: TableV2;
   connectionTable: TableV2;
   roomSocketApiEndpoint: string;

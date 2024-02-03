@@ -29,6 +29,11 @@ export class UserLeftSubscriber extends Construct {
           props.connectionTable.tableName,
         [EnvironmentVariables.userLeftSubscriber.roomSocketApiEndpoint]:
           props.roomSocketApiEndpoint,
+        [EnvironmentVariables.userLeftSubscriber.externalEventBusName]:
+          props.externalEventBus.eventBusName,
+        [EnvironmentVariables.userLeftSubscriber
+          .externalEventBusEventSourceName]:
+          props.externalEventBusEventSourceName,
       },
     });
 
@@ -47,7 +52,14 @@ export class UserLeftSubscriber extends Construct {
       actions: ["execute-api:ManageConnections"],
     });
 
+    const ebPutEventsPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.externalEventBus.eventBusArn],
+      actions: ["events:PutEvents"],
+    });
+
     this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(webSocketApiPostPolicyDocument);
+    this.lambdaFunction.addToRolePolicy(ebPutEventsPolicyDocument);
   }
 }

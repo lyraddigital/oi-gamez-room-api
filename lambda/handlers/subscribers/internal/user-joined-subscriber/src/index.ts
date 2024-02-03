@@ -6,7 +6,9 @@ import {
 } from "@oigamez/communication";
 import {
   EventBridgeInternalEventType,
+  UserJoinedExternalEvent,
   UserJoinedInternalEvent,
+  publishExternalEvents,
 } from "@oigamez/event-bridge";
 import { getRoomConnections } from "@oigamez/repositories";
 
@@ -20,7 +22,7 @@ export const handler = async (
     UserJoinedInternalEvent
   >
 ): Promise<void> => {
-  const { roomCode, username } = event.detail;
+  const { roomCode, username, gameTypeId } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);
   const filteredConnections = roomConnections.filter(
     (rc) => rc.username !== username
@@ -30,4 +32,8 @@ export const handler = async (
     filteredConnections,
     new UserJoinedCommunicationEvent(username)
   );
+
+  await publishExternalEvents<UserJoinedExternalEvent>([
+    new UserJoinedExternalEvent(roomCode, username, gameTypeId),
+  ]);
 };

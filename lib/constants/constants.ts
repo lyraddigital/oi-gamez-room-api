@@ -1,3 +1,20 @@
+enum EnvironmentVariableNames {
+  dynamoTableName = "DYNAMO_TABLE_NAME",
+  corsAllowedOrigins = "CORS_ALLOWED_ORIGINS",
+  connectWindowInSeconds = "CONNECT_WINDOW_IN_SECONDS",
+  hostRoomIndexName = "HOST_ROOM_INDEX_NAME",
+  internalEventBusName = "EB_INTERNAL_EB_NAME",
+  internalEventBusSourceName = "EB_INTERNAL_EVENT_SOURCE_NAME",
+  connectionTableName = "CONNECTION_DYNAMO_TABLE_NAME",
+  roomSocketApiEndpoint = "ROOM_SOCKET_API_ENDPOINT",
+  lastDisconnectedIndexName = "CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME",
+  expiredDisconnectionWindowInSeconds = "EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS",
+  updatedConnectionWindow = "UPDATED_CONNECT_WINDOW_IN_SECONDS",
+  connectionIndexName = "CONNECTION_DYNAMO_INDEX_NAME",
+  externalEventBusName = "EB_EXTERNAL_EB_NAME",
+  externalEventBusSourceName = "EB_EXTERNAL_EVENT_SOURCE_NAME",
+}
+
 interface EnvironmentVariables {
   getGameTypes: GetGameTypesEnvironmentVariables;
   createRoom: CreateRoomEnvironmentVariables;
@@ -95,11 +112,15 @@ interface RoomRemovedSubscriberEnvironmentVariables {
 interface UserJoinedSubscriberEnvironmentVariables {
   connectionTableName: string;
   roomSocketApiEndpoint: string;
+  externalEventBusName: string;
+  externalEventBusEventSourceName: string;
 }
 
 interface UserLeftSubscriberEnvironmentVariables {
   connectionTableName: string;
   roomSocketApiEndpoint: string;
+  externalEventBusName: string;
+  externalEventBusEventSourceName: string;
 }
 
 interface HostChangedSubscriberEnvironmentVariables {
@@ -172,81 +193,93 @@ export const ResourcePaths: ResourcePaths = {
 
 export const EnvironmentVariables: EnvironmentVariables = {
   getGameTypes: {
-    tableName: "DYNAMO_TABLE_NAME",
-    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
   },
   createRoom: {
-    tableName: "DYNAMO_TABLE_NAME",
-    connectWindowInSeconds: "CONNECT_WINDOW_IN_SECONDS",
-    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
-    hostRoomIndexName: "HOST_ROOM_INDEX_NAME",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    connectWindowInSeconds: EnvironmentVariableNames.connectWindowInSeconds,
+    corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
+    hostRoomIndexName: EnvironmentVariableNames.hostRoomIndexName,
   },
   expiredConnectionCleanup: {
-    tableName: "DYNAMO_TABLE_NAME",
-    eventBusName: "EB_INTERNAL_EB_NAME",
-    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    lastDisconnectedIndexName: "CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    eventBusName: EnvironmentVariableNames.internalEventBusName,
+    eventBusEventSourceName:
+      EnvironmentVariableNames.internalEventBusSourceName,
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    lastDisconnectedIndexName:
+      EnvironmentVariableNames.lastDisconnectedIndexName,
     expiredDisconnectionWindowInSeconds:
-      "EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS",
+      EnvironmentVariableNames.expiredDisconnectionWindowInSeconds,
   },
   getRoomStatus: {
-    tableName: "DYNAMO_TABLE_NAME",
-    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
   },
   joinRoom: {
-    tableName: "DYNAMO_TABLE_NAME",
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
   },
   leaveRoom: {
-    tableName: "DYNAMO_TABLE_NAME",
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    corsAllowedOrigins: "CORS_ALLOWED_ORIGINS",
-    eventBusName: "EB_INTERNAL_EB_NAME",
-    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
+    eventBusName: EnvironmentVariableNames.internalEventBusName,
+    eventBusEventSourceName:
+      EnvironmentVariableNames.internalEventBusSourceName,
   },
   ensureRoomConnection: {
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    roomTableName: "DYNAMO_TABLE_NAME",
-    updatedConnectionWindow: "UPDATED_CONNECT_WINDOW_IN_SECONDS",
-    eventBusName: "EB_INTERNAL_EB_NAME",
-    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    roomTableName: EnvironmentVariableNames.dynamoTableName,
+    updatedConnectionWindow: EnvironmentVariableNames.updatedConnectionWindow,
+    eventBusName: EnvironmentVariableNames.internalEventBusName,
+    eventBusEventSourceName:
+      EnvironmentVariableNames.internalEventBusSourceName,
   },
   roomDeleteStream: {
-    tableName: "DYNAMO_TABLE_NAME",
+    tableName: EnvironmentVariableNames.dynamoTableName,
   },
   roomDisconnection: {
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    connectionIndexName: "CONNECTION_DYNAMO_INDEX_NAME",
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    connectionIndexName: EnvironmentVariableNames.connectionIndexName,
   },
   hostExpiredSubscriber: {
-    tableName: "DYNAMO_TABLE_NAME",
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    eventBusName: "EB_INTERNAL_EB_NAME",
-    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    eventBusName: EnvironmentVariableNames.internalEventBusName,
+    eventBusEventSourceName:
+      EnvironmentVariableNames.internalEventBusSourceName,
   },
   userExpiredSubscriber: {
-    tableName: "DYNAMO_TABLE_NAME",
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    eventBusName: "EB_INTERNAL_EB_NAME",
-    eventBusEventSourceName: "EB_INTERNAL_EVENT_SOURCE_NAME",
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    eventBusName: EnvironmentVariableNames.internalEventBusName,
+    eventBusEventSourceName:
+      EnvironmentVariableNames.internalEventBusSourceName,
   },
   roomRemovedSubscriber: {
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
   },
   userJoinedSubscriber: {
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
+    externalEventBusName: EnvironmentVariableNames.externalEventBusName,
+    externalEventBusEventSourceName:
+      EnvironmentVariableNames.externalEventBusSourceName,
   },
   userLeftSubscriber: {
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
+    externalEventBusName: EnvironmentVariableNames.externalEventBusName,
+    externalEventBusEventSourceName:
+      EnvironmentVariableNames.externalEventBusSourceName,
   },
   hostChangedSubscriber: {
-    connectionTableName: "CONNECTION_DYNAMO_TABLE_NAME",
-    roomSocketApiEndpoint: "ROOM_SOCKET_API_ENDPOINT",
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
   },
 };
 
