@@ -128,6 +128,8 @@ interface UserLeftSubscriberEnvironmentVariables {
 interface HostChangedSubscriberEnvironmentVariables {
   connectionTableName: string;
   roomSocketApiEndpoint: string;
+  externalEventBusName: string;
+  externalEventBusEventSourceName: string;
 }
 
 interface HandlerFilePaths {
@@ -285,6 +287,9 @@ export const EnvironmentVariables: EnvironmentVariables = {
   hostChangedSubscriber: {
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
+    externalEventBusName: EnvironmentVariableNames.externalEventBusName,
+    externalEventBusEventSourceName:
+      EnvironmentVariableNames.externalEventBusSourceName,
   },
 };
 
@@ -305,17 +310,17 @@ export const HandlerFilePaths: HandlerFilePaths = {
   roomDisconnection:
     "../../../lambda/handlers/websocket/room-disconnection-handler/src/index.ts",
   hostExpiredSubscriber:
-    "../../../lambda/handlers/subscribers/internal/host-expired-subscriber/src/index.ts",
+    "../../../../lambda/handlers/subscribers/internal/host-expired-subscriber/src/index.ts",
   userExpiredSubscriber:
-    "../../../lambda/handlers/subscribers/internal/user-expired-subscriber/src/index.ts",
+    "../../../../lambda/handlers/subscribers/internal/user-expired-subscriber/src/index.ts",
   roomRemovedSubscriber:
-    "../../../lambda/handlers/subscribers/internal/room-removed-subscriber/src/index.ts",
+    "../../../../lambda/handlers/subscribers/internal/room-removed-subscriber/src/index.ts",
   userJoinedSubscriber:
-    "../../../lambda/handlers/subscribers/internal/user-joined-subscriber/src/index.ts",
+    "../../../../lambda/handlers/subscribers/internal/user-joined-subscriber/src/index.ts",
   userLeftSubscriber:
-    "../../../lambda/handlers/subscribers/internal/user-left-subscriber/src/index.ts",
+    "../../../../lambda/handlers/subscribers/internal/user-left-subscriber/src/index.ts",
   hostChangedSubscriber:
-    "../../../lambda/handlers/subscribers/internal/host-changed-subscriber/src/index.ts",
+    "../../../../lambda/handlers/subscribers/internal/host-changed-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
