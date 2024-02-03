@@ -4,7 +4,7 @@ import {
   publishEvents,
 } from "@oigamez/event-bridge";
 import { RoomConnection } from "@oigamez/models";
-import { updateRoomHost } from "@oigamez/repositories";
+import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
 
 import { handleUserLeft } from "../handle-user-left";
 
@@ -39,7 +39,7 @@ const closeRoom = async (
   hostConnectionId: string | undefined,
   gameTypeId: number
 ): Promise<void> => {
-  await handleUserLeft(roomCode, hostUsername, hostConnectionId, gameTypeId);
+  await removeRoomAndHost(roomCode, hostUsername);
 
   await publishEvents<RoomRemovedInternalEvent>([
     new RoomRemovedInternalEvent(roomCode, hostConnectionId, gameTypeId),

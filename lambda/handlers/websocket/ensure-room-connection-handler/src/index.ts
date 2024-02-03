@@ -55,8 +55,6 @@ export const handler = async (
       existingConnections
     );
 
-    console.log("ruleSetResult", ruleSetResult);
-
     if (!ruleSetResult.isSuccessful) {
       return badRequestResponse(ruleSetResult.errorMessages);
     }

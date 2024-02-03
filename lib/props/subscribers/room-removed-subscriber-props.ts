@@ -4,4 +4,5 @@ export interface RoomRemovedSubscriberProps {
   connectionTable: TableV2;
   roomSocketApiEndpoint: string;
   roomWebsocketApiPostArn: string;
+  roomWebsocketApiDeleteArn: string;
 }

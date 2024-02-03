@@ -40,7 +40,10 @@ export class RoomRemovedSubscriber extends Construct {
 
     const webSocketApiPostPolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
-      resources: [props.roomWebsocketApiPostArn],
+      resources: [
+        props.roomWebsocketApiPostArn,
+        props.roomWebsocketApiDeleteArn,
+      ],
       actions: ["execute-api:ManageConnections"],
     });
 

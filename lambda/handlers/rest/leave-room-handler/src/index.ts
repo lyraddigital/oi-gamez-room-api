@@ -66,7 +66,7 @@ export const handler = async (
       );
     } else {
       const userConnection = connections.find(
-        (c) => c.username === room!.hostUsername
+        (c) => c.username === payload!.username!
       );
 
       await handleUserLeft(
