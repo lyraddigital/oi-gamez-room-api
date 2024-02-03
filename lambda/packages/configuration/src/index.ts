@@ -4,6 +4,8 @@ export * from "./dynamo-table-name";
 export * from "./dynamo-connection-table-name";
 export * from "./dynamo-last-disconnected-index-name";
 export * from "./dynamo-connection-index-name";
+export * from "./eb-external-eb-name";
+export * from "./eb-external-event-source-name";
 export * from "./eb-internal-eb-name";
 export * from "./eb-internal-event-source-name";
 export * from "./expired-disconnection-window-in-seconds";

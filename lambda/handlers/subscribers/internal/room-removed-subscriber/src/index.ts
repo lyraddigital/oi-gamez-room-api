@@ -3,7 +3,9 @@ import { EventBridgeEvent } from "aws-lambda";
 import { closeConnection } from "@oigamez/communication";
 import {
   EventBridgeInternalEventType,
+  RoomRemovedExternalEvent,
   RoomRemovedInternalEvent,
+  publishExternalEvents,
 } from "@oigamez/event-bridge";
 
 import { validateEnvironment } from "./configuration";
@@ -22,7 +24,7 @@ export const handler = async (
     await closeConnection(hostConnectionId);
   }
 
-  console.log(
-    "We have closed the room. We will probably emit this at a later stage to the app in question"
-  );
+  await publishExternalEvents<RoomRemovedExternalEvent>([
+    new RoomRemovedExternalEvent(roomCode, gameTypeId),
+  ]);
 };

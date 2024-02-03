@@ -107,6 +107,8 @@ interface UserExpiredSubscriberEnvironmentVariables {
 interface RoomRemovedSubscriberEnvironmentVariables {
   connectionTableName: string;
   roomSocketApiEndpoint: string;
+  externalEventBusName: string;
+  externalEventBusEventSourceName: string;
 }
 
 interface UserJoinedSubscriberEnvironmentVariables {
@@ -262,6 +264,9 @@ export const EnvironmentVariables: EnvironmentVariables = {
   roomRemovedSubscriber: {
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
+    externalEventBusName: EnvironmentVariableNames.externalEventBusName,
+    externalEventBusEventSourceName:
+      EnvironmentVariableNames.externalEventBusSourceName,
   },
   userJoinedSubscriber: {
     connectionTableName: EnvironmentVariableNames.connectionTableName,
