@@ -1,14 +1,10 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import {
-  RoomRemovedCommunicationEvent,
-  broadcast,
-} from "@oigamez/communication";
+import { closeConnection } from "@oigamez/communication";
 import {
   EventBridgeInternalEventType,
   RoomRemovedInternalEvent,
 } from "@oigamez/event-bridge";
-import { getRoomConnections } from "@oigamez/repositories";
 
 import { validateEnvironment } from "./configuration";
 
@@ -20,13 +16,13 @@ export const handler = async (
     RoomRemovedInternalEvent
   >
 ): Promise<void> => {
-  const { roomCode } = event.detail;
-  const roomConnections = await getRoomConnections(roomCode);
+  const { roomCode, hostConnectionId, gameTypeId } = event.detail;
 
-  // Remove the connections from the database.
+  if (hostConnectionId) {
+    await closeConnection(hostConnectionId);
+  }
 
-  await broadcast<RoomRemovedCommunicationEvent>(
-    roomConnections,
-    new RoomRemovedCommunicationEvent(roomCode)
+  console.log(
+    "We have closed the room. We will probably emit this at a later stage to the app in question"
   );
 };

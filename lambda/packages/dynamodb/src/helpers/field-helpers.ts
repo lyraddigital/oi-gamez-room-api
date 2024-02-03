@@ -40,6 +40,12 @@ export const getDynamoInt = (
   return dynamoField?.N ? parseInt(dynamoField.N) : defaultValue;
 };
 
+export const getOptionalDynamoInt = (
+  dynamoField?: AttributeValue
+): number | undefined => {
+  return dynamoField?.N ? parseInt(dynamoField.N) : undefined;
+};
+
 export const getDynamoBoolean = (
   dynamoField?: AttributeValue,
   defaultValue: boolean = false

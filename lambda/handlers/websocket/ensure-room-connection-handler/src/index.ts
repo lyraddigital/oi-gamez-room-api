@@ -7,7 +7,11 @@ import {
   okResponse,
 } from "@oigamez/responses";
 import { RoomStatus } from "@oigamez/models";
-import { getRoomByCode, getRoomConnection } from "@oigamez/repositories";
+import {
+  getRoomByCode,
+  getRoomConnection,
+  getRoomConnections,
+} from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
@@ -42,8 +46,16 @@ export const handler = async (
 
     const ttl = convertFromMillisecondsToSeconds(epochTime);
     const room = await getRoomByCode(roomCode!, ttl);
+    const existingConnections = await getRoomConnections(roomCode!, ttl);
     const isHost = isUserHost(room, username);
-    const ruleSetResult = runEnsureRoomConnectionRuleSet(isHost, room);
+    const ruleSetResult = runEnsureRoomConnectionRuleSet(
+      isHost,
+      room,
+      username!,
+      existingConnections
+    );
+
+    console.log("ruleSetResult", ruleSetResult);
 
     if (!ruleSetResult.isSuccessful) {
       return badRequestResponse(ruleSetResult.errorMessages);

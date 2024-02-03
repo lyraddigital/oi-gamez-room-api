@@ -12,14 +12,14 @@ import {
   keys,
 } from "@oigamez/dynamodb";
 
-export const updateHostName = async (
+export const updateRoomHost = async (
   roomCode: string,
   newHostUsername: string
 ): Promise<void> => {
   const updateItemCommandInput: UpdateItemCommandInput = {
     TableName: DYNAMO_TABLE_NAME,
     Key: keys.room(roomCode),
-    UpdateExpression: "ADD #hostUsername :newHostUsername",
+    UpdateExpression: "SET #hostUsername = :newHostUsername",
     ConditionExpression: expressions.common.keysExists,
     ExpressionAttributeNames: {
       "#hostUsername": dynamoFieldNames.room.hostUsername,

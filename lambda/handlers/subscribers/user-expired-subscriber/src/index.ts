@@ -3,10 +3,8 @@ import { EventBridgeEvent } from "aws-lambda";
 import {
   EventBridgeInternalEventType,
   UserConnectionExpiredInternalEvent,
-  UserLeftInternalEvent,
-  publishEvents,
 } from "@oigamez/event-bridge";
-import { removeUserConnection } from "@oigamez/repositories";
+import { handleUserLeft } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 
@@ -19,9 +17,6 @@ export const handler = async (
   >
 ): Promise<void> => {
   const { roomCode, username, gameTypeId } = event.detail;
-  await removeUserConnection(roomCode, username);
 
-  await publishEvents<UserLeftInternalEvent>([
-    new UserLeftInternalEvent(roomCode, username, undefined, gameTypeId),
-  ]);
+  await handleUserLeft(roomCode, username, undefined, gameTypeId);
 };

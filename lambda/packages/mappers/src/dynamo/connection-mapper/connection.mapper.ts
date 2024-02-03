@@ -1,6 +1,10 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
-import { dynamoFieldNames, getDynamoString } from "@oigamez/dynamodb";
+import {
+  dynamoFieldNames,
+  getOptionalDynamoInt,
+  getDynamoString,
+} from "@oigamez/dynamodb";
 import { RoomConnection } from "@oigamez/models";
 
 export const mapFromDynamoToConnection = (
@@ -11,4 +15,7 @@ export const mapFromDynamoToConnection = (
   ),
   roomCode: getDynamoString(dynamoRecord[dynamoFieldNames.connection.roomCode]),
   username: getDynamoString(dynamoRecord[dynamoFieldNames.connection.username]),
+  lastDisconnected: getOptionalDynamoInt(
+    dynamoRecord[dynamoFieldNames.connection.lastDisconnected]
+  ),
 });
