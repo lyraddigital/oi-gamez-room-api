@@ -5,7 +5,9 @@ import {
 } from "@aws-sdk/client-eventbridge";
 
 import {
+  EB_EXTERNAL_EB_NAME,
   EB_INTERNAL_EB_NAME,
+  EB_EXTERNAL_EVENT_SOURCE_NAME,
   EB_INTERNAL_EVENT_SOURCE_NAME,
 } from "@oigamez/configuration";
 
@@ -49,8 +51,8 @@ export const publishExternalEvents = async <T extends EventBridgeExternalEvent>(
   items: T[]
 ): Promise<void> => {
   await publishEvents(
-    EB_INTERNAL_EB_NAME!,
-    EB_INTERNAL_EVENT_SOURCE_NAME!,
+    EB_EXTERNAL_EB_NAME!,
+    EB_EXTERNAL_EVENT_SOURCE_NAME!,
     items
   );
 };
