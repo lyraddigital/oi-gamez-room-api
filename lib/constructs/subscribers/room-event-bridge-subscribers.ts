@@ -13,7 +13,7 @@ import {
   UserJoinedSubscriber,
   UserLeftSubscriber,
 } from "./internal";
-import { GameInitializedSubscriber } from "./external";
+import { GameInitializedSubscriber, GameStartedSubscriber } from "./external";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -98,6 +98,17 @@ export class RoomEventBridgeSubscribers extends Construct {
     const gameInitializedLambdaFn = new GameInitializedSubscriber(
       this,
       "GameInitializedSubscriber",
+      {
+        table: props.table,
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+      }
+    );
+
+    const gameStartedLambdaFn = new GameStartedSubscriber(
+      this,
+      "GameStartedSubscriber",
       {
         table: props.table,
         connectionTable: props.connectionTable,
@@ -204,6 +215,20 @@ export class RoomEventBridgeSubscribers extends Construct {
       eventPattern: {
         source: [props.roomReceiveEventBusSourceName],
         detailType: [EventTypes.gameInitialization],
+      },
+      eventBus: props.roomReceiveEventBus,
+    });
+
+    new Rule(this, "GameStartedSubscriberRule", {
+      description: "Rule that subscribes to game starts.",
+      targets: [
+        new aws_events_targets.LambdaFunction(
+          gameStartedLambdaFn.lambdaFunction
+        ),
+      ],
+      eventPattern: {
+        source: [props.roomReceiveEventBusSourceName],
+        detailType: [EventTypes.gameStarted],
       },
       eventBus: props.roomReceiveEventBus,
     });
