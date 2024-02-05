@@ -38,6 +38,11 @@ export class EnsureRoomConnectionLambda extends Construct {
             props.roomEventBus.eventBusName,
           [EnvironmentVariables.ensureRoomConnection.eventBusEventSourceName]:
             props.eventBusEventSourceName,
+          [EnvironmentVariables.ensureRoomConnection.externalEventBusName]:
+            props.roomExternalEventBus.eventBusName,
+          [EnvironmentVariables.ensureRoomConnection
+            .externalEventBusEventSourceName]:
+            props.roomExternalEventBusSourceName,
         },
       }
     );
@@ -60,6 +65,12 @@ export class EnsureRoomConnectionLambda extends Construct {
       actions: ["events:PutEvents"],
     });
 
+    const externalEbPutEventsPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.roomExternalEventBus.eventBusArn],
+      actions: ["events:PutEvents"],
+    });
+
     ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
       roomTablePolicyDocument
     );
@@ -70,6 +81,10 @@ export class EnsureRoomConnectionLambda extends Construct {
 
     ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
       ebPutEventsPolicyDocument
+    );
+
+    ensureRoomConnectionHandlerFunction.lambdaFunction.addToRolePolicy(
+      externalEbPutEventsPolicyDocument
     );
 
     this.lambdaFunction = ensureRoomConnectionHandlerFunction.lambdaFunction;

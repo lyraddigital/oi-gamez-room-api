@@ -6,5 +6,7 @@ export interface EnsureRoomConnectionLambdaProps {
   roomTable: TableV2;
   updatedConnectWindowInSeconds: number;
   roomEventBus: IEventBus;
+  roomExternalEventBus: IEventBus;
   eventBusEventSourceName: string;
+  roomExternalEventBusSourceName: string;
 }

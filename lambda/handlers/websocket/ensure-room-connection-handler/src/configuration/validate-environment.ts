@@ -4,6 +4,8 @@ import {
   verifyUpdatedConnectWindowInSeconds,
   verifyEbName,
   verifyEbInternalEventSourceName,
+  verifyExternalEbName,
+  verifyEbExternalEventSourceName,
 } from "@oigamez/configuration";
 
 export const validateEnvironment = (): void => {
@@ -12,4 +14,6 @@ export const validateEnvironment = (): void => {
   verifyUpdatedConnectWindowInSeconds();
   verifyEbName();
   verifyEbInternalEventSourceName();
+  verifyExternalEbName();
+  verifyEbExternalEventSourceName();
 };

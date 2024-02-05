@@ -9,5 +9,7 @@ export interface RoomSocketApiProps {
   account: string;
   region: string;
   roomEventBus: IEventBus;
+  roomExternalEventBus: IEventBus;
   eventBusEventSourceName: string;
+  roomExternalEventBusSourceName: string;
 }

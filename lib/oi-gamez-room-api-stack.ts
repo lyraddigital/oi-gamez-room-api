@@ -42,6 +42,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       region: this.region,
       roomEventBus: roomEventBus.eventBus,
       eventBusEventSourceName: roomEventBusSourceName,
+      roomExternalEventBus: roomExternalEventBus.eventBus,
+      roomExternalEventBusSourceName: roomExternalEventBusSourceName,
     });
 
     new RoomsRestApi(this, "RoomRestApi", {

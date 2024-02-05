@@ -1,7 +1,9 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import {
+  RoomCreatedExternalEvent,
   UserJoinedInternalEvent,
+  publishExternalEvents,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
 import {
@@ -72,6 +74,10 @@ export const handler = async (
         isFirstHostConnection,
         ttl
       );
+
+      await publishExternalEvents([
+        new RoomCreatedExternalEvent(room!.code, room!.gameTypeId),
+      ]);
     } else {
       const existingConnection = await getRoomConnection(room!.code, username!);
       const isNewConnection = !existingConnection;

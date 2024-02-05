@@ -80,6 +80,8 @@ interface EnsureRoomEnvironmentVariables {
   updatedConnectionWindow: string;
   eventBusName: string;
   eventBusEventSourceName: string;
+  externalEventBusName: string;
+  externalEventBusEventSourceName: string;
 }
 
 interface RoomDeleteStreamEnvironmentVariables {
@@ -251,6 +253,9 @@ export const EnvironmentVariables: EnvironmentVariables = {
     eventBusName: EnvironmentVariableNames.internalEventBusName,
     eventBusEventSourceName:
       EnvironmentVariableNames.internalEventBusSourceName,
+    externalEventBusName: EnvironmentVariableNames.externalEventBusName,
+    externalEventBusEventSourceName:
+      EnvironmentVariableNames.externalEventBusSourceName,
   },
   roomDeleteStream: {
     tableName: EnvironmentVariableNames.dynamoTableName,

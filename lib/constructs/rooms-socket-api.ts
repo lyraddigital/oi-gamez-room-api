@@ -41,6 +41,8 @@ export class RoomsSocketApi extends Construct {
         updatedConnectWindowInSeconds: props.updatedConnectWindowInSeconds,
         roomEventBus: props.roomEventBus,
         eventBusEventSourceName: props.eventBusEventSourceName,
+        roomExternalEventBus: props.roomExternalEventBus,
+        roomExternalEventBusSourceName: props.roomExternalEventBusSourceName,
       }
     );
 
