@@ -2,15 +2,18 @@ import { aws_events_targets } from "aws-cdk-lib";
 import { Rule } from "aws-cdk-lib/aws-events";
 import { Construct } from "constructs";
 
-import { EventTypes } from "../../../constants";
-import { RoomEventBridgeSubscribersProps } from "../../../props";
+import { EventTypes } from "../../constants";
+import { RoomEventBridgeSubscribersProps } from "../../props";
 
-import { HostExpiredSubscriber } from "./host-expired-subscriber";
-import { UserExpiredSubscriber } from "./user-expired-subscriber";
-import { RoomRemovedSubscriber } from "./room-removed-subscriber";
-import { UserJoinedSubscriber } from "./user-joined-subscriber";
-import { UserLeftSubscriber } from "./user-left-subscriber";
-import { HostChangedSubscriber } from "./host-changed-subscriber";
+import {
+  HostChangedSubscriber,
+  HostExpiredSubscriber,
+  UserExpiredSubscriber,
+  RoomRemovedSubscriber,
+  UserJoinedSubscriber,
+  UserLeftSubscriber,
+} from "./internal";
+import { GameInitializedSubscriber } from "./external";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -90,6 +93,12 @@ export class RoomEventBridgeSubscribers extends Construct {
         externalEventBus: props.externalEventBus,
         externalEventBusEventSourceName: props.externalEventBusEventSourceName,
       }
+    );
+
+    const gameInitializedLambdaFn = new GameInitializedSubscriber(
+      this,
+      "GameInitializedSubscriber",
+      {}
     );
 
     new Rule(this, "HostExpiredSubscriberRule", {
@@ -178,6 +187,20 @@ export class RoomEventBridgeSubscribers extends Construct {
         detailType: [EventTypes.changeHost],
       },
       eventBus: props.eventBus,
+    });
+
+    new Rule(this, "GameInitializedSubscriberRule", {
+      description: "Rule that subscribes to game initializations from games.",
+      targets: [
+        new aws_events_targets.LambdaFunction(
+          gameInitializedLambdaFn.lambdaFunction
+        ),
+      ],
+      eventPattern: {
+        source: [props.roomReceiveEventBusSourceName],
+        detailType: [EventTypes.gameInitialization],
+      },
+      eventBus: props.roomReceiveEventBus,
     });
   }
 }

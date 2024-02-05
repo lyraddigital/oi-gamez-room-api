@@ -148,6 +148,7 @@ interface HandlerFilePaths {
   userJoinedSubscriber: string;
   userLeftSubscriber: string;
   hostChangedSubscriber: string;
+  gameInitializedSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -172,6 +173,7 @@ interface HandlerFunctionNames {
   userJoinedSubscriber: string;
   userLeftSubscriber: string;
   hostChangedSubscriber: string;
+  gameInitializedSubscriber: string;
 }
 
 interface IndexNames {
@@ -187,6 +189,7 @@ interface EventTypes {
   userJoined: string;
   userLeft: string;
   changeHost: string;
+  gameInitialization: string;
 }
 
 export const ResourcePaths: ResourcePaths = {
@@ -321,6 +324,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../../../lambda/handlers/subscribers/internal/user-left-subscriber/src/index.ts",
   hostChangedSubscriber:
     "../../../../lambda/handlers/subscribers/internal/host-changed-subscriber/src/index.ts",
+  gameInitializedSubscriber:
+    "../../../../lambda/handlers/subscribers/external/game-initialized-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -339,6 +344,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   userJoinedSubscriber: "handler",
   userLeftSubscriber: "handler",
   hostChangedSubscriber: "handler",
+  gameInitializedSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {
@@ -354,4 +360,5 @@ export const EventTypes: EventTypes = {
   userJoined: "room-internal.user-joined",
   userLeft: "room-internal.user-left",
   changeHost: "room-internal.change-host",
+  gameInitialization: "room-a.game-initialized",
 };
