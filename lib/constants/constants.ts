@@ -31,6 +31,7 @@ interface EnvironmentVariables {
   userJoinedSubscriber: UserJoinedSubscriberEnvironmentVariables;
   userLeftSubscriber: UserLeftSubscriberEnvironmentVariables;
   hostChangedSubscriber: HostChangedSubscriberEnvironmentVariables;
+  gameInitializedSubscriber: GameInitializedSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -130,6 +131,12 @@ interface HostChangedSubscriberEnvironmentVariables {
   roomSocketApiEndpoint: string;
   externalEventBusName: string;
   externalEventBusEventSourceName: string;
+}
+
+interface GameInitializedSubscriberEnvironmentVariables {
+  tableName: string;
+  connectionTableName: string;
+  roomSocketApiEndpoint: string;
 }
 
 interface HandlerFilePaths {
@@ -294,6 +301,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
     externalEventBusEventSourceName:
       EnvironmentVariableNames.externalEventBusSourceName,
   },
+  gameInitializedSubscriber: {
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -360,5 +372,5 @@ export const EventTypes: EventTypes = {
   userJoined: "room-internal.user-joined",
   userLeft: "room-internal.user-left",
   changeHost: "room-internal.change-host",
-  gameInitialization: "room-a.game-initialized",
+  gameInitialization: "room-receive.game-initialized",
 };

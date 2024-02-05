@@ -1,9 +1,14 @@
 import { Construct } from "constructs";
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
 import { join } from "path";
 
-import { HandlerFunctionNames, HandlerFilePaths } from "../../../constants";
+import {
+  HandlerFunctionNames,
+  HandlerFilePaths,
+  EnvironmentVariables,
+} from "../../../constants";
 import { GameInitializedSubscriberProps } from "../../../props";
 
 export class GameInitializedSubscriber extends Construct {
@@ -23,7 +28,36 @@ export class GameInitializedSubscriber extends Construct {
       bundling: {
         format: OutputFormat.ESM,
       },
-      environment: {},
+      environment: {
+        [EnvironmentVariables.gameInitializedSubscriber.tableName]:
+          props.table.tableName,
+        [EnvironmentVariables.gameInitializedSubscriber.connectionTableName]:
+          props.connectionTable.tableName,
+        [EnvironmentVariables.gameInitializedSubscriber.roomSocketApiEndpoint]:
+          props.roomSocketApiEndpoint,
+      },
     });
+
+    const tablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.table.tableArn],
+      actions: ["dynamodb:UpdateItem"],
+    });
+
+    const connectionTablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.connectionTable.tableArn],
+      actions: ["dynamodb:Query"],
+    });
+
+    const webSocketApiPostPolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.roomWebsocketApiPostArn],
+      actions: ["execute-api:ManageConnections"],
+    });
+
+    this.lambdaFunction.addToRolePolicy(tablePolicyDocument);
+    this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
+    this.lambdaFunction.addToRolePolicy(webSocketApiPostPolicyDocument);
   }
 }

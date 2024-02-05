@@ -98,7 +98,12 @@ export class RoomEventBridgeSubscribers extends Construct {
     const gameInitializedLambdaFn = new GameInitializedSubscriber(
       this,
       "GameInitializedSubscriber",
-      {}
+      {
+        table: props.table,
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+      }
     );
 
     new Rule(this, "HostExpiredSubscriberRule", {

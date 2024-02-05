@@ -3,4 +3,5 @@ export enum CommunicationActionTypes {
   userLeft = "userLeft",
   roomRemoved = "roomRemoved",
   changeHost = "changeHost",
+  gameInitialized = "gameInitialized",
 }
