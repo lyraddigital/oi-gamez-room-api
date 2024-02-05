@@ -5,4 +5,6 @@ export enum CommunicationActionTypes {
   changeHost = "changeHost",
   gameInitialized = "gameInitialized",
   gameStarted = "gameStarted",
+  disableGameStart = "disableGameStart",
+  enableGameStart = "enableGameStart",
 }
