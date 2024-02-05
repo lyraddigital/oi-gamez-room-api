@@ -4,10 +4,10 @@ import {
   EventBridgeInternalEventType,
   HostConnectionExpiredInternalEvent,
 } from "@oigamez/event-bridge";
+import { getRoomConnections } from "@oigamez/repositories";
+import { handleHostDisconnection } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import { handleHostDisconnection } from "@oigamez/services";
-import { getRoomConnections } from "@oigamez/repositories";
 
 validateEnvironment();
 

@@ -7,7 +7,7 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
-import { Room, RoomStatus } from "@oigamez/models";
+import { Room } from "@oigamez/models";
 
 export const updateRoomHostDetails = (
   room: Room,
@@ -17,17 +17,14 @@ export const updateRoomHostDetails = (
     Update: {
       TableName: DYNAMO_TABLE_NAME,
       Key: keys.room(room.code),
-      UpdateExpression:
-        "SET #ttl = :ttl, #status = :status, #curNumOfUsers = :curNumOfUsers",
+      UpdateExpression: "SET #ttl = :ttl, #curNumOfUsers = :curNumOfUsers",
       ConditionExpression: expressions.common.keysExists,
       ExpressionAttributeNames: {
         "#ttl": dynamoFieldNames.common.ttl,
-        "#status": dynamoFieldNames.room.status,
         "#curNumOfUsers": dynamoFieldNames.room.curNumOfUsers,
       },
       ExpressionAttributeValues: {
         ":ttl": dynamoFieldValues.common.ttl(ttl),
-        ":status": dynamoFieldValues.room.status(RoomStatus.Available),
         ":curNumOfUsers": dynamoFieldValues.room.curNumOfUsers(1),
       },
     },

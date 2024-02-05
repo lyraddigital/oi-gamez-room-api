@@ -28,8 +28,10 @@ export class OiGamezRoomApiStack extends cdk.Stack {
 
     const roomEventBus = new RoomEventBus(this, "RoomInternalEventBus");
     const roomExternalEventBus = new RoomEventBus(this, "RoomExternalEventBus");
+    const roomReceiveEventBus = new RoomEventBus(this, "RoomReceiveEventBus");
     const roomEventBusSourceName = "room-internal";
     const roomExternalEventBusSourceName = "room-external";
+    const roomReceiveEventBusSourceName = "room-receive";
 
     const webSocketApi = new RoomsSocketApi(this, "RoomSocketApi", {
       roomTable: roomTable.table,
