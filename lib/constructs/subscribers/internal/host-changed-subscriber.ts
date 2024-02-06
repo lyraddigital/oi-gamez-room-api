@@ -25,6 +25,8 @@ export class HostChangedSubscriber extends Construct {
         format: OutputFormat.ESM,
       },
       environment: {
+        [EnvironmentVariables.hostChangedSubscriber.tableName]:
+          props.table.tableName,
         [EnvironmentVariables.hostChangedSubscriber.connectionTableName]:
           props.connectionTable.tableName,
         [EnvironmentVariables.hostChangedSubscriber.roomSocketApiEndpoint]:
@@ -35,6 +37,12 @@ export class HostChangedSubscriber extends Construct {
           .externalEventBusEventSourceName]:
           props.externalEventBusEventSourceName,
       },
+    });
+
+    const tablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.table.tableArn],
+      actions: ["dynamodb:Query"],
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({
@@ -55,6 +63,7 @@ export class HostChangedSubscriber extends Construct {
       actions: ["events:PutEvents"],
     });
 
+    this.lambdaFunction.addToRolePolicy(tablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(webSocketApiPostPolicyDocument);
     this.lambdaFunction.addToRolePolicy(ebPutEventsPolicyDocument);

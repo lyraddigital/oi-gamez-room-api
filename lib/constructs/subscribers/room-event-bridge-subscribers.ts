@@ -62,6 +62,7 @@ export class RoomEventBridgeSubscribers extends Construct {
       this,
       "UserJoinedSubscriber",
       {
+        table: props.table,
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
@@ -74,6 +75,7 @@ export class RoomEventBridgeSubscribers extends Construct {
       this,
       "UserLeftSubscriber",
       {
+        table: props.table,
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
@@ -87,6 +89,7 @@ export class RoomEventBridgeSubscribers extends Construct {
       this,
       "HostChangedSubscriber",
       {
+        table: props.table,
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,

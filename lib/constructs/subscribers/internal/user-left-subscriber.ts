@@ -25,6 +25,8 @@ export class UserLeftSubscriber extends Construct {
         format: OutputFormat.ESM,
       },
       environment: {
+        [EnvironmentVariables.userLeftSubscriber.tableName]:
+          props.table.tableName,
         [EnvironmentVariables.userLeftSubscriber.connectionTableName]:
           props.connectionTable.tableName,
         [EnvironmentVariables.userLeftSubscriber.roomSocketApiEndpoint]:
@@ -35,6 +37,12 @@ export class UserLeftSubscriber extends Construct {
           .externalEventBusEventSourceName]:
           props.externalEventBusEventSourceName,
       },
+    });
+
+    const tablePolicyDocument = new PolicyStatement({
+      effect: Effect.ALLOW,
+      resources: [props.table.tableArn],
+      actions: ["dynamodb:Query"],
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({
@@ -58,6 +66,7 @@ export class UserLeftSubscriber extends Construct {
       actions: ["events:PutEvents"],
     });
 
+    this.lambdaFunction.addToRolePolicy(tablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(connectionTablePolicyDocument);
     this.lambdaFunction.addToRolePolicy(webSocketApiPostPolicyDocument);
     this.lambdaFunction.addToRolePolicy(ebPutEventsPolicyDocument);

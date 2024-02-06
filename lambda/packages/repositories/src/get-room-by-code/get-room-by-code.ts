@@ -11,23 +11,28 @@ import { Room } from "@oigamez/models";
 
 export const getRoomByCode = async (
   roomCode: string,
-  ttl: number
+  ttl?: number
 ): Promise<Room | undefined> => {
   const input: QueryCommandInput = {
     TableName: DYNAMO_TABLE_NAME,
     KeyConditionExpression: "#pk = :pk AND #sk = :sk",
-    FilterExpression: "#ttl > :ttl",
     ExpressionAttributeNames: {
       "#pk": dynamoFieldNames.common.pk,
       "#sk": dynamoFieldNames.common.sk,
-      "#ttl": dynamoFieldNames.common.ttl,
     },
     ExpressionAttributeValues: {
       ":pk": dynamoFieldValues.room.pk(roomCode),
       ":sk": dynamoFieldValues.room.sk,
-      ":ttl": dynamoFieldValues.common.ttl(ttl),
     },
   };
+
+  if (ttl) {
+    input.FilterExpression = "#ttl > :ttl";
+    input.ExpressionAttributeNames!["#ttl"] = dynamoFieldNames.common.ttl;
+    input.ExpressionAttributeValues![":ttl"] =
+      dynamoFieldValues.common.ttl(ttl);
+  }
+
   const command = new QueryCommand(input);
   const response = await dbClient.send(command);
 

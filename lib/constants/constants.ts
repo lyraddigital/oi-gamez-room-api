@@ -116,6 +116,7 @@ interface RoomRemovedSubscriberEnvironmentVariables {
 }
 
 interface UserJoinedSubscriberEnvironmentVariables {
+  tableName: string;
   connectionTableName: string;
   roomSocketApiEndpoint: string;
   externalEventBusName: string;
@@ -123,6 +124,7 @@ interface UserJoinedSubscriberEnvironmentVariables {
 }
 
 interface UserLeftSubscriberEnvironmentVariables {
+  tableName: string;
   connectionTableName: string;
   roomSocketApiEndpoint: string;
   externalEventBusName: string;
@@ -130,6 +132,7 @@ interface UserLeftSubscriberEnvironmentVariables {
 }
 
 interface HostChangedSubscriberEnvironmentVariables {
+  tableName: string;
   connectionTableName: string;
   roomSocketApiEndpoint: string;
   externalEventBusName: string;
@@ -296,6 +299,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
       EnvironmentVariableNames.externalEventBusSourceName,
   },
   userJoinedSubscriber: {
+    tableName: EnvironmentVariableNames.dynamoTableName,
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
     externalEventBusName: EnvironmentVariableNames.externalEventBusName,
@@ -303,6 +307,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
       EnvironmentVariableNames.externalEventBusSourceName,
   },
   userLeftSubscriber: {
+    tableName: EnvironmentVariableNames.dynamoTableName,
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
     externalEventBusName: EnvironmentVariableNames.externalEventBusName,
@@ -310,6 +315,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
       EnvironmentVariableNames.externalEventBusSourceName,
   },
   hostChangedSubscriber: {
+    tableName: EnvironmentVariableNames.dynamoTableName,
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
     externalEventBusName: EnvironmentVariableNames.externalEventBusName,

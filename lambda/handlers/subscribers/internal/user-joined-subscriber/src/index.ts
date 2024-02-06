@@ -10,7 +10,7 @@ import {
   UserJoinedInternalEvent,
   publishExternalEvents,
 } from "@oigamez/event-bridge";
-import { getRoomConnections } from "@oigamez/repositories";
+import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 
 import { validateEnvironment } from "./configuration";
 
@@ -23,10 +23,13 @@ export const handler = async (
   >
 ): Promise<void> => {
   const { roomCode, username, gameTypeId } = event.detail;
+  const room = await getRoomByCode(roomCode);
   const roomConnections = await getRoomConnections(roomCode);
   const filteredConnections = roomConnections.filter(
     (rc) => rc.username !== username
   );
+  const isBelowMinimumUsers =
+    !!room && room.curNumOfUsers >= room.minNumOfUsers;
 
   await broadcast<UserJoinedCommunicationEvent>(
     filteredConnections,
@@ -34,6 +37,11 @@ export const handler = async (
   );
 
   await publishExternalEvents<UserJoinedExternalEvent>([
-    new UserJoinedExternalEvent(roomCode, username, gameTypeId),
+    new UserJoinedExternalEvent(
+      roomCode,
+      username,
+      isBelowMinimumUsers,
+      gameTypeId
+    ),
   ]);
 };
