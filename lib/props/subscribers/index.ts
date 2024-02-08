@@ -1,3 +1,4 @@
+export * from "./game-completed-subscriber-props";
 export * from "./game-initialized-subscriber-props";
 export * from "./game-started-subscriber-props";
 export * from "./host-changed-subscriber-props";
