@@ -75,9 +75,11 @@ export const handler = async (
         ttl
       );
 
-      await publishExternalEvents([
-        new RoomCreatedExternalEvent(room!.code, room!.gameTypeId),
-      ]);
+      if (isFirstHostConnection) {
+        await publishExternalEvents([
+          new RoomCreatedExternalEvent(room!.code, room!.gameTypeId),
+        ]);
+      }
     } else {
       const existingConnection = await getRoomConnection(room!.code, username!);
       const isNewConnection = !existingConnection;

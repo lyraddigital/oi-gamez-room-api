@@ -12,7 +12,7 @@ export const publishAllHostExpirations = async (
       const shouldRemoveRoom =
         (hr.status === RoomStatus.Available ||
           hr.status === RoomStatus.NotAvailable) &&
-        hr.curNumOfUsers === 1;
+        hr.curNumOfUsers <= 0;
 
       return new HostConnectionExpiredInternalEvent(
         hr.code,

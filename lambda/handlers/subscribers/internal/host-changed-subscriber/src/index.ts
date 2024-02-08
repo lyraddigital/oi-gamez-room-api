@@ -11,7 +11,7 @@ import {
   HostChangeInternalEvent,
   publishExternalEvents,
 } from "@oigamez/event-bridge";
-import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
+import { getRoomConnections } from "@oigamez/repositories";
 
 import { validateEnvironment } from "./configuration";
 
@@ -26,14 +26,12 @@ export const handler = async (
   const { roomCode, oldHostUsername, newHostUsername, gameTypeId } =
     event.detail;
   const roomConnections = await getRoomConnections(roomCode);
-  const room = await getRoomByCode(roomCode);
   const otherUserConnections = roomConnections.filter(
     (c) => c.username !== newHostUsername
   );
   const newHostConnections = roomConnections.filter(
     (c) => c.username === newHostUsername
   );
-  const isBelowMinimumUsers = !!room && room.curNumOfUsers < room.minNumOfUsers;
 
   await broadcast<HostChangeCommunicationEvent>(
     otherUserConnections,
@@ -42,7 +40,7 @@ export const handler = async (
 
   await broadcast<HostTransferCommunicationEvent>(
     newHostConnections,
-    new HostTransferCommunicationEvent(isBelowMinimumUsers)
+    new HostTransferCommunicationEvent()
   );
 
   await publishExternalEvents<HostChangeExternalEvent>([

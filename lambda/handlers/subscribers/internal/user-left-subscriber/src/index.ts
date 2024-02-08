@@ -34,19 +34,10 @@ export const handler = async (
     new UserLeftCommunicationEvent(username)
   );
 
-  console.log("roomConnections", roomConnections);
-  console.log("isBelowMinimumUsers", isBelowMinimumUsers);
-  console.log(
-    "username !== room!.hostUsername",
-    username !== room!.hostUsername
-  );
-
   if (isBelowMinimumUsers) {
     const hostConnections = roomConnections.filter(
       (c) => c.username === room.hostUsername
     );
-
-    console.log("hostConnections", hostConnections);
 
     if (username !== room!.hostUsername) {
       await broadcast<DisableGameStartCommunicationEvent>(

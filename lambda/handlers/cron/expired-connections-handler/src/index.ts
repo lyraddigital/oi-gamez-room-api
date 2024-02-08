@@ -26,6 +26,13 @@ export const handler = async (
       (c) => !hostedRooms.find((r) => r.hostUsername === c.username)
     );
 
+    // We need to reduce the current number of users from the hosted rooms
+    // So that we can propertly calculate if the room is to be deleted or not
+    hostedRooms.forEach((hr) => {
+      const userCount = connections.filter((c) => c.roomCode == hr.code).length;
+      hr.curNumOfUsers -= userCount;
+    });
+
     if (hostedRooms.length > 0) {
       await publishAllHostExpirations(hostedRooms);
     }

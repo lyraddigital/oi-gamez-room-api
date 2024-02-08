@@ -89,7 +89,6 @@ export class RoomEventBridgeSubscribers extends Construct {
       this,
       "HostChangedSubscriber",
       {
-        table: props.table,
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,

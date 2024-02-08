@@ -132,7 +132,6 @@ interface UserLeftSubscriberEnvironmentVariables {
 }
 
 interface HostChangedSubscriberEnvironmentVariables {
-  tableName: string;
   connectionTableName: string;
   roomSocketApiEndpoint: string;
   externalEventBusName: string;
@@ -315,7 +314,6 @@ export const EnvironmentVariables: EnvironmentVariables = {
       EnvironmentVariableNames.externalEventBusSourceName,
   },
   hostChangedSubscriber: {
-    tableName: EnvironmentVariableNames.dynamoTableName,
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
     externalEventBusName: EnvironmentVariableNames.externalEventBusName,
