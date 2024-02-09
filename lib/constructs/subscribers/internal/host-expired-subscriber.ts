@@ -39,7 +39,7 @@ export class HostExpiredSubscriber extends Construct {
     const tablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.table.tableArn],
-      actions: ["dynamodb:DeleteItem", "dynamodb:UpdateItem"],
+      actions: ["dynamodb:DeleteItem", "dynamodb:Query", "dynamodb:UpdateItem"],
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({

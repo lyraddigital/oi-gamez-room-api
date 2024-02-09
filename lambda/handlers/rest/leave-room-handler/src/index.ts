@@ -58,7 +58,7 @@ export const handler = async (
       const shouldRemoveRoom = room!.curNumOfUsers === 1;
 
       await handleHostDisconnection(
-        room!.code,
+        room!,
         payload!.username!,
         connections,
         shouldRemoveRoom,
@@ -70,7 +70,7 @@ export const handler = async (
       );
 
       await handleUserLeft(
-        room!.code,
+        room!,
         payload!.username!,
         userConnection?.connectionId,
         room!.gameTypeId

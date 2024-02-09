@@ -16,6 +16,7 @@ export const mapFromDynamoToRoom = (
       dynamoRecord[dynamoFieldNames.room.hostUsername]
     ),
     isPublic: getDynamoBoolean(dynamoRecord[dynamoFieldNames.room.isPublic]),
+    isVisible: getDynamoBoolean(dynamoRecord[dynamoFieldNames.room.isVisible]),
     code: getDynamoString(dynamoRecord[dynamoFieldNames.room.code]),
     createdAt: new Date(
       getDynamoString(dynamoRecord[dynamoFieldNames.room.curNumOfUsers])

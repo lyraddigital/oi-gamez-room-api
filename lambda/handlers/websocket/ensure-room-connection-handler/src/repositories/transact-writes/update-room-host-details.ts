@@ -17,15 +17,18 @@ export const updateRoomHostDetails = (
     Update: {
       TableName: DYNAMO_TABLE_NAME,
       Key: keys.room(room.code),
-      UpdateExpression: "SET #ttl = :ttl, #curNumOfUsers = :curNumOfUsers",
+      UpdateExpression:
+        "SET #ttl = :ttl, #curNumOfUsers = :curNumOfUsers, #isVisible = :isVisible",
       ConditionExpression: expressions.common.keysExists,
       ExpressionAttributeNames: {
         "#ttl": dynamoFieldNames.common.ttl,
         "#curNumOfUsers": dynamoFieldNames.room.curNumOfUsers,
+        "#isVisible": dynamoFieldNames.room.isVisible,
       },
       ExpressionAttributeValues: {
         ":ttl": dynamoFieldValues.common.ttl(ttl),
         ":curNumOfUsers": dynamoFieldValues.room.curNumOfUsers(1),
+        ":isVisible": dynamoFieldValues.room.isVisible(room.isPublic),
       },
     },
   };

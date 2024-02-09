@@ -4,7 +4,7 @@ import {
   EventBridgeInternalEventType,
   HostConnectionExpiredInternalEvent,
 } from "@oigamez/event-bridge";
-import { getRoomConnections } from "@oigamez/repositories";
+import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { handleHostDisconnection } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
@@ -19,9 +19,10 @@ export const handler = async (
 ): Promise<void> => {
   const { roomCode, username, shouldRemoveRoom, gameTypeId } = event.detail;
   const connections = await getRoomConnections(roomCode);
+  const room = await getRoomByCode(roomCode);
 
   await handleHostDisconnection(
-    roomCode,
+    room!,
     username,
     connections,
     shouldRemoveRoom,

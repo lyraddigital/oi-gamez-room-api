@@ -8,6 +8,7 @@ export interface Room {
   hostUsername: string;
   gameTypeId: number;
   isPublic: boolean;
+  isVisible: boolean;
   curNumOfUsers: number;
   minNumOfUsers: number;
   maxNumOfUsers: number;

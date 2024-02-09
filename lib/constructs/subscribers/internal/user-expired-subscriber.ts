@@ -39,7 +39,7 @@ export class UserExpiredSubscriber extends Construct {
     const tablePolicyDocument = new PolicyStatement({
       effect: Effect.ALLOW,
       resources: [props.table.tableArn],
-      actions: ["dynamodb:UpdateItem"],
+      actions: ["dynamodb:Query", "dynamodb:UpdateItem"],
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({

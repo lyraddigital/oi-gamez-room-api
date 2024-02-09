@@ -7,22 +7,29 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
+import { Room } from "@oigamez/models";
 
 export const updateRoomUserCount = (
-  roomCode: string,
+  room: Room,
   userIncrement: number
 ): TransactWriteItem => {
+  const isVisible =
+    room.isPublic && room.curNumOfUsers + userIncrement < room.maxNumOfUsers;
+
   return {
     Update: {
       TableName: DYNAMO_TABLE_NAME,
-      Key: keys.room(roomCode),
-      UpdateExpression: "ADD #curNumOfUsers :curNumOfUsers",
+      Key: keys.room(room.code),
+      UpdateExpression:
+        "ADD #curNumOfUsers :curNumOfUsers, SET #isVisible = :isVisible",
       ConditionExpression: expressions.common.keysExists,
       ExpressionAttributeNames: {
         "#curNumOfUsers": dynamoFieldNames.room.curNumOfUsers,
+        "#isVisible": dynamoFieldNames.room.isVisible,
       },
       ExpressionAttributeValues: {
         ":curNumOfUsers": dynamoFieldValues.room.curNumOfUsers(userIncrement),
+        ":isVisible": dynamoFieldValues.room.isVisible(isVisible),
       },
     },
   };

@@ -3,28 +3,28 @@ import {
   RoomRemovedInternalEvent,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
-import { RoomConnection } from "@oigamez/models";
+import { Room, RoomConnection } from "@oigamez/models";
 import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
 
 import { handleUserLeft } from "../handle-user-left";
 
 const changeHost = async (
-  roomCode: string,
+  room: Room,
   hostUsername: string,
   hostConnectionId: string | undefined,
   otherConnections: RoomConnection[],
   gameTypeId: number
 ): Promise<void> => {
-  await handleUserLeft(roomCode, hostUsername, hostConnectionId, gameTypeId);
+  await handleUserLeft(room, hostUsername, hostConnectionId, gameTypeId);
 
   const nextHostUsername =
     otherConnections.length > 0 ? otherConnections[0]?.username : undefined;
 
   if (nextHostUsername) {
-    await updateRoomHost(roomCode, nextHostUsername);
+    await updateRoomHost(room.code, nextHostUsername);
     await publishInternalEvents<HostChangeInternalEvent>([
       new HostChangeInternalEvent(
-        roomCode,
+        room.code,
         hostUsername,
         nextHostUsername,
         gameTypeId
@@ -47,7 +47,7 @@ const closeRoom = async (
 };
 
 export const handleHostDisconnection = async (
-  roomCode: string,
+  room: Room,
   username: string,
   connections: RoomConnection[],
   shouldRemoveRoom: boolean,
@@ -58,12 +58,12 @@ export const handleHostDisconnection = async (
   )?.connectionId;
 
   if (shouldRemoveRoom) {
-    await closeRoom(roomCode, username, hostConnectionId, gameTypeId);
+    await closeRoom(room.code, username, hostConnectionId, gameTypeId);
   } else {
     const otherConnections = connections.filter((c) => c.username !== username);
 
     await changeHost(
-      roomCode,
+      room,
       username,
       hostConnectionId,
       otherConnections,
