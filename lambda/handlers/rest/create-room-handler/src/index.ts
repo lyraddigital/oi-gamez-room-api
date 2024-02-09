@@ -72,7 +72,7 @@ export const handler = async (
     await createRoom(
       {
         code: roomCode,
-        createdAt: 1, // TODO: Add atually UTC time now as a number
+        createdAt: new Date(),
         title: payload!.title!,
         hostUsername: payload!.hostUsername!,
         minNumOfUsers: gameType!.minNumOfUsers,

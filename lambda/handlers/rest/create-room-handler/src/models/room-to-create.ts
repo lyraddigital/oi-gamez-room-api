@@ -1,6 +1,6 @@
 export interface RoomToCreate {
   code: string;
-  createdAt: number;
+  createdAt: Date;
   title: string;
   hostUsername: string;
   isPublic: boolean;

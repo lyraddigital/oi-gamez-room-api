@@ -2,6 +2,7 @@ import { RoomStatus } from "./room-status";
 
 export interface Room {
   code: string;
+  createdAt: Date;
   epochExpiry: number;
   title: string;
   hostUsername: string;

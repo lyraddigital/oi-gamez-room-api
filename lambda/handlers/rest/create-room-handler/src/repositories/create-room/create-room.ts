@@ -27,6 +27,9 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       [dynamoFieldNames.room.code]: dynamoFieldValues.room.code(
         roomToCreate.code
       ),
+      [dynamoFieldNames.room.createdAt]: dynamoFieldValues.room.createdAt(
+        roomToCreate.createdAt.toISOString()
+      ),
       [dynamoFieldNames.room.title]: dynamoFieldValues.room.title(
         roomToCreate.title
       ),
@@ -39,7 +42,7 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
         dynamoFieldValues.room.minNumOfUsers(roomToCreate.minNumOfUsers),
       [dynamoFieldNames.room.maxNumOfUsers]:
         dynamoFieldValues.room.maxNumOfUsers(roomToCreate.maxNumOfUsers),
-      [dynamoFieldNames.room.visibility]: dynamoFieldValues.room.visibility(
+      [dynamoFieldNames.room.isPublic]: dynamoFieldValues.room.isPublic(
         roomToCreate.isPublic
       ),
       [dynamoFieldNames.room.status]: dynamoFieldValues.room.status(

@@ -90,7 +90,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
     status: "Status",
     gameTypeId: "GameTypeId",
     title: "Title",
-    visibility: "IsVisible",
+    isPublic: "IsPublic",
   },
 };
 
@@ -130,6 +130,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
     pk: (code: string) => stringAttribute(`Room#${code}`),
     sk: stringAttribute("#Metadata"),
     code: (code: string) => stringAttribute(code),
+    createdAt: (createdAt: string) => stringAttribute(createdAt),
     hostUsername: (hostUsername: string) => stringAttribute(hostUsername),
     curNumOfUsers: (curNumOfUsers: number) => numberAttribute(curNumOfUsers),
     minNumOfUsers: (minNumOfUsers: number) => numberAttribute(minNumOfUsers),
@@ -137,7 +138,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
     status: (status: string) => stringAttribute(status),
     gameTypeId: (gameTypeId: number) => numberAttribute(gameTypeId),
     title: (title: string) => stringAttribute(title),
-    visibility: (isVisible: boolean) => booleanAttribute(isVisible),
+    isPublic: (isPublic: boolean) => booleanAttribute(isPublic),
     type: stringAttribute(RecordType.room),
   },
 };

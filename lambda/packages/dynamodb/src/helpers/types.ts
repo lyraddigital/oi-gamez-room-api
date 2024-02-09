@@ -39,7 +39,7 @@ interface RoomFieldNames {
   minNumOfUsers: string;
   status: string;
   title: string;
-  visibility: string;
+  isPublic: string;
   gameTypeId: string;
 }
 
@@ -74,14 +74,15 @@ interface RoomFieldValues {
   pk: (code: string) => AttributeValue.SMember;
   sk: AttributeValue.SMember;
   code: (code: string) => AttributeValue.SMember;
-  hostUsername: (hostUsername: string) => AttributeValue.SMember;
+  createdAt: (createdAt: string) => AttributeValue.SMember;
   curNumOfUsers: (curNumOfUsers: number) => AttributeValue.NMember;
+  gameTypeId: (gameTypeId: number) => AttributeValue.NMember;
+  hostUsername: (hostUsername: string) => AttributeValue.SMember;
+  isPublic: (isPublic: boolean) => AttributeValue.BOOLMember;
   maxNumOfUsers: (maxNumOfUsers: number) => AttributeValue.NMember;
   minNumOfUsers: (minNumOfUsers: number) => AttributeValue.NMember;
   status: (status: string) => AttributeValue.SMember;
-  gameTypeId: (gameTypeId: number) => AttributeValue.NMember;
   title: (title: string) => AttributeValue.SMember;
-  visibility: (isVisible: boolean) => AttributeValue.BOOLMember;
   type: AttributeValue.SMember;
 }
 
