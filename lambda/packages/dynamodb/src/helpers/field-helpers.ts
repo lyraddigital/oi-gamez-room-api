@@ -82,6 +82,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
   },
   room: {
     code: "RoomCode",
+    createdAt: "CreatedAt",
     hostUsername: "HostUsername",
     curNumOfUsers: "CurNumberOfUsers",
     minNumOfUsers: "MinNumberOfUsers",

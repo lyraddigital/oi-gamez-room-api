@@ -32,6 +32,7 @@ interface GameTypesFieldNames {
 
 interface RoomFieldNames {
   code: string;
+  createdAt: string;
   hostUsername: string;
   curNumOfUsers: string;
   maxNumOfUsers: string;
