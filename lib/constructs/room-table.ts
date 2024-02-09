@@ -25,5 +25,11 @@ export class RoomTable extends Construct {
       partitionKey: { name: "HostUsername", type: AttributeType.STRING },
       sortKey: { name: "Status", type: AttributeType.STRING },
     });
+
+    this.table.addGlobalSecondaryIndex({
+      indexName: props.visibleRoomsIndexName,
+      partitionKey: { name: "VisiblityType", type: AttributeType.STRING },
+      sortKey: { name: "CreatedAt", type: AttributeType.STRING },
+    });
   }
 }

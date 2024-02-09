@@ -40,7 +40,7 @@ interface RoomFieldNames {
   status: string;
   title: string;
   isPublic: string;
-  isVisible: string;
+  visibilityType: string;
   gameTypeId: string;
 }
 
@@ -80,7 +80,7 @@ interface RoomFieldValues {
   gameTypeId: (gameTypeId: number) => AttributeValue.NMember;
   hostUsername: (hostUsername: string) => AttributeValue.SMember;
   isPublic: (isPublic: boolean) => AttributeValue.BOOLMember;
-  isVisible: (isVisible: boolean) => AttributeValue.BOOLMember;
+  visibilityType: (visibilityType: string) => AttributeValue.SMember;
   maxNumOfUsers: (maxNumOfUsers: number) => AttributeValue.NMember;
   minNumOfUsers: (minNumOfUsers: number) => AttributeValue.NMember;
   status: (status: string) => AttributeValue.SMember;

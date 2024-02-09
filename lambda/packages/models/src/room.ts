@@ -1,4 +1,5 @@
 import { RoomStatus } from "./room-status";
+import { RoomVisiblityType } from "./room-visiblity-type";
 
 export interface Room {
   code: string;
@@ -8,7 +9,7 @@ export interface Room {
   hostUsername: string;
   gameTypeId: number;
   isPublic: boolean;
-  isVisible: boolean;
+  visibilityType: RoomVisiblityType;
   curNumOfUsers: number;
   minNumOfUsers: number;
   maxNumOfUsers: number;

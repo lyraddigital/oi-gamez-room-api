@@ -7,28 +7,33 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
-import { Room } from "@oigamez/models";
+import { Room, RoomVisiblityType } from "@oigamez/models";
 
 export const updateRoomHostDetails = (
   room: Room,
   ttl: number
 ): TransactWriteItem => {
+  const visibilityType = room.isPublic
+    ? RoomVisiblityType.visible
+    : RoomVisiblityType.hidden;
+
   return {
     Update: {
       TableName: DYNAMO_TABLE_NAME,
       Key: keys.room(room.code),
       UpdateExpression:
-        "SET #ttl = :ttl, #curNumOfUsers = :curNumOfUsers, #isVisible = :isVisible",
+        "SET #ttl = :ttl, #curNumOfUsers = :curNumOfUsers, #visibilityType = :visibilityType",
       ConditionExpression: expressions.common.keysExists,
       ExpressionAttributeNames: {
         "#ttl": dynamoFieldNames.common.ttl,
         "#curNumOfUsers": dynamoFieldNames.room.curNumOfUsers,
-        "#isVisible": dynamoFieldNames.room.isVisible,
+        "#visibilityType": dynamoFieldNames.room.visibilityType,
       },
       ExpressionAttributeValues: {
         ":ttl": dynamoFieldValues.common.ttl(ttl),
         ":curNumOfUsers": dynamoFieldValues.room.curNumOfUsers(1),
-        ":isVisible": dynamoFieldValues.room.isVisible(room.isPublic),
+        ":visibilityType":
+          dynamoFieldValues.room.visibilityType(visibilityType),
       },
     },
   };

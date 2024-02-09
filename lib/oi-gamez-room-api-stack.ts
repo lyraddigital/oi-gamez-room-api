@@ -19,6 +19,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
 
     const roomTable = new RoomTable(this, "RoomTable", {
       hostedRoomsIndexName: IndexNames.hostedRooms,
+      visibleRoomsIndexName: IndexNames.visibleRooms,
     });
 
     const connectionTable = new ConnectionTable(this, "ConnectionTable", {

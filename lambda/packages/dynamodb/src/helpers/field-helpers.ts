@@ -91,7 +91,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
     gameTypeId: "GameTypeId",
     title: "Title",
     isPublic: "IsPublic",
-    isVisible: "IsVisible",
+    visibilityType: "VisiblityType",
   },
 };
 
@@ -140,7 +140,7 @@ export const dynamoFieldValues: DynamoFieldValues = {
     gameTypeId: (gameTypeId: number) => numberAttribute(gameTypeId),
     title: (title: string) => stringAttribute(title),
     isPublic: (isPublic: boolean) => booleanAttribute(isPublic),
-    isVisible: (isVisible: boolean) => booleanAttribute(isVisible),
+    visibilityType: (visibilityType: string) => stringAttribute(visibilityType),
     type: stringAttribute(RecordType.room),
   },
 };

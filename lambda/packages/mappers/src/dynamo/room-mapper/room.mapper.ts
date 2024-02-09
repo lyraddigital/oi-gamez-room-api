@@ -5,7 +5,7 @@ import {
   getDynamoInt,
   getDynamoString,
 } from "@oigamez/dynamodb";
-import { Room, RoomStatus } from "@oigamez/models";
+import { Room, RoomStatus, RoomVisiblityType } from "@oigamez/models";
 
 export const mapFromDynamoToRoom = (
   dynamoRecord: Record<string, AttributeValue>
@@ -16,7 +16,9 @@ export const mapFromDynamoToRoom = (
       dynamoRecord[dynamoFieldNames.room.hostUsername]
     ),
     isPublic: getDynamoBoolean(dynamoRecord[dynamoFieldNames.room.isPublic]),
-    isVisible: getDynamoBoolean(dynamoRecord[dynamoFieldNames.room.isVisible]),
+    visibilityType: getDynamoString(
+      dynamoRecord[dynamoFieldNames.room.visibilityType]
+    ) as RoomVisiblityType,
     code: getDynamoString(dynamoRecord[dynamoFieldNames.room.code]),
     createdAt: new Date(
       getDynamoString(dynamoRecord[dynamoFieldNames.room.curNumOfUsers])

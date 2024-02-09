@@ -12,7 +12,7 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
-import { RoomStatus } from "@oigamez/models";
+import { RoomStatus, RoomVisiblityType } from "@oigamez/models";
 
 import { RoomToCreate } from "../../models";
 
@@ -45,8 +45,8 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       [dynamoFieldNames.room.isPublic]: dynamoFieldValues.room.isPublic(
         roomToCreate.isPublic
       ),
-      [dynamoFieldNames.room.isVisible]:
-        dynamoFieldValues.room.isVisible(false),
+      [dynamoFieldNames.room.visibilityType]:
+        dynamoFieldValues.room.visibilityType(RoomVisiblityType.hidden),
       [dynamoFieldNames.room.status]: dynamoFieldValues.room.status(
         RoomStatus.NotAvailable
       ),

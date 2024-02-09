@@ -216,6 +216,7 @@ interface HandlerFunctionNames {
 
 interface IndexNames {
   hostedRooms: string;
+  visibleRooms: string;
   connection: string;
   lastDisconnected: string;
 }
@@ -424,6 +425,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
 
 export const IndexNames: IndexNames = {
   hostedRooms: "HostedRooms-index",
+  visibleRooms: "VisibleRooms-index",
   connection: "Connection-index",
   lastDisconnected: "LastDisconnected-index",
 };
