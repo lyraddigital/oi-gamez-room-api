@@ -13,7 +13,12 @@ import {
   UserJoinedSubscriber,
   UserLeftSubscriber,
 } from "./internal";
-import { GameInitializedSubscriber, GameStartedSubscriber } from "./external";
+import {
+  GameCompletedSubscriber,
+  GameInitializedSubscriber,
+  GameMessageSubscriber,
+  GameStartedSubscriber,
+} from "./external";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(
@@ -111,6 +116,28 @@ export class RoomEventBridgeSubscribers extends Construct {
     const gameStartedLambdaFn = new GameStartedSubscriber(
       this,
       "GameStartedSubscriber",
+      {
+        table: props.table,
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+      }
+    );
+
+    const gameCompletedLambdaFn = new GameCompletedSubscriber(
+      this,
+      "GameCompletedSubscriber",
+      {
+        table: props.table,
+        connectionTable: props.connectionTable,
+        roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
+        roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+      }
+    );
+
+    const gameMessageLambdaFn = new GameMessageSubscriber(
+      this,
+      "GameMessageSubscriber",
       {
         table: props.table,
         connectionTable: props.connectionTable,
@@ -231,6 +258,34 @@ export class RoomEventBridgeSubscribers extends Construct {
       eventPattern: {
         source: [props.roomReceiveEventBusSourceName],
         detailType: [EventTypes.gameStarted],
+      },
+      eventBus: props.roomReceiveEventBus,
+    });
+
+    new Rule(this, "GameCompletedSubscriberRule", {
+      description: "Rule that subscribes to game completes.",
+      targets: [
+        new aws_events_targets.LambdaFunction(
+          gameCompletedLambdaFn.lambdaFunction
+        ),
+      ],
+      eventPattern: {
+        source: [props.roomReceiveEventBusSourceName],
+        detailType: [EventTypes.gameCompleted],
+      },
+      eventBus: props.roomReceiveEventBus,
+    });
+
+    new Rule(this, "GameMessageSubscriberRule", {
+      description: "Rule that subscribes to game messages.",
+      targets: [
+        new aws_events_targets.LambdaFunction(
+          gameMessageLambdaFn.lambdaFunction
+        ),
+      ],
+      eventPattern: {
+        source: [props.roomReceiveEventBusSourceName],
+        detailType: [EventTypes.gameMessage],
       },
       eventBus: props.roomReceiveEventBus,
     });

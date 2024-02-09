@@ -34,6 +34,7 @@ interface EnvironmentVariables {
   gameInitializedSubscriber: GameInitializedSubscriberEnvironmentVariables;
   gameStartedSubscriber: GameStartedSubscriberEnvironmentVariables;
   gameCompletedSubscriber: GameCompletedSubscriberEnvironmentVariables;
+  gameMessageSubscriber: GameMessageSubscriberEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -157,6 +158,12 @@ interface GameCompletedSubscriberEnvironmentVariables {
   roomSocketApiEndpoint: string;
 }
 
+interface GameMessageSubscriberEnvironmentVariables {
+  tableName: string;
+  connectionTableName: string;
+  roomSocketApiEndpoint: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -176,6 +183,7 @@ interface HandlerFilePaths {
   gameInitializedSubscriber: string;
   gameStartedSubscriber: string;
   gameCompletedSubscriber: string;
+  gameMessageSubscriber: string;
 }
 
 interface ResourcePaths {
@@ -203,6 +211,7 @@ interface HandlerFunctionNames {
   gameInitializedSubscriber: string;
   gameStartedSubscriber: string;
   gameCompletedSubscriber: string;
+  gameMessageSubscriber: string;
 }
 
 interface IndexNames {
@@ -220,6 +229,8 @@ interface EventTypes {
   changeHost: string;
   gameInitialization: string;
   gameStarted: string;
+  gameCompleted: string;
+  gameMessage: string;
 }
 
 export const ResourcePaths: ResourcePaths = {
@@ -344,6 +355,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
   },
+  gameMessageSubscriber: {
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    connectionTableName: EnvironmentVariableNames.connectionTableName,
+    roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
+  },
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {
@@ -380,6 +396,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../../../lambda/handlers/subscribers/external/game-started-subscriber/src/index.ts",
   gameCompletedSubscriber:
     "../../../../lambda/handlers/subscribers/external/game-completed-subscriber/src/index.ts",
+  gameMessageSubscriber:
+    "../../../../lambda/handlers/subscribers/external/game-message-subscriber/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -401,6 +419,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   gameInitializedSubscriber: "handler",
   gameStartedSubscriber: "handler",
   gameCompletedSubscriber: "handler",
+  gameMessageSubscriber: "handler",
 };
 
 export const IndexNames: IndexNames = {
@@ -418,4 +437,6 @@ export const EventTypes: EventTypes = {
   changeHost: "room-internal.change-host",
   gameInitialization: "room-receive.game-initialized",
   gameStarted: "room-receive.game-started",
+  gameCompleted: "room-receive.game-completed",
+  gameMessage: "room-receive.game-message",
 };
