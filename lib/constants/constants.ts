@@ -3,6 +3,7 @@ enum EnvironmentVariableNames {
   corsAllowedOrigins = "CORS_ALLOWED_ORIGINS",
   connectWindowInSeconds = "CONNECT_WINDOW_IN_SECONDS",
   hostRoomIndexName = "HOST_ROOM_INDEX_NAME",
+  visibleRoomsIndexName = "VISIBLE_ROOM_INDEX_NAME",
   internalEventBusName = "EB_INTERNAL_EB_NAME",
   internalEventBusSourceName = "EB_INTERNAL_EVENT_SOURCE_NAME",
   connectionTableName = "CONNECTION_DYNAMO_TABLE_NAME",
@@ -35,6 +36,7 @@ interface EnvironmentVariables {
   gameStartedSubscriber: GameStartedSubscriberEnvironmentVariables;
   gameCompletedSubscriber: GameCompletedSubscriberEnvironmentVariables;
   gameMessageSubscriber: GameMessageSubscriberEnvironmentVariables;
+  getPublicRooms: GetPublicRoomsEnvironmentVariables;
 }
 
 interface GetGameTypesEnvironmentVariables {
@@ -162,6 +164,12 @@ interface GameMessageSubscriberEnvironmentVariables {
   tableName: string;
   connectionTableName: string;
   roomSocketApiEndpoint: string;
+}
+
+interface GetPublicRoomsEnvironmentVariables {
+  tableName: string;
+  visibleRoomsIndexName: string;
+  corsAllowedOrigins: string;
 }
 
 interface HandlerFilePaths {
@@ -364,6 +372,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: EnvironmentVariableNames.dynamoTableName,
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     roomSocketApiEndpoint: EnvironmentVariableNames.roomSocketApiEndpoint,
+  },
+  getPublicRooms: {
+    tableName: EnvironmentVariableNames.dynamoTableName,
+    visibleRoomsIndexName: EnvironmentVariableNames.visibleRoomsIndexName,
+    corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
   },
 };
 

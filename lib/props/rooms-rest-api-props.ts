@@ -9,6 +9,7 @@ export interface RoomsRestApiProps {
   allowedOrigins: string;
   connectWindowInSeconds: number;
   hostRoomIndexName: string;
+  visibleRoomsIndexName: string;
   eventBus: IEventBus;
   eventBusSourceName: string;
 }

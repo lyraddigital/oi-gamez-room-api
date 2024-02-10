@@ -55,6 +55,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       connectWindowInSeconds: 30,
       allowedOrigins: "http://localhost:3000",
       hostRoomIndexName: IndexNames.hostedRooms,
+      visibleRoomsIndexName: IndexNames.visibleRooms,
       eventBus: roomEventBus.eventBus,
       eventBusSourceName: roomEventBusSourceName,
     });

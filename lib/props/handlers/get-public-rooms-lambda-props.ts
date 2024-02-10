@@ -3,4 +3,6 @@ import { LambdaHandlerProps } from "./lambda-handler-props";
 
 export interface GetPublicRoomsLambdaProps
   extends LambdaHandlerProps,
-    CorsProps {}
+    CorsProps {
+  visibleRoomsIndexName: string;
+}

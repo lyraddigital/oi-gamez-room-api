@@ -1,0 +1,41 @@
+import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
+
+import {
+  DYNAMO_TABLE_NAME,
+  VISIBLE_ROOM_INDEX_NAME,
+} from "@oigamez/configuration";
+import {
+  dbClient,
+  dynamoFieldNames,
+  dynamoFieldValues,
+} from "@oigamez/dynamodb";
+import { RoomVisiblityType } from "@oigamez/models";
+
+import { PublicRoom } from "../models";
+import { mapFromDynamoToPublicRoom } from "../mappers";
+
+export const getPublicRooms = async (): Promise<PublicRoom[]> => {
+  const queryCommandInput: QueryCommandInput = {
+    TableName: DYNAMO_TABLE_NAME,
+    IndexName: VISIBLE_ROOM_INDEX_NAME,
+    KeyConditionExpression: "#visibilityType = :visibilityType",
+    ExpressionAttributeNames: {
+      "#visibilityType": dynamoFieldNames.room.visibilityType,
+    },
+    ExpressionAttributeValues: {
+      ":visibilityType": dynamoFieldValues.room.visibilityType(
+        RoomVisiblityType.visible
+      ),
+    },
+    Limit: 20,
+  };
+
+  const command = new QueryCommand(queryCommandInput);
+  const response = await dbClient.send(command);
+
+  if (!response?.Items?.length) {
+    return [];
+  }
+
+  return response.Items.map(mapFromDynamoToPublicRoom);
+};

@@ -45,6 +45,7 @@ export class RoomsRestApi extends Construct {
       table: props.table,
       resource: publicRoomsResource,
       allowedOrigins: props.allowedOrigins,
+      visibleRoomsIndexName: props.visibleRoomsIndexName,
     });
 
     new GetRoomStatusLambda(this, "GetRoomStatusLambda", {
