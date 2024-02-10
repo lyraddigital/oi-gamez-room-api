@@ -7,6 +7,7 @@ import { RoomsRestApiProps } from "../props";
 import {
   CreateRoomLambda,
   GetGameTypesLambda,
+  GetPublicRoomsLambda,
   GetRoomStatusLambda,
   JoinRoomLambda,
   LeaveRoomLambda,
@@ -23,6 +24,7 @@ export class RoomsRestApi extends Construct {
 
     const gameTypesResource = api.root.addResource(ResourcePaths.gameTypes);
     const roomsResource = api.root.addResource(ResourcePaths.rooms);
+    const publicRoomsResource = roomsResource.addResource(ResourcePaths.public);
     const roomResource = roomsResource.addResource(ResourcePaths.room);
 
     new GetGameTypesLambda(this, "GetGameTypesLambda", {
@@ -37,6 +39,12 @@ export class RoomsRestApi extends Construct {
       allowedOrigins: props.allowedOrigins,
       connectWindowInSeconds: props.connectWindowInSeconds,
       hostRoomIndexName: props.hostRoomIndexName,
+    });
+
+    new GetPublicRoomsLambda(this, "GetPublicRoomsLambda", {
+      table: props.table,
+      resource: publicRoomsResource,
+      allowedOrigins: props.allowedOrigins,
     });
 
     new GetRoomStatusLambda(this, "GetRoomStatusLambda", {

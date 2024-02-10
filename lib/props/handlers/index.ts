@@ -2,6 +2,7 @@ export * from "./api-handler-function-props";
 export * from "./create-room-lambda-props";
 export * from "./expired-connection-cleanup-lambda-props";
 export * from "./get-room-status-lambda-props";
+export * from "./get-public-rooms-lambda-props";
 export * from "./join-room-lambda-props";
 export * from "./leave-room-lambda-props";
 export * from "./ensure-room-connection-lambda-props";

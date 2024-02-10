@@ -184,12 +184,14 @@ interface HandlerFilePaths {
   gameStartedSubscriber: string;
   gameCompletedSubscriber: string;
   gameMessageSubscriber: string;
+  getPublicRooms: string;
 }
 
 interface ResourcePaths {
   gameTypes: string;
   rooms: string;
   room: string;
+  public: string;
 }
 
 interface HandlerFunctionNames {
@@ -212,6 +214,7 @@ interface HandlerFunctionNames {
   gameStartedSubscriber: string;
   gameCompletedSubscriber: string;
   gameMessageSubscriber: string;
+  getPublicRooms: string;
 }
 
 interface IndexNames {
@@ -238,6 +241,7 @@ export const ResourcePaths: ResourcePaths = {
   gameTypes: "game-types",
   rooms: "rooms",
   room: "{roomCode}",
+  public: "public",
 };
 
 export const EnvironmentVariables: EnvironmentVariables = {
@@ -399,6 +403,8 @@ export const HandlerFilePaths: HandlerFilePaths = {
     "../../../../lambda/handlers/subscribers/external/game-completed-subscriber/src/index.ts",
   gameMessageSubscriber:
     "../../../../lambda/handlers/subscribers/external/game-message-subscriber/src/index.ts",
+  getPublicRooms:
+    "../../../lambda/handlers/rest/get-public-rooms-handler/src/index.ts",
 };
 
 export const HandlerFunctionNames: HandlerFunctionNames = {
@@ -421,6 +427,7 @@ export const HandlerFunctionNames: HandlerFunctionNames = {
   gameStartedSubscriber: "handler",
   gameCompletedSubscriber: "handler",
   gameMessageSubscriber: "handler",
+  getPublicRooms: "handler",
 };
 
 export const IndexNames: IndexNames = {
