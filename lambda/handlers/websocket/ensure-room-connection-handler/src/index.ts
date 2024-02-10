@@ -77,7 +77,7 @@ export const handler = async (
 
       if (isFirstHostConnection) {
         await publishExternalEvents([
-          new RoomCreatedExternalEvent(room!.code, room!.gameTypeId),
+          new RoomCreatedExternalEvent(room!.code, username!, room!.gameTypeId),
         ]);
       }
     } else {
