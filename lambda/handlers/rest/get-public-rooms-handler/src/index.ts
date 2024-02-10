@@ -2,7 +2,10 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
 
-import { getPublicRooms } from "../repositories";
+import { getPublicRooms } from "./repositories";
+import { validateEnvironment } from "./configuration";
+
+validateEnvironment();
 
 export const handler = async (
   event: APIGatewayProxyEvent

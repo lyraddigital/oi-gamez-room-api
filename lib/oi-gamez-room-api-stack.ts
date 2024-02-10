@@ -53,6 +53,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       account: this.account,
       region: this.region,
       connectWindowInSeconds: 30,
+      numberOfPublicRoomsToRetrieve: 20,
       allowedOrigins: "http://localhost:3000",
       hostRoomIndexName: IndexNames.hostedRooms,
       visibleRoomsIndexName: IndexNames.visibleRooms,

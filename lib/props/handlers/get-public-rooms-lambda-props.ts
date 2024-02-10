@@ -5,4 +5,5 @@ export interface GetPublicRoomsLambdaProps
   extends LambdaHandlerProps,
     CorsProps {
   visibleRoomsIndexName: string;
+  numberOfPublicRoomsToRetrieve: number;
 }

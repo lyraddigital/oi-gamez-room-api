@@ -14,6 +14,7 @@ enum EnvironmentVariableNames {
   connectionIndexName = "CONNECTION_DYNAMO_INDEX_NAME",
   externalEventBusName = "EB_EXTERNAL_EB_NAME",
   externalEventBusSourceName = "EB_EXTERNAL_EVENT_SOURCE_NAME",
+  publicRoomsToRetrieve = "PUBLIC_ROOMS_TO_RETRIEVE",
 }
 
 interface EnvironmentVariables {
@@ -170,6 +171,7 @@ interface GetPublicRoomsEnvironmentVariables {
   tableName: string;
   visibleRoomsIndexName: string;
   corsAllowedOrigins: string;
+  publicRoomsToRetrieve: string;
 }
 
 interface HandlerFilePaths {
@@ -377,6 +379,7 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: EnvironmentVariableNames.dynamoTableName,
     visibleRoomsIndexName: EnvironmentVariableNames.visibleRoomsIndexName,
     corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
+    publicRoomsToRetrieve: EnvironmentVariableNames.publicRoomsToRetrieve,
   },
 };
 

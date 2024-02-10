@@ -2,6 +2,7 @@ import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
 
 import {
   DYNAMO_TABLE_NAME,
+  PUBLIC_ROOMS_TO_RETRIEVE,
   VISIBLE_ROOM_INDEX_NAME,
 } from "@oigamez/configuration";
 import {
@@ -27,7 +28,7 @@ export const getPublicRooms = async (): Promise<PublicRoom[]> => {
         RoomVisiblityType.visible
       ),
     },
-    Limit: 20,
+    Limit: PUBLIC_ROOMS_TO_RETRIEVE,
   };
 
   const command = new QueryCommand(queryCommandInput);

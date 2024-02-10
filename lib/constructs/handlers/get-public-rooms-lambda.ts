@@ -26,6 +26,8 @@ export class GetPublicRoomsLambda extends Construct {
           props.visibleRoomsIndexName,
         [EnvironmentVariables.getPublicRooms.corsAllowedOrigins]:
           props.allowedOrigins,
+        [EnvironmentVariables.getPublicRooms.publicRoomsToRetrieve]:
+          props.numberOfPublicRoomsToRetrieve.toString(),
       },
     });
 
