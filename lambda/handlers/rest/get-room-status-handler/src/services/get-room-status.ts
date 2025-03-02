@@ -20,7 +20,7 @@ export const getRoomStatus = async (
       ? "Room is full"
       : isGameAvailable
       ? ""
-      : room.status || ""; // TODO: We may need to give a better format of this status later.
+      : room.status || "";
   }
 
   return { canJoin: canJoinGameSession, reason };
