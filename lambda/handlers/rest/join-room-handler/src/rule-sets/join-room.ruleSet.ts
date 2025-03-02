@@ -10,7 +10,7 @@ export const runJoinRoomRuleSet = (
 
   if (!room) {
     errorMessages.push("Cannot join room. The room could not be found.");
-  } else if (room!.status != RoomStatus.Available) {
+  } else if (room!.status != RoomStatus.available) {
     errorMessages.push("Cannot join room. The room is not available.");
   } else if (room!.curNumOfUsers === room!.maxNumOfUsers) {
     errorMessages.push("Cannot join room. The room is full.");

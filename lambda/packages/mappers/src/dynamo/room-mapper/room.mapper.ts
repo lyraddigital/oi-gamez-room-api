@@ -21,7 +21,7 @@ export const mapFromDynamoToRoom = (
     ) as RoomVisiblityType,
     code: getDynamoString(dynamoRecord[dynamoFieldNames.room.code]),
     createdAt: new Date(
-      getDynamoString(dynamoRecord[dynamoFieldNames.room.curNumOfUsers])
+      getDynamoString(dynamoRecord[dynamoFieldNames.room.createdAt])
     ),
     curNumOfUsers: getDynamoInt(
       dynamoRecord[dynamoFieldNames.room.curNumOfUsers]

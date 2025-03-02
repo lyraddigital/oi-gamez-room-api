@@ -1,6 +1,6 @@
 export enum RoomStatus {
-  Completed = "completed",
-  NotAvailable = "not available",
-  Available = "available",
-  InProgress = "inProgress",
+  completed = "completed",
+  notAvailable = "not available",
+  available = "available",
+  inProgress = "inProgress",
 }

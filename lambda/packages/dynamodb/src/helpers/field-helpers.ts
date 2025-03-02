@@ -91,7 +91,7 @@ export const dynamoFieldNames: DynamoFieldNames = {
     gameTypeId: "GameTypeId",
     title: "Title",
     isPublic: "IsPublic",
-    visibilityType: "VisiblityType",
+    visibilityType: "VisibilityType",
   },
 };
 

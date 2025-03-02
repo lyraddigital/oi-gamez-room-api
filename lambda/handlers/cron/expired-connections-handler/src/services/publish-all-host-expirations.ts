@@ -10,8 +10,8 @@ export const publishAllHostExpirations = async (
   await publishInternalEvents(
     hostedRooms.map<HostConnectionExpiredInternalEvent>((hr) => {
       const shouldRemoveRoom =
-        (hr.status === RoomStatus.Available ||
-          hr.status === RoomStatus.NotAvailable) &&
+        (hr.status === RoomStatus.available ||
+          hr.status === RoomStatus.notAvailable) &&
         hr.curNumOfUsers <= 0;
 
       return new HostConnectionExpiredInternalEvent(

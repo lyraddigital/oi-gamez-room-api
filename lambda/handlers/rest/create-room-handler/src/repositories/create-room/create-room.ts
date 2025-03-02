@@ -48,7 +48,7 @@ const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
       [dynamoFieldNames.room.visibilityType]:
         dynamoFieldValues.room.visibilityType(RoomVisiblityType.hidden),
       [dynamoFieldNames.room.status]: dynamoFieldValues.room.status(
-        RoomStatus.NotAvailable
+        RoomStatus.notAvailable
       ),
       [dynamoFieldNames.room.gameTypeId]: dynamoFieldValues.room.gameTypeId(
         roomToCreate.gameTypeId

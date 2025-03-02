@@ -23,8 +23,8 @@ export const runEnsureRoomConnectionRuleSet = (
     };
   }
 
-  const isRoomNotAvailable = room.status === RoomStatus.NotAvailable;
-  const isRoomAvailable = room.status === RoomStatus.Available;
+  const isRoomNotAvailable = room.status === RoomStatus.notAvailable;
+  const isRoomAvailable = room.status === RoomStatus.available;
   const isRoomFull = room.curNumOfUsers === room.maxNumOfUsers;
 
   if (isRoomNotAvailable) {

@@ -65,7 +65,7 @@ export const handler = async (
     }
 
     if (isHost) {
-      const isFirstHostConnection = room!.status === RoomStatus.NotAvailable;
+      const isFirstHostConnection = room!.status === RoomStatus.notAvailable;
 
       await establishHostConnection(
         room!,
@@ -86,7 +86,7 @@ export const handler = async (
 
       await establishJoinerConnection(room!, username!, connectionId!);
 
-      if (room!.status === RoomStatus.Available && isNewConnection) {
+      if (room!.status === RoomStatus.available && isNewConnection) {
         await publishInternalEvents<UserJoinedInternalEvent>([
           new UserJoinedInternalEvent(room!.code, username!, room!.gameTypeId),
         ]);

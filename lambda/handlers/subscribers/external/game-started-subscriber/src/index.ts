@@ -24,7 +24,7 @@ export const handler = async (
   const { roomCode } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);
 
-  await updateRoomStatus(roomCode, RoomStatus.InProgress);
+  await updateRoomStatus(roomCode, RoomStatus.inProgress);
 
   await broadcast<GameStartedCommunicationEvent>(
     roomConnections,

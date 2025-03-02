@@ -26,7 +26,7 @@ export const establishJoinerConnection = async (
     ),
   ];
 
-  if (room.status === RoomStatus.Available) {
+  if (room.status === RoomStatus.available) {
     transactionWriteItems.push(updateRoomUserCount(room));
   }
 

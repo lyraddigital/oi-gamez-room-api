@@ -12,7 +12,7 @@ export const getRoomStatus = async (
   let reason = "Not Found";
 
   if (room) {
-    const isGameAvailable = room.status == RoomStatus.Available;
+    const isGameAvailable = room.status == RoomStatus.available;
     const isGameFull = room.curNumOfUsers >= room.maxNumOfUsers;
 
     canJoinGameSession = isGameAvailable && !isGameFull;

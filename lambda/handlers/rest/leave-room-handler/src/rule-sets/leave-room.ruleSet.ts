@@ -10,7 +10,7 @@ export const runLeaveRoomRuleSet = (
 
   if (!room) {
     errorMessages.push("Cannot leave room. The room could not be found.");
-  } else if (room!.status !== RoomStatus.Available) {
+  } else if (room!.status !== RoomStatus.available) {
     errorMessages.push("Cannot leave room. The room has to be available.");
   } else {
     const existingUser = connections.find((c) => c.username === username);
