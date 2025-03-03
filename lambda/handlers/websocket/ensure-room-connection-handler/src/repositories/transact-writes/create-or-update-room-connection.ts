@@ -14,19 +14,17 @@ export const createOrUpdateRoomConnection = (
     Put: {
       TableName: CONNECTION_DYNAMO_TABLE_NAME,
       Item: {
-        [dynamoFieldNames.connection.pk]: dynamoFieldValues.connection.pk(
+        [dynamoFieldNames.common.pk]: dynamoFieldValues.connection.pk(
           room.code
         ),
-        [dynamoFieldNames.connection.sk]:
-          dynamoFieldValues.connection.sk(username),
+        [dynamoFieldNames.common.sk]: dynamoFieldValues.connection.sk(username),
         [dynamoFieldNames.connection.roomCode]:
           dynamoFieldValues.connection.roomCode(room.code),
         [dynamoFieldNames.connection.username]:
           dynamoFieldValues.connection.username(username),
         [dynamoFieldNames.connection.connectionId]:
           dynamoFieldValues.connection.connectionId(connectionId),
-        [dynamoFieldNames.connection.ttl]:
-          dynamoFieldValues.connection.ttl(ttl),
+        [dynamoFieldNames.common.ttl]: dynamoFieldValues.connection.ttl(ttl),
       },
     },
   };

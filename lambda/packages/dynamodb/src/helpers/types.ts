@@ -8,9 +8,6 @@ interface CommonFieldNames {
 }
 
 interface ConnectionFieldNames {
-  pk: string;
-  sk: string;
-  ttl: string;
   username: string;
   roomCode: string;
   connectionId: string;

@@ -27,10 +27,10 @@ const stringAttribute = (stringValue: string): AttributeValue.SMember => ({
 });
 
 export const getDynamoString = (
-  dynamoField?: AttributeValue,
+  attribute?: AttributeValue,
   defaultValue: string = ""
 ): string => {
-  return dynamoField?.S || defaultValue;
+  return attribute?.S || defaultValue;
 };
 
 export const getDynamoInt = (
@@ -61,9 +61,6 @@ export const dynamoFieldNames: DynamoFieldNames = {
     type: "Type",
   },
   connection: {
-    pk: "PK",
-    sk: "SK",
-    ttl: "TTL",
     username: "Username",
     roomCode: "RoomCode",
     connectionId: "ConnectionId",

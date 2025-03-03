@@ -17,7 +17,7 @@ export const getRoomConnections = async (
     TableName: CONNECTION_DYNAMO_TABLE_NAME,
     KeyConditionExpression: "#pk = :pk",
     ExpressionAttributeNames: {
-      "#pk": dynamoFieldNames.connection.pk,
+      "#pk": dynamoFieldNames.common.pk,
     },
     ExpressionAttributeValues: {
       ":pk": dynamoFieldValues.connection.pk(roomCode),
@@ -26,7 +26,7 @@ export const getRoomConnections = async (
 
   if (ttl) {
     input.FilterExpression = "#ttl > :ttl";
-    input.ExpressionAttributeNames!["#ttl"] = dynamoFieldNames.connection.ttl;
+    input.ExpressionAttributeNames!["#ttl"] = dynamoFieldNames.common.ttl;
     input.ExpressionAttributeValues![":ttl"] =
       dynamoFieldValues.connection.ttl(ttl);
   }
