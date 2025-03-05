@@ -21,20 +21,27 @@ const publishEvents = async <
   eventBusSourceName: string,
   items: T[]
 ): Promise<void> => {
-  const putEventsCommandInput: PutEventsCommandInput = {
-    Entries: [
-      ...items.map<PutEventsRequestEntry>((item: T) => ({
-        EventBusName: eventBusName,
-        Source: eventBusSourceName,
-        Detail: JSON.stringify(item),
-        DetailType: item.detailType,
-      })),
-    ],
-  };
+  try {
+    const putEventsCommandInput: PutEventsCommandInput = {
+      Entries: [
+        ...items.map<PutEventsRequestEntry>((item: T) => ({
+          EventBusName: eventBusName,
+          Source: eventBusSourceName,
+          Detail: JSON.stringify(item),
+          DetailType: item.detailType,
+        })),
+      ],
+    };
 
-  const command = new PutEventsCommand(putEventsCommandInput);
+    const command = new PutEventsCommand(putEventsCommandInput);
 
-  await client.send(command);
+    await client.send(command);
+  } catch (e: unknown) {
+    console.log(
+      `Error while trying to send a message to the event bus ${eventBusName} with source ${eventBusSourceName}`,
+      e
+    );
+  }
 };
 
 export const publishInternalEvents = async <T extends EventBridgeInternalEvent>(
