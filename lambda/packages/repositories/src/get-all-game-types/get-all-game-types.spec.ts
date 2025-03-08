@@ -7,6 +7,8 @@ import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
 import { GameType } from "@oigamez/models";
 
+import { getAllGameTypes } from "./get-all-game-types";
+
 jest.mock("@oigamez/mappers");
 jest.mock("@oigamez/configuration", () => {
   return {
@@ -44,8 +46,6 @@ describe("getAllGameTypes tests", () => {
 
     sendSpy.mockReturnValueOnce(queryResponse as any);
 
-    const { getAllGameTypes } = await import("./get-all-game-types");
-
     // Action
     const results = await getAllGameTypes();
 
@@ -76,8 +76,6 @@ describe("getAllGameTypes tests", () => {
     };
 
     sendSpy.mockReturnValueOnce(queryResponse as any);
-
-    const { getAllGameTypes } = await import("./get-all-game-types");
 
     // Action
     const results = await getAllGameTypes();

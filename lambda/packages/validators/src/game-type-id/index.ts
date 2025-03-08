@@ -1,1 +1,1 @@
-export * from "./game-type-id";
+export * from "./game-type-id.validator";

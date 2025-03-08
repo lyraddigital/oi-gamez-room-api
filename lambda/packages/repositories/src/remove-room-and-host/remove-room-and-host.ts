@@ -4,6 +4,7 @@ import {
 } from "@aws-sdk/client-dynamodb";
 
 import { dbClient } from "@oigamez/dynamodb";
+
 import { removeRoom, removeUserConnection } from "../transact-writes";
 
 export const removeRoomAndHost = async (
