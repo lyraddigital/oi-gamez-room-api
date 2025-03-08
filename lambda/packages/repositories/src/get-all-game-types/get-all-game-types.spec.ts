@@ -1,4 +1,9 @@
-import { QueryCommand, QueryCommandOutput } from "@aws-sdk/client-dynamodb";
+import {
+  DynamoDBClient,
+  QueryCommand,
+  QueryCommandOutput,
+} from "@aws-sdk/client-dynamodb";
+import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
 import { GameType } from "@oigamez/models";
 
@@ -10,18 +15,10 @@ jest.mock("@oigamez/configuration", () => {
 });
 
 describe("getAllGameTypes tests", () => {
-  let sendFn = jest.fn();
+  const sendSpy = jest.spyOn<DynamoDBClient, "send">(dbClient, "send");
 
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.mock("@oigamez/dynamodb", () => {
-      return {
-        ...jest.requireActual("@oigamez/dynamodb"),
-        dbClient: {
-          send: sendFn,
-        },
-      };
-    });
   });
 
   it("makes the correct query to dynamo db and returns mapped response", async () => {
@@ -45,7 +42,7 @@ describe("getAllGameTypes tests", () => {
       >
     ).mockReturnValue(aGameType);
 
-    sendFn.mockResolvedValueOnce(Promise.resolve(queryResponse));
+    sendSpy.mockReturnValueOnce(queryResponse as any);
 
     const { getAllGameTypes } = await import("./get-all-game-types");
 
@@ -53,21 +50,40 @@ describe("getAllGameTypes tests", () => {
     const results = await getAllGameTypes();
 
     // Assert
-    expect(sendFn.mock.calls.length).toBe(1);
-    expect((sendFn.mock.calls[0][0] as QueryCommand).input.TableName).toBe(
+    expect(sendSpy.mock.calls.length).toBe(1);
+    expect((sendSpy.mock.calls[0][0] as QueryCommand).input.TableName).toBe(
       "SomeTable"
     );
     expect(
-      (sendFn.mock.calls[0][0] as QueryCommand).input.KeyConditionExpression
+      (sendSpy.mock.calls[0][0] as QueryCommand).input.KeyConditionExpression
     ).toBe("#pk = :pk");
     expect(
-      (sendFn.mock.calls[0][0] as QueryCommand).input.ExpressionAttributeNames
+      (sendSpy.mock.calls[0][0] as QueryCommand).input.ExpressionAttributeNames
     ).toEqual({ "#pk": "PK" });
     expect(
-      (sendFn.mock.calls[0][0] as QueryCommand).input.ExpressionAttributeValues
+      (sendSpy.mock.calls[0][0] as QueryCommand).input.ExpressionAttributeValues
     ).toEqual({ ":pk": { S: "GameTypes" } });
     expect(results).toBeDefined();
     expect(results.length).toBe(1);
     expect(results[0]).toBe(aGameType);
+  });
+
+  it("dynamo db query returns an empty array, returns an empty array overall", async () => {
+    // Arrange
+    const queryResponse: QueryCommandOutput = {
+      Items: [],
+      $metadata: {},
+    };
+
+    sendSpy.mockReturnValueOnce(queryResponse as any);
+
+    const { getAllGameTypes } = await import("./get-all-game-types");
+
+    // Action
+    const results = await getAllGameTypes();
+
+    // Assert
+    expect(results).toBeDefined();
+    expect(results.length).toBe(0);
   });
 });

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1741396997944" clover="3.2.0">
+  <project timestamp="1741396997944" name="All files">
+    <metrics statements="150" coveredstatements="112" conditionals="52" coveredconditionals="35" methods="20" coveredmethods="3" elements="222" coveredelements="150" complexity="0" loc="150" ncloc="150" packages="19" files="52" classes="52"/>
+    <package name="communication.src.client">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="client.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\communication\src\client\client.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\communication\src\client\index.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="communication.src.communication-service">
+      <metrics statements="18" coveredstatements="12" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="3"/>
+      <file name="communication-service.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\communication\src\communication-service\communication-service.ts">
+        <metrics statements="18" coveredstatements="12" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="3" type="cond" truecount="3" falsecount="0"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src">
+      <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\index.ts">
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.connect-window-in-seconds">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="connection-window-in-seconds.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\connect-window-in-seconds\connection-window-in-seconds.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\connect-window-in-seconds\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-connection-window-in-seconds.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\connect-window-in-seconds\verify-connection-window-in-seconds.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.cors-allowed-origin">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="cors-allowed-origin.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\cors-allowed-origin\cors-allowed-origin.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\cors-allowed-origin\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-cors-allowed-origin.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\cors-allowed-origin\verify-cors-allowed-origin.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.dynamo-connection-index-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="dynamo-connection-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-connection-index-name\dynamo-connection-index-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-connection-index-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-dynamo-connection-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-connection-index-name\verify-dynamo-connection-index-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.dynamo-connection-table-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="dynamo-connection-table-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-connection-table-name\dynamo-connection-table-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-connection-table-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-dynamo-connection-table-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-connection-table-name\verify-dynamo-connection-table-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.dynamo-last-disconnected-index-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="dynamo-last-disconnected-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-last-disconnected-index-name\dynamo-last-disconnected-index-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-last-disconnected-index-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-dynamo-last-disconnected-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-last-disconnected-index-name\verify-dynamo-last-disconnected-index-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.dynamo-table-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="dynamo-table-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-table-name\dynamo-table-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-table-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-dynamo-table-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\dynamo-table-name\verify-dynamo-table-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.eb-external-eb-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="eb-external-eb-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-external-eb-name\eb-external-eb-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-external-eb-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-eb-external-eb-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-external-eb-name\verify-eb-external-eb-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.eb-external-event-source-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="eb-external-event-source-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-external-event-source-name\eb-external-event-source-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-external-event-source-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-eb-external-event-source-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-external-event-source-name\verify-eb-external-event-source-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.eb-internal-eb-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="eb-internal-eb-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-internal-eb-name\eb-internal-eb-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-internal-eb-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-eb-internal-eb-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-internal-eb-name\verify-eb-internal-eb-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.eb-internal-event-source-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="eb-internal-event-source-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-internal-event-source-name\eb-internal-event-source-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-internal-event-source-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-eb-internal-event-source-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\eb-internal-event-source-name\verify-eb-internal-event-source-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.expired-disconnection-window-in-seconds">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="expired-disconnection-window-in-seconds.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\expired-disconnection-window-in-seconds\expired-disconnection-window-in-seconds.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\expired-disconnection-window-in-seconds\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-expired-disconnection-window-in-seconds.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\expired-disconnection-window-in-seconds\verify-expired-disconnection-window-in-seconds.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.host-room-index-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="host-room-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\host-room-index-name\host-room-index-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\host-room-index-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-dynamo-host-room-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\host-room-index-name\verify-dynamo-host-room-index-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.public-rooms-to-retrieve">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\public-rooms-to-retrieve\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="public-rooms-to-retrieve.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\public-rooms-to-retrieve\public-rooms-to-retrieve.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="verify-public-rooms-to-retrieve.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\public-rooms-to-retrieve\verify-public-rooms-to-retrieve.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.room-socket-api-endpoint">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\room-socket-api-endpoint\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="room-socket-api-endpoint.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\room-socket-api-endpoint\room-socket-api-endpoint.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="verify-room-socket-api-endpoint.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\room-socket-api-endpoint\verify-room-socket-api-endpoint.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.updated-connect-window">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\updated-connect-window\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="updated-connect-window.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\updated-connect-window\updated-connect-window.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+      <file name="verify-updated-connect-window.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\updated-connect-window\verify-updated-connect-window.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="configuration.src.visible-room-index-name">
+      <metrics statements="7" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="1" coveredmethods="0"/>
+      <file name="index.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\visible-room-index-name\index.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="verify-dynamo-visible-room-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\visible-room-index-name\verify-dynamo-visible-room-index-name.ts">
+        <metrics statements="4" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="visible-room-index-name.ts" path="G:\Work\Apps\oi-gamez-room-api\lambda\packages\configuration\src\visible-room-index-name\visible-room-index-name.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
