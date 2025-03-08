@@ -5,6 +5,9 @@ export const badRequestResponse = (
 ): APIGatewayProxyResult => {
   return {
     statusCode: 400,
+    headers: {
+      "content-type": "application/json",
+    },
     body: JSON.stringify({ errorMessages }),
   };
 };
