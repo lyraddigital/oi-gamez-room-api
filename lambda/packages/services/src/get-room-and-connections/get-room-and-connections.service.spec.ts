@@ -1,7 +1,7 @@
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { Room, RoomConnection } from "@oigamez/models";
 
-import { getRoomAndConnections } from "./get-room-and-connections";
+import { getRoomAndConnections } from "./get-room-and-connections.service";
 
 jest.mock("@oigamez/repositories");
 

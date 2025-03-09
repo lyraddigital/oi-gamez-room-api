@@ -1,1 +1,1 @@
-export * from "./get-room-and-connections";
+export * from "./get-room-and-connections.service";

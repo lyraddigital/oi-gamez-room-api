@@ -1,1 +1,1 @@
-export * from "./handle-host-disconnection";
+export * from "./handle-host-disconnection.service";
