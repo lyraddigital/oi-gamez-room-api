@@ -111,4 +111,50 @@ describe("getUniqueRoomCode tests", () => {
       );
     }
   });
+
+  it("subcodes is not set, throws an error", async () => {
+    // Arrange
+    const divisionCode = "A";
+    const groupCode = "A";
+    const getItemResponse: GetItemCommandOutput = {
+      Item: {
+        PK: { S: `AvailableDivisionCode#${divisionCode}` },
+        SK: { S: `#GroupCode#${groupCode}` },
+      },
+      $metadata: {},
+    };
+
+    mathRandomSpy.mockReturnValueOnce(0.8);
+    sendSpy.mockReturnValueOnce(getItemResponse as any);
+
+    // Action / Assert
+    try {
+      await getUniqueRoomCode(divisionCode, groupCode);
+    } catch (e: any) {
+      expect(e.message).toBe(
+        `We have no room codes left to allocate to a room of division code ${divisionCode} and group code ${groupCode}.`
+      );
+    }
+  });
+
+  it("Get item command returns no item, throws an error", async () => {
+    // Arrange
+    const divisionCode = "A";
+    const groupCode = "A";
+    const getItemResponse: GetItemCommandOutput = {
+      $metadata: {},
+    };
+
+    mathRandomSpy.mockReturnValueOnce(0.8);
+    sendSpy.mockReturnValueOnce(getItemResponse as any);
+
+    // Action / Assert
+    try {
+      await getUniqueRoomCode(divisionCode, groupCode);
+    } catch (e: any) {
+      expect(e.message).toBe(
+        `We have no room codes left to allocate to a room of division code ${divisionCode} and group code ${groupCode}.`
+      );
+    }
+  });
 });

@@ -16,11 +16,7 @@ export const getRoomStatus = async (
     const isGameFull = room.curNumOfUsers >= room.maxNumOfUsers;
 
     canJoinGameSession = isGameAvailable && !isGameFull;
-    reason = isGameFull
-      ? "Room is full"
-      : isGameAvailable
-      ? ""
-      : room.status || "";
+    reason = isGameFull ? "Room is full" : isGameAvailable ? "" : room.status;
   }
 
   return { canJoin: canJoinGameSession, reason };

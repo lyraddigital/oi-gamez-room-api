@@ -1,1 +1,1 @@
-export * from "./get-room-status";
+export * from "./get-room-status.service";

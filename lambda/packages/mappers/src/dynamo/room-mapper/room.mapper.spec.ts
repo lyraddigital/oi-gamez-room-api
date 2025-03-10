@@ -110,7 +110,7 @@ describe("mapFromDynamoToRoom tests", () => {
 
   it("maps room inProgress status correctly", () => {
     // Arrange
-    const status = "inProgress";
+    const status = "in progress";
     const dbRecord: Record<string, AttributeValue> = {
       Status: { S: status },
     };

@@ -43,7 +43,7 @@ describe("updateRoomStatus tests", () => {
       },
       ExpressionAttributeValues: {
         ":status": {
-          S: "inProgress",
+          S: "in progress",
         },
       },
       UpdateExpression: "SET #status = :status",
