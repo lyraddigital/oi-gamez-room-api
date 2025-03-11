@@ -47,6 +47,9 @@
       "@oigamez/repositories": [
         "./lambda/packages/repositories/src"
       ],
+      "@oigamez/requests": [
+        "./lambda/packages/requests/src"
+      ],
       "@oigamez/responses": [
         "./lambda/packages/responses/src"
       ],

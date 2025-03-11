@@ -1,8 +1,8 @@
-import { ValidationResult } from "@oigamez/validators";
+import { VerificationResult } from "@oigamez/models";
 
 export const validateRoomVisibility = (
   isPublic?: boolean
-): ValidationResult => {
+): VerificationResult => {
   if (isPublic === undefined) {
     return {
       isSuccessful: false,

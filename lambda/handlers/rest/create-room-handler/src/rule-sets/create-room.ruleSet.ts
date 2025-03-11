@@ -1,10 +1,9 @@
-import { GameType } from "@oigamez/models";
-import { RuleSetResult } from "@oigamez/rule-sets";
+import { GameType, VerificationResult } from "@oigamez/models";
 
 export const runCreateRoomRuleSet = (
   gameType: GameType | undefined,
   isAlreadyHosting: boolean
-): RuleSetResult => {
+): VerificationResult => {
   const errorMessages: string[] = [];
 
   if (!gameType) {

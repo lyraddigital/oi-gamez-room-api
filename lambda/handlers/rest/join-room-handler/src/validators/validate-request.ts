@@ -1,5 +1,5 @@
+import { VerificationResult } from "@oigamez/models";
 import {
-  ValidationResult,
   validateOrigin,
   validateRoomCode,
   validateUsername,
@@ -11,7 +11,7 @@ export const validateRequest = (
   origin?: string,
   roomCode?: string,
   payload?: JoinRoomPayload
-): ValidationResult => {
+): VerificationResult => {
   const originValidationResult = validateOrigin(origin);
 
   if (!originValidationResult.isSuccessful) {

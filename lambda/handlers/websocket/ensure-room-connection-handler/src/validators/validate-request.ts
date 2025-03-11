@@ -1,13 +1,10 @@
-import {
-  ValidationResult,
-  validateRoomCode,
-  validateUsername,
-} from "@oigamez/validators";
+import { VerificationResult } from "@oigamez/models";
+import { validateRoomCode, validateUsername } from "@oigamez/validators";
 
 export const validateRequest = (
   username?: string,
   roomCode?: string
-): ValidationResult => {
+): VerificationResult => {
   const errorMessages: string[] = [];
   const usernameValidationResult = validateUsername(username);
   const roomCodeValidationResult = validateRoomCode(roomCode);

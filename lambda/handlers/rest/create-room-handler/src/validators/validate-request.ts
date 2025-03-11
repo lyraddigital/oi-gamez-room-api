@@ -1,5 +1,5 @@
+import { VerificationResult } from "@oigamez/models";
 import {
-  ValidationResult,
   validateOrigin,
   validateUsername,
   validateGameTypeId,
@@ -12,7 +12,7 @@ import { validateRoomVisibility } from "./room-visibility.validator";
 export const validateRequest = (
   origin?: string,
   payload?: CreateRoomPayload
-): ValidationResult => {
+): VerificationResult => {
   const originValidationResult = validateOrigin(origin);
 
   if (!originValidationResult.isSuccessful) {

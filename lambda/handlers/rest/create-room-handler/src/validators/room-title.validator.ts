@@ -1,6 +1,6 @@
-import { ValidationResult } from "@oigamez/validators";
+import { VerificationResult } from "@oigamez/models";
 
-export const validateRoomTitle = (roomTitle?: string): ValidationResult => {
+export const validateRoomTitle = (roomTitle?: string): VerificationResult => {
   if (!roomTitle) {
     return {
       isSuccessful: false,

@@ -1,11 +1,15 @@
-import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
-import { RuleSetResult } from "@oigamez/rule-sets";
+import {
+  Room,
+  RoomConnection,
+  RoomStatus,
+  VerificationResult,
+} from "@oigamez/models";
 
 export const runLeaveRoomRuleSet = (
   username: string,
   room: Room | undefined,
   connections: RoomConnection[]
-): RuleSetResult => {
+): VerificationResult => {
   const errorMessages: string[] = [];
 
   if (!room) {

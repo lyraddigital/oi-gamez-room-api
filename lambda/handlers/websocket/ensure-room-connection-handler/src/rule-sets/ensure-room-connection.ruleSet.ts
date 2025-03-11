@@ -1,12 +1,16 @@
-import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
-import { RuleSetResult } from "@oigamez/rule-sets";
+import {
+  Room,
+  RoomConnection,
+  RoomStatus,
+  VerificationResult,
+} from "@oigamez/models";
 
 export const runEnsureRoomConnectionRuleSet = (
   isUserHost: boolean,
   room: Room | undefined,
   username: string,
   connections: RoomConnection[]
-): RuleSetResult => {
+): VerificationResult => {
   if (!room) {
     return {
       isSuccessful: false,

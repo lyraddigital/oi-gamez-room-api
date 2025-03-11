@@ -1,6 +1,6 @@
-import { ValidationResult } from "../models";
+import { VerificationResult } from "@oigamez/models";
 
-export const validateGameTypeId = (gameTypeId?: number): ValidationResult => {
+export const validateGameTypeId = (gameTypeId?: number): VerificationResult => {
   if (!gameTypeId) {
     return {
       isSuccessful: false,
