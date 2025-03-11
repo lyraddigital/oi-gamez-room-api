@@ -129,6 +129,6 @@ describe("create room handler tests", () => {
     expect(fatalErrorResponse).toHaveBeenCalledWith(
       "Unknown issue while trying to create the room."
     );
-    expect(console.log).toHaveBeenCalledWith(error);
+    expect(consoleSpy).toHaveBeenCalledWith(error);
   });
 });
