@@ -1,15 +1,14 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { extractFromPath, extractHeader } from "@oigamez/requests";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
 } from "@oigamez/responses";
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import { getRoomStatus } from "./services";
-import { validateRequest } from "./validators";
+import { processStatusRetrieval, verifyRequestData } from "./services";
 
 validateEnvironment();
 
@@ -17,22 +16,19 @@ export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
-    const origin = event?.headers ? event.headers["Origin"] : undefined;
-    const requestTimeEpoch = event.requestContext.requestTimeEpoch;
-    const roomCode = event.pathParameters
-      ? event.pathParameters["roomCode"]
-      : undefined;
+    const origin = extractHeader(event, "Origin");
+    const roomCode = extractFromPath(event, "roomCode");
+    const verificationResult = verifyRequestData(origin, roomCode);
 
-    const validationResult = validateRequest(origin, roomCode);
-
-    if (!validationResult.isSuccessful) {
-      return corsBadRequestResponse(validationResult.errorMessages);
+    if (!verificationResult.isSuccessful) {
+      return corsBadRequestResponse(verificationResult.errorMessages);
     }
 
-    const ttl = convertFromMillisecondsToSeconds(requestTimeEpoch);
-    const status = await getRoomStatus(roomCode!, ttl);
+    const requestTimeEpoch = event.requestContext.requestTimeEpoch;
 
-    return corsOkResponseWithData(status);
+    return corsOkResponseWithData(
+      await processStatusRetrieval(roomCode!, requestTimeEpoch)
+    );
   } catch (e) {
     console.log(e);
 
