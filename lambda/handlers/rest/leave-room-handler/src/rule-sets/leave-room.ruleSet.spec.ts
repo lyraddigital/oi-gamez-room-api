@@ -1,29 +1,22 @@
-import {
-  verifyCorsAllowedOrigin,
-  verifyDynamoConnectionTableName,
-  verifyDynamoTableName,
-} from "@oigamez/configuration";
-
-import { runJoinRoomRuleSet } from "./join-room.ruleSet";
 import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
 
-jest.mock("@oigamez/configuration");
+import { runLeaveRoomRuleSet } from "./leave-room.ruleSet";
 
-describe("runJoinRoomRuleSet tests", () => {
+describe("runLeaveRoomRuleSet tests", () => {
   it("room is not set, returns correct error", () => {
     // Arrange
     const username = "daryl_duck";
     const connections: RoomConnection[] = [];
 
     // Action
-    const result = runJoinRoomRuleSet(username, undefined, connections);
+    const result = runLeaveRoomRuleSet(username, undefined, connections);
 
     // Assert
     expect(result).toBeDefined();
     expect(result.isSuccessful).toBe(false);
     expect(result.errorMessages).toHaveLength(1);
     expect(result.errorMessages[0]).toBe(
-      "Cannot join room. The room could not be found."
+      "Cannot leave room. The room could not be found."
     );
   });
 
@@ -36,14 +29,14 @@ describe("runJoinRoomRuleSet tests", () => {
     const connections: RoomConnection[] = [];
 
     // Action
-    const result = runJoinRoomRuleSet(username, room, connections);
+    const result = runLeaveRoomRuleSet(username, room, connections);
 
     // Assert
     expect(result).toBeDefined();
     expect(result.isSuccessful).toBe(false);
     expect(result.errorMessages).toHaveLength(1);
     expect(result.errorMessages[0]).toBe(
-      "Cannot join room. The room is not available."
+      "Cannot leave room. The room has to be available."
     );
   });
 
@@ -56,14 +49,14 @@ describe("runJoinRoomRuleSet tests", () => {
     const connections: RoomConnection[] = [];
 
     // Action
-    const result = runJoinRoomRuleSet(username, room, connections);
+    const result = runLeaveRoomRuleSet(username, room, connections);
 
     // Assert
     expect(result).toBeDefined();
     expect(result.isSuccessful).toBe(false);
     expect(result.errorMessages).toHaveLength(1);
     expect(result.errorMessages[0]).toBe(
-      "Cannot join room. The room is not available."
+      "Cannot leave room. The room has to be available."
     );
   });
 
@@ -76,38 +69,40 @@ describe("runJoinRoomRuleSet tests", () => {
     const connections: RoomConnection[] = [];
 
     // Action
-    const result = runJoinRoomRuleSet(username, room, connections);
+    const result = runLeaveRoomRuleSet(username, room, connections);
 
     // Assert
     expect(result).toBeDefined();
     expect(result.isSuccessful).toBe(false);
     expect(result.errorMessages).toHaveLength(1);
     expect(result.errorMessages[0]).toBe(
-      "Cannot join room. The room is not available."
+      "Cannot leave room. The room has to be available."
     );
   });
 
-  it("room status is available but full, returns correct error", () => {
+  it("user is not in the room, returns correct error", () => {
     // Arrange
     const username = "daryl_duck";
     const room = {
       status: RoomStatus.available,
-      curNumOfUsers: 4,
+      curNumOfUsers: 3,
       maxNumOfUsers: 4,
     } as Room;
     const connections: RoomConnection[] = [];
 
     // Action
-    const result = runJoinRoomRuleSet(username, room, connections);
+    const result = runLeaveRoomRuleSet(username, room, connections);
 
     // Assert
     expect(result).toBeDefined();
     expect(result.isSuccessful).toBe(false);
     expect(result.errorMessages).toHaveLength(1);
-    expect(result.errorMessages[0]).toBe("Cannot join room. The room is full.");
+    expect(result.errorMessages[0]).toBe(
+      "Cannot leave room. The user is not in the room"
+    );
   });
 
-  it("user is already in the room, returns correct error", () => {
+  it("all rules pass, returns success", () => {
     // Arrange
     const username = "daryl_duck";
     const room = {
@@ -124,29 +119,7 @@ describe("runJoinRoomRuleSet tests", () => {
     ];
 
     // Action
-    const result = runJoinRoomRuleSet(username, room, connections);
-
-    // Assert
-    expect(result).toBeDefined();
-    expect(result.isSuccessful).toBe(false);
-    expect(result.errorMessages).toHaveLength(1);
-    expect(result.errorMessages[0]).toBe(
-      "Cannot join room. The user is already in the room"
-    );
-  });
-
-  it("all rules pass, returns successful", () => {
-    // Arrange
-    const username = "daryl_duck";
-    const room = {
-      status: RoomStatus.available,
-      curNumOfUsers: 3,
-      maxNumOfUsers: 4,
-    } as Room;
-    const connections: RoomConnection[] = [];
-
-    // Action
-    const result = runJoinRoomRuleSet(username, room, connections);
+    const result = runLeaveRoomRuleSet(username, room, connections);
 
     // Assert
     expect(result).toBeDefined();

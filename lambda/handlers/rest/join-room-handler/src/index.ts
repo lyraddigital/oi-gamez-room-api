@@ -5,15 +5,11 @@ import {
   corsOkResponse,
   fatalErrorResponse,
 } from "@oigamez/responses";
-import {
-  convertFromMillisecondsToSeconds,
-  getRoomAndConnections,
-} from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { JoinRoomPayload } from "./models";
-import { runJoinRoomRuleSet } from "./rule-sets";
-import { validateRequest } from "./validators";
+import { verifyRequestData } from "./services";
+import { extractFromPath, extractHeader, parseBody } from "@oigamez/requests";
 
 validateEnvironment();
 
@@ -21,35 +17,19 @@ export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
-    let payload: JoinRoomPayload | undefined;
-    const origin = event?.headers ? event.headers["Origin"] : undefined;
+    const origin = extractHeader(event, "Origin");
     const requestTimeEpoch = event.requestContext.requestTimeEpoch;
-    const roomCode = event.pathParameters
-      ? event.pathParameters["roomCode"]
-      : undefined;
-
-    if (event.body) {
-      try {
-        payload = JSON.parse(event.body) as JoinRoomPayload;
-      } catch {}
-    }
-
-    const validationResult = validateRequest(origin, roomCode, payload);
-
-    if (!validationResult.isSuccessful) {
-      return corsBadRequestResponse(validationResult.errorMessages);
-    }
-
-    const ttl = convertFromMillisecondsToSeconds(requestTimeEpoch);
-    const [room, connections] = await getRoomAndConnections(roomCode!, ttl);
-    const ruleSetResult = runJoinRoomRuleSet(
-      payload!.username!,
-      room,
-      connections
+    const roomCode = extractFromPath(event, "roomCode");
+    const payload = parseBody<JoinRoomPayload>(event);
+    const verificationResult = await verifyRequestData(
+      origin,
+      roomCode,
+      payload,
+      requestTimeEpoch
     );
 
-    if (!ruleSetResult.isSuccessful) {
-      return corsBadRequestResponse(ruleSetResult.errorMessages);
+    if (!verificationResult.isSuccessful) {
+      return corsBadRequestResponse(verificationResult.errorMessages);
     }
 
     return corsOkResponse();
