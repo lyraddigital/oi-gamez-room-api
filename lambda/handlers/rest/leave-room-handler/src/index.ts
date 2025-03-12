@@ -1,21 +1,15 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { extractFromPath, extractHeader, parseBody } from "@oigamez/requests";
 import {
   corsBadRequestResponse,
   corsOkResponse,
   fatalErrorResponse,
 } from "@oigamez/responses";
-import {
-  convertFromMillisecondsToSeconds,
-  getRoomAndConnections,
-  handleHostDisconnection,
-  handleUserLeft,
-} from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 import { LeaveRoomPayload } from "./models";
-import { runLeaveRoomRuleSet } from "./rule-sets";
-import { validateRequest } from "./validators";
+import { processLeavingRoom, verifyRequestData } from "./services";
 
 validateEnvironment();
 
@@ -23,59 +17,24 @@ export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
-    let payload: LeaveRoomPayload | undefined;
-    const origin = event?.headers ? event.headers["Origin"] : undefined;
+    const origin = extractHeader(event, "Origin");
     const requestTimeEpoch = event.requestContext.requestTimeEpoch;
-    const roomCode = event.pathParameters
-      ? event.pathParameters["roomCode"]
-      : undefined;
-
-    if (event.body) {
-      try {
-        payload = JSON.parse(event.body) as LeaveRoomPayload;
-      } catch {}
-    }
-
-    const validationResult = validateRequest(origin, roomCode, payload);
-
-    if (!validationResult.isSuccessful) {
-      return corsBadRequestResponse(validationResult.errorMessages);
-    }
-
-    const ttl = convertFromMillisecondsToSeconds(requestTimeEpoch);
-    const [room, connections] = await getRoomAndConnections(roomCode!, ttl);
-    const ruleSetResult = runLeaveRoomRuleSet(
-      payload!.username!,
-      room,
-      connections
+    const roomCode = extractFromPath(event, "roomCode");
+    const payload = parseBody<LeaveRoomPayload>(event);
+    const verificationResult = await verifyRequestData(
+      origin,
+      roomCode,
+      payload,
+      requestTimeEpoch
     );
 
-    if (!ruleSetResult.isSuccessful) {
-      return corsBadRequestResponse(ruleSetResult.errorMessages);
+    if (!verificationResult.isSuccessful) {
+      return corsBadRequestResponse(verificationResult.errorMessages);
     }
 
-    if (room!.hostUsername === payload!.username!) {
-      const shouldRemoveRoom = room!.curNumOfUsers === 1;
+    const [room, connections] = verificationResult.data!;
 
-      await handleHostDisconnection(
-        room!,
-        payload!.username!,
-        connections,
-        shouldRemoveRoom,
-        room!.gameTypeId
-      );
-    } else {
-      const userConnection = connections.find(
-        (c) => c.username === payload!.username!
-      );
-
-      await handleUserLeft(
-        room!,
-        payload!.username!,
-        userConnection?.connectionId,
-        room!.gameTypeId
-      );
-    }
+    await processLeavingRoom(room, connections, payload!);
 
     return corsOkResponse(204);
   } catch (e) {
