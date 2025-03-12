@@ -9,7 +9,6 @@ import { validateRoomVisibility } from "./room-visibility.validator";
 
 jest.mock("@oigamez/validators", () => {
   return {
-    ...jest.requireActual("@oigamez/validators"),
     validateGameTypeId: jest.fn(),
     validateOrigin: jest.fn(),
     validateUsername: jest.fn(),

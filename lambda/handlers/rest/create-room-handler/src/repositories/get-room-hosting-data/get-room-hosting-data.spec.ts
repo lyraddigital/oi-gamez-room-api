@@ -11,7 +11,6 @@ import { GameType } from "@oigamez/models";
 
 jest.mock("@oigamez/repositories", () => {
   return {
-    ...jest.requireActual("@oigamez/repositories"),
     getGameTypeById: jest.fn(),
   };
 });
@@ -69,6 +68,7 @@ describe("getRoomHostingData tests", () => {
     expect(
       (sendSpy.mock.calls[0][0] as QueryCommand).input.ExpressionAttributeValues
     ).toEqual({ ":hostUsername": { S: username } });
+    expect(getGameTypeById).toHaveBeenCalledWith(gameTypeId);
   });
 
   it("query returns no records, is hosting is false", async () => {
@@ -91,5 +91,6 @@ describe("getRoomHostingData tests", () => {
 
     // Assert
     expect(isHosting).toBe(false);
+    expect(getGameTypeById).toHaveBeenCalledWith(gameTypeId);
   });
 });

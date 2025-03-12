@@ -26,6 +26,7 @@ describe("verifyRequestData tests", () => {
     expect(verificationResult).toBeDefined();
     expect(verificationResult.isSuccessful).toBe(false);
     expect(verificationResult.errorMessages).toBe(validateResult.errorMessages);
+    expect(validateRequest).toHaveBeenCalledWith(origin, roomCode);
   });
 
   it("validation succeeds, returns a successful verification result", () => {

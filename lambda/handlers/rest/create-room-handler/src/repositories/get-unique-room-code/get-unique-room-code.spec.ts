@@ -55,6 +55,7 @@ describe("getUniqueRoomCode tests", () => {
       PK: { S: "AvailableDivisionCode#A" },
       SK: { S: "#GroupCode#A" },
     });
+    expect(mathRandomSpy).toHaveBeenCalled();
   });
 
   it("only one code left for division and group code, isRoomCodeExhaused is true", async () => {

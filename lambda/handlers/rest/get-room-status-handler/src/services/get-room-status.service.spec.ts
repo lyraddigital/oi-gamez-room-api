@@ -41,6 +41,7 @@ describe("getRoomStatus tests", () => {
     expect(roomStatus).toBeDefined();
     expect(roomStatus.canJoin).toBe(false);
     expect(roomStatus.reason).toBe("Room is full");
+    expect(getRoomByCode).toHaveBeenCalledWith(roomCode, ttl);
   });
 
   it("room is found and is not in an available status, returns the correct room status", async () => {

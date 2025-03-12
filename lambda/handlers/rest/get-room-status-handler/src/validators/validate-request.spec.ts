@@ -2,7 +2,6 @@ import { validateOrigin, validateRoomCode } from "@oigamez/validators";
 
 jest.mock("@oigamez/validators", () => {
   return {
-    ...jest.requireActual("@oigamez/validators"),
     validateOrigin: jest.fn(),
     validateRoomCode: jest.fn(),
   };
