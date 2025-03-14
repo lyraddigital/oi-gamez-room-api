@@ -24,26 +24,26 @@ export const processRoomConnection = async (
 
     await establishHostConnection(
       room,
-      username!,
-      connectionId!,
+      username,
+      connectionId,
       isFirstHostConnection,
       ttl
     );
 
     if (isFirstHostConnection) {
       await publishExternalEvents([
-        new RoomCreatedExternalEvent(room!.code, username!, room!.gameTypeId),
+        new RoomCreatedExternalEvent(room.code, username, room.gameTypeId),
       ]);
     }
   } else {
-    const existingConnection = await getRoomConnection(room!.code, username!);
+    const existingConnection = await getRoomConnection(room.code, username);
     const isNewConnection = !existingConnection;
 
-    await establishJoinerConnection(room!, username!, connectionId!);
+    await establishJoinerConnection(room, username, connectionId);
 
-    if (room!.status === RoomStatus.available && isNewConnection) {
+    if (room.status === RoomStatus.available && isNewConnection) {
       await publishInternalEvents<UserJoinedInternalEvent>([
-        new UserJoinedInternalEvent(room!.code, username!, room!.gameTypeId),
+        new UserJoinedInternalEvent(room.code, username, room.gameTypeId),
       ]);
     }
   }
