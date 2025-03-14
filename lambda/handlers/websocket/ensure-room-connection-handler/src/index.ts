@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { extractFromQueryString } from "@oigamez/requests";
 import {
   badRequestResponse,
   fatalErrorResponse,
@@ -7,8 +8,7 @@ import {
 } from "@oigamez/responses";
 
 import { validateEnvironment } from "./configuration";
-import { verifyRequestData } from "./services";
-import { processRoomConnection } from "./services/processor.service";
+import { verifyRequestData, processRoomConnection } from "./services";
 
 validateEnvironment();
 
@@ -16,15 +16,10 @@ export const handler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
   try {
-    const username = event?.queryStringParameters
-      ? event.queryStringParameters["username"]
-      : undefined;
-    const roomCode = event?.queryStringParameters
-      ? event.queryStringParameters["roomCode"]
-      : undefined;
+    const username = extractFromQueryString(event, "username");
+    const roomCode = extractFromQueryString(event, "roomCode");
     const connectionId = event.requestContext.connectionId;
     const epochTime = event.requestContext.requestTimeEpoch;
-
     const verificationResult = await verifyRequestData(
       username,
       roomCode,
