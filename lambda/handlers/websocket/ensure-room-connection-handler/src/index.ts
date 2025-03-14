@@ -1,32 +1,14 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import {
-  RoomCreatedExternalEvent,
-  UserJoinedInternalEvent,
-  publishExternalEvents,
-  publishInternalEvents,
-} from "@oigamez/event-bridge";
-import {
   badRequestResponse,
   fatalErrorResponse,
   okResponse,
 } from "@oigamez/responses";
-import { RoomStatus } from "@oigamez/models";
-import {
-  getRoomByCode,
-  getRoomConnection,
-  getRoomConnections,
-} from "@oigamez/repositories";
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import {
-  establishHostConnection,
-  establishJoinerConnection,
-} from "./repositories";
-import { runEnsureRoomConnectionRuleSet } from "./rule-sets";
-import { isUserHost } from "./services";
-import { validateRequest } from "./validators";
+import { verifyRequestData } from "./services";
+import { processRoomConnection } from "./services/processor.service";
 
 validateEnvironment();
 
@@ -43,55 +25,19 @@ export const handler = async (
     const connectionId = event.requestContext.connectionId;
     const epochTime = event.requestContext.requestTimeEpoch;
 
-    const validationResult = validateRequest(username, roomCode);
-
-    if (!validationResult.isSuccessful) {
-      return badRequestResponse(validationResult.errorMessages);
-    }
-
-    const ttl = convertFromMillisecondsToSeconds(epochTime);
-    const room = await getRoomByCode(roomCode!, ttl);
-    const existingConnections = await getRoomConnections(roomCode!, ttl);
-    const isHost = isUserHost(room, username);
-    const ruleSetResult = runEnsureRoomConnectionRuleSet(
-      isHost,
-      room,
-      username!,
-      existingConnections
+    const verificationResult = await verifyRequestData(
+      username,
+      roomCode,
+      epochTime
     );
 
-    if (!ruleSetResult.isSuccessful) {
-      return badRequestResponse(ruleSetResult.errorMessages);
+    if (!verificationResult.isSuccessful) {
+      return badRequestResponse(verificationResult.errorMessages);
     }
 
-    if (isHost) {
-      const isFirstHostConnection = room!.status === RoomStatus.notAvailable;
+    const { isHost, room, ttl } = verificationResult.data!;
 
-      await establishHostConnection(
-        room!,
-        username!,
-        connectionId!,
-        isFirstHostConnection,
-        ttl
-      );
-
-      if (isFirstHostConnection) {
-        await publishExternalEvents([
-          new RoomCreatedExternalEvent(room!.code, username!, room!.gameTypeId),
-        ]);
-      }
-    } else {
-      const existingConnection = await getRoomConnection(room!.code, username!);
-      const isNewConnection = !existingConnection;
-
-      await establishJoinerConnection(room!, username!, connectionId!);
-
-      if (room!.status === RoomStatus.available && isNewConnection) {
-        await publishInternalEvents<UserJoinedInternalEvent>([
-          new UserJoinedInternalEvent(room!.code, username!, room!.gameTypeId),
-        ]);
-      }
-    }
+    await processRoomConnection(room, isHost, username!, connectionId!, ttl);
 
     return okResponse();
   } catch (e) {

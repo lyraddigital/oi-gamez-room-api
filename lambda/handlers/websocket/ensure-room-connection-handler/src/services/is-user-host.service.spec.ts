@@ -1,6 +1,6 @@
 import { Room } from "@oigamez/models";
 
-import { isUserHost } from "./is-user-host";
+import { isUserHost } from "./is-user-host.service";
 
 describe("isUserHost tests", () => {
   it("room and username is undefined, returns false", () => {
