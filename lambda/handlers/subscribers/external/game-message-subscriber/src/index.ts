@@ -22,8 +22,9 @@ export const handler = async (
   const roomConnections = await getRoomConnections(roomCode);
   const room = await getRoomByCode(roomCode);
   const canSendMessage =
-    room?.status === RoomStatus.available ||
-    room?.status !== RoomStatus.inProgress;
+    room &&
+    (room.status === RoomStatus.available ||
+      room.status === RoomStatus.inProgress);
 
   if (canSendMessage) {
     await broadcast<GenericCommunicationEvent>(
