@@ -18,7 +18,7 @@ export const handler = async (
     const connectionId = event.requestContext.connectionId;
     const epochTime = event.requestContext.requestTimeEpoch;
     const ttl = convertFromMillisecondsToSeconds(epochTime);
-    const connection = await getConnectionById(connectionId!, ttl);
+    const connection = await getConnectionById(connectionId!);
 
     if (connection) {
       await updateConnectionDisconnectionTime(connection, ttl);

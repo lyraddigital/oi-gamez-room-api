@@ -13,8 +13,7 @@ import { mapFromDynamoToConnection } from "@oigamez/mappers";
 import { RoomConnection } from "@oigamez/models";
 
 export const getConnectionById = async (
-  connectionId: string,
-  ttl: number
+  connectionId: string
 ): Promise<RoomConnection | undefined> => {
   const queryCommandInput: QueryCommandInput = {
     TableName: CONNECTION_DYNAMO_TABLE_NAME,
@@ -31,7 +30,7 @@ export const getConnectionById = async (
   const queryCommand = new QueryCommand(queryCommandInput);
   const response = await dbClient.send(queryCommand);
 
-  if (response?.Items && response.Items.length <= 0) {
+  if (!response?.Items || response.Items.length <= 0) {
     return undefined;
   }
 
