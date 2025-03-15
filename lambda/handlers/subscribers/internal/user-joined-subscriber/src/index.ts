@@ -23,18 +23,19 @@ export const handler = async (
   >
 ): Promise<void> => {
   const { roomCode, username, gameTypeId } = event.detail;
-  const room = await getRoomByCode(roomCode);
   const roomConnections = await getRoomConnections(roomCode);
   const filteredConnections = roomConnections.filter(
     (rc) => rc.username !== username
   );
-  const isBelowMinimumUsers =
-    !!room && room.curNumOfUsers >= room.minNumOfUsers;
 
   await broadcast<UserJoinedCommunicationEvent>(
     filteredConnections,
     new UserJoinedCommunicationEvent(username)
   );
+
+  const room = await getRoomByCode(roomCode);
+  const isBelowMinimumUsers =
+    !!room && room.curNumOfUsers >= room.minNumOfUsers;
 
   await publishExternalEvents<UserJoinedExternalEvent>([
     new UserJoinedExternalEvent(

@@ -25,14 +25,15 @@ export const handler = async (
   >
 ): Promise<void> => {
   const { roomCode, username, connectionId, gameTypeId } = event.detail;
-  const room = await getRoomByCode(roomCode);
   const roomConnections = await getRoomConnections(roomCode);
-  const isBelowMinimumUsers = !!room && room.curNumOfUsers < room.minNumOfUsers;
 
   await broadcast<UserLeftCommunicationEvent>(
     roomConnections,
     new UserLeftCommunicationEvent(username)
   );
+
+  const room = await getRoomByCode(roomCode);
+  const isBelowMinimumUsers = !!room && room.curNumOfUsers < room.minNumOfUsers;
 
   if (isBelowMinimumUsers) {
     const hostConnections = roomConnections.filter(
