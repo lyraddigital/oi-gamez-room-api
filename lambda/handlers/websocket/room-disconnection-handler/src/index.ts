@@ -1,13 +1,9 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import { okResponse } from "@oigamez/responses";
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import {
-  getConnectionById,
-  updateConnectionDisconnectionTime,
-} from "./repositories";
+import { processDisconnection } from "./services";
 
 validateEnvironment();
 
@@ -17,12 +13,8 @@ export const handler = async (
   try {
     const connectionId = event.requestContext.connectionId;
     const epochTime = event.requestContext.requestTimeEpoch;
-    const ttl = convertFromMillisecondsToSeconds(epochTime);
-    const connection = await getConnectionById(connectionId!);
 
-    if (connection) {
-      await updateConnectionDisconnectionTime(connection, ttl);
-    }
+    await processDisconnection(connectionId!, epochTime);
   } catch (e) {
     console.log(e);
   }
