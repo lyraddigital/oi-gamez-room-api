@@ -1,20 +1,12 @@
-import { EventBridgeEvent } from "aws-lambda";
-
-import {
-  DisableGameStartCommunicationEvent,
-  UserLeftCommunicationEvent,
-  broadcast,
-  closeConnection,
-} from "@oigamez/communication";
 import {
   EventBridgeInternalEventType,
-  UserLeftExternalEvent,
   UserLeftInternalEvent,
-  publishExternalEvents,
 } from "@oigamez/event-bridge";
-import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
+import { getRoomByCode } from "@oigamez/repositories";
+import { EventBridgeEvent } from "aws-lambda";
 
 import { validateEnvironment } from "./configuration";
+import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
 
 validateEnvironment();
 
@@ -25,39 +17,21 @@ export const handler = async (
   >
 ): Promise<void> => {
   const { roomCode, username, connectionId, gameTypeId } = event.detail;
-  const roomConnections = await getRoomConnections(roomCode);
-
-  await broadcast<UserLeftCommunicationEvent>(
-    roomConnections,
-    new UserLeftCommunicationEvent(username)
-  );
-
   const room = await getRoomByCode(roomCode);
   const isBelowMinimumUsers = !!room && room.curNumOfUsers < room.minNumOfUsers;
 
-  if (isBelowMinimumUsers) {
-    const hostConnections = roomConnections.filter(
-      (c) => c.username === room.hostUsername
-    );
+  await communicateUserLeft(
+    roomCode,
+    username,
+    room,
+    isBelowMinimumUsers,
+    connectionId
+  );
 
-    if (username !== room!.hostUsername) {
-      await broadcast<DisableGameStartCommunicationEvent>(
-        hostConnections,
-        new DisableGameStartCommunicationEvent()
-      );
-    }
-  }
-
-  if (connectionId) {
-    await closeConnection(connectionId);
-  }
-
-  await publishExternalEvents<UserLeftExternalEvent>([
-    new UserLeftExternalEvent(
-      roomCode,
-      username,
-      isBelowMinimumUsers,
-      gameTypeId
-    ),
-  ]);
+  await publishExternalUserLeftEvent(
+    roomCode,
+    username,
+    isBelowMinimumUsers,
+    gameTypeId
+  );
 };
