@@ -18,7 +18,7 @@ const getRooms = async (
 ): Promise<Room[]> => {
   const batchGetItemCommandInput: BatchGetItemCommandInput = {
     RequestItems: {
-      [DYNAMO_TABLE_NAME!]: {
+      [DYNAMO_TABLE_NAME]: {
         Keys: roomGetEntries,
       },
     },
@@ -27,11 +27,11 @@ const getRooms = async (
   const batchGetItemCommand = new BatchGetItemCommand(batchGetItemCommandInput);
   const response = await dbClient.send(batchGetItemCommand);
 
-  if (!response?.Responses || !response?.Responses[DYNAMO_TABLE_NAME!]) {
+  if (!response?.Responses || !response?.Responses[DYNAMO_TABLE_NAME]) {
     return [];
   }
 
-  return response.Responses![DYNAMO_TABLE_NAME!].map(mapFromDynamoToRoom);
+  return response.Responses[DYNAMO_TABLE_NAME].map(mapFromDynamoToRoom);
 };
 
 export const getAvailableRoomsByCodes = async (
