@@ -1,7 +1,7 @@
 module.exports = {
   testEnvironment: "node",
   roots: ["<rootDir>/lambda", "<rootDir>/lib"],
-  testMatch: ["**/*.spec.ts"],
+  testMatch: ["**/*.test.ts"],
   moduleNameMapper: {
     "@oigamez/(.*)": "<rootDir>/lambda/packages/$1/src",
   },
