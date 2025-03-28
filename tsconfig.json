@@ -56,6 +56,9 @@
       "@oigamez/rule-sets": [
         "./lambda/packages/rule-sets/src"
       ],
+      "@oigamez/security": [
+        "./lambda/packages/security/src"
+      ],
       "@oigamez/services": [
         "./lambda/packages/services/src"
       ],
