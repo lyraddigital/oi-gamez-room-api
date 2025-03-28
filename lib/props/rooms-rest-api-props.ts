@@ -13,4 +13,6 @@ export interface RoomsRestApiProps {
   visibleRoomsIndexName: string;
   eventBus: IEventBus;
   eventBusSourceName: string;
+  jwtSecretKey: string;
+  jwtExpiryInMinutes: number;
 }

@@ -15,6 +15,8 @@ enum EnvironmentVariableNames {
   externalEventBusName = "EB_EXTERNAL_EB_NAME",
   externalEventBusSourceName = "EB_EXTERNAL_EVENT_SOURCE_NAME",
   publicRoomsToRetrieve = "PUBLIC_ROOMS_TO_RETRIEVE",
+  jwtSecretKey = "JWT_SECRET_KEY",
+  jwtExpiryInMinutes = "JWT_EXPIRY_IN_MINUTES",
 }
 
 interface EnvironmentVariables {
@@ -50,6 +52,8 @@ interface CreateRoomEnvironmentVariables {
   connectWindowInSeconds: string;
   corsAllowedOrigins: string;
   hostRoomIndexName: string;
+  jwtSecretKey: string;
+  jwtExpiryInMinutes: string;
 }
 
 interface ExpiredConnectionCleanupEnvironmentVariables {
@@ -264,6 +268,8 @@ export const EnvironmentVariables: EnvironmentVariables = {
     connectWindowInSeconds: EnvironmentVariableNames.connectWindowInSeconds,
     corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
     hostRoomIndexName: EnvironmentVariableNames.hostRoomIndexName,
+    jwtSecretKey: EnvironmentVariableNames.jwtSecretKey,
+    jwtExpiryInMinutes: EnvironmentVariableNames.jwtExpiryInMinutes,
   },
   expiredConnectionCleanup: {
     tableName: EnvironmentVariableNames.dynamoTableName,

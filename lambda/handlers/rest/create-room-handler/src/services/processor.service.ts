@@ -1,8 +1,12 @@
-import { CONNECT_WINDOW_IN_SECONDS } from "@oigamez/configuration";
+import {
+  CONNECT_WINDOW_IN_SECONDS,
+  JWT_EXPIRY_IN_MINUTES,
+} from "@oigamez/configuration";
 import { GameType } from "@oigamez/models";
+import { generateAccessToken } from "@oigamez/security";
 import { getNow, incrementAndReturnInSeconds } from "@oigamez/services";
 
-import { CreateRoomPayload } from "../models";
+import { CreateRoomPayload, ProcessRoomCreationResponse } from "../models";
 import {
   createRoom,
   getAllUnavailableDivisionAndGroupCodes,
@@ -15,7 +19,7 @@ export const processRoomCreation = async (
   payload: CreateRoomPayload,
   gameType: GameType,
   requestEpochInMilliseconds: number
-): Promise<string> => {
+): Promise<ProcessRoomCreationResponse> => {
   const roomEpochExpiry = incrementAndReturnInSeconds(
     requestEpochInMilliseconds,
     CONNECT_WINDOW_IN_SECONDS
@@ -45,5 +49,10 @@ export const processRoomCreation = async (
     isRoomCodeGroupExhaused
   );
 
-  return roomCode;
+  const token = generateAccessToken(
+    { roomCode, username: payload.hostUsername! },
+    JWT_EXPIRY_IN_MINUTES
+  );
+
+  return { roomCode, token };
 };

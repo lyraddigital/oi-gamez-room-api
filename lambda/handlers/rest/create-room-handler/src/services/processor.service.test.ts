@@ -1,4 +1,5 @@
 import { GameType } from "@oigamez/models";
+import { generateAccessToken } from "@oigamez/security";
 import { getNow, incrementAndReturnInSeconds } from "@oigamez/services";
 
 import { CreateRoomPayload } from "../models";
@@ -14,8 +15,10 @@ import { processRoomCreation } from "./processor.service";
 jest.mock("@oigamez/configuration", () => {
   return {
     CONNECT_WINDOW_IN_SECONDS: 30,
+    JWT_EXPIRY_IN_MINUTES: 5,
   };
 });
+jest.mock("@oigamez/security");
 jest.mock("@oigamez/services");
 jest.mock("../repositories");
 jest.mock("./available-division-and-group-code.service");
@@ -28,6 +31,7 @@ describe("create room processor tests", () => {
   test("all calls are made correctly", async () => {
     // Arrange
     const roomCode = "ABCD";
+    const accessToken = "token12393948457";
     const currentDate = new Date();
     const requestEpochInMilliseconds = 21600000;
     const roomEpochExpiry = 21600;
@@ -64,19 +68,23 @@ describe("create room processor tests", () => {
     (
       getUniqueRoomCode as jest.MockedFunction<typeof getUniqueRoomCode>
     ).mockResolvedValueOnce([roomCode, isRoomCodeGroupExhausted]);
+    (
+      generateAccessToken as jest.MockedFunction<typeof generateAccessToken>
+    ).mockReturnValueOnce(accessToken);
     (getNow as jest.MockedFunction<typeof getNow>).mockReturnValueOnce(
       currentDate
     );
 
     // Action
-    const returnedRoomCode = await processRoomCreation(
+    const processRoomResult = await processRoomCreation(
       payload,
       gameType,
       requestEpochInMilliseconds
     );
 
     // Assert
-    expect(returnedRoomCode).toBe(roomCode);
+    expect(processRoomResult).toBeDefined();
+    expect(processRoomResult.roomCode).toBe(roomCode);
     expect(incrementAndReturnInSeconds).toHaveBeenCalledWith(
       requestEpochInMilliseconds,
       30
@@ -86,6 +94,13 @@ describe("create room processor tests", () => {
       unavailableDivisionAndGroupCodes
     );
     expect(getUniqueRoomCode).toHaveBeenCalledWith(divisionCode, groupCode);
+    expect(generateAccessToken).toHaveBeenCalledWith(
+      {
+        roomCode,
+        username: payload.hostUsername,
+      },
+      5
+    );
     expect(createRoom).toHaveBeenCalledWith(
       {
         code: roomCode,

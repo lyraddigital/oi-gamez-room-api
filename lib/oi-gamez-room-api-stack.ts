@@ -33,6 +33,9 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     const roomEventBusSourceName = "room-internal";
     const roomExternalEventBusSourceName = "room-external";
     const roomReceiveEventBusSourceName = "room-receive";
+    // Change this to a parameter later.
+    const jwtSecretKey = "OiGamesSecretKey123";
+    const jwtExpiryInMinutes = 5;
 
     const webSocketApi = new RoomsSocketApi(this, "RoomSocketApi", {
       roomTable: roomTable.table,
@@ -59,6 +62,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       visibleRoomsIndexName: IndexNames.visibleRooms,
       eventBus: roomEventBus.eventBus,
       eventBusSourceName: roomEventBusSourceName,
+      jwtSecretKey,
+      jwtExpiryInMinutes,
     });
 
     new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {

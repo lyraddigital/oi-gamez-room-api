@@ -28,6 +28,9 @@ export class CreateRoomLambda extends Construct {
           props.hostRoomIndexName,
         [EnvironmentVariables.createRoom.connectWindowInSeconds]:
           props.connectWindowInSeconds.toString(),
+        [EnvironmentVariables.createRoom.jwtSecretKey]: props.jwtSecretKey,
+        [EnvironmentVariables.createRoom.jwtExpiryInMinutes]:
+          props.jwtExpiryInMinutes.toString(),
       },
     });
 

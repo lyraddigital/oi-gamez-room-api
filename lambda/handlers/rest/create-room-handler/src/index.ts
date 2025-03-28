@@ -29,13 +29,13 @@ export const handler = async (
       return corsBadRequestResponse(verificationResult.errorMessages);
     }
 
-    const roomCode = await processRoomCreation(
+    const processRoomResult = await processRoomCreation(
       payload!,
       verificationResult.data!,
       event.requestContext.requestTimeEpoch
     );
 
-    return corsOkResponseWithData({ roomCode });
+    return corsOkResponseWithData(processRoomResult);
   } catch (e) {
     console.log(e);
 

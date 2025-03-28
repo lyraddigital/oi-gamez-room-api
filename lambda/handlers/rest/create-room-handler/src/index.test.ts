@@ -59,6 +59,7 @@ describe("create room handler tests", () => {
   test("verification passes and room created, returns an ok response with room code", async () => {
     // Arrange
     const roomCode = "ABCD";
+    const token = "token292938434848";
     const requestTimeEpoch = 22929383;
     const gameType = {} as GameType;
     const payload = {} as CreateRoomPayload;
@@ -85,7 +86,7 @@ describe("create room handler tests", () => {
     ).mockResolvedValueOnce(verifyRequestDataResult);
     (
       processRoomCreation as jest.MockedFunction<typeof processRoomCreation>
-    ).mockResolvedValueOnce(roomCode);
+    ).mockResolvedValueOnce({ roomCode, token });
     (
       corsOkResponseWithData as jest.MockedFunction<
         typeof corsOkResponseWithData
@@ -103,7 +104,7 @@ describe("create room handler tests", () => {
       gameType,
       event.requestContext.requestTimeEpoch
     );
-    expect(corsOkResponseWithData).toHaveBeenCalledWith({ roomCode });
+    expect(corsOkResponseWithData).toHaveBeenCalledWith({ roomCode, token });
   });
 
   test("an error is thrown, returns an server error response", async () => {

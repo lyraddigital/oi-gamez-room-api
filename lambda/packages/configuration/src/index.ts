@@ -11,6 +11,7 @@ export * from "./eb-internal-event-source-name";
 export * from "./expired-disconnection-window-in-seconds";
 export * from "./host-room-index-name";
 export * from "./json-secret-key";
+export * from "./jwt-expiry-in-minutes";
 export * from "./public-rooms-to-retrieve";
 export * from "./room-socket-api-endpoint";
 export * from "./updated-connect-window";

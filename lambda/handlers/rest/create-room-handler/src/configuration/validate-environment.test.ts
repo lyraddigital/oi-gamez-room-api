@@ -3,6 +3,8 @@ import {
   verifyDynamoTableName,
   verifyDynamoHostRoomIndexName,
   verifyConnectionWindowInSeconds,
+  verifyJwtExpiryInMinutes,
+  verifyJwtSecretKey,
 } from "@oigamez/configuration";
 
 jest.mock("@oigamez/configuration");
@@ -19,5 +21,7 @@ describe("validateEnvironment for create room handler tests", () => {
     expect(verifyDynamoTableName).toHaveBeenCalled();
     expect(verifyDynamoHostRoomIndexName).toHaveBeenCalled();
     expect(verifyConnectionWindowInSeconds).toHaveBeenCalled();
+    expect(verifyJwtExpiryInMinutes).toHaveBeenCalled();
+    expect(verifyJwtSecretKey).toHaveBeenCalled();
   });
 });
