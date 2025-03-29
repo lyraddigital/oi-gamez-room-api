@@ -3,15 +3,19 @@ import {
   verifyCorsAllowedOrigin,
   verifyDynamoHostRoomIndexName,
   verifyDynamoTableName,
+  verifyEncryptionKey,
+  verifyEncryptionIV,
   verifyJwtExpiryInMinutes,
   verifyJwtSecretKey,
 } from "@oigamez/configuration";
 
 export const validateEnvironment = (): void => {
+  verifyConnectionWindowInSeconds();
   verifyCorsAllowedOrigin();
   verifyDynamoTableName();
   verifyDynamoHostRoomIndexName();
-  verifyConnectionWindowInSeconds();
+  verifyEncryptionKey();
+  verifyEncryptionIV();
   verifyJwtExpiryInMinutes();
   verifyJwtSecretKey();
 };

@@ -1,5 +1,8 @@
 import { GameType } from "@oigamez/models";
-import { generateAccessToken } from "@oigamez/security";
+import {
+  encryptCustomDataToString,
+  generateAccessToken,
+} from "@oigamez/security";
 import { getNow, incrementAndReturnInSeconds } from "@oigamez/services";
 
 import { CreateRoomPayload } from "../models";
@@ -15,6 +18,8 @@ import { processRoomCreation } from "./processor.service";
 jest.mock("@oigamez/configuration", () => {
   return {
     CONNECT_WINDOW_IN_SECONDS: 30,
+    ENCRYPTION_KEY: "SomeRandomEncryptionKey",
+    ENCRYPTION_IV: "SomeRandomEncryptionIV",
     JWT_EXPIRY_IN_MINUTES: 5,
   };
 });
@@ -32,6 +37,7 @@ describe("create room processor tests", () => {
     // Arrange
     const roomCode = "ABCD";
     const accessToken = "token12393948457";
+    const websocketSessionId = "fjewoifjwioefowifjweoifjo@#$#";
     const currentDate = new Date();
     const requestEpochInMilliseconds = 21600000;
     const roomEpochExpiry = 21600;
@@ -74,6 +80,11 @@ describe("create room processor tests", () => {
     (getNow as jest.MockedFunction<typeof getNow>).mockReturnValueOnce(
       currentDate
     );
+    (
+      encryptCustomDataToString as jest.MockedFunction<
+        typeof encryptCustomDataToString
+      >
+    ).mockReturnValueOnce(websocketSessionId);
 
     // Action
     const processRoomResult = await processRoomCreation(
@@ -85,6 +96,8 @@ describe("create room processor tests", () => {
     // Assert
     expect(processRoomResult).toBeDefined();
     expect(processRoomResult.roomCode).toBe(roomCode);
+    expect(processRoomResult.token).toBe(accessToken);
+    expect(processRoomResult.websocketSessionId).toBe(websocketSessionId);
     expect(incrementAndReturnInSeconds).toHaveBeenCalledWith(
       requestEpochInMilliseconds,
       30
@@ -100,6 +113,11 @@ describe("create room processor tests", () => {
         username: payload.hostUsername,
       },
       5
+    );
+    expect(encryptCustomDataToString).toHaveBeenCalledWith(
+      "SomeRandomEncryptionKey",
+      "SomeRandomEncryptionIV",
+      { roomCode, username: payload.hostUsername }
     );
     expect(createRoom).toHaveBeenCalledWith(
       {

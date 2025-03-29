@@ -60,6 +60,7 @@ describe("create room handler tests", () => {
     // Arrange
     const roomCode = "ABCD";
     const token = "token292938434848";
+    const websocketSessionId = "fjewoifjwioefowifjweoifjo@#$#";
     const requestTimeEpoch = 22929383;
     const gameType = {} as GameType;
     const payload = {} as CreateRoomPayload;
@@ -86,7 +87,7 @@ describe("create room handler tests", () => {
     ).mockResolvedValueOnce(verifyRequestDataResult);
     (
       processRoomCreation as jest.MockedFunction<typeof processRoomCreation>
-    ).mockResolvedValueOnce({ roomCode, token });
+    ).mockResolvedValueOnce({ roomCode, token, websocketSessionId });
     (
       corsOkResponseWithData as jest.MockedFunction<
         typeof corsOkResponseWithData
@@ -104,7 +105,11 @@ describe("create room handler tests", () => {
       gameType,
       event.requestContext.requestTimeEpoch
     );
-    expect(corsOkResponseWithData).toHaveBeenCalledWith({ roomCode, token });
+    expect(corsOkResponseWithData).toHaveBeenCalledWith({
+      roomCode,
+      token,
+      websocketSessionId,
+    });
   });
 
   test("an error is thrown, returns an server error response", async () => {

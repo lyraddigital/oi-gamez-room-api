@@ -5,6 +5,8 @@ import {
   verifyConnectionWindowInSeconds,
   verifyJwtExpiryInMinutes,
   verifyJwtSecretKey,
+  verifyEncryptionKey,
+  verifyEncryptionIV,
 } from "@oigamez/configuration";
 
 jest.mock("@oigamez/configuration");
@@ -20,6 +22,8 @@ describe("validateEnvironment for create room handler tests", () => {
     expect(verifyCorsAllowedOrigin).toHaveBeenCalled();
     expect(verifyDynamoTableName).toHaveBeenCalled();
     expect(verifyDynamoHostRoomIndexName).toHaveBeenCalled();
+    expect(verifyEncryptionKey).toHaveBeenCalled();
+    expect(verifyEncryptionIV).toHaveBeenCalled();
     expect(verifyConnectionWindowInSeconds).toHaveBeenCalled();
     expect(verifyJwtExpiryInMinutes).toHaveBeenCalled();
     expect(verifyJwtSecretKey).toHaveBeenCalled();

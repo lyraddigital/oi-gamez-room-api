@@ -8,6 +8,8 @@ export * from "./eb-external-eb-name";
 export * from "./eb-external-event-source-name";
 export * from "./eb-internal-eb-name";
 export * from "./eb-internal-event-source-name";
+export * from "./encryption-key";
+export * from "./encryption-iv";
 export * from "./expired-disconnection-window-in-seconds";
 export * from "./host-room-index-name";
 export * from "./json-secret-key";

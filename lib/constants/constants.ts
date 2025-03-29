@@ -17,6 +17,8 @@ enum EnvironmentVariableNames {
   publicRoomsToRetrieve = "PUBLIC_ROOMS_TO_RETRIEVE",
   jwtSecretKey = "JWT_SECRET_KEY",
   jwtExpiryInMinutes = "JWT_EXPIRY_IN_MINUTES",
+  encryptionKey = "ENCRYPTION_KEY",
+  encryptionIV = "ENCRYPTION_IV",
 }
 
 interface EnvironmentVariables {
@@ -51,6 +53,8 @@ interface CreateRoomEnvironmentVariables {
   tableName: string;
   connectWindowInSeconds: string;
   corsAllowedOrigins: string;
+  encryptionKey: string;
+  encryptionIV: string;
   hostRoomIndexName: string;
   jwtSecretKey: string;
   jwtExpiryInMinutes: string;
@@ -267,6 +271,8 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: EnvironmentVariableNames.dynamoTableName,
     connectWindowInSeconds: EnvironmentVariableNames.connectWindowInSeconds,
     corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
+    encryptionKey: EnvironmentVariableNames.encryptionKey,
+    encryptionIV: EnvironmentVariableNames.encryptionIV,
     hostRoomIndexName: EnvironmentVariableNames.hostRoomIndexName,
     jwtSecretKey: EnvironmentVariableNames.jwtSecretKey,
     jwtExpiryInMinutes: EnvironmentVariableNames.jwtExpiryInMinutes,

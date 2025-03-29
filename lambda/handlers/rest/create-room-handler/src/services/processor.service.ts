@@ -1,9 +1,14 @@
 import {
   CONNECT_WINDOW_IN_SECONDS,
+  ENCRYPTION_KEY,
+  ENCRYPTION_IV,
   JWT_EXPIRY_IN_MINUTES,
 } from "@oigamez/configuration";
 import { GameType } from "@oigamez/models";
-import { generateAccessToken } from "@oigamez/security";
+import {
+  encryptCustomDataToString,
+  generateAccessToken,
+} from "@oigamez/security";
 import { getNow, incrementAndReturnInSeconds } from "@oigamez/services";
 
 import { CreateRoomPayload, ProcessRoomCreationResponse } from "../models";
@@ -53,6 +58,14 @@ export const processRoomCreation = async (
     { roomCode, username: payload.hostUsername! },
     JWT_EXPIRY_IN_MINUTES
   );
+  const websocketSessionId = encryptCustomDataToString(
+    ENCRYPTION_KEY,
+    ENCRYPTION_IV,
+    {
+      roomCode,
+      username: payload.hostUsername!,
+    }
+  );
 
-  return { roomCode, token };
+  return { roomCode, token, websocketSessionId };
 };

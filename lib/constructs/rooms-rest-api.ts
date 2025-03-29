@@ -41,6 +41,8 @@ export class RoomsRestApi extends Construct {
       hostRoomIndexName: props.hostRoomIndexName,
       jwtSecretKey: props.jwtSecretKey,
       jwtExpiryInMinutes: props.jwtExpiryInMinutes,
+      encryptionKey: props.encryptionKey,
+      encryptionIV: props.encryptionIV,
     });
 
     new GetPublicRoomsLambda(this, "GetPublicRoomsLambda", {
