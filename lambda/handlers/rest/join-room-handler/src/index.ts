@@ -1,15 +1,15 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { extractFromPath, extractHeader, parseBody } from "@oigamez/requests";
 import {
   corsBadRequestResponse,
-  corsOkResponse,
+  corsOkResponseWithData,
   fatalErrorResponse,
 } from "@oigamez/responses";
 
 import { validateEnvironment } from "./configuration";
 import { JoinRoomPayload } from "./models";
-import { verifyRequestData } from "./services";
-import { extractFromPath, extractHeader, parseBody } from "@oigamez/requests";
+import { processRoomJoin, verifyRequestData } from "./services";
 
 validateEnvironment();
 
@@ -32,7 +32,9 @@ export const handler = async (
       return corsBadRequestResponse(verificationResult.errorMessages);
     }
 
-    return corsOkResponse();
+    const joinResult = processRoomJoin(roomCode!, payload!.username!);
+
+    return corsOkResponseWithData(joinResult);
   } catch (e) {
     console.log(e);
 

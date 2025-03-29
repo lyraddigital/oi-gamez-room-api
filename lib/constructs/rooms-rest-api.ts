@@ -64,6 +64,10 @@ export class RoomsRestApi extends Construct {
       connectionTable: props.connectionTable,
       resource: roomResource,
       allowedOrigins: props.allowedOrigins,
+      jwtSecretKey: props.jwtSecretKey,
+      jwtExpiryInMinutes: props.jwtExpiryInMinutes,
+      encryptionKey: props.encryptionKey,
+      encryptionIV: props.encryptionIV,
     });
 
     new LeaveRoomLambda(this, "LeaveRoomLambda", {

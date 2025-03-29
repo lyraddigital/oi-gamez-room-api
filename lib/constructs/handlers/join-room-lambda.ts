@@ -25,6 +25,11 @@ export class JoinRoomLambda extends Construct {
           props.connectionTable.tableName,
         [EnvironmentVariables.joinRoom.corsAllowedOrigins]:
           props.allowedOrigins,
+        [EnvironmentVariables.joinRoom.encryptionKey]: props.encryptionKey,
+        [EnvironmentVariables.joinRoom.encryptionIV]: props.encryptionIV,
+        [EnvironmentVariables.joinRoom.jwtSecretKey]: props.jwtSecretKey,
+        [EnvironmentVariables.joinRoom.jwtExpiryInMinutes]:
+          props.jwtExpiryInMinutes.toString(),
       },
     });
 

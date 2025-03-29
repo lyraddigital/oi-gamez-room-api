@@ -78,6 +78,10 @@ interface JoinRoomEnvironmentVariables {
   tableName: string;
   connectionTableName: string;
   corsAllowedOrigins: string;
+  encryptionKey: string;
+  encryptionIV: string;
+  jwtSecretKey: string;
+  jwtExpiryInMinutes: string;
 }
 
 interface LeaveRoomEnvironmentVariables {
@@ -296,6 +300,10 @@ export const EnvironmentVariables: EnvironmentVariables = {
     tableName: EnvironmentVariableNames.dynamoTableName,
     connectionTableName: EnvironmentVariableNames.connectionTableName,
     corsAllowedOrigins: EnvironmentVariableNames.corsAllowedOrigins,
+    encryptionKey: EnvironmentVariableNames.encryptionKey,
+    encryptionIV: EnvironmentVariableNames.encryptionIV,
+    jwtSecretKey: EnvironmentVariableNames.jwtSecretKey,
+    jwtExpiryInMinutes: EnvironmentVariableNames.jwtExpiryInMinutes,
   },
   leaveRoom: {
     tableName: EnvironmentVariableNames.dynamoTableName,

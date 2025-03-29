@@ -3,13 +3,14 @@ import { extractHeader, extractFromPath, parseBody } from "@oigamez/requests";
 import {
   corsBadRequestResponse,
   corsOkResponse,
+  corsOkResponseWithData,
   fatalErrorResponse,
 } from "@oigamez/responses";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import { handler } from ".";
 import { JoinRoomPayload } from "./models";
-import { verifyRequestData } from "./services";
+import { processRoomJoin, verifyRequestData } from "./services";
 
 jest.mock("@oigamez/requests");
 jest.mock("@oigamez/responses");
@@ -73,12 +74,16 @@ describe("create room handler tests", () => {
     expect(corsBadRequestResponse).toHaveBeenCalledWith(
       verifyRequestDataResult.errorMessages
     );
+    expect(corsOkResponseWithData).not.toHaveBeenCalled();
+    expect(fatalErrorResponse).not.toHaveBeenCalled();
   });
 
-  test("verification passes, returns an ok response", async () => {
+  test("verification passes, returns an ok response with correct data", async () => {
     // Arrange
     const origin = "http://localhost:8000";
     const roomCode = "ABCD";
+    const accessToken = "adflkjwlfjwwkfjwlkfjk";
+    const websocketSessionId = "39320jf29fj30f92f0293";
     const requestTimeEpoch = 93948485;
     const verifyRequestDataResult: VerificationResult = {
       isSuccessful: true,
@@ -104,7 +109,12 @@ describe("create room handler tests", () => {
       verifyRequestData as jest.MockedFunction<typeof verifyRequestData>
     ).mockResolvedValueOnce(verifyRequestDataResult);
     (
-      corsOkResponse as jest.MockedFunction<typeof corsOkResponse>
+      processRoomJoin as jest.MockedFunction<typeof processRoomJoin>
+    ).mockReturnValueOnce({ token: accessToken, websocketSessionId });
+    (
+      corsOkResponseWithData as jest.MockedFunction<
+        typeof corsOkResponseWithData
+      >
     ).mockReturnValueOnce(response);
 
     // Action
@@ -121,7 +131,12 @@ describe("create room handler tests", () => {
       payload,
       requestTimeEpoch
     );
-    expect(corsOkResponse).toHaveBeenCalled();
+    expect(corsOkResponseWithData).toHaveBeenCalledWith({
+      token: accessToken,
+      websocketSessionId,
+    });
+    expect(corsBadRequestResponse).not.toHaveBeenCalled();
+    expect(fatalErrorResponse).not.toHaveBeenCalled();
   });
 
   test("an error is thrown, returns an server error response", async () => {
@@ -147,6 +162,8 @@ describe("create room handler tests", () => {
     expect(fatalErrorResponse).toHaveBeenCalledWith(
       "Unexpected error occurred while trying to join the room."
     );
+    expect(corsBadRequestResponse).not.toHaveBeenCalled();
+    expect(corsOkResponseWithData).not.toHaveBeenCalled();
     expect(consoleSpy).toHaveBeenCalledWith(error);
   });
 });
