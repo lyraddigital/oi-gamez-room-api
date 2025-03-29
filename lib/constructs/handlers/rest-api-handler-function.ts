@@ -17,7 +17,7 @@ export class RestAPIHandlerFunction extends Construct {
     super(scope, id);
 
     this.lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_20_X,
       handler: `${props.handlerFunctionName}`,
       entry: join(__dirname, props.handlerFileLocation),
       environment: props.environment,

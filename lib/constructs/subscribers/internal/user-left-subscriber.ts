@@ -18,7 +18,7 @@ export class UserLeftSubscriber extends Construct {
     super(scope, id);
 
     this.lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_20_X,
       handler: HandlerFunctionNames.userLeftSubscriber,
       entry: join(__dirname, HandlerFilePaths.userLeftSubscriber),
       bundling: {

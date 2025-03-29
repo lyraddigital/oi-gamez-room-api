@@ -22,7 +22,7 @@ export class ExpiredConnectionCleanupLambda extends Construct {
     super(scope, id);
 
     const lambdaFunction = new NodejsFunction(this, "LambdaFunction", {
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_20_X,
       handler: HandlerFunctionNames.expiredConnectionCleanup,
       entry: join(__dirname, HandlerFilePaths.expiredConnectionCleanup),
       environment: {
