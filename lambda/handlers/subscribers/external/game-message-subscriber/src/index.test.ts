@@ -1,4 +1,4 @@
-import { GenericCommunicationEvent, broadcast } from "@oigamez/communication";
+import { broadcast } from "@oigamez/communication";
 import {
   EventBridgeReceivedEventType,
   GameMessageEvent,
@@ -9,6 +9,7 @@ import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
+import { GenericCommunicationEvent } from "./models";
 
 jest.mock("@oigamez/communication", () => {
   return {

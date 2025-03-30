@@ -1,9 +1,8 @@
-import {
-  UserJoinedCommunicationEvent,
-  broadcast,
-} from "@oigamez/communication";
+import { broadcast } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
+
+import { UserJoinedCommunicationEvent } from "../models";
 
 export const communicateUserJoined = async (
   roomCode: string,

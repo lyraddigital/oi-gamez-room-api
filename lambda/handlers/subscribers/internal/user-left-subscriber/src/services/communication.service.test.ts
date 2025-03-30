@@ -1,12 +1,12 @@
-import {
-  broadcast,
-  closeConnection,
-  DisableGameStartCommunicationEvent,
-  UserLeftCommunicationEvent,
-} from "@oigamez/communication";
+import { broadcast, closeConnection } from "@oigamez/communication";
 import { Room, RoomConnection } from "@oigamez/models";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
+
+import {
+  DisableGameStartCommunicationEvent,
+  UserLeftCommunicationEvent,
+} from "../models";
 
 import { communicateUserLeft } from "./communication.service";
 

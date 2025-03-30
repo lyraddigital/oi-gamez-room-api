@@ -1,4 +1,3 @@
-import { CommunicationActionTypes } from "./communication-action-types";
 import { UserJoinedCommunicationEvent } from "./user-joined-communication-event";
 
 describe("UserJoinedCommunicationEvent tests", () => {
@@ -8,7 +7,7 @@ describe("UserJoinedCommunicationEvent tests", () => {
     const event = new UserJoinedCommunicationEvent(username);
 
     // Assert
-    expect(event.action).toBe(CommunicationActionTypes.userJoined);
+    expect(event.action).toBe("userJoined");
     expect(event.username).toBe(username);
   });
 });

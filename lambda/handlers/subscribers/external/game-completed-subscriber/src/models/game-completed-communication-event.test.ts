@@ -1,4 +1,3 @@
-import { CommunicationActionTypes } from "./communication-action-types";
 import { GameCompletedCommunicationEvent } from "./game-completed-communication-event";
 
 describe("GameCompletedCommunicationEvent tests", () => {
@@ -7,6 +6,6 @@ describe("GameCompletedCommunicationEvent tests", () => {
     const event = new GameCompletedCommunicationEvent();
 
     // Assert
-    expect(event.action).toBe(CommunicationActionTypes.gameCompleted);
+    expect(event.action).toBe("gameCompleted");
   });
 });

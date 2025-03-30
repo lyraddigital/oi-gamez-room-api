@@ -1,4 +1,3 @@
-import { CommunicationActionTypes } from "./communication-action-types";
 import { DisableGameStartCommunicationEvent } from "./disable-game-start-communication-event";
 
 describe("DisableGameStartCommunicationEvent tests", () => {
@@ -7,6 +6,6 @@ describe("DisableGameStartCommunicationEvent tests", () => {
     const event = new DisableGameStartCommunicationEvent();
 
     // Assert
-    expect(event.action).toBe(CommunicationActionTypes.disableGameStart);
+    expect(event.action).toBe("disableGameStart");
   });
 });

@@ -1,9 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import {
-  GameStartedCommunicationEvent,
-  broadcast,
-} from "@oigamez/communication";
+import { broadcast } from "@oigamez/communication";
 import {
   EventBridgeReceivedEventType,
   GameStartedEvent,
@@ -13,6 +10,7 @@ import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
+import { GameStartedCommunicationEvent } from "./models";
 
 validateEnvironment();
 

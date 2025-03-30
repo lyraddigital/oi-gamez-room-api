@@ -1,10 +1,11 @@
+import { broadcast } from "@oigamez/communication";
+import { getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
+
 import {
   HostChangeCommunicationEvent,
   HostTransferCommunicationEvent,
-  broadcast,
-} from "@oigamez/communication";
-import { getRoomConnections } from "@oigamez/repositories";
-import { getConnectionIdsFromConnections } from "@oigamez/services";
+} from "../models";
 
 export const communicateHostChanged = async (
   roomCode: string,

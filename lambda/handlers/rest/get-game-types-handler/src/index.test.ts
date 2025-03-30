@@ -1,13 +1,14 @@
 import { GameType } from "@oigamez/models";
-import { getAllGameTypes } from "@oigamez/repositories";
 import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
 import { APIGatewayProxyResult } from "aws-lambda";
 
 import { handler } from ".";
+import { getAllGameTypes } from "./repositories";
 
 jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/responses");
 
+jest.mock("./repositories");
 jest.mock("./configuration");
 
 describe("get game types handler tests", () => {

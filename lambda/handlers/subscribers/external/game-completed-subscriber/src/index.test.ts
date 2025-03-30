@@ -1,17 +1,15 @@
-import {
-  GameCompletedCommunicationEvent,
-  broadcast,
-} from "@oigamez/communication";
+import { broadcast } from "@oigamez/communication";
 import {
   EventBridgeReceivedEventType,
   GameCompletedEvent,
 } from "@oigamez/event-bridge";
+import { RoomConnection, RoomStatus } from "@oigamez/models";
 import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
-import { RoomConnection, RoomStatus } from "@oigamez/models";
+import { GameCompletedCommunicationEvent } from "./models";
 
 jest.mock("@oigamez/communication", () => {
   return {

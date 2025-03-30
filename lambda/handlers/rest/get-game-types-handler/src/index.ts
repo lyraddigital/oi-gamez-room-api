@@ -2,9 +2,8 @@ import { APIGatewayProxyResult } from "aws-lambda";
 
 import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
 
-import { getAllGameTypes } from "@oigamez/repositories";
-
 import { validateEnvironment } from "./configuration";
+import { getAllGameTypes } from "./repositories";
 
 validateEnvironment();
 

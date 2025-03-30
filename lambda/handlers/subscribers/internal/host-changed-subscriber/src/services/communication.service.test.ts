@@ -1,11 +1,12 @@
-import {
-  broadcast,
-  HostChangeCommunicationEvent,
-  HostTransferCommunicationEvent,
-} from "@oigamez/communication";
+import { broadcast } from "@oigamez/communication";
 import { RoomConnection } from "@oigamez/models";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
+
+import {
+  HostChangeCommunicationEvent,
+  HostTransferCommunicationEvent,
+} from "../models";
 
 import { communicateHostChanged } from "./communication.service";
 

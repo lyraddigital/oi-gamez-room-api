@@ -1,4 +1,3 @@
-import { CommunicationActionTypes } from "./communication-action-types";
 import { HostTransferCommunicationEvent } from "./host-transfer-communication-event";
 
 describe("HostTransferCommunicationEvent tests", () => {
@@ -7,6 +6,6 @@ describe("HostTransferCommunicationEvent tests", () => {
     const event = new HostTransferCommunicationEvent();
 
     // Assert
-    expect(event.action).toBe(CommunicationActionTypes.hostTransfer);
+    expect(event.action).toBe("hostTransfer");
   });
 });
