@@ -1,11 +1,11 @@
-import {
-  validateGameTypeId,
-  validateOrigin,
-  validateUsername,
-} from "@oigamez/validators";
+import { validateOrigin, validateUsername } from "@oigamez/validators";
 
+import { CreateRoomPayload } from "../models";
+
+import { validateGameTypeId } from "./game-type-id.validator";
 import { validateRoomTitle } from "./room-title.validator";
 import { validateRoomVisibility } from "./room-visibility.validator";
+import { validateRequest } from "./validate-request";
 
 jest.mock("@oigamez/validators", () => {
   return {
@@ -15,11 +15,9 @@ jest.mock("@oigamez/validators", () => {
   };
 });
 
+jest.mock("./game-type-id.validator");
 jest.mock("./room-title.validator");
 jest.mock("./room-visibility.validator");
-
-import { validateRequest } from "./validate-request";
-import { CreateRoomPayload } from "../models";
 
 describe("validateRequest tests", () => {
   test("validateOrigin returns unsuccessful, returns origin validation result", () => {

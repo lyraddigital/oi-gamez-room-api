@@ -1,11 +1,8 @@
 import { VerificationResult } from "@oigamez/models";
-import {
-  validateOrigin,
-  validateUsername,
-  validateGameTypeId,
-} from "@oigamez/validators";
+import { validateOrigin, validateUsername } from "@oigamez/validators";
 
 import { CreateRoomPayload } from "../models";
+import { validateGameTypeId } from "./game-type-id.validator";
 import { validateRoomTitle } from "./room-title.validator";
 import { validateRoomVisibility } from "./room-visibility.validator";
 

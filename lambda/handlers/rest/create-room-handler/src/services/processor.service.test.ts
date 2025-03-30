@@ -3,7 +3,7 @@ import {
   encryptCustomDataToString,
   generateAccessToken,
 } from "@oigamez/security";
-import { getNow, incrementAndReturnInSeconds } from "@oigamez/services";
+import { getNow } from "@oigamez/services";
 
 import { CreateRoomPayload } from "../models";
 import {
@@ -12,6 +12,7 @@ import {
   getUniqueRoomCode,
 } from "../repositories";
 import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service";
+import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service";
 
 import { processRoomCreation } from "./processor.service";
 
@@ -27,6 +28,7 @@ jest.mock("@oigamez/security");
 jest.mock("@oigamez/services");
 jest.mock("../repositories");
 jest.mock("./available-division-and-group-code.service");
+jest.mock("./increment-and-convert-to-seconds.service");
 
 describe("create room processor tests", () => {
   beforeEach(() => {

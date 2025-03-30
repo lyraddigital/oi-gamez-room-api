@@ -9,7 +9,7 @@ import {
   encryptCustomDataToString,
   generateAccessToken,
 } from "@oigamez/security";
-import { getNow, incrementAndReturnInSeconds } from "@oigamez/services";
+import { getNow } from "@oigamez/services";
 
 import { CreateRoomPayload, ProcessRoomCreationResponse } from "../models";
 import {
@@ -19,6 +19,7 @@ import {
 } from "../repositories";
 
 import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service";
+import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service";
 
 export const processRoomCreation = async (
   payload: CreateRoomPayload,
