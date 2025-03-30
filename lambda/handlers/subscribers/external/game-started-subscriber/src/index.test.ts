@@ -6,11 +6,12 @@ import {
   EventBridgeReceivedEventType,
   GameStartedEvent,
 } from "@oigamez/event-bridge";
+import { RoomConnection, RoomStatus } from "@oigamez/models";
 import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
-import { RoomConnection, RoomStatus } from "@oigamez/models";
 
 jest.mock("@oigamez/communication", () => {
   return {
@@ -19,6 +20,7 @@ jest.mock("@oigamez/communication", () => {
   };
 });
 jest.mock("@oigamez/repositories");
+jest.mock("@oigamez/services");
 jest.mock("./configuration");
 
 describe("game started subscriber handler tests", () => {
@@ -26,6 +28,7 @@ describe("game started subscriber handler tests", () => {
     // Arrange
     const roomCode = "ABCD";
     const roomConnections = [] as RoomConnection[];
+    const connectionIds = [] as string[];
     const event = {
       detail: {
         roomCode,
@@ -39,11 +42,20 @@ describe("game started subscriber handler tests", () => {
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(roomConnections);
 
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    ).mockReturnValueOnce(connectionIds);
+
     // Action
     await handler(event);
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenCalledWith(
+      roomConnections
+    );
     expect(updateRoomStatus).toHaveBeenCalledWith(
       roomCode,
       RoomStatus.inProgress
@@ -51,8 +63,8 @@ describe("game started subscriber handler tests", () => {
     expect(broadcast).toHaveBeenCalled();
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual(roomConnections);
+        .calls[0][0] as string[]
+    ).toEqual(connectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock

@@ -1,21 +1,14 @@
-import {
-  GameStartedCommunicationEvent,
-  GenericCommunicationEvent,
-  broadcast,
-} from "@oigamez/communication";
+import { GenericCommunicationEvent, broadcast } from "@oigamez/communication";
 import {
   EventBridgeReceivedEventType,
   GameMessageEvent,
 } from "@oigamez/event-bridge";
-import {
-  getRoomConnections,
-  getRoomByCode,
-  updateRoomStatus,
-} from "@oigamez/repositories";
+import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
+import { getRoomConnections, getRoomByCode } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
-import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
 
 jest.mock("@oigamez/communication", () => {
   return {
@@ -24,6 +17,7 @@ jest.mock("@oigamez/communication", () => {
   };
 });
 jest.mock("@oigamez/repositories");
+jest.mock("@oigamez/services");
 jest.mock("./configuration");
 
 describe("game message subscriber handler tests", () => {
@@ -36,7 +30,6 @@ describe("game message subscriber handler tests", () => {
     const roomCode = "ABCD";
     const action = "someAction";
     const payload = {} as unknown;
-    const roomConnections = [] as RoomConnection[];
     const event = {
       detail: {
         roomCode,
@@ -52,17 +45,14 @@ describe("game message subscriber handler tests", () => {
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
     ).mockResolvedValueOnce(undefined);
 
-    (
-      getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
-    ).mockResolvedValueOnce(roomConnections);
-
     // Action
     await handler(event);
 
     // Assert
-    expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
     expect(getRoomByCode).toHaveBeenCalledWith(roomCode);
     expect(broadcast).not.toHaveBeenCalled();
+    expect(getRoomConnections).not.toHaveBeenCalled();
+    expect(getConnectionIdsFromConnections).not.toHaveBeenCalled();
   });
 
   test("does not send the message when the room has a not available status", async () => {
@@ -70,7 +60,6 @@ describe("game message subscriber handler tests", () => {
     const roomCode = "ABCD";
     const action = "someAction";
     const payload = {} as unknown;
-    const roomConnections = [] as RoomConnection[];
     const room = {
       status: RoomStatus.notAvailable,
     } as Room;
@@ -89,17 +78,14 @@ describe("game message subscriber handler tests", () => {
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
     ).mockResolvedValueOnce(room);
 
-    (
-      getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
-    ).mockResolvedValueOnce(roomConnections);
-
     // Action
     await handler(event);
 
     // Assert
-    expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
     expect(getRoomByCode).toHaveBeenCalledWith(roomCode);
     expect(broadcast).not.toHaveBeenCalled();
+    expect(getRoomConnections).not.toHaveBeenCalled();
+    expect(getConnectionIdsFromConnections).not.toHaveBeenCalled();
   });
 
   test("does not send the message when the room has a completed status", async () => {
@@ -107,7 +93,6 @@ describe("game message subscriber handler tests", () => {
     const roomCode = "ABCD";
     const action = "someAction";
     const payload = {} as unknown;
-    const roomConnections = [] as RoomConnection[];
     const room = {
       status: RoomStatus.completed,
     } as Room;
@@ -126,17 +111,14 @@ describe("game message subscriber handler tests", () => {
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
     ).mockResolvedValueOnce(room);
 
-    (
-      getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
-    ).mockResolvedValueOnce(roomConnections);
-
     // Action
     await handler(event);
 
     // Assert
-    expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
     expect(getRoomByCode).toHaveBeenCalledWith(roomCode);
     expect(broadcast).not.toHaveBeenCalled();
+    expect(getRoomConnections).not.toHaveBeenCalled();
+    expect(getConnectionIdsFromConnections).not.toHaveBeenCalled();
   });
 
   test("does send the message when the room has an available status", async () => {
@@ -145,6 +127,7 @@ describe("game message subscriber handler tests", () => {
     const action = "someAction";
     const payload = {} as unknown;
     const roomConnections = [] as RoomConnection[];
+    const connectionIds = [] as string[];
     const room = {
       status: RoomStatus.available,
     } as Room;
@@ -167,17 +150,26 @@ describe("game message subscriber handler tests", () => {
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(roomConnections);
 
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    ).mockReturnValueOnce(connectionIds);
+
     // Action
     await handler(event);
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
     expect(getRoomByCode).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenCalledWith(
+      roomConnections
+    );
     expect(broadcast).toHaveBeenCalled();
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual(roomConnections);
+        .calls[0][0] as string[]
+    ).toEqual(connectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
@@ -198,6 +190,7 @@ describe("game message subscriber handler tests", () => {
     const action = "someAction";
     const payload = {} as unknown;
     const roomConnections = [] as RoomConnection[];
+    const connectionIds = [] as string[];
     const room = {
       status: RoomStatus.inProgress,
     } as Room;
@@ -220,17 +213,26 @@ describe("game message subscriber handler tests", () => {
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(roomConnections);
 
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    ).mockReturnValueOnce(connectionIds);
+
     // Action
     await handler(event);
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
     expect(getRoomByCode).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenCalledWith(
+      roomConnections
+    );
     expect(broadcast).toHaveBeenCalled();
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual(roomConnections);
+        .calls[0][0] as string[]
+    ).toEqual(connectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock

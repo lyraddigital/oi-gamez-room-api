@@ -2,7 +2,6 @@ import {
   PostToConnectionCommand,
   DeleteConnectionCommand,
 } from "@aws-sdk/client-apigatewaymanagementapi";
-import { RoomConnection } from "@oigamez/models";
 
 import { client } from "../client";
 import { broadcast, closeConnection } from "./communication-service";
@@ -19,11 +18,7 @@ describe("communication service tests", () => {
     test("one of the connections raises an error, error logged and all other connections are broadcasted", async () => {
       // Arrange
       const someError = { errorMessage: "Some error" };
-      const connections: RoomConnection[] = [
-        { connectionId: "conn123" } as RoomConnection,
-        { connectionId: "conn456" } as RoomConnection,
-        { connectionId: "conn789" } as RoomConnection,
-      ];
+      const connectionIds: string[] = ["conn123", "conn456", "conn789"];
       const payload = { prop: "value" };
 
       sendSpy
@@ -32,25 +27,25 @@ describe("communication service tests", () => {
         .mockReturnValueOnce({} as any);
 
       // Action
-      await broadcast(connections, payload);
+      await broadcast(connectionIds, payload);
 
       // Assert
       expect(sendSpy.mock.calls.length).toBe(3);
       expect(
         (sendSpy.mock.calls[0][0] as PostToConnectionCommand).input.ConnectionId
-      ).toBe(connections[0].connectionId);
+      ).toBe(connectionIds[0]);
       expect(
         (sendSpy.mock.calls[0][0] as PostToConnectionCommand).input.Data
       ).toEqual(JSON.stringify(payload));
       expect(
         (sendSpy.mock.calls[1][0] as PostToConnectionCommand).input.ConnectionId
-      ).toBe(connections[1].connectionId);
+      ).toBe(connectionIds[1]);
       expect(
         (sendSpy.mock.calls[1][0] as PostToConnectionCommand).input.Data
       ).toEqual(JSON.stringify(payload));
       expect(
         (sendSpy.mock.calls[2][0] as PostToConnectionCommand).input.ConnectionId
-      ).toBe(connections[2].connectionId);
+      ).toBe(connectionIds[2]);
       expect(
         (sendSpy.mock.calls[2][0] as PostToConnectionCommand).input.Data
       ).toEqual(JSON.stringify(payload));
@@ -62,38 +57,30 @@ describe("communication service tests", () => {
 
     test("one of the connections is missing a connectionId, does not process that connection", async () => {
       // Arrange
-      const connections: RoomConnection[] = [
-        { connectionId: "conn123" } as RoomConnection,
-        {} as RoomConnection,
-        { connectionId: "conn789" } as RoomConnection,
-      ];
+      const connectionIds: string[] = ["conn123", "", "conn789"];
       const payload = { prop: "value" };
 
       sendSpy.mockReturnValueOnce({} as any).mockReturnValueOnce({} as any);
 
       // Action
-      await broadcast(connections, payload);
+      await broadcast(connectionIds, payload);
 
       // Assert
       expect(sendSpy.mock.calls.length).toBe(2);
       expect(
         (sendSpy.mock.calls[0][0] as PostToConnectionCommand).input.ConnectionId
-      ).toBe(connections[0].connectionId);
+      ).toBe(connectionIds[0]);
       expect(
         (sendSpy.mock.calls[1][0] as PostToConnectionCommand).input.ConnectionId
-      ).toBe(connections[2].connectionId);
+      ).toBe(connectionIds[2]);
     });
 
     test("payload is undefined, does not process any connections", async () => {
       // Arrange
-      const connections: RoomConnection[] = [
-        { connectionId: "conn123" } as RoomConnection,
-        { connectionId: "conn456" } as RoomConnection,
-        { connectionId: "conn789" } as RoomConnection,
-      ];
+      const connectionIds: string[] = ["conn123", "conn456", "conn789"];
 
       // Action
-      await broadcast(connections, undefined);
+      await broadcast(connectionIds, undefined);
 
       // Assert
       expect(sendSpy.mock.calls.length).toBe(0);

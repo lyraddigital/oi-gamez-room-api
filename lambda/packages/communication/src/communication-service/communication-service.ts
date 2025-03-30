@@ -3,8 +3,6 @@ import {
   PostToConnectionCommand,
 } from "@aws-sdk/client-apigatewaymanagementapi";
 
-import { RoomConnection } from "@oigamez/models";
-
 import { client } from "../client";
 
 const sendCommunicationEvent = async <T>(
@@ -29,11 +27,11 @@ const sendCommunicationEvent = async <T>(
 };
 
 export const broadcast = async <T>(
-  connections: RoomConnection[],
+  connectionIds: string[],
   payload: T
 ): Promise<void> => {
-  const eventPromises = connections.map((c) =>
-    sendCommunicationEvent(c.connectionId, payload)
+  const eventPromises = connectionIds.map((cId) =>
+    sendCommunicationEvent(cId, payload)
   );
 
   await Promise.all(eventPromises);

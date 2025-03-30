@@ -6,6 +6,7 @@ import {
 } from "@oigamez/communication";
 import { Room } from "@oigamez/models";
 import { getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 export const communicateUserLeft = async (
   roomCode: string,
@@ -18,9 +19,10 @@ export const communicateUserLeft = async (
   const otherConnections = roomConnections.filter(
     (c) => c.username !== username
   );
+  const otherConnectionIds = getConnectionIdsFromConnections(otherConnections);
 
   await broadcast<UserLeftCommunicationEvent>(
-    otherConnections,
+    otherConnectionIds,
     new UserLeftCommunicationEvent(username)
   );
 
@@ -28,10 +30,11 @@ export const communicateUserLeft = async (
     const hostConnections = roomConnections.filter(
       (c) => c.username === room?.hostUsername
     );
+    const hostConnectionIds = getConnectionIdsFromConnections(hostConnections);
 
     if (username !== room?.hostUsername) {
       await broadcast<DisableGameStartCommunicationEvent>(
-        hostConnections,
+        hostConnectionIds,
         new DisableGameStartCommunicationEvent()
       );
     }

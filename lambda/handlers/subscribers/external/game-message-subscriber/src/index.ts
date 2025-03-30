@@ -7,6 +7,7 @@ import {
 } from "@oigamez/event-bridge";
 import { RoomStatus } from "@oigamez/models";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
 
@@ -19,7 +20,6 @@ export const handler = async (
   >
 ): Promise<void> => {
   const { roomCode, action, payload } = event.detail;
-  const roomConnections = await getRoomConnections(roomCode);
   const room = await getRoomByCode(roomCode);
   const canSendMessage =
     room &&
@@ -27,8 +27,11 @@ export const handler = async (
       room.status === RoomStatus.inProgress);
 
   if (canSendMessage) {
+    const roomConnections = await getRoomConnections(roomCode);
+    const connectionIds = getConnectionIdsFromConnections(roomConnections);
+
     await broadcast<GenericCommunicationEvent>(
-      roomConnections,
+      connectionIds,
       new GenericCommunicationEvent(action, payload)
     );
   }

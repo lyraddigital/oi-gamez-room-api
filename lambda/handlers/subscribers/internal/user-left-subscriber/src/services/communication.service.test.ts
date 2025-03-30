@@ -6,6 +6,7 @@ import {
 } from "@oigamez/communication";
 import { Room, RoomConnection } from "@oigamez/models";
 import { getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { communicateUserLeft } from "./communication.service";
 
@@ -17,6 +18,7 @@ jest.mock("@oigamez/communication", () => {
   };
 });
 jest.mock("@oigamez/repositories");
+jest.mock("@oigamez/services");
 
 describe("communicateUserLeft tests", () => {
   beforeEach(() => {
@@ -29,6 +31,8 @@ describe("communicateUserLeft tests", () => {
     const userOneUsername = "daryl_duck";
     const userTwoUsername = "daryl_duck2";
     const userThreeUsername = "daryl_duck3";
+    const connectionOne = "conn1234";
+    const connectionTwo = "conn5678";
     const room = {} as Room;
     const connections = [
       {
@@ -41,10 +45,17 @@ describe("communicateUserLeft tests", () => {
         username: userThreeUsername,
       },
     ] as RoomConnection[];
+    const connectionIds = [connectionOne, connectionTwo];
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(connections);
+
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    ).mockReturnValueOnce(connectionIds);
 
     // Action
     await communicateUserLeft(
@@ -57,11 +68,19 @@ describe("communicateUserLeft tests", () => {
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenCalledWith([
+      {
+        username: userTwoUsername,
+      },
+      {
+        username: userThreeUsername,
+      },
+    ]);
     expect(broadcast).toHaveBeenCalledTimes(1);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual([{ username: userTwoUsername }, { username: userThreeUsername }]);
+        .calls[0][0] as string[]
+    ).toEqual(connectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
@@ -83,6 +102,8 @@ describe("communicateUserLeft tests", () => {
     const userOneUsername = "daryl_duck";
     const userTwoUsername = "daryl_duck2";
     const userThreeUsername = "daryl_duck3";
+    const connectionOne = "conn1234";
+    const connectionTwo = "conn5678";
     const room = {
       hostUsername: userOneUsername,
     } as Room;
@@ -97,21 +118,36 @@ describe("communicateUserLeft tests", () => {
         username: userThreeUsername,
       },
     ] as RoomConnection[];
+    const connectionIds = [connectionOne, connectionTwo];
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(connections);
+
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    ).mockReturnValueOnce(connectionIds);
 
     // Action
     await communicateUserLeft(roomCode, userOneUsername, room, true, undefined);
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenCalledWith([
+      {
+        username: userTwoUsername,
+      },
+      {
+        username: userThreeUsername,
+      },
+    ]);
     expect(broadcast).toHaveBeenCalledTimes(1);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual([{ username: userTwoUsername }, { username: userThreeUsername }]);
+        .calls[0][0] as string[]
+    ).toEqual(connectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
@@ -136,6 +172,9 @@ describe("communicateUserLeft tests", () => {
     const room = {
       hostUsername: userOneUsername,
     } as Room;
+    const connectionOne = "conn1234";
+    const connectionTwo = "conn5678";
+    const connectionThree = "conn9101";
     const connections = [
       {
         username: userOneUsername,
@@ -147,21 +186,45 @@ describe("communicateUserLeft tests", () => {
         username: userThreeUsername,
       },
     ] as RoomConnection[];
+    const otherConnectionIds = [connectionTwo, connectionThree];
+    const hostConnectionIds = [connectionOne];
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(connections);
+
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    )
+      .mockReturnValueOnce(otherConnectionIds)
+      .mockReturnValueOnce(hostConnectionIds);
 
     // Action
     await communicateUserLeft(roomCode, userTwoUsername, room, true, undefined);
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenCalledTimes(2);
+    expect(getConnectionIdsFromConnections).toHaveBeenNthCalledWith(1, [
+      {
+        username: userOneUsername,
+      },
+      {
+        username: userThreeUsername,
+      },
+    ]);
+    expect(getConnectionIdsFromConnections).toHaveBeenNthCalledWith(2, [
+      {
+        username: userOneUsername,
+      },
+    ]);
     expect(broadcast).toHaveBeenCalledTimes(2);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual([{ username: userOneUsername }, { username: userThreeUsername }]);
+        .calls[0][0] as string[]
+    ).toEqual(otherConnectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
@@ -176,8 +239,8 @@ describe("communicateUserLeft tests", () => {
     ).toBe(userTwoUsername);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[1][0] as RoomConnection[]
-    ).toEqual([{ username: userOneUsername }]);
+        .calls[1][0] as string[]
+    ).toEqual(hostConnectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
@@ -197,6 +260,9 @@ describe("communicateUserLeft tests", () => {
     const room = {
       hostUsername: userOneUsername,
     } as Room;
+    const connectionOne = "conn1234";
+    const connectionTwo = "conn5678";
+    const connectionThree = "conn9101";
     const connections = [
       {
         username: userOneUsername,
@@ -208,10 +274,20 @@ describe("communicateUserLeft tests", () => {
         username: userThreeUsername,
       },
     ] as RoomConnection[];
+    const otherConnectionIds = [connectionTwo, connectionThree];
+    const hostConnectionIds = [connectionOne];
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(connections);
+
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    )
+      .mockReturnValueOnce(otherConnectionIds)
+      .mockReturnValueOnce(hostConnectionIds);
 
     // Action
     await communicateUserLeft(
@@ -224,11 +300,20 @@ describe("communicateUserLeft tests", () => {
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenCalledTimes(2);
+    expect(getConnectionIdsFromConnections).toHaveBeenNthCalledWith(1, [
+      {
+        username: userOneUsername,
+      },
+      {
+        username: userThreeUsername,
+      },
+    ]);
     expect(broadcast).toHaveBeenCalledTimes(2);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual([{ username: userOneUsername }, { username: userThreeUsername }]);
+        .calls[0][0] as string[]
+    ).toEqual(otherConnectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
@@ -243,8 +328,8 @@ describe("communicateUserLeft tests", () => {
     ).toBe(userTwoUsername);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[1][0] as RoomConnection[]
-    ).toEqual([{ username: userOneUsername }]);
+        .calls[1][0] as string[]
+    ).toEqual(hostConnectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock

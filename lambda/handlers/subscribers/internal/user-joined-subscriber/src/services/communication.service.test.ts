@@ -4,6 +4,7 @@ import {
 } from "@oigamez/communication";
 import { RoomConnection } from "@oigamez/models";
 import { getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { communicateUserJoined } from "./communication.service";
 
@@ -14,6 +15,7 @@ jest.mock("@oigamez/communication", () => {
   };
 });
 jest.mock("@oigamez/repositories");
+jest.mock("@oigamez/services");
 
 describe("communicateUserJoined tests", () => {
   test("broadcasts the correct events to the correct connections", async () => {
@@ -22,6 +24,8 @@ describe("communicateUserJoined tests", () => {
     const userOneUsername = "daryl_duck";
     const userTwoUsername = "daryl_duck2";
     const userThreeUsername = "daryl_duck3";
+    const connectionOne = "conn5678";
+    const connectionTwo = "conn9101";
     const connections = [
       {
         username: userOneUsername,
@@ -33,10 +37,17 @@ describe("communicateUserJoined tests", () => {
         username: userThreeUsername,
       },
     ] as RoomConnection[];
+    const filteredConnectionIds = [connectionOne, connectionTwo];
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(connections);
+
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    ).mockReturnValueOnce(filteredConnectionIds);
 
     // Action
     await communicateUserJoined(roomCode, userOneUsername);
@@ -45,8 +56,8 @@ describe("communicateUserJoined tests", () => {
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual([{ username: userTwoUsername }, { username: userThreeUsername }]);
+        .calls[0][0] as string[]
+    ).toEqual(filteredConnectionIds);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock

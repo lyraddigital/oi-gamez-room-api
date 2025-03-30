@@ -3,6 +3,7 @@ import {
   broadcast,
 } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 export const communicateUserJoined = async (
   roomCode: string,
@@ -12,9 +13,11 @@ export const communicateUserJoined = async (
   const filteredConnections = roomConnections.filter(
     (rc) => rc.username !== username
   );
+  const filteredConnectionIds =
+    getConnectionIdsFromConnections(filteredConnections);
 
   await broadcast<UserJoinedCommunicationEvent>(
-    filteredConnections,
+    filteredConnectionIds,
     new UserJoinedCommunicationEvent(username)
   );
 };

@@ -5,6 +5,7 @@ import {
 } from "@oigamez/communication";
 import { RoomConnection } from "@oigamez/models";
 import { getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { communicateHostChanged } from "./communication.service";
 
@@ -15,6 +16,7 @@ jest.mock("@oigamez/communication", () => {
   };
 });
 jest.mock("@oigamez/repositories");
+jest.mock("@oigamez/services");
 
 describe("communicateHostChanged tests", () => {
   test("broadcasts the correct events to the correct connections", async () => {
@@ -23,6 +25,9 @@ describe("communicateHostChanged tests", () => {
     const oldHostUsername = "daryl_duck";
     const newHostUsername = "daryl_duck2";
     const anotherUsername = "daryl_duck3";
+    const connectionOne = "conn1234";
+    const connectionTwo = "conn5678";
+    const connectionThree = "conn9101";
     const connections = [
       {
         username: oldHostUsername,
@@ -34,20 +39,37 @@ describe("communicateHostChanged tests", () => {
         username: anotherUsername,
       },
     ] as RoomConnection[];
+    const otherUserConnectionIds = [connectionTwo, connectionThree];
+    const hostConnectionIds = [connectionOne];
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>
     ).mockResolvedValueOnce(connections);
+
+    (
+      getConnectionIdsFromConnections as jest.MockedFunction<
+        typeof getConnectionIdsFromConnections
+      >
+    )
+      .mockReturnValueOnce(otherUserConnectionIds)
+      .mockReturnValueOnce(hostConnectionIds);
 
     // Action
     await communicateHostChanged(roomCode, oldHostUsername, newHostUsername);
 
     // Assert
     expect(getRoomConnections).toHaveBeenCalledWith(roomCode);
+    expect(getConnectionIdsFromConnections).toHaveBeenNthCalledWith(1, [
+      { username: oldHostUsername },
+      { username: anotherUsername },
+    ]);
+    expect(getConnectionIdsFromConnections).toHaveBeenNthCalledWith(2, [
+      { username: newHostUsername },
+    ]);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[0][0] as RoomConnection[]
-    ).toEqual([{ username: oldHostUsername }, { username: anotherUsername }]);
+        .calls[0][0] as string[]
+    ).toEqual([connectionTwo, connectionThree]);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
@@ -68,8 +90,8 @@ describe("communicateHostChanged tests", () => {
     ).toBe(oldHostUsername);
     expect(
       (broadcast as jest.MockedFunction<typeof broadcast>).mock
-        .calls[1][0] as RoomConnection[]
-    ).toEqual([{ username: newHostUsername }]);
+        .calls[1][0] as string[]
+    ).toEqual([connectionOne]);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock

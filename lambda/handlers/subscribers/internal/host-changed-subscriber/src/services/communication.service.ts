@@ -4,6 +4,7 @@ import {
   broadcast,
 } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
+import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 export const communicateHostChanged = async (
   roomCode: string,
@@ -17,14 +18,18 @@ export const communicateHostChanged = async (
   const newHostConnections = roomConnections.filter(
     (c) => c.username === newHostUsername
   );
+  const otherUserConnectionIds =
+    getConnectionIdsFromConnections(otherUserConnections);
+  const newHostConnectionIds =
+    getConnectionIdsFromConnections(newHostConnections);
 
   const hostChangingPromise = broadcast<HostChangeCommunicationEvent>(
-    otherUserConnections,
+    otherUserConnectionIds,
     new HostChangeCommunicationEvent(oldHostUsername, newHostUsername)
   );
 
   const hostTransferPromise = broadcast<HostTransferCommunicationEvent>(
-    newHostConnections,
+    newHostConnectionIds,
     new HostTransferCommunicationEvent()
   );
 
