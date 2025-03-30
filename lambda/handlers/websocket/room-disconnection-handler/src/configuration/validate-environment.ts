@@ -1,7 +1,6 @@
-import {
-  verifyDynamoConnectionIndexName,
-  verifyDynamoConnectionTableName,
-} from "@oigamez/configuration";
+import { verifyDynamoConnectionTableName } from "@oigamez/configuration";
+
+import { verifyDynamoConnectionIndexName } from "./dynamo-connection-index-name";
 
 export const validateEnvironment = (): void => {
   verifyDynamoConnectionTableName();

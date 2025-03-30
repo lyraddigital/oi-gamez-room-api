@@ -1,9 +1,10 @@
 import {
   verifyCorsAllowedOrigin,
   verifyDynamoTableName,
-  verifyDynamoVisibleRoomIndexName,
-  verifyPublicRoomsToRetrieve,
 } from "@oigamez/configuration";
+
+import { verifyPublicRoomsToRetrieve } from "./public-rooms-to-retrieve";
+import { verifyDynamoVisibleRoomIndexName } from "./visible-room-index-name";
 
 export const validateEnvironment = (): void => {
   verifyCorsAllowedOrigin();

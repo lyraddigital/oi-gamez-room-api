@@ -1,6 +1,4 @@
-export * from "./get-game-type-by-id";
 export * from "./get-room-by-code";
-export * from "./get-room-connection";
 export * from "./get-room-connections";
 export * from "./remove-room-and-host";
 export * from "./remove-user-from-room";

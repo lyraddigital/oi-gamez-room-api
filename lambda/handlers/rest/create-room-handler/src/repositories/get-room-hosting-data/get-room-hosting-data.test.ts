@@ -4,19 +4,23 @@ import {
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
-import { getGameTypeById } from "@oigamez/repositories";
-
-import { getRoomHostingData } from "./get-room-hosting-data";
 import { GameType } from "@oigamez/models";
 
-jest.mock("@oigamez/repositories", () => {
+import { getGameTypeById } from "../get-game-type-by-id";
+import { getRoomHostingData } from "./get-room-hosting-data";
+
+jest.mock("@oigamez/configuration", () => {
+  return {
+    DYNAMO_TABLE_NAME: "SomeTable",
+  };
+});
+jest.mock("../get-game-type-by-id", () => {
   return {
     getGameTypeById: jest.fn(),
   };
 });
-jest.mock("@oigamez/configuration", () => {
+jest.mock("../../configuration", () => {
   return {
-    DYNAMO_TABLE_NAME: "SomeTable",
     HOST_ROOM_INDEX_NAME: "SomeRoomIndex",
   };
 });

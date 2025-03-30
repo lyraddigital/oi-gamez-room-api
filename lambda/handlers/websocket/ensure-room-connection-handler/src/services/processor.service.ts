@@ -5,11 +5,11 @@ import {
   publishInternalEvents,
 } from "@oigamez/event-bridge";
 import { Room, RoomStatus } from "@oigamez/models";
-import { getRoomConnection } from "@oigamez/repositories";
 
 import {
   establishHostConnection,
   establishJoinerConnection,
+  getRoomConnection,
 } from "../repositories";
 
 export const processRoomConnection = async (

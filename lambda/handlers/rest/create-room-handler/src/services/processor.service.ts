@@ -1,5 +1,4 @@
 import {
-  CONNECT_WINDOW_IN_SECONDS,
   ENCRYPTION_KEY,
   ENCRYPTION_IV,
   JWT_EXPIRY_IN_MINUTES,
@@ -11,6 +10,7 @@ import {
 } from "@oigamez/security";
 import { getNow } from "@oigamez/services";
 
+import { CONNECT_WINDOW_IN_SECONDS } from "../configuration";
 import { CreateRoomPayload, ProcessRoomCreationResponse } from "../models";
 import {
   createRoom,

@@ -10,12 +10,16 @@ import { RoomConnection } from "@oigamez/models";
 
 jest.mock("@oigamez/configuration", () => {
   return {
-    CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME: "LastDisconnectedIndex",
     CONNECTION_DYNAMO_TABLE_NAME: "ConnectionTable",
-    EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS: 30,
   };
 });
 jest.mock("@oigamez/mappers");
+jest.mock("../configuration", () => {
+  return {
+    CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME: "LastDisconnectedIndex",
+    EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS: 30,
+  };
+});
 
 describe("getAllExpiredConnections tests", () => {
   const sendSpy = jest.spyOn<DynamoDBClient, "send">(dbClient, "send");

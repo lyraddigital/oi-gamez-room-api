@@ -1,10 +1,6 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
 
-import {
-  DYNAMO_TABLE_NAME,
-  PUBLIC_ROOMS_TO_RETRIEVE,
-  VISIBLE_ROOM_INDEX_NAME,
-} from "@oigamez/configuration";
+import { DYNAMO_TABLE_NAME } from "@oigamez/configuration";
 import {
   dbClient,
   dynamoFieldNames,
@@ -12,6 +8,10 @@ import {
 } from "@oigamez/dynamodb";
 import { RoomVisiblityType } from "@oigamez/models";
 
+import {
+  PUBLIC_ROOMS_TO_RETRIEVE,
+  VISIBLE_ROOM_INDEX_NAME,
+} from "../configuration";
 import { PublicRoom } from "../models";
 import { mapFromDynamoToPublicRoom } from "../mappers";
 

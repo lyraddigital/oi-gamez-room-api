@@ -18,7 +18,6 @@ import { processRoomCreation } from "./processor.service";
 
 jest.mock("@oigamez/configuration", () => {
   return {
-    CONNECT_WINDOW_IN_SECONDS: 30,
     ENCRYPTION_KEY: "SomeRandomEncryptionKey",
     ENCRYPTION_IV: "SomeRandomEncryptionIV",
     JWT_EXPIRY_IN_MINUTES: 5,
@@ -26,6 +25,11 @@ jest.mock("@oigamez/configuration", () => {
 });
 jest.mock("@oigamez/security");
 jest.mock("@oigamez/services");
+jest.mock("../configuration", () => {
+  return {
+    CONNECT_WINDOW_IN_SECONDS: 30,
+  };
+});
 jest.mock("../repositories");
 jest.mock("./available-division-and-group-code.service");
 jest.mock("./increment-and-convert-to-seconds.service");

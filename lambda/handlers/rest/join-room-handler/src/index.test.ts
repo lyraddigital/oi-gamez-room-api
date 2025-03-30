@@ -2,7 +2,6 @@ import { VerificationResult } from "@oigamez/models";
 import { extractHeader, extractFromPath, parseBody } from "@oigamez/requests";
 import {
   corsBadRequestResponse,
-  corsOkResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
 } from "@oigamez/responses";

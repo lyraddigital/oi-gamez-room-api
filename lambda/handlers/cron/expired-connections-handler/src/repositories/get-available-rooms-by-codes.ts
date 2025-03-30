@@ -8,7 +8,6 @@ import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
-  DYNAMO_GET_ITEMS_PER_PAGE,
 } from "@oigamez/dynamodb";
 import { mapFromDynamoToRoom } from "@oigamez/mappers";
 import { Room } from "@oigamez/models";
@@ -35,7 +34,8 @@ const getRooms = async (
 };
 
 export const getAvailableRoomsByCodes = async (
-  roomCodes: string[]
+  roomCodes: string[],
+  itemsPerPage = 50
 ): Promise<Room[]> => {
   const roomGetEntries = roomCodes.map<Record<string, AttributeValue>>(
     (rc) => ({
@@ -44,13 +44,11 @@ export const getAvailableRoomsByCodes = async (
     })
   );
   const rooms: Room[] = [];
-  const numberOfRequests = Math.ceil(
-    roomCodes.length / DYNAMO_GET_ITEMS_PER_PAGE
-  );
+  const numberOfRequests = Math.ceil(roomCodes.length / itemsPerPage);
 
   for (let i = 0; i < numberOfRequests; i++) {
-    const startIndex = i * DYNAMO_GET_ITEMS_PER_PAGE;
-    const endIndex = startIndex + DYNAMO_GET_ITEMS_PER_PAGE;
+    const startIndex = i * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
     const pagedRooms = await getRooms(
       roomGetEntries.slice(startIndex, endIndex)
     );

@@ -13,10 +13,14 @@ import { getConnectionById } from "./get-connection-by-id";
 jest.mock("@oigamez/configuration", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
-    CONNECTION_DYNAMO_INDEX_NAME: "SomeConnectionIndex",
   };
 });
 jest.mock("@oigamez/mappers");
+jest.mock("../configuration", () => {
+  return {
+    CONNECTION_DYNAMO_INDEX_NAME: "SomeConnectionIndex",
+  };
+});
 
 describe("getRoomHostingData tests", () => {
   const sendSpy = jest.spyOn<DynamoDBClient, "send">(dbClient, "send");

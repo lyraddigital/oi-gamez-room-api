@@ -14,12 +14,6 @@ jest.mock("@oigamez/configuration", () => {
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });
-jest.mock("@oigamez/dynamodb", () => {
-  return {
-    ...jest.requireActual("@oigamez/dynamodb"),
-    DYNAMO_GET_ITEMS_PER_PAGE: 2,
-  };
-});
 jest.mock("@oigamez/mappers");
 
 describe("getAvailableRoomsByCodes tests", () => {
@@ -230,7 +224,7 @@ describe("getAvailableRoomsByCodes tests", () => {
         .mockReturnValueOnce({} as any);
 
       // Action
-      const rooms = await getAvailableRoomsByCodes(roomCodes);
+      const rooms = await getAvailableRoomsByCodes(roomCodes, 2);
 
       // Assert
       expect(rooms).toHaveLength(4);

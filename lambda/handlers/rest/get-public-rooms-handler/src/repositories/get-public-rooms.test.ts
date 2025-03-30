@@ -13,6 +13,11 @@ import { getPublicRooms } from "./get-public-rooms";
 jest.mock("@oigamez/configuration", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
+  };
+});
+jest.mock("../configuration", () => {
+  return {
+    PUBLIC_ROOMS_TO_RETRIEVE: 2,
     VISIBLE_ROOM_INDEX_NAME: "SomeVisibleRoomIndex",
   };
 });
@@ -61,9 +66,10 @@ describe("getRoomHostingData tests", () => {
     expect(
       (sendSpy.mock.calls[0][0] as QueryCommand).input.ExpressionAttributeValues
     ).toEqual({ ":visibilityType": { S: "visible" } });
+    expect((sendSpy.mock.calls[0][0] as QueryCommand).input.Limit).toBe(2);
   });
 
-  test("query returns not record, returns an empty array", async () => {
+  test("query returns no record, returns an empty array", async () => {
     // Arrange
     const queryResponse: QueryCommandOutput = {
       Items: [],

@@ -1,16 +1,17 @@
 import {
   verifyDynamoTableName,
   verifyDynamoConnectionTableName,
-  verifyUpdatedConnectWindowInSeconds,
   verifyEbName,
   verifyEbInternalEventSourceName,
   verifyExternalEbName,
   verifyEbExternalEventSourceName,
 } from "@oigamez/configuration";
-
-jest.mock("@oigamez/configuration");
+import { verifyUpdatedConnectWindowInSeconds } from "./updated-connect-window";
 
 import { validateEnvironment } from "./validate-environment";
+
+jest.mock("@oigamez/configuration");
+jest.mock("./updated-connect-window");
 
 describe("validateEnvironment for ensure room connection tests", () => {
   test("correct verify mocks were called", () => {

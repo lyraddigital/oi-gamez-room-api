@@ -5,11 +5,11 @@ import {
   publishInternalEvents,
 } from "@oigamez/event-bridge";
 import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
-import { getRoomConnection } from "@oigamez/repositories";
 
 import {
   establishHostConnection,
   establishJoinerConnection,
+  getRoomConnection,
 } from "../repositories";
 import { processRoomConnection } from "./processor.service";
 
@@ -20,7 +20,6 @@ jest.mock("@oigamez/event-bridge", () => {
     publishInternalEvents: jest.fn(),
   };
 });
-jest.mock("@oigamez/repositories");
 jest.mock("../repositories");
 
 describe("processRoomConnection for ensure room connection tests", () => {

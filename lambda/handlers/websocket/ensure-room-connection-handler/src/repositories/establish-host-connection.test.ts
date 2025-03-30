@@ -11,14 +11,13 @@ import {
   updateRoomHostDetails,
 } from "./transact-writes";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("@oigamez/dynamodb");
+
+jest.mock("../configuration", () => {
   return {
     UPDATED_CONNECT_WINDOW_IN_SECONDS: 30,
   };
 });
-
-jest.mock("@oigamez/dynamodb");
-
 jest.mock("./transact-writes", () => {
   return {
     createOrUpdateRoomConnection: jest.fn(),
