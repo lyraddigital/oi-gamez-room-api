@@ -1,4 +1,3 @@
-import { EventBridgeExternalEventType } from "./types";
 import { UserJoinedExternalEvent } from "./user-joined-external-event";
 
 describe("UserJoinedExternalEvent tests", () => {
@@ -23,6 +22,6 @@ describe("UserJoinedExternalEvent tests", () => {
     expect(event.username).toBe(username);
     expect(event.isBelowMinimumUsers).toBe(isBelowMinimumUsers);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeExternalEventType.userJoined);
+    expect(event.detailType).toBe("room.user-joined");
   });
 });

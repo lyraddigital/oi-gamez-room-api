@@ -1,5 +1,4 @@
-import { EventBridgeExternalEvent } from "./event-bridge-external-event";
-import { EventBridgeExternalEventType } from "./types";
+import { EventBridgeExternalEvent } from "@oigamez/event-bridge";
 
 export class UserJoinedExternalEvent extends EventBridgeExternalEvent {
   constructor(
@@ -8,6 +7,6 @@ export class UserJoinedExternalEvent extends EventBridgeExternalEvent {
     public isBelowMinimumUsers: boolean,
     gameTypeId: number
   ) {
-    super(EventBridgeExternalEventType.userJoined, gameTypeId);
+    super("room.user-joined", gameTypeId);
   }
 }

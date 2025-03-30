@@ -1,7 +1,6 @@
-import {
-  HostChangeExternalEvent,
-  publishExternalEvents,
-} from "@oigamez/event-bridge";
+import { publishExternalEvents } from "@oigamez/event-bridge";
+
+import { HostChangeExternalEvent } from "../models";
 
 export const publishExternalHostChangedEvent = async (
   roomCode: string,

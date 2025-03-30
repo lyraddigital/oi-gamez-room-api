@@ -3,7 +3,6 @@ import { PutEventsCommand } from "@aws-sdk/client-eventbridge";
 import { client } from "../client";
 import {
   EventBridgeExternalEvent,
-  EventBridgeExternalEventType,
   EventBridgeInternalEvent,
   EventBridgeInternalEventType,
 } from "../events";
@@ -34,7 +33,7 @@ class CustomEventBridgeInternalEvent extends EventBridgeInternalEvent {
 
 class CustomEventBridgeExternallEvent extends EventBridgeExternalEvent {
   constructor(
-    public detailType: EventBridgeExternalEventType,
+    public detailType: string,
     public gameTypeId: number,
     public customProp: string
   ) {
@@ -115,7 +114,7 @@ describe("event publisher tests", () => {
     test("sends the correct PutEventsCommand to the event bus", async () => {
       // Arrange
       const customEvent = new CustomEventBridgeExternallEvent(
-        EventBridgeExternalEventType.userJoined,
+        "room.random-event",
         1,
         "testProp"
       );
@@ -148,14 +147,14 @@ describe("event publisher tests", () => {
       expect(
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0]
           .DetailType
-      ).toBe("room.user-joined");
+      ).toBe("room.random-event");
     });
 
     test("logs the error if there is an issue while trying to publish an event", async () => {
       // Arrange
       const randomError = { error: "Test error message" };
       const customEvent = new CustomEventBridgeExternallEvent(
-        EventBridgeExternalEventType.userJoined,
+        "room.random-event",
         1,
         "testProp"
       );

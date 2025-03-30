@@ -1,8 +1,6 @@
-import {
-  HostChangeExternalEvent,
-  publishExternalEvents,
-} from "@oigamez/event-bridge";
+import { publishExternalEvents } from "@oigamez/event-bridge";
 
+import { HostChangeExternalEvent } from "../models";
 import { publishExternalHostChangedEvent } from "./external-event.service";
 
 jest.mock("@oigamez/event-bridge", () => {
@@ -38,7 +36,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           >
         ).mock.calls[0][0][0] as HostChangeExternalEvent
       ).detailType
-    ).toBe("room.change-host");
+    ).toBe("room.host-changed");
     expect(
       (
         (

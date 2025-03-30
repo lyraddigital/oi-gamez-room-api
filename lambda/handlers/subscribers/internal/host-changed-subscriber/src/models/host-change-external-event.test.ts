@@ -1,5 +1,4 @@
 import { HostChangeExternalEvent } from "./host-change-external-event";
-import { EventBridgeExternalEventType } from "./types";
 
 describe("HostChangeExternalEvent tests", () => {
   test("all props are set correctly", () => {
@@ -23,6 +22,6 @@ describe("HostChangeExternalEvent tests", () => {
     expect(event.oldHostUsername).toBe(oldHostUsername);
     expect(event.newHostUsername).toBe(newHostUsername);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeExternalEventType.hostChanged);
+    expect(event.detailType).toBe("room.host-changed");
   });
 });

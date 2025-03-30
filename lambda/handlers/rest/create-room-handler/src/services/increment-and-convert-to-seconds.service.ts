@@ -1,4 +1,4 @@
-import { convertFromMillisecondsToSeconds } from "../../../../../packages/services/src/milliseconds-to-seconds";
+import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 export const incrementAndReturnInSeconds = (
   ttlInMilliseconds: number,

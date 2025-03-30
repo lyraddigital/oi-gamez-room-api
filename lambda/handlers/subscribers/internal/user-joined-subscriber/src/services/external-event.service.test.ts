@@ -1,11 +1,9 @@
-import {
-  UserJoinedExternalEvent,
-  publishExternalEvents,
-} from "@oigamez/event-bridge";
+import { publishExternalEvents } from "@oigamez/event-bridge";
+import { Room } from "@oigamez/models";
 import { getRoomByCode } from "@oigamez/repositories";
 
+import { UserJoinedExternalEvent } from "../models";
 import { publishExternalUserJoinedEvent } from "./external-event.service";
-import { Room } from "@oigamez/models";
 
 jest.mock("@oigamez/event-bridge", () => {
   return {

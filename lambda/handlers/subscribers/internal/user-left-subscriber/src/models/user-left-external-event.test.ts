@@ -1,4 +1,3 @@
-import { EventBridgeExternalEventType } from "./types";
 import { UserLeftExternalEvent } from "./user-left-external-event";
 
 describe("UserLeftExternalEvent tests", () => {
@@ -23,6 +22,6 @@ describe("UserLeftExternalEvent tests", () => {
     expect(event.username).toBe(username);
     expect(event.isBelowMinimumUsers).toBe(isBelowMinimumUsers);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeExternalEventType.userLeft);
+    expect(event.detailType).toBe("room.user-left");
   });
 });

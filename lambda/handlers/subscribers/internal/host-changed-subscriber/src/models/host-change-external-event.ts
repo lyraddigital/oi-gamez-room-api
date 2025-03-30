@@ -1,5 +1,4 @@
-import { EventBridgeExternalEvent } from "./event-bridge-external-event";
-import { EventBridgeExternalEventType } from "./types";
+import { EventBridgeExternalEvent } from "@oigamez/event-bridge";
 
 export class HostChangeExternalEvent extends EventBridgeExternalEvent {
   constructor(
@@ -8,6 +7,6 @@ export class HostChangeExternalEvent extends EventBridgeExternalEvent {
     public newHostUsername: string,
     gameTypeId: number
   ) {
-    super(EventBridgeExternalEventType.hostChanged, gameTypeId);
+    super("room.host-changed", gameTypeId);
   }
 }

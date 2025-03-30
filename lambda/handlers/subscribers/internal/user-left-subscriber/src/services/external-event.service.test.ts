@@ -1,8 +1,6 @@
-import {
-  UserLeftExternalEvent,
-  publishExternalEvents,
-} from "@oigamez/event-bridge";
+import { publishExternalEvents } from "@oigamez/event-bridge";
 
+import { UserLeftExternalEvent } from "../models";
 import { publishExternalUserLeftEvent } from "./external-event.service";
 
 jest.mock("@oigamez/event-bridge", () => {

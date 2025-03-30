@@ -1,9 +1,7 @@
-import {
-  HostChangeExternalEvent,
-  publishExternalEvents,
-} from "@oigamez/event-bridge";
+import { publishExternalEvents } from "@oigamez/event-bridge";
 
 import { publishExternalRoomRemovedEvent } from "./external-event.service";
+import { RoomRemovedExternalEvent } from "../models";
 
 jest.mock("@oigamez/event-bridge", () => {
   return {
@@ -29,7 +27,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as RoomRemovedExternalEvent
       ).detailType
     ).toBe("room.room-removed");
     expect(
@@ -38,7 +36,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as RoomRemovedExternalEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -47,7 +45,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as RoomRemovedExternalEvent
       ).roomCode
     ).toBe(roomCode);
   });

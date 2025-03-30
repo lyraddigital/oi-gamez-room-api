@@ -1,5 +1,4 @@
 import { RoomRemovedExternalEvent } from "./room-removed-external-event";
-import { EventBridgeExternalEventType } from "./types";
 
 describe("RoomRemovedExternalEvent tests", () => {
   test("all props are set correctly", () => {
@@ -14,6 +13,6 @@ describe("RoomRemovedExternalEvent tests", () => {
     expect(event).toBeDefined();
     expect(event.roomCode).toBe(roomCode);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeExternalEventType.roomRemoved);
+    expect(event.detailType).toBe("room.room-removed");
   });
 });

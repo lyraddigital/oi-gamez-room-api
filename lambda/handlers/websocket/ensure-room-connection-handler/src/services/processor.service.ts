@@ -1,11 +1,11 @@
 import {
-  RoomCreatedExternalEvent,
   UserJoinedInternalEvent,
   publishExternalEvents,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
 import { Room, RoomStatus } from "@oigamez/models";
 
+import { RoomCreatedExternalEvent } from "../models";
 import {
   establishHostConnection,
   establishJoinerConnection,

@@ -1,5 +1,4 @@
 import { RoomCreatedExternalEvent } from "./room-created-external-event";
-import { EventBridgeExternalEventType } from "./types";
 
 describe("RoomCreatedExternalEvent tests", () => {
   test("all props are set correctly", () => {
@@ -20,6 +19,6 @@ describe("RoomCreatedExternalEvent tests", () => {
     expect(event.roomCode).toBe(roomCode);
     expect(event.hostUsername).toBe(hostUsername);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeExternalEventType.roomCreated);
+    expect(event.detailType).toBe("room.room-created");
   });
 });

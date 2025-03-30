@@ -1,8 +1,7 @@
-import {
-  UserJoinedExternalEvent,
-  publishExternalEvents,
-} from "@oigamez/event-bridge";
+import { publishExternalEvents } from "@oigamez/event-bridge";
 import { getRoomByCode } from "@oigamez/repositories";
+
+import { UserJoinedExternalEvent } from "../models";
 
 export const publishExternalUserJoinedEvent = async (
   roomCode: string,
