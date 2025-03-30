@@ -1,6 +1,6 @@
-import { EventBridgeExternalEvent } from "@oigamez/event-bridge";
+import { EventBridgeEvent } from "@oigamez/event-bridge";
 
-export class HostChangeExternalEvent extends EventBridgeExternalEvent {
+export class HostChangeExternalEvent extends EventBridgeEvent {
   constructor(
     public roomCode: string,
     public oldHostUsername: string,

@@ -12,11 +12,9 @@ import {
 } from "@oigamez/configuration";
 
 import { client } from "../client";
-import { EventBridgeExternalEvent, EventBridgeInternalEvent } from "../events";
+import { EventBridgeEvent, EventBridgeInternalEvent } from "../events";
 
-const publishEvents = async <
-  T extends EventBridgeInternalEvent | EventBridgeExternalEvent
->(
+const publishEvents = async <T extends EventBridgeEvent>(
   eventBusName: string,
   eventBusSourceName: string,
   items: T[]
@@ -54,7 +52,7 @@ export const publishInternalEvents = async <T extends EventBridgeInternalEvent>(
   );
 };
 
-export const publishExternalEvents = async <T extends EventBridgeExternalEvent>(
+export const publishExternalEvents = async <T extends EventBridgeEvent>(
   items: T[]
 ): Promise<void> => {
   await publishEvents(

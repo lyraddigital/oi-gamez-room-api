@@ -1,4 +1,4 @@
-import { EventBridgeReceivedEvent } from "./event-bridget-received-event";
+import { EventBridgeReceivedEvent } from "./event-bridge-received-event";
 import { EventBridgeReceivedEventType } from "./types";
 
 export class GameStartedEvent extends EventBridgeReceivedEvent {

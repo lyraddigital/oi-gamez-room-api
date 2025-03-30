@@ -2,7 +2,7 @@ import { PutEventsCommand } from "@aws-sdk/client-eventbridge";
 
 import { client } from "../client";
 import {
-  EventBridgeExternalEvent,
+  EventBridgeEvent,
   EventBridgeInternalEvent,
   EventBridgeInternalEventType,
 } from "../events";
@@ -31,7 +31,7 @@ class CustomEventBridgeInternalEvent extends EventBridgeInternalEvent {
   }
 }
 
-class CustomEventBridgeExternallEvent extends EventBridgeExternalEvent {
+class CustomEventBridgeExternallEvent extends EventBridgeEvent {
   constructor(
     public detailType: string,
     public gameTypeId: number,
