@@ -1,4 +1,3 @@
-import { EventBridgeReceivedEventType } from "./types";
 import { GameCompletedEvent } from "./game-completed-event";
 
 describe("GameCompletedEvent tests", () => {
@@ -12,6 +11,6 @@ describe("GameCompletedEvent tests", () => {
     // Assert
     expect(event).toBeDefined();
     expect(event.roomCode).toBe(roomCode);
-    expect(event.detailType).toBe(EventBridgeReceivedEventType.gameCompleted);
+    expect(event.detailType).toBe("room-receive.game-completed");
   });
 });

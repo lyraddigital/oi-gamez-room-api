@@ -1,24 +1,17 @@
 import { EventBridgeEvent } from "aws-lambda";
 
 import { broadcast } from "@oigamez/communication";
-import {
-  EventBridgeReceivedEventType,
-  GameMessageEvent,
-} from "@oigamez/event-bridge";
 import { RoomStatus } from "@oigamez/models";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import { GenericCommunicationEvent } from "./models";
+import { GameMessageEvent, GenericCommunicationEvent } from "./models";
 
 validateEnvironment();
 
 export const handler = async (
-  event: EventBridgeEvent<
-    EventBridgeReceivedEventType.gameMessage,
-    GameMessageEvent
-  >
+  event: EventBridgeEvent<"room-receive.game-message", GameMessageEvent>
 ): Promise<void> => {
   const { roomCode, action, payload } = event.detail;
   const room = await getRoomByCode(roomCode);

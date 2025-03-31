@@ -1,15 +1,11 @@
 import { broadcast } from "@oigamez/communication";
-import {
-  EventBridgeReceivedEventType,
-  GameStartedEvent,
-} from "@oigamez/event-bridge";
 import { RoomConnection, RoomStatus } from "@oigamez/models";
 import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
-import { GameStartedCommunicationEvent } from "./models";
+import { GameStartedCommunicationEvent, GameStartedEvent } from "./models";
 
 jest.mock("@oigamez/communication", () => {
   return {
@@ -31,10 +27,7 @@ describe("game started subscriber handler tests", () => {
       detail: {
         roomCode,
       },
-    } as EventBridgeEvent<
-      EventBridgeReceivedEventType.gameStarted,
-      GameStartedEvent
-    >;
+    } as EventBridgeEvent<"room-receive.game-started", GameStartedEvent>;
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>

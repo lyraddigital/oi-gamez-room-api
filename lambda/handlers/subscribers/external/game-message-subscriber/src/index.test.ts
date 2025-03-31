@@ -1,15 +1,11 @@
 import { broadcast } from "@oigamez/communication";
-import {
-  EventBridgeReceivedEventType,
-  GameMessageEvent,
-} from "@oigamez/event-bridge";
 import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
 import { getRoomConnections, getRoomByCode } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
-import { GenericCommunicationEvent } from "./models";
+import { GenericCommunicationEvent, GameMessageEvent } from "./models";
 
 jest.mock("@oigamez/communication", () => {
   return {
@@ -37,10 +33,7 @@ describe("game message subscriber handler tests", () => {
         action,
         payload,
       },
-    } as EventBridgeEvent<
-      EventBridgeReceivedEventType.gameMessage,
-      GameMessageEvent
-    >;
+    } as EventBridgeEvent<"room-receive.game-message", GameMessageEvent>;
 
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
@@ -70,10 +63,7 @@ describe("game message subscriber handler tests", () => {
         action,
         payload,
       },
-    } as EventBridgeEvent<
-      EventBridgeReceivedEventType.gameMessage,
-      GameMessageEvent
-    >;
+    } as EventBridgeEvent<"room-receive.game-message", GameMessageEvent>;
 
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
@@ -103,10 +93,7 @@ describe("game message subscriber handler tests", () => {
         action,
         payload,
       },
-    } as EventBridgeEvent<
-      EventBridgeReceivedEventType.gameMessage,
-      GameMessageEvent
-    >;
+    } as EventBridgeEvent<"room-receive.game-message", GameMessageEvent>;
 
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
@@ -138,10 +125,7 @@ describe("game message subscriber handler tests", () => {
         action,
         payload,
       },
-    } as EventBridgeEvent<
-      EventBridgeReceivedEventType.gameMessage,
-      GameMessageEvent
-    >;
+    } as EventBridgeEvent<"room-receive.game-message", GameMessageEvent>;
 
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
@@ -201,10 +185,7 @@ describe("game message subscriber handler tests", () => {
         action,
         payload,
       },
-    } as EventBridgeEvent<
-      EventBridgeReceivedEventType.gameMessage,
-      GameMessageEvent
-    >;
+    } as EventBridgeEvent<"room-receive.game-message", GameMessageEvent>;
 
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>

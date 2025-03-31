@@ -1,24 +1,17 @@
 import { EventBridgeEvent } from "aws-lambda";
 
 import { broadcast } from "@oigamez/communication";
-import {
-  EventBridgeReceivedEventType,
-  GameCompletedEvent,
-} from "@oigamez/event-bridge";
 import { RoomStatus } from "@oigamez/models";
 import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
-import { GameCompletedCommunicationEvent } from "./models";
+import { GameCompletedCommunicationEvent, GameCompletedEvent } from "./models";
 
 validateEnvironment();
 
 export const handler = async (
-  event: EventBridgeEvent<
-    EventBridgeReceivedEventType.gameCompleted,
-    GameCompletedEvent
-  >
+  event: EventBridgeEvent<"room-receive.game-completed", GameCompletedEvent>
 ): Promise<void> => {
   const { roomCode } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);

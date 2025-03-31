@@ -1,4 +1,3 @@
-import { EventBridgeReceivedEventType } from "./types";
 import { GameInitializedEvent } from "./game-initialized-event";
 
 describe("GameInitializedEvent tests", () => {
@@ -12,6 +11,6 @@ describe("GameInitializedEvent tests", () => {
     // Assert
     expect(event).toBeDefined();
     expect(event.roomCode).toBe(roomCode);
-    expect(event.detailType).toBe(EventBridgeReceivedEventType.gameInitialized);
+    expect(event.detailType).toBe("room-receive.game-initialized");
   });
 });
