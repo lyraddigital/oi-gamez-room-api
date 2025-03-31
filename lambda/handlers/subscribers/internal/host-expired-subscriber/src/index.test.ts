@@ -1,7 +1,4 @@
-import {
-  EventBridgeInternalEventType,
-  HostConnectionExpiredInternalEvent,
-} from "@oigamez/event-bridge";
+import { HostConnectionExpiredInternalEvent } from "@oigamez/event-bridge";
 import { Room, RoomConnection } from "@oigamez/models";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { handleHostDisconnection } from "@oigamez/services";
@@ -31,7 +28,7 @@ describe("host expired subscriber handler tests", () => {
         gameTypeId,
       },
     } as EventBridgeEvent<
-      EventBridgeInternalEventType.hostConnectionExpired,
+      "room-internal.host-connection-expired",
       HostConnectionExpiredInternalEvent
     >;
 

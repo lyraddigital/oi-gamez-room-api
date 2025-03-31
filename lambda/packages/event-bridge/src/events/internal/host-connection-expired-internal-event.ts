@@ -1,13 +1,12 @@
-import { EventBridgeInternalEvent } from "./event-bridge-internal-event";
-import { EventBridgeInternalEventType } from "./types";
+import { EventBridgeEvent } from "../event-bridge-event";
 
-export class HostConnectionExpiredInternalEvent extends EventBridgeInternalEvent {
+export class HostConnectionExpiredInternalEvent extends EventBridgeEvent {
   constructor(
     public roomCode: string,
     public username: string,
     public shouldRemoveRoom: boolean,
     gameTypeId: number
   ) {
-    super(EventBridgeInternalEventType.hostConnectionExpired, gameTypeId);
+    super("room-internal.host-connection-expired", gameTypeId);
   }
 }

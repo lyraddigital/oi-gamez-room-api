@@ -1,7 +1,4 @@
-import {
-  EventBridgeInternalEventType,
-  RoomRemovedInternalEvent,
-} from "@oigamez/event-bridge";
+import { RoomRemovedInternalEvent } from "@oigamez/event-bridge";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
@@ -26,7 +23,7 @@ describe("room removed subscriber handler tests", () => {
         gameTypeId,
       },
     } as EventBridgeEvent<
-      EventBridgeInternalEventType.roomRemoved,
+      "room-internal.room-removed",
       RoomRemovedInternalEvent
     >;
 

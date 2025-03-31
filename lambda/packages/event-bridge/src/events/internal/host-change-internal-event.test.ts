@@ -1,4 +1,3 @@
-import { EventBridgeInternalEventType } from "./types";
 import { HostChangeInternalEvent } from "./host-change-internal-event";
 
 describe("HostChangeInternalEvent tests", () => {
@@ -23,6 +22,6 @@ describe("HostChangeInternalEvent tests", () => {
     expect(event.oldHostUsername).toBe(oldHostUsername);
     expect(event.newHostUsername).toBe(newHostUsername);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeInternalEventType.hostChanged);
+    expect(event.detailType).toBe("room-internal.change-host");
   });
 });

@@ -1,7 +1,4 @@
-import {
-  EventBridgeInternalEventType,
-  UserLeftInternalEvent,
-} from "@oigamez/event-bridge";
+import { UserLeftInternalEvent } from "@oigamez/event-bridge";
 import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 
@@ -11,10 +8,7 @@ import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
 validateEnvironment();
 
 export const handler = async (
-  event: EventBridgeEvent<
-    EventBridgeInternalEventType.userLeft,
-    UserLeftInternalEvent
-  >
+  event: EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>
 ): Promise<void> => {
   const { roomCode, username, connectionId, gameTypeId } = event.detail;
   const room = await getRoomByCode(roomCode);

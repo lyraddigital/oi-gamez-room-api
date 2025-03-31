@@ -1,11 +1,7 @@
 import { PutEventsCommand } from "@aws-sdk/client-eventbridge";
 
 import { client } from "../client";
-import {
-  EventBridgeEvent,
-  EventBridgeInternalEvent,
-  EventBridgeInternalEventType,
-} from "../events";
+import { EventBridgeEvent } from "../events";
 import {
   publishExternalEvents,
   publishInternalEvents,
@@ -21,9 +17,9 @@ jest.mock("@oigamez/configuration", () => {
   };
 });
 
-class CustomEventBridgeInternalEvent extends EventBridgeInternalEvent {
+class CustomEventBridgeInternalEvent extends EventBridgeEvent {
   constructor(
-    public detailType: EventBridgeInternalEventType,
+    public detailType: string,
     public gameTypeId: number,
     public customProp: string
   ) {
@@ -53,7 +49,7 @@ describe("event publisher tests", () => {
     test("sends the correct PutEventsCommand to the event bus", async () => {
       // Arrange
       const customEvent = new CustomEventBridgeInternalEvent(
-        EventBridgeInternalEventType.userJoined,
+        "room-internal.user-joined",
         1,
         "testProp"
       );
@@ -92,7 +88,7 @@ describe("event publisher tests", () => {
       // Arrange
       const randomError = { error: "Test error message" };
       const customEvent = new CustomEventBridgeInternalEvent(
-        EventBridgeInternalEventType.userJoined,
+        "room-internal.user-joined",
         1,
         "testProp"
       );

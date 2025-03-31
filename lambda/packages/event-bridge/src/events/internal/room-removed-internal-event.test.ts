@@ -1,4 +1,3 @@
-import { EventBridgeInternalEventType } from "./types";
 import { RoomRemovedInternalEvent } from "./room-removed-internal-event";
 
 describe("RoomRemovedInternalEvent tests", () => {
@@ -20,6 +19,6 @@ describe("RoomRemovedInternalEvent tests", () => {
     expect(event.roomCode).toBe(roomCode);
     expect(event.hostConnectionId).toBe(hostConnectionId);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeInternalEventType.roomRemoved);
+    expect(event.detailType).toBe("room-internal.room-removed");
   });
 });

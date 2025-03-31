@@ -1,12 +1,11 @@
-import { EventBridgeInternalEvent } from "./event-bridge-internal-event";
-import { EventBridgeInternalEventType } from "./types";
+import { EventBridgeEvent } from "../event-bridge-event";
 
-export class UserJoinedInternalEvent extends EventBridgeInternalEvent {
+export class UserJoinedInternalEvent extends EventBridgeEvent {
   constructor(
     public roomCode: string,
     public username: string,
     gameTypeId: number
   ) {
-    super(EventBridgeInternalEventType.userJoined, gameTypeId);
+    super("room-internal.user-joined", gameTypeId);
   }
 }

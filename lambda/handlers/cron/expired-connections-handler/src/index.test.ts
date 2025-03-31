@@ -1,4 +1,3 @@
-import { EventBridgeInternalEventType } from "@oigamez/event-bridge";
 import { Room, RoomConnection } from "@oigamez/models";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
@@ -23,7 +22,7 @@ describe("expired connections handler tests", () => {
     const hostedRooms = [] as Room[];
     const currentTimeInSeconds = 3933938;
     const event = {} as EventBridgeEvent<
-      EventBridgeInternalEventType.expiredConnections,
+      "room-internal.expired-connections",
       void
     >;
 
@@ -99,7 +98,7 @@ describe("expired connections handler tests", () => {
     const hostedRooms = [roomOne, roomTwo] as Room[];
     const currentTimeInSeconds = 3933938;
     const event = {} as EventBridgeEvent<
-      EventBridgeInternalEventType.expiredConnections,
+      "room-internal.expired-connections",
       void
     >;
 

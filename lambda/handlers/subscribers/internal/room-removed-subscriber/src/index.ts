@@ -1,9 +1,5 @@
+import { RoomRemovedInternalEvent } from "@oigamez/event-bridge";
 import { EventBridgeEvent } from "aws-lambda";
-
-import {
-  EventBridgeInternalEventType,
-  RoomRemovedInternalEvent,
-} from "@oigamez/event-bridge";
 
 import { validateEnvironment } from "./configuration";
 import {
@@ -15,7 +11,7 @@ validateEnvironment();
 
 export const handler = async (
   event: EventBridgeEvent<
-    EventBridgeInternalEventType.roomRemoved,
+    "room-internal.room-removed",
     RoomRemovedInternalEvent
   >
 ): Promise<void> => {

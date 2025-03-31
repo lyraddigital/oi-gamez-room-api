@@ -1,4 +1,3 @@
-import { EventBridgeInternalEventType } from "./types";
 import { UserLeftInternalEvent } from "./user-left-internal-event";
 
 describe("UserLeftInternalEvent tests", () => {
@@ -23,7 +22,7 @@ describe("UserLeftInternalEvent tests", () => {
     expect(event.username).toBe(username);
     expect(event.connectionId).toBe(connectionId);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeInternalEventType.userLeft);
+    expect(event.detailType).toBe("room-internal.user-left");
   });
 
   test("connection id is undefined, sets the connection id prop successfully", () => {

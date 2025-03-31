@@ -1,7 +1,4 @@
-import {
-  EventBridgeInternalEventType,
-  HostChangeInternalEvent,
-} from "@oigamez/event-bridge";
+import { HostChangeInternalEvent } from "@oigamez/event-bridge";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
@@ -27,10 +24,7 @@ describe("host changed subscriber handler tests", () => {
         newHostUsername,
         gameTypeId,
       },
-    } as EventBridgeEvent<
-      EventBridgeInternalEventType.hostChanged,
-      HostChangeInternalEvent
-    >;
+    } as EventBridgeEvent<"room-internal.change-host", HostChangeInternalEvent>;
 
     // Action
     await handler(event);

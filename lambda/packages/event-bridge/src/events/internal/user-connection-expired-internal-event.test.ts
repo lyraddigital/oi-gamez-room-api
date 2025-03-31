@@ -1,4 +1,3 @@
-import { EventBridgeInternalEventType } from "./types";
 import { UserConnectionExpiredInternalEvent } from "./user-connection-expired-internal-event";
 
 describe("UserConnectionExpiredInternalEvent tests", () => {
@@ -20,8 +19,6 @@ describe("UserConnectionExpiredInternalEvent tests", () => {
     expect(event.roomCode).toBe(roomCode);
     expect(event.username).toBe(username);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(
-      EventBridgeInternalEventType.userConnectionExpired
-    );
+    expect(event.detailType).toBe("room-internal.user-connection-expired");
   });
 });

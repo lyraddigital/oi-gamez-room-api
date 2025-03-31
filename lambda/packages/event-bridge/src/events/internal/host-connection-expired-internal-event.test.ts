@@ -1,4 +1,3 @@
-import { EventBridgeInternalEventType } from "./types";
 import { HostConnectionExpiredInternalEvent } from "./host-connection-expired-internal-event";
 
 describe("HostConnectionExpiredInternalEvent tests", () => {
@@ -23,8 +22,6 @@ describe("HostConnectionExpiredInternalEvent tests", () => {
     expect(event.username).toBe(username);
     expect(event.shouldRemoveRoom).toBe(shouldRemoveRoom);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(
-      EventBridgeInternalEventType.hostConnectionExpired
-    );
+    expect(event.detailType).toBe("room-internal.host-connection-expired");
   });
 });

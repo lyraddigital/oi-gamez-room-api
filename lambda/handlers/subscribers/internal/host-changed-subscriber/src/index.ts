@@ -1,9 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import {
-  EventBridgeInternalEventType,
-  HostChangeInternalEvent,
-} from "@oigamez/event-bridge";
+import { HostChangeInternalEvent } from "@oigamez/event-bridge";
 
 import { validateEnvironment } from "./configuration";
 import {
@@ -14,10 +11,7 @@ import {
 validateEnvironment();
 
 export const handler = async (
-  event: EventBridgeEvent<
-    EventBridgeInternalEventType.hostChanged,
-    HostChangeInternalEvent
-  >
+  event: EventBridgeEvent<"room-internal.change-host", HostChangeInternalEvent>
 ): Promise<void> => {
   const { roomCode, oldHostUsername, newHostUsername, gameTypeId } =
     event.detail;

@@ -1,7 +1,4 @@
-import {
-  EventBridgeInternalEventType,
-  UserJoinedInternalEvent,
-} from "@oigamez/event-bridge";
+import { UserJoinedInternalEvent } from "@oigamez/event-bridge";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
@@ -25,10 +22,7 @@ describe("user joined subscriber handler tests", () => {
         username,
         gameTypeId,
       },
-    } as EventBridgeEvent<
-      EventBridgeInternalEventType.userJoined,
-      UserJoinedInternalEvent
-    >;
+    } as EventBridgeEvent<"room-internal.user-joined", UserJoinedInternalEvent>;
 
     // Action
     await handler(event);

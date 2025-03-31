@@ -1,5 +1,4 @@
 import {
-  EventBridgeInternalEventType,
   publishInternalEvents,
   UserLeftInternalEvent,
 } from "@oigamez/event-bridge";
@@ -76,6 +75,6 @@ describe("handleUserLeft tests", () => {
           >
         ).mock.calls[0][0][0] as UserLeftInternalEvent
       ).detailType
-    ).toBe(EventBridgeInternalEventType.userLeft);
+    ).toBe("room-internal.user-left");
   });
 });

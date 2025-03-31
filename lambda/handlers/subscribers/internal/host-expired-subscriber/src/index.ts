@@ -1,9 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import {
-  EventBridgeInternalEventType,
-  HostConnectionExpiredInternalEvent,
-} from "@oigamez/event-bridge";
+import { HostConnectionExpiredInternalEvent } from "@oigamez/event-bridge";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { handleHostDisconnection } from "@oigamez/services";
 
@@ -13,7 +10,7 @@ validateEnvironment();
 
 export const handler = async (
   event: EventBridgeEvent<
-    EventBridgeInternalEventType.hostConnectionExpired,
+    "room-internal.host-connection-expired",
     HostConnectionExpiredInternalEvent
   >
 ): Promise<void> => {

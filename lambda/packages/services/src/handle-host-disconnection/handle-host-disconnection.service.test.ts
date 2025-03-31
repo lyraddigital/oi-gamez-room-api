@@ -1,8 +1,7 @@
 import {
-  EventBridgeInternalEventType,
+  RoomRemovedInternalEvent,
   HostChangeInternalEvent,
   publishInternalEvents,
-  RoomRemovedInternalEvent,
 } from "@oigamez/event-bridge";
 import { Room, RoomConnection } from "@oigamez/models";
 import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
@@ -63,7 +62,7 @@ describe("handleHostDisconnection tests", () => {
           >
         ).mock.calls[0][0][0] as RoomRemovedInternalEvent
       ).detailType
-    ).toBe(EventBridgeInternalEventType.roomRemoved);
+    ).toBe("room-internal.room-removed");
     expect(
       (
         (
@@ -182,7 +181,7 @@ describe("handleHostDisconnection tests", () => {
           >
         ).mock.calls[0][0][0] as HostChangeInternalEvent
       ).detailType
-    ).toBe(EventBridgeInternalEventType.hostChanged);
+    ).toBe("room-internal.change-host");
     expect(
       (
         (

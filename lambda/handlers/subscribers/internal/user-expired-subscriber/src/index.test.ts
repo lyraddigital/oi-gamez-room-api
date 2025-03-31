@@ -1,7 +1,4 @@
-import {
-  EventBridgeInternalEventType,
-  UserConnectionExpiredInternalEvent,
-} from "@oigamez/event-bridge";
+import { UserConnectionExpiredInternalEvent } from "@oigamez/event-bridge";
 import { Room } from "@oigamez/models";
 import { getRoomByCode } from "@oigamez/repositories";
 import { handleUserLeft } from "@oigamez/services";
@@ -28,7 +25,7 @@ describe("user expired subscriber handler tests", () => {
         gameTypeId,
       },
     } as EventBridgeEvent<
-      EventBridgeInternalEventType.userConnectionExpired,
+      "room-internal.user-connection-expired",
       UserConnectionExpiredInternalEvent
     >;
     (

@@ -1,4 +1,3 @@
-import { EventBridgeInternalEventType } from "./types";
 import { UserJoinedInternalEvent } from "./user-joined-internal-event";
 
 describe("UserJoinedInternalEvent tests", () => {
@@ -16,6 +15,6 @@ describe("UserJoinedInternalEvent tests", () => {
     expect(event.roomCode).toBe(roomCode);
     expect(event.username).toBe(username);
     expect(event.gameTypeId).toBe(gameTypeId);
-    expect(event.detailType).toBe(EventBridgeInternalEventType.userJoined);
+    expect(event.detailType).toBe("room-internal.user-joined");
   });
 });

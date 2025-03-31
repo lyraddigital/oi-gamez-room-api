@@ -1,13 +1,10 @@
-import {
-  EventBridgeInternalEventType,
-  UserLeftInternalEvent,
-} from "@oigamez/event-bridge";
+import { UserLeftInternalEvent } from "@oigamez/event-bridge";
+import { Room } from "@oigamez/models";
 import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";
 import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
-import { Room } from "@oigamez/models";
 
 jest.mock("@oigamez/repositories");
 jest.mock("./configuration");
@@ -27,10 +24,7 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<
-      EventBridgeInternalEventType.userLeft,
-      UserLeftInternalEvent
-    >;
+    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
 
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
@@ -68,10 +62,7 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<
-      EventBridgeInternalEventType.userLeft,
-      UserLeftInternalEvent
-    >;
+    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
     const room = {
       curNumOfUsers: 3,
       minNumOfUsers: 2,
@@ -113,10 +104,7 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<
-      EventBridgeInternalEventType.userLeft,
-      UserLeftInternalEvent
-    >;
+    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
     const room = {
       curNumOfUsers: 2,
       minNumOfUsers: 2,
@@ -158,10 +146,7 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<
-      EventBridgeInternalEventType.userLeft,
-      UserLeftInternalEvent
-    >;
+    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
     const room = {
       curNumOfUsers: 1,
       minNumOfUsers: 2,

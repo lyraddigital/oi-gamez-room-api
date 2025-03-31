@@ -1,9 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import {
-  EventBridgeInternalEventType,
-  UserConnectionExpiredInternalEvent,
-} from "@oigamez/event-bridge";
+import { UserConnectionExpiredInternalEvent } from "@oigamez/event-bridge";
 import { getRoomByCode } from "@oigamez/repositories";
 import { handleUserLeft } from "@oigamez/services";
 
@@ -13,7 +10,7 @@ validateEnvironment();
 
 export const handler = async (
   event: EventBridgeEvent<
-    EventBridgeInternalEventType.userConnectionExpired,
+    "room-internal.user-connection-expired",
     UserConnectionExpiredInternalEvent
   >
 ): Promise<void> => {
