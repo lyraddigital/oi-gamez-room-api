@@ -1,17 +1,20 @@
-import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
 import { APIGatewayProxyResult } from "aws-lambda";
 
+import {
+  corsOkResponseWithData,
+  fatalErrorResponse,
+} from "/opt/nodejs/oigamez-http";
+import { handler } from ".";
 import { PublicRoom } from "./models";
 import { getPublicRooms } from "./repositories";
-import { handler } from ".";
 
-jest.mock("@oigamez/responses");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-core"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("./configuration");
 jest.mock("./repositories");
 

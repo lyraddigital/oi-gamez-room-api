@@ -2,7 +2,7 @@ import {
   corsBadRequestResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
-} from "@oigamez/responses";
+} from "/opt/nodejs/oigamez-http";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import { VerificationResult } from "/opt/nodejs/oigamez-core";
@@ -11,7 +11,7 @@ import { handler } from ".";
 import { CurrentRoomStatus } from "./models";
 import { processStatusRetrieval, verifyRequestData } from "./services";
 
-jest.mock("@oigamez/responses");
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-core"),

@@ -1,19 +1,21 @@
 import { GameType } from "/opt/nodejs/oigamez-core";
-import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
+import {
+  corsOkResponseWithData,
+  fatalErrorResponse,
+} from "/opt/nodejs/oigamez-http";
 import { APIGatewayProxyResult } from "aws-lambda";
 
 import { handler } from ".";
 import { getAllGameTypes } from "./repositories";
 
 jest.mock("@oigamez/repositories");
-jest.mock("@oigamez/responses");
-
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-core"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("./repositories");
 jest.mock("./configuration");
 

@@ -1,13 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { extractFromPath, extractHeader } from "/opt/nodejs/oigamez-http";
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
+  extractFromPath,
+  extractHeader,
   fatalErrorResponse,
-} from "@oigamez/responses";
-
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
 import { processStatusRetrieval, verifyRequestData } from "./services";
 

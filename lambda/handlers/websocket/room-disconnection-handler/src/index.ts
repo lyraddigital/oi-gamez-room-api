@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { okResponse } from "@oigamez/responses";
-
+import { okResponse } from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
 import { processDisconnection } from "./services";
 

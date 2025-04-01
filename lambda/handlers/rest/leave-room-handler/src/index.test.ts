@@ -1,3 +1,5 @@
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+
 import {
   Room,
   RoomConnection,
@@ -5,22 +7,16 @@ import {
   VerificationResultWithData,
 } from "/opt/nodejs/oigamez-core";
 import {
+  corsBadRequestResponse,
+  corsOkResponse,
   extractHeader,
   extractFromPath,
   parseBody,
-} from "/opt/nodejs/oigamez-http";
-import {
-  corsBadRequestResponse,
-  corsOkResponse,
   fatalErrorResponse,
-} from "@oigamez/responses";
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-
+} from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { LeaveRoomPayload } from "./models";
 import { processLeavingRoom, verifyRequestData } from "./services";
-
-jest.mock("@oigamez/responses");
 
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {

@@ -1,8 +1,10 @@
 import { APIGatewayProxyResult } from "aws-lambda";
 
-import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
-
 import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import {
+  corsOkResponseWithData,
+  fatalErrorResponse,
+} from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
 import { getAllGameTypes } from "./repositories";
 

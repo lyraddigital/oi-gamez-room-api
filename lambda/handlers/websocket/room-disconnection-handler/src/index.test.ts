@@ -1,10 +1,10 @@
-import { okResponse } from "@oigamez/responses";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { okResponse } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { processDisconnection } from "./services";
 
-jest.mock("@oigamez/responses");
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("./configuration");
 jest.mock("./services");
 

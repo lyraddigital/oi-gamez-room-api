@@ -1,13 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
 import {
+  extractHeader,
+  parseBody,
   corsBadRequestResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
-} from "@oigamez/responses";
-
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
-import { extractHeader, parseBody } from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
 import { CreateRoomPayload } from "./models";
 import {
