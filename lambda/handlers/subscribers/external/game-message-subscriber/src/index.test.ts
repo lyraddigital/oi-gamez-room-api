@@ -1,5 +1,5 @@
 import { broadcast } from "@oigamez/communication";
-import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { getRoomConnections, getRoomByCode } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";

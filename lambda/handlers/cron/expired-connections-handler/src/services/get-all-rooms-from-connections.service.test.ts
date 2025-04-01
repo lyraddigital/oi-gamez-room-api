@@ -1,4 +1,4 @@
-import { Room, RoomConnection } from "@oigamez/models";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 
 import { getAvailableRoomsByCodes } from "../repositories";
 import { getAllHostedRoomsFromConnections } from "./get-all-rooms-from-connections.service";

@@ -1,4 +1,4 @@
-import { GameType, VerificationResult } from "@oigamez/models";
+import { GameType, VerificationResult } from "/opt/nodejs/oigamez-core";
 
 export const runCreateRoomRuleSet = (
   gameType: GameType | undefined,

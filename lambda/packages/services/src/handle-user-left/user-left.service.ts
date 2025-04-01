@@ -2,7 +2,7 @@ import {
   UserLeftInternalEvent,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
-import { Room } from "@oigamez/models";
+import { Room } from "/opt/nodejs/oigamez-core";
 import { removeUserFromRoom } from "@oigamez/repositories";
 
 export const handleUserLeft = async (

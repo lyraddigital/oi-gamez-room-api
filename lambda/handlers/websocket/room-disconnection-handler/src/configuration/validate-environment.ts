@@ -1,4 +1,4 @@
-import { verifyDynamoConnectionTableName } from "@oigamez/configuration";
+import { verifyDynamoConnectionTableName } from "/opt/nodejs/oigamez-core";
 
 import { verifyDynamoConnectionIndexName } from "./dynamo-connection-index-name";
 

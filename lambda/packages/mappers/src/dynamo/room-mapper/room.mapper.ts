@@ -5,7 +5,7 @@ import {
   getDynamoInt,
   getDynamoString,
 } from "@oigamez/dynamodb";
-import { Room, RoomStatus, RoomVisiblityType } from "@oigamez/models";
+import { Room, RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
 
 export const mapFromDynamoToRoom = (
   dynamoRecord: Record<string, AttributeValue>

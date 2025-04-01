@@ -1,5 +1,5 @@
-import { VerificationResult } from "@oigamez/models";
-import { extractHeader, extractFromPath } from "@oigamez/requests";
+import { VerificationResult } from "/opt/nodejs/oigamez-core";
+import { extractHeader, extractFromPath } from "/opt/nodejs/oigamez-http";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
@@ -11,7 +11,7 @@ import { handler } from ".";
 import { CurrentRoomStatus } from "./models";
 import { processStatusRetrieval, verifyRequestData } from "./services";
 
-jest.mock("@oigamez/requests");
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
 
 jest.mock("./configuration");

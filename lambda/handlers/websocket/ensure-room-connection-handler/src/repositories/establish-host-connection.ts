@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-dynamodb";
 
 import { dbClient } from "@oigamez/dynamodb";
-import { Room } from "@oigamez/models";
+import { Room } from "/opt/nodejs/oigamez-core";
 
 import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "../configuration";
 import {

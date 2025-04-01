@@ -3,7 +3,7 @@ import {
   UserLeftInternalEvent,
 } from "@oigamez/event-bridge";
 import { removeUserFromRoom } from "@oigamez/repositories";
-import { Room } from "@oigamez/models";
+import { Room } from "/opt/nodejs/oigamez-core";
 
 import { handleUserLeft } from "./user-left.service";
 

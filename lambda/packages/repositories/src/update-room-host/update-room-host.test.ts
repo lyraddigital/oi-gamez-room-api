@@ -3,7 +3,7 @@ import { dbClient } from "@oigamez/dynamodb";
 
 import { updateRoomHost } from "./update-room-host";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

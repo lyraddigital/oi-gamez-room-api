@@ -6,7 +6,7 @@ describe("verifyAccessToken tests", () => {
     const jwtSecretKey = "SomeJWTSecretKey";
     const expiryInMinutes = -5;
 
-    jest.doMock("@oigamez/configuration", () => {
+    jest.doMock("/opt/nodejs/oigamez-core", () => {
       return {
         JWT_SECRET_KEY: jwtSecretKey,
       };
@@ -32,7 +32,7 @@ describe("verifyAccessToken tests", () => {
     const jwtSecretKey = "SomeJWTSecretKey";
     const expiryInMinutes = 5;
 
-    jest.doMock("@oigamez/configuration", () => {
+    jest.doMock("/opt/nodejs/oigamez-core", () => {
       return {
         JWT_SECRET_KEY: jwtSecretKey,
       };

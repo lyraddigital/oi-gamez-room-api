@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { extractFromPath, extractHeader } from "@oigamez/requests";
+import { extractFromPath, extractHeader } from "/opt/nodejs/oigamez-http";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,

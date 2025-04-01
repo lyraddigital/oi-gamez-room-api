@@ -1,5 +1,5 @@
 import { broadcast } from "@oigamez/communication";
-import { RoomConnection } from "@oigamez/models";
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 

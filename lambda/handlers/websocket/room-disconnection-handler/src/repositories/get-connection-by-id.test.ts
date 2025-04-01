@@ -6,11 +6,11 @@ import {
 } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToConnection } from "@oigamez/mappers";
-import { RoomConnection } from "@oigamez/models";
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 
 import { getConnectionById } from "./get-connection-by-id";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
   };

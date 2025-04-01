@@ -1,4 +1,4 @@
-import { RoomConnection } from "@oigamez/models";
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 
 export const getConnectionIdsFromConnections = (
   connections: RoomConnection[]

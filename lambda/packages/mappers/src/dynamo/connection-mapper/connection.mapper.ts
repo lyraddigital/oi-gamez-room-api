@@ -5,7 +5,7 @@ import {
   getOptionalDynamoInt,
   getDynamoString,
 } from "@oigamez/dynamodb";
-import { RoomConnection } from "@oigamez/models";
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 
 export const mapFromDynamoToConnection = (
   dynamoRecord: Record<string, AttributeValue>

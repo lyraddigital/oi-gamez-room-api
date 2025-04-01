@@ -1,4 +1,4 @@
-import { Room, VerificationResultWithData } from "@oigamez/models";
+import { Room, VerificationResultWithData } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 

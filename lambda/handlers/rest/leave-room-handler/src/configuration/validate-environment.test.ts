@@ -2,11 +2,11 @@ import {
   verifyCorsAllowedOrigin,
   verifyDynamoConnectionTableName,
   verifyDynamoTableName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
 import { validateEnvironment } from "./validate-environment";
 
-jest.mock("@oigamez/configuration");
+jest.mock("/opt/nodejs/oigamez-core");
 
 describe("validateEnvironment for leave room handler tests", () => {
   test("correct verify mocks were called", () => {

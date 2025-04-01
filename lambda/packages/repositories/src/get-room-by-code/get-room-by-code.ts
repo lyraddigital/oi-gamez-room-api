@@ -1,13 +1,13 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "@oigamez/configuration";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
 } from "@oigamez/dynamodb";
 import { mapFromDynamoToRoom } from "@oigamez/mappers";
-import { Room } from "@oigamez/models";
+import { Room } from "/opt/nodejs/oigamez-core";
 
 export const getRoomByCode = async (
   roomCode: string,

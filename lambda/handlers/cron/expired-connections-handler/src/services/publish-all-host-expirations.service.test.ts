@@ -2,7 +2,7 @@ import {
   HostConnectionExpiredInternalEvent,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
-import { Room, RoomStatus } from "@oigamez/models";
+import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
 
 import { publishAllHostExpirations } from "./publish-all-host-expirations.service";
 

@@ -2,8 +2,8 @@ import {
   ENCRYPTION_KEY,
   ENCRYPTION_IV,
   JWT_EXPIRY_IN_MINUTES,
-} from "@oigamez/configuration";
-import { GameType } from "@oigamez/models";
+} from "/opt/nodejs/oigamez-core";
+import { GameType } from "/opt/nodejs/oigamez-core";
 import {
   encryptCustomDataToString,
   generateAccessToken,

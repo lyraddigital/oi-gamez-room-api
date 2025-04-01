@@ -10,8 +10,9 @@ import { mapFromDynamoToPublicRoom } from "../mappers";
 
 import { getPublicRooms } from "./get-public-rooms";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });

@@ -26,11 +26,14 @@
       "./node_modules/@types"
     ],
     "paths": {
+      "/opt/nodejs/oigamez-core": [
+        "./lambda/packages/core/nodejs/oigamez-core"
+      ],
+      "/opt/nodejs/oigamez-http": [
+        "./lambda/packages/http/nodejs/oigamez-http"
+      ],
       "@oigamez/communication": [
         "./lambda/packages/communication/src"
-      ],
-      "@oigamez/configuration": [
-        "./lambda/packages/configuration/src"
       ],
       "@oigamez/dynamodb": [
         "./lambda/packages/dynamodb/src"
@@ -41,14 +44,8 @@
       "@oigamez/mappers": [
         "./lambda/packages/mappers/src"
       ],
-      "@oigamez/models": [
-        "./lambda/packages/models/src"
-      ],
       "@oigamez/repositories": [
         "./lambda/packages/repositories/src"
-      ],
-      "@oigamez/requests": [
-        "./lambda/packages/requests/src"
       ],
       "@oigamez/responses": [
         "./lambda/packages/responses/src"
@@ -61,9 +58,6 @@
       ],
       "@oigamez/services": [
         "./lambda/packages/services/src"
-      ],
-      "@oigamez/validators": [
-        "./lambda/packages/validators/src"
       ]
     }
   },

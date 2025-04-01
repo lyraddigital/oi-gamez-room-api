@@ -1,7 +1,7 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
 import { mapFromDynamoToRoom } from "./room.mapper";
-import { RoomStatus, RoomVisiblityType } from "@oigamez/models";
+import { RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
 
 describe("mapFromDynamoToRoom tests", () => {
   test("maps a DynamoDb record to Room correctly", () => {

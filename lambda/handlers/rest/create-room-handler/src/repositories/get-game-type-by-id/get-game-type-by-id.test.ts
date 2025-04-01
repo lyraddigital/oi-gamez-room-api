@@ -5,12 +5,12 @@ import {
 } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
-import { GameType } from "@oigamez/models";
+import { GameType } from "/opt/nodejs/oigamez-core";
 
 import { getGameTypeById } from "./get-game-type-by-id";
 
 jest.mock("@oigamez/mappers");
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

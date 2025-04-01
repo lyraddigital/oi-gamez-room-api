@@ -3,7 +3,7 @@ import {
   RoomRemovedInternalEvent,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
-import { Room, RoomConnection } from "@oigamez/models";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
 
 import { handleUserLeft } from "../handle-user-left";

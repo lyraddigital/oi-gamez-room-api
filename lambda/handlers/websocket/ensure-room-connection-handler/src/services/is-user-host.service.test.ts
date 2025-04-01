@@ -1,4 +1,4 @@
-import { Room } from "@oigamez/models";
+import { Room } from "/opt/nodejs/oigamez-core";
 
 import { isUserHost } from "./is-user-host.service";
 

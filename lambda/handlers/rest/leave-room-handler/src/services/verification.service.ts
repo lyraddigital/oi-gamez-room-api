@@ -2,7 +2,7 @@ import {
   Room,
   RoomConnection,
   VerificationResultWithData,
-} from "@oigamez/models";
+} from "/opt/nodejs/oigamez-core";
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,

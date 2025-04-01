@@ -1,4 +1,4 @@
-import { VerificationResult } from "@oigamez/models";
+import { VerificationResult } from "/opt/nodejs/oigamez-core";
 
 export const validateRoomTitle = (roomTitle?: string): VerificationResult => {
   if (!roomTitle) {

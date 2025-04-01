@@ -2,7 +2,7 @@ import {
   verifyRoomSocketApiEndpoint,
   verifyExternalEbName,
   verifyEbExternalEventSourceName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
 export const validateEnvironment = (): void => {
   verifyRoomSocketApiEndpoint();

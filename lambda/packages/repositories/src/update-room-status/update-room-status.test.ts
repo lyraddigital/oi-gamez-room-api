@@ -1,11 +1,12 @@
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
 
+import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { updateRoomStatus } from "./update-room-status";
-import { RoomStatus } from "@oigamez/models";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });

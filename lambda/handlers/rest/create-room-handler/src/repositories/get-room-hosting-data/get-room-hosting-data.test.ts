@@ -4,12 +4,12 @@ import {
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
-import { GameType } from "@oigamez/models";
+import { GameType } from "/opt/nodejs/oigamez-core";
 
 import { getGameTypeById } from "../get-game-type-by-id";
 import { getRoomHostingData } from "./get-room-hosting-data";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

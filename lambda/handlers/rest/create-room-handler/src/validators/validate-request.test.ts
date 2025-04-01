@@ -1,4 +1,4 @@
-import { validateOrigin, validateUsername } from "@oigamez/validators";
+import { validateOrigin, validateUsername } from "/opt/nodejs/oigamez-http";
 
 import { CreateRoomPayload } from "../models";
 
@@ -7,7 +7,7 @@ import { validateRoomTitle } from "./room-title.validator";
 import { validateRoomVisibility } from "./room-visibility.validator";
 import { validateRequest } from "./validate-request";
 
-jest.mock("@oigamez/validators", () => {
+jest.mock("/opt/nodejs/oigamez-http", () => {
   return {
     validateGameTypeId: jest.fn(),
     validateOrigin: jest.fn(),

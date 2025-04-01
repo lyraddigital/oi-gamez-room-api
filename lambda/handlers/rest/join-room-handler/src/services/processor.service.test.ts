@@ -5,7 +5,7 @@ import {
 
 import { processRoomJoin } from "./processor.service";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ENCRYPTION_KEY: "SomeRandomEncryptionKey",
     ENCRYPTION_IV: "SomeRandomEncryptionIV",

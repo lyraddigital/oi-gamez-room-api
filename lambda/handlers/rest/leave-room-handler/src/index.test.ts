@@ -3,8 +3,12 @@ import {
   RoomConnection,
   VerificationResult,
   VerificationResultWithData,
-} from "@oigamez/models";
-import { extractHeader, extractFromPath, parseBody } from "@oigamez/requests";
+} from "/opt/nodejs/oigamez-core";
+import {
+  extractHeader,
+  extractFromPath,
+  parseBody,
+} from "/opt/nodejs/oigamez-http";
 import {
   corsBadRequestResponse,
   corsOkResponse,
@@ -16,7 +20,7 @@ import { handler } from ".";
 import { LeaveRoomPayload } from "./models";
 import { processLeavingRoom, verifyRequestData } from "./services";
 
-jest.mock("@oigamez/requests");
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
 
 jest.mock("./configuration");

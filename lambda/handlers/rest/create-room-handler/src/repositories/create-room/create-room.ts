@@ -4,7 +4,7 @@ import {
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "@oigamez/configuration";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
 import {
   dbClient,
   dynamoFieldNames,
@@ -12,7 +12,7 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
-import { RoomStatus, RoomVisiblityType } from "@oigamez/models";
+import { RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
 
 import { RoomToCreate } from "../../models";
 

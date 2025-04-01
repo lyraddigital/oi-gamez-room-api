@@ -5,10 +5,11 @@ import {
 import { dbClient } from "@oigamez/dynamodb";
 
 import { removeUserFromRoom } from "./remove-user-from-room";
-import { Room } from "@oigamez/models";
+import { Room } from "/opt/nodejs/oigamez-core";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
     DYNAMO_TABLE_NAME: "SomeTable",
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
   };

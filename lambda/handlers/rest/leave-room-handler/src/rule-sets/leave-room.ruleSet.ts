@@ -3,7 +3,7 @@ import {
   RoomConnection,
   RoomStatus,
   VerificationResult,
-} from "@oigamez/models";
+} from "/opt/nodejs/oigamez-core";
 
 export const runLeaveRoomRuleSet = (
   username: string,

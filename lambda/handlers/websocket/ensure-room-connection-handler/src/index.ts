@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { extractFromQueryString } from "@oigamez/requests";
+import { extractFromQueryString } from "/opt/nodejs/oigamez-http";
 import {
   badRequestResponse,
   fatalErrorResponse,

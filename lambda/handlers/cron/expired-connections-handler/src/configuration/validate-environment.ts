@@ -3,7 +3,7 @@ import {
   verifyDynamoTableName,
   verifyEbName,
   verifyEbInternalEventSourceName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 import { verifyDynamoLastDisconnectedIndexName } from "./dynamo-last-disconnected-index-name";
 import { verifyExpiredDisconnectionWindowInSeconds } from "./expired-disconnection-window-in-seconds";
 

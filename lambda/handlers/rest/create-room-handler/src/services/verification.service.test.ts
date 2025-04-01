@@ -1,4 +1,4 @@
-import { GameType, VerificationResult } from "@oigamez/models";
+import { GameType, VerificationResult } from "/opt/nodejs/oigamez-core";
 
 import { CreateRoomPayload } from "../models";
 import { getRoomHostingData } from "../repositories";

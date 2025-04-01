@@ -7,7 +7,7 @@ import { dbClient } from "@oigamez/dynamodb";
 
 import { getUniqueRoomCode } from "./get-unique-room-code";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

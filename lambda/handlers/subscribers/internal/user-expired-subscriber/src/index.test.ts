@@ -1,5 +1,5 @@
 import { UserConnectionExpiredInternalEvent } from "@oigamez/event-bridge";
-import { Room } from "@oigamez/models";
+import { Room } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode } from "@oigamez/repositories";
 import { handleUserLeft } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";

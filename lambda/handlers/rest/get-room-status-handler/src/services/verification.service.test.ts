@@ -1,4 +1,4 @@
-import { VerificationResult } from "@oigamez/models";
+import { VerificationResult } from "/opt/nodejs/oigamez-core";
 
 import { validateRequest } from "../validators";
 import { verifyRequestData } from "./verification.service";

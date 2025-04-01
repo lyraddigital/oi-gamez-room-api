@@ -8,8 +8,9 @@ import { RoomToCreate } from "../../models";
 
 import { createRoom } from "./create-room";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
     DYNAMO_TABLE_NAME: "SomeTable",
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
   };

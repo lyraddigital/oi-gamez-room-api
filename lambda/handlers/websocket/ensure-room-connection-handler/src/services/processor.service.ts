@@ -3,7 +3,7 @@ import {
   publishExternalEvents,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
-import { Room, RoomStatus } from "@oigamez/models";
+import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
 
 import { RoomCreatedExternalEvent } from "../models";
 import {

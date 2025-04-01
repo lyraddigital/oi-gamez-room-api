@@ -1,4 +1,4 @@
-import { Room, RoomConnection } from "@oigamez/models";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 
 export const getRoomAndConnections = async (

@@ -9,7 +9,7 @@ import {
   EB_INTERNAL_EB_NAME,
   EB_EXTERNAL_EVENT_SOURCE_NAME,
   EB_INTERNAL_EVENT_SOURCE_NAME,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
 import { client } from "../client";
 import { EventBridgeEvent } from "../events";

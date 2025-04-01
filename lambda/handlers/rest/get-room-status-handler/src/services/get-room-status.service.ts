@@ -1,4 +1,4 @@
-import { RoomStatus } from "@oigamez/models";
+import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode } from "@oigamez/repositories";
 
 import { CurrentRoomStatus } from "../models";

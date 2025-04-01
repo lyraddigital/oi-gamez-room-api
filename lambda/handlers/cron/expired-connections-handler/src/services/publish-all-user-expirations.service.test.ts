@@ -2,7 +2,7 @@ import {
   UserConnectionExpiredInternalEvent,
   publishInternalEvents,
 } from "@oigamez/event-bridge";
-import { RoomConnection } from "@oigamez/models";
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 
 import { publishAllUserExpirations } from "./publish-all-user-expirations.service";
 

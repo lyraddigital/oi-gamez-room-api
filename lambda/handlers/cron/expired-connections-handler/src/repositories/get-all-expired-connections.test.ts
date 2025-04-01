@@ -6,9 +6,9 @@ import {
   ScanCommand,
   ScanCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { RoomConnection } from "@oigamez/models";
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "ConnectionTable",
   };

@@ -1,4 +1,4 @@
-import { RoomConnection } from "@oigamez/models";
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import {

@@ -9,7 +9,7 @@ import { mapFromDynamoToRoom } from "@oigamez/mappers";
 
 import { getAvailableRoomsByCodes } from "./get-available-rooms-by-codes";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

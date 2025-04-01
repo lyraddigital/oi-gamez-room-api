@@ -3,7 +3,7 @@ import {
   RoomConnection,
   RoomStatus,
   VerificationResult,
-} from "@oigamez/models";
+} from "/opt/nodejs/oigamez-core";
 
 export const runJoinRoomRuleSet = (
   username: string,

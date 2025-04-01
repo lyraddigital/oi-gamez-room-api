@@ -7,7 +7,7 @@ import {
   publishInternalEvents,
 } from "./event-publisher";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     EB_EXTERNAL_EB_NAME: "ExternalEbName",
     EB_EXTERNAL_EVENT_SOURCE_NAME: "ExternalEventSourceName",

@@ -8,7 +8,7 @@ import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToUnavailableRoomCode } from "../../mappers";
 import { getAllUnavailableDivisionAndGroupCodes } from "./get-all-unavailable-division-and-group-codes";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

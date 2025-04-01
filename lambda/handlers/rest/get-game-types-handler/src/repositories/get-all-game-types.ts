@@ -1,6 +1,6 @@
 import { QueryCommandInput, QueryCommand } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "@oigamez/configuration";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
 import {
   dbClient,
   dynamoFieldNames,
@@ -8,7 +8,7 @@ import {
 } from "@oigamez/dynamodb";
 
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
-import { GameType } from "@oigamez/models";
+import { GameType } from "/opt/nodejs/oigamez-core";
 
 export const getAllGameTypes = async (): Promise<GameType[]> => {
   const queryCommandInput: QueryCommandInput = {

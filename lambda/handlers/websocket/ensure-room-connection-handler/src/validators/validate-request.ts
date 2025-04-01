@@ -1,5 +1,5 @@
-import { VerificationResult } from "@oigamez/models";
-import { validateRoomCode, validateUsername } from "@oigamez/validators";
+import { VerificationResult } from "/opt/nodejs/oigamez-core";
+import { validateRoomCode, validateUsername } from "/opt/nodejs/oigamez-http";
 
 export const validateRequest = (
   username?: string,

@@ -1,7 +1,7 @@
 import {
   verifyCorsAllowedOrigin,
   verifyDynamoTableName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
 import { verifyPublicRoomsToRetrieve } from "./public-rooms-to-retrieve";
 import { verifyDynamoVisibleRoomIndexName } from "./visible-room-index-name";

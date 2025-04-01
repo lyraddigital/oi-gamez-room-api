@@ -1,7 +1,7 @@
 import { EventBridgeEvent } from "aws-lambda";
 
 import { broadcast } from "@oigamez/communication";
-import { RoomStatus } from "@oigamez/models";
+import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 

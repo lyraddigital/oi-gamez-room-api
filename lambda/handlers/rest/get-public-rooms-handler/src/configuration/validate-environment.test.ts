@@ -1,13 +1,13 @@
 import {
   verifyCorsAllowedOrigin,
   verifyDynamoTableName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
 import { verifyPublicRoomsToRetrieve } from "./public-rooms-to-retrieve";
 import { verifyDynamoVisibleRoomIndexName } from "./visible-room-index-name";
 import { validateEnvironment } from "./validate-environment";
 
-jest.mock("@oigamez/configuration");
+jest.mock("/opt/nodejs/oigamez-core");
 jest.mock("./public-rooms-to-retrieve");
 jest.mock("./visible-room-index-name");
 

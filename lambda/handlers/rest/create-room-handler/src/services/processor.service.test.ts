@@ -1,4 +1,4 @@
-import { GameType } from "@oigamez/models";
+import { GameType } from "/opt/nodejs/oigamez-core";
 import {
   encryptCustomDataToString,
   generateAccessToken,
@@ -16,7 +16,7 @@ import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.
 
 import { processRoomCreation } from "./processor.service";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ENCRYPTION_KEY: "SomeRandomEncryptionKey",
     ENCRYPTION_IV: "SomeRandomEncryptionIV",

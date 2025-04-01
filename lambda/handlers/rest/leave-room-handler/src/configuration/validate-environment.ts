@@ -2,7 +2,7 @@ import {
   verifyCorsAllowedOrigin,
   verifyDynamoConnectionTableName,
   verifyDynamoTableName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
 export const validateEnvironment = (): void => {
   verifyCorsAllowedOrigin();

@@ -5,13 +5,14 @@ import {
 } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToRoom } from "@oigamez/mappers";
-import { Room, RoomStatus, RoomVisiblityType } from "@oigamez/models";
+import { Room, RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
 
 import { getRoomByCode } from "./get-room-by-code";
 
 jest.mock("@oigamez/mappers");
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });

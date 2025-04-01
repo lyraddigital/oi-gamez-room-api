@@ -1,4 +1,4 @@
-import { Room, RoomConnection } from "@oigamez/models";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 

@@ -1,5 +1,5 @@
-import { GameType, VerificationResultWithData } from "@oigamez/models";
-import { extractHeader, parseBody } from "@oigamez/requests";
+import { GameType, VerificationResultWithData } from "/opt/nodejs/oigamez-core";
+import { extractHeader, parseBody } from "/opt/nodejs/oigamez-http";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
@@ -11,7 +11,7 @@ import { handler } from ".";
 import { CreateRoomPayload } from "./models";
 import { processRoomCreation, verifyRequestData } from "./services";
 
-jest.mock("@oigamez/requests");
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
 
 jest.mock("./configuration");

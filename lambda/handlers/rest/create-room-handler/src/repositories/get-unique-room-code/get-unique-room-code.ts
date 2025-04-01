@@ -1,6 +1,6 @@
 import { GetItemCommand, GetItemCommandInput } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "@oigamez/configuration";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
 import { dbClient, dynamoFieldNames, keys } from "@oigamez/dynamodb";
 
 import { RoomsExhaustedError } from "../../errors";

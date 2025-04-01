@@ -2,12 +2,12 @@ import {
   verifyCorsAllowedOrigin,
   verifyDynamoConnectionTableName,
   verifyDynamoTableName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
 import { runJoinRoomRuleSet } from "./join-room.ruleSet";
-import { Room, RoomConnection, RoomStatus } from "@oigamez/models";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 
-jest.mock("@oigamez/configuration");
+jest.mock("/opt/nodejs/oigamez-core");
 
 describe("runJoinRoomRuleSet tests", () => {
   test("room is not set, returns correct error", () => {

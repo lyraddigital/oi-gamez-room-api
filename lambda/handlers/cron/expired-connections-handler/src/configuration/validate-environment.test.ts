@@ -3,11 +3,11 @@ import {
   verifyDynamoTableName,
   verifyEbName,
   verifyEbInternalEventSourceName,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 import { verifyDynamoLastDisconnectedIndexName } from "./dynamo-last-disconnected-index-name";
 import { verifyExpiredDisconnectionWindowInSeconds } from "./expired-disconnection-window-in-seconds";
 
-jest.mock("@oigamez/configuration");
+jest.mock("/opt/nodejs/oigamez-core");
 jest.mock("./dynamo-last-disconnected-index-name");
 jest.mock("./expired-disconnection-window-in-seconds");
 

@@ -1,7 +1,7 @@
-import { verifyDynamoConnectionTableName } from "@oigamez/configuration";
+import { verifyDynamoConnectionTableName } from "/opt/nodejs/oigamez-core";
 import { verifyDynamoConnectionIndexName } from "./dynamo-connection-index-name";
 
-jest.mock("@oigamez/configuration");
+jest.mock("/opt/nodejs/oigamez-core");
 jest.mock("./dynamo-connection-index-name");
 
 import { validateEnvironment } from "./validate-environment";

@@ -2,9 +2,9 @@ import {
   verifyDynamoConnectionTableName,
   verifyDynamoTableName,
   verifyRoomSocketApiEndpoint,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 
-jest.mock("@oigamez/configuration");
+jest.mock("/opt/nodejs/oigamez-core");
 
 import { validateEnvironment } from "./validate-environment";
 

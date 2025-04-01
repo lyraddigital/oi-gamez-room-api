@@ -1,9 +1,9 @@
-import { VerificationResult } from "@oigamez/models";
+import { VerificationResult } from "/opt/nodejs/oigamez-core";
 import {
   validateOrigin,
   validateRoomCode,
   validateUsername,
-} from "@oigamez/validators";
+} from "/opt/nodejs/oigamez-http";
 
 import { JoinRoomPayload } from "../models";
 

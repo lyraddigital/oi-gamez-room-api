@@ -1,6 +1,6 @@
 import { removeUserConnection } from "./remove-user-connection";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
   };

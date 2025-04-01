@@ -1,6 +1,6 @@
 import { corsOkResponse } from "./cors-ok-response";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     CORS_ALLOWED_ORIGINS: "http://localhost",
   };

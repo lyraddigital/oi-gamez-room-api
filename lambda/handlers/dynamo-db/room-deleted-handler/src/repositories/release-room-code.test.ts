@@ -3,7 +3,7 @@ import { dbClient } from "@oigamez/dynamodb";
 import { releaseRoomCode } from "./release-room-code";
 import { TransactWriteItemsCommand } from "@aws-sdk/client-dynamodb";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

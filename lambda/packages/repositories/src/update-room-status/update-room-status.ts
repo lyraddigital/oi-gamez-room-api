@@ -3,7 +3,7 @@ import {
   UpdateItemCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "@oigamez/configuration";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
 import {
   dbClient,
   dynamoFieldNames,
@@ -11,7 +11,7 @@ import {
   expressions,
   keys,
 } from "@oigamez/dynamodb";
-import { RoomStatus } from "@oigamez/models";
+import { RoomStatus } from "/opt/nodejs/oigamez-core";
 
 export const updateRoomStatus = async (
   roomCode: string,

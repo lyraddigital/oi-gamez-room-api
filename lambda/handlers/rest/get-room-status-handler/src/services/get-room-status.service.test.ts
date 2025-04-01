@@ -1,7 +1,7 @@
 import { getRoomByCode } from "@oigamez/repositories";
 
 import { getRoomStatus } from "./get-room-status.service";
-import { Room, RoomStatus } from "@oigamez/models";
+import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
 
 jest.mock("@oigamez/repositories");
 

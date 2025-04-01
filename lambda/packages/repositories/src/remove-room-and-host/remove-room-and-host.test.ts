@@ -6,7 +6,7 @@ import { dbClient } from "@oigamez/dynamodb";
 
 import { removeRoomAndHost } from "./remove-room-and-host";
 
-jest.mock("@oigamez/configuration", () => {
+jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",

@@ -1,5 +1,5 @@
-import { CORS_ALLOWED_ORIGINS } from "@oigamez/configuration";
-import { VerificationResult } from "@oigamez/models";
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import { VerificationResult } from "/opt/nodejs/oigamez-core";
 
 export const validateOrigin = (origin?: string): VerificationResult => {
   if (

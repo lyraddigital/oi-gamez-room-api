@@ -2,8 +2,8 @@ import {
   Room,
   VerificationResult,
   VerificationResultWithData,
-} from "@oigamez/models";
-import { extractFromQueryString } from "@oigamez/requests";
+} from "/opt/nodejs/oigamez-core";
+import { extractFromQueryString } from "/opt/nodejs/oigamez-http";
 import {
   badRequestResponse,
   fatalErrorResponse,
@@ -14,7 +14,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { handler } from ".";
 import { processRoomConnection, verifyRequestData } from "./services";
 
-jest.mock("@oigamez/requests");
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
 
 jest.mock("./configuration");

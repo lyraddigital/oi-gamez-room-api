@@ -1,6 +1,6 @@
-import { validateOrigin, validateRoomCode } from "@oigamez/validators";
+import { validateOrigin, validateRoomCode } from "/opt/nodejs/oigamez-http";
 
-jest.mock("@oigamez/validators", () => {
+jest.mock("/opt/nodejs/oigamez-http", () => {
   return {
     validateOrigin: jest.fn(),
     validateRoomCode: jest.fn(),

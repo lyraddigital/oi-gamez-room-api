@@ -2,7 +2,7 @@ import {
   ENCRYPTION_KEY,
   ENCRYPTION_IV,
   JWT_EXPIRY_IN_MINUTES,
-} from "@oigamez/configuration";
+} from "/opt/nodejs/oigamez-core";
 import {
   encryptCustomDataToString,
   generateAccessToken,
