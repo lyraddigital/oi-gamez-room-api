@@ -1,5 +1,8 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-core";
-import { validateOrigin, validateRoomCode } from "/opt/nodejs/oigamez-http";
+import {
+  validateOrigin,
+  validateRoomCode,
+  VerificationResult,
+} from "/opt/nodejs/oigamez-http";
 
 export const validateRequest = (
   origin?: string,

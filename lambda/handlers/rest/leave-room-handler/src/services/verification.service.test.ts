@@ -1,8 +1,5 @@
-import {
-  Room,
-  RoomConnection,
-  VerificationResult,
-} from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { VerificationResult } from "/opt/nodejs/oigamez-http";
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,

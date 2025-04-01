@@ -1,9 +1,5 @@
-import {
-  Room,
-  RoomConnection,
-  RoomStatus,
-  VerificationResult,
-} from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
+import { VerificationResult } from "/opt/nodejs/oigamez-http";
 
 export const runJoinRoomRuleSet = (
   username: string,

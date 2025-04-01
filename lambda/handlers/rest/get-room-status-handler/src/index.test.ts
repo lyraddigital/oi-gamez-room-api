@@ -1,17 +1,17 @@
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
+
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
+  extractHeader,
+  extractFromPath,
+  VerificationResult,
 } from "/opt/nodejs/oigamez-http";
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
-
-import { VerificationResult } from "/opt/nodejs/oigamez-core";
-import { extractHeader, extractFromPath } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { CurrentRoomStatus } from "./models";
 import { processStatusRetrieval, verifyRequestData } from "./services";
 
-jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-core"),

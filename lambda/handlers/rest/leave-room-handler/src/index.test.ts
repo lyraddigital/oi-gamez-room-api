@@ -1,11 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import {
-  Room,
-  RoomConnection,
-  VerificationResult,
-  VerificationResultWithData,
-} from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   corsBadRequestResponse,
   corsOkResponse,
@@ -13,6 +8,8 @@ import {
   extractFromPath,
   parseBody,
   fatalErrorResponse,
+  VerificationResult,
+  VerificationResultWithData,
 } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { LeaveRoomPayload } from "./models";

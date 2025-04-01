@@ -1,7 +1,8 @@
-import { Room, VerificationResultWithData } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
+import { Room } from "/opt/nodejs/oigamez-core";
+import { VerificationResultWithData } from "/opt/nodejs/oigamez-http";
 import { runEnsureRoomConnectionRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";
 import { isUserHost } from "./is-user-host.service";

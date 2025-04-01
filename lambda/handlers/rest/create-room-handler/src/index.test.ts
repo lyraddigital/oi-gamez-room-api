@@ -1,12 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { GameType, VerificationResultWithData } from "/opt/nodejs/oigamez-core";
+import { GameType } from "/opt/nodejs/oigamez-core";
 import {
   extractHeader,
   parseBody,
   corsBadRequestResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
+  VerificationResultWithData,
 } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { CreateRoomPayload } from "./models";

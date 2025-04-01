@@ -1,4 +1,4 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-core";
+import { VerificationResult } from "../models";
 
 export const validateUsername = (username?: string): VerificationResult => {
   if (!username) {

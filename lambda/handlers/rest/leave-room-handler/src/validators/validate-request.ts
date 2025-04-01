@@ -1,8 +1,8 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-core";
 import {
   validateOrigin,
   validateRoomCode,
   validateUsername,
+  VerificationResult,
 } from "/opt/nodejs/oigamez-http";
 
 import { LeaveRoomPayload } from "../models";

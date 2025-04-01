@@ -2,6 +2,7 @@ import { validateOrigin, validateRoomCode } from "/opt/nodejs/oigamez-http";
 
 jest.mock("/opt/nodejs/oigamez-http", () => {
   return {
+    ...jest.requireActual("/opt/nodejs/oigamez-http"),
     validateOrigin: jest.fn(),
     validateRoomCode: jest.fn(),
   };
