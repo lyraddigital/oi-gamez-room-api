@@ -1,7 +1,7 @@
 import {
   encryptCustomDataToString,
   generateAccessToken,
-} from "@oigamez/security";
+} from "/opt/nodejs/oigamez-security";
 
 import { processRoomJoin } from "./processor.service";
 
@@ -12,7 +12,7 @@ jest.mock("/opt/nodejs/oigamez-core", () => {
     JWT_EXPIRY_IN_MINUTES: 5,
   };
 });
-jest.mock("@oigamez/security");
+jest.mock("/opt/nodejs/oigamez-security");
 
 describe("join room processor tests", () => {
   test("all calls are made correctly", () => {

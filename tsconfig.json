@@ -32,6 +32,9 @@
       "/opt/nodejs/oigamez-http": [
         "./lambda/packages/http/nodejs/oigamez-http"
       ],
+      "/opt/nodejs/oigamez-security": [
+        "./lambda/packages/security/nodejs/oigamez-security"
+      ],
       "@oigamez/communication": [
         "./lambda/packages/communication/src"
       ],
@@ -49,9 +52,6 @@
       ],
       "@oigamez/rule-sets": [
         "./lambda/packages/rule-sets/src"
-      ],
-      "@oigamez/security": [
-        "./lambda/packages/security/src"
       ],
       "@oigamez/services": [
         "./lambda/packages/services/src"

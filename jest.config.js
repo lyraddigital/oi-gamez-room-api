@@ -10,6 +10,9 @@ module.exports = {
     "/opt/nodejs/oigamez-http": [
       "<rootDir>/lambda/packages/http/nodejs/oigamez-http",
     ],
+    "/opt/nodejs/oigamez-security": [
+      "<rootDir>/lambda/packages/security/nodejs/oigamez-security",
+    ],
   },
   transform: {
     "^.+\\.tsx?$": "ts-jest",

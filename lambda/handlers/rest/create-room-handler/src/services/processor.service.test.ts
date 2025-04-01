@@ -1,10 +1,10 @@
+import { getNow } from "@oigamez/services";
+
 import { GameType } from "/opt/nodejs/oigamez-core";
 import {
   encryptCustomDataToString,
   generateAccessToken,
-} from "@oigamez/security";
-import { getNow } from "@oigamez/services";
-
+} from "/opt/nodejs/oigamez-security";
 import { CreateRoomPayload } from "../models";
 import {
   createRoom,
@@ -23,7 +23,7 @@ jest.mock("/opt/nodejs/oigamez-core", () => {
     JWT_EXPIRY_IN_MINUTES: 5,
   };
 });
-jest.mock("@oigamez/security");
+jest.mock("/opt/nodejs/oigamez-security");
 jest.mock("@oigamez/services");
 jest.mock("../configuration", () => {
   return {

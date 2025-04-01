@@ -6,7 +6,7 @@ import {
 import {
   encryptCustomDataToString,
   generateAccessToken,
-} from "@oigamez/security";
+} from "/opt/nodejs/oigamez-security";
 
 import { ProcessRoomJoinResponse } from "../models";
 
