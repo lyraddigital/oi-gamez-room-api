@@ -1,19 +1,20 @@
 import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToConnection } from "@oigamez/mappers";
-import { getAllExpiredConnections } from "./get-all-expired-connections";
 import {
   DynamoDBClient,
   ScanCommand,
   ScanCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
 
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
+import { getAllExpiredConnections } from "./get-all-expired-connections";
+
+jest.mock("@oigamez/mappers");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "ConnectionTable",
   };
 });
-jest.mock("@oigamez/mappers");
 jest.mock("../configuration", () => {
   return {
     CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME: "LastDisconnectedIndex",

@@ -5,7 +5,6 @@ import {
 import { dbClient } from "@oigamez/dynamodb";
 
 import { RoomToCreate } from "../../models";
-
 import { createRoom } from "./create-room";
 
 jest.mock("/opt/nodejs/oigamez-core", () => {

@@ -1,10 +1,10 @@
+import { APIGatewayProxyResult } from "aws-lambda";
+
 import { GameType } from "/opt/nodejs/oigamez-core";
 import {
   corsOkResponseWithData,
   fatalErrorResponse,
 } from "/opt/nodejs/oigamez-http";
-import { APIGatewayProxyResult } from "aws-lambda";
-
 import { handler } from ".";
 import { getAllGameTypes } from "./repositories";
 

@@ -1,8 +1,8 @@
+import { RecordType } from "@oigamez/dynamodb";
 import { DynamoDBStreamEvent, DynamoDBRecord } from "aws-lambda";
 
 import { handler } from ".";
 import { releaseRoomCode } from "./repositories";
-import { RecordType } from "@oigamez/dynamodb";
 
 jest.mock("./configuration");
 jest.mock("./repositories");

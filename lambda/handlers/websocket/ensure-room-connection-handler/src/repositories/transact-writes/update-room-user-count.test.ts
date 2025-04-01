@@ -1,5 +1,4 @@
 import { Room } from "/opt/nodejs/oigamez-core";
-
 import { updateRoomUserCount } from "./update-room-user-count";
 
 jest.mock("/opt/nodejs/oigamez-core", () => {

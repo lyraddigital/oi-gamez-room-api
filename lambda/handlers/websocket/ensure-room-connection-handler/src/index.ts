@@ -6,7 +6,6 @@ import {
   fatalErrorResponse,
   okResponse,
 } from "/opt/nodejs/oigamez-http";
-
 import { validateEnvironment } from "./configuration";
 import { verifyRequestData, processRoomConnection } from "./services";
 

@@ -5,8 +5,8 @@ import {
 } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
-import { GameType } from "/opt/nodejs/oigamez-core";
 
+import { GameType } from "/opt/nodejs/oigamez-core";
 import { getAllGameTypes } from "./get-all-game-types";
 
 jest.mock("@oigamez/mappers");

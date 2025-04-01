@@ -1,5 +1,4 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
-
 import { dynamoFieldNames, getDynamoString } from "@oigamez/dynamodb";
 
 export const mapFromDynamoToUnavailableRoomCode = (

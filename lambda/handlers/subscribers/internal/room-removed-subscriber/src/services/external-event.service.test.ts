@@ -1,7 +1,7 @@
 import { publishExternalEvents } from "@oigamez/event-bridge";
 
-import { publishExternalRoomRemovedEvent } from "./external-event.service";
 import { RoomRemovedExternalEvent } from "../models";
+import { publishExternalRoomRemovedEvent } from "./external-event.service";
 
 jest.mock("@oigamez/event-bridge", () => {
   return {

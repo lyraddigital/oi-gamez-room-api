@@ -1,8 +1,8 @@
 import { UserLeftInternalEvent } from "@oigamez/event-bridge";
-import { Room } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 
+import { Room } from "/opt/nodejs/oigamez-core";
 import { handler } from ".";
 import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
 

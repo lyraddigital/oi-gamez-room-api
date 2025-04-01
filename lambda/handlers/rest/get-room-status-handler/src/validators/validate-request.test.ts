@@ -1,4 +1,5 @@
 import { validateOrigin, validateRoomCode } from "/opt/nodejs/oigamez-http";
+import { validateRequest } from "./validate-request";
 
 jest.mock("/opt/nodejs/oigamez-http", () => {
   return {
@@ -7,8 +8,6 @@ jest.mock("/opt/nodejs/oigamez-http", () => {
     validateRoomCode: jest.fn(),
   };
 });
-
-import { validateRequest } from "./validate-request";
 
 describe("validateRequest tests", () => {
   test("validateOrigin returns unsuccessful, returns origin validation result", () => {

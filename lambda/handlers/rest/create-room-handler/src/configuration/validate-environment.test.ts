@@ -8,12 +8,11 @@ import {
 } from "/opt/nodejs/oigamez-core";
 import { verifyConnectionWindowInSeconds } from "./connect-window-in-seconds";
 import { verifyDynamoHostRoomIndexName } from "./host-room-index-name";
+import { validateEnvironment } from "./validate-environment";
 
 jest.mock("/opt/nodejs/oigamez-core");
 jest.mock("./connect-window-in-seconds");
 jest.mock("./host-room-index-name");
-
-import { validateEnvironment } from "./validate-environment";
 
 describe("validateEnvironment for create room handler tests", () => {
   test("correct verify mocks were called", () => {

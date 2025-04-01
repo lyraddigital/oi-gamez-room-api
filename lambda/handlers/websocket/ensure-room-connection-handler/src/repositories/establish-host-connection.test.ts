@@ -3,8 +3,8 @@ import {
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
 import { dbClient } from "@oigamez/dynamodb";
-import { Room } from "/opt/nodejs/oigamez-core";
 
+import { Room } from "/opt/nodejs/oigamez-core";
 import { establishHostConnection } from "./establish-host-connection";
 import {
   createOrUpdateRoomConnection,

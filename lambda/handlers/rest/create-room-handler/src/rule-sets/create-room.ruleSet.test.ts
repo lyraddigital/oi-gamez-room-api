@@ -1,5 +1,4 @@
 import { GameType } from "/opt/nodejs/oigamez-core";
-
 import { runCreateRoomRuleSet } from "./create-room.ruleSet";
 
 describe("runCreateRoomRuleSet tests", () => {

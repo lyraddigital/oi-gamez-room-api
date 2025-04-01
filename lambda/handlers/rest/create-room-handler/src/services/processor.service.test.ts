@@ -13,7 +13,6 @@ import {
 } from "../repositories";
 import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service";
 import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service";
-
 import { processRoomCreation } from "./processor.service";
 
 jest.mock("/opt/nodejs/oigamez-core", () => {
@@ -23,8 +22,8 @@ jest.mock("/opt/nodejs/oigamez-core", () => {
     JWT_EXPIRY_IN_MINUTES: 5,
   };
 });
-jest.mock("/opt/nodejs/oigamez-security");
 jest.mock("@oigamez/services");
+jest.mock("/opt/nodejs/oigamez-security");
 jest.mock("../configuration", () => {
   return {
     CONNECT_WINDOW_IN_SECONDS: 30,

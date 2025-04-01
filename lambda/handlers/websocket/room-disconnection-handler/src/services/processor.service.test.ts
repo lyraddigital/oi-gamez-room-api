@@ -1,6 +1,6 @@
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   getConnectionById,
   updateConnectionDisconnectionTime,

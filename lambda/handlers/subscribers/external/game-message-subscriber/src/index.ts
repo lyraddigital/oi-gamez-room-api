@@ -1,12 +1,12 @@
 import { EventBridgeEvent } from "aws-lambda";
 
 import { broadcast } from "@oigamez/communication";
-import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
+import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { validateEnvironment } from "./configuration";
-import { GameMessageEvent, GenericCommunicationEvent } from "./models";
+import { GameMessageEvent, GameMessageCommunicationEvent } from "./models";
 
 validateEnvironment();
 
@@ -24,9 +24,9 @@ export const handler = async (
     const roomConnections = await getRoomConnections(roomCode);
     const connectionIds = getConnectionIdsFromConnections(roomConnections);
 
-    await broadcast<GenericCommunicationEvent>(
+    await broadcast<GameMessageCommunicationEvent>(
       connectionIds,
-      new GenericCommunicationEvent(action, payload)
+      new GameMessageCommunicationEvent(action, payload)
     );
   }
 };

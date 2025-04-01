@@ -9,12 +9,12 @@ import { mapFromDynamoToRoom } from "@oigamez/mappers";
 
 import { getAvailableRoomsByCodes } from "./get-available-rooms-by-codes";
 
+jest.mock("@oigamez/mappers");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });
-jest.mock("@oigamez/mappers");
 
 describe("getAvailableRoomsByCodes tests", () => {
   const sendSpy = jest.spyOn<DynamoDBClient, "send">(dbClient, "send");

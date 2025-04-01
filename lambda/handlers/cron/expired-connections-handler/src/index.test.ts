@@ -1,14 +1,14 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { handler } from ".";
 import { getAllExpiredConnections } from "./repositories";
 import {
   getAllHostedRoomsFromConnections,
   publishAllHostExpirations,
   publishAllUserExpirations,
 } from "./services";
-import { handler } from ".";
 
 jest.mock("@oigamez/services");
 jest.mock("./configuration");

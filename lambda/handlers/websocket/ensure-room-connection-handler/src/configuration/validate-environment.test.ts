@@ -6,8 +6,8 @@ import {
   verifyExternalEbName,
   verifyEbExternalEventSourceName,
 } from "/opt/nodejs/oigamez-core";
-import { verifyUpdatedConnectWindowInSeconds } from "./updated-connect-window";
 
+import { verifyUpdatedConnectWindowInSeconds } from "./updated-connect-window";
 import { validateEnvironment } from "./validate-environment";
 
 jest.mock("/opt/nodejs/oigamez-core");

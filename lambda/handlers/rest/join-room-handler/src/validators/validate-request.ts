@@ -4,7 +4,6 @@ import {
   validateUsername,
   ValidationResult,
 } from "/opt/nodejs/oigamez-http";
-
 import { JoinRoomPayload } from "../models";
 
 export const validateRequest = (

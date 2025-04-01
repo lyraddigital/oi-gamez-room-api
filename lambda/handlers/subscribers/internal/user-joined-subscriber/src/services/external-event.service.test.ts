@@ -1,7 +1,7 @@
 import { publishExternalEvents } from "@oigamez/event-bridge";
-import { Room } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode } from "@oigamez/repositories";
 
+import { Room } from "/opt/nodejs/oigamez-core";
 import { UserJoinedExternalEvent } from "../models";
 import { publishExternalUserJoinedEvent } from "./external-event.service";
 

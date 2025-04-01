@@ -1,8 +1,8 @@
 import { broadcast } from "@oigamez/communication";
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import { UserJoinedCommunicationEvent } from "../models";
 import { communicateUserJoined } from "./communication.service";
 

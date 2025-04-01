@@ -4,7 +4,6 @@ import {
 } from "@oigamez/services";
 
 import { VerificationResult } from "/opt/nodejs/oigamez-http";
-
 import { JoinRoomPayload } from "../models";
 import { runJoinRoomRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";

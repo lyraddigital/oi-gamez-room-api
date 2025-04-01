@@ -1,4 +1,5 @@
 import { validateRoomCode, validateUsername } from "/opt/nodejs/oigamez-http";
+import { validateRequest } from "./validate-request";
 
 jest.mock("/opt/nodejs/oigamez-http", () => {
   return {
@@ -6,8 +7,6 @@ jest.mock("/opt/nodejs/oigamez-http", () => {
     validateUsername: jest.fn(),
   };
 });
-
-import { validateRequest } from "./validate-request";
 
 describe("validateRequest tests for ensuring room connection", () => {
   test("validateUsername and validateRoomCode returns unsuccessful, returns validation result with correct errors", () => {

@@ -3,6 +3,8 @@ import {
   validateRoomCode,
   validateUsername,
 } from "/opt/nodejs/oigamez-http";
+import { JoinRoomPayload } from "../models";
+import { validateRequest } from "./validate-request";
 
 jest.mock("/opt/nodejs/oigamez-http", () => {
   return {
@@ -11,9 +13,6 @@ jest.mock("/opt/nodejs/oigamez-http", () => {
     validateUsername: jest.fn(),
   };
 });
-
-import { JoinRoomPayload } from "../models";
-import { validateRequest } from "./validate-request";
 
 describe("validateRequest for join room tests", () => {
   test("validateOrigin returns unsuccessful, returns origin validation result", () => {

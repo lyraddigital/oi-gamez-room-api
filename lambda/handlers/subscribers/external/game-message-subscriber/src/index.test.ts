@@ -1,11 +1,11 @@
 import { broadcast } from "@oigamez/communication";
-import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { getRoomConnections, getRoomByCode } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { handler } from ".";
-import { GenericCommunicationEvent, GameMessageEvent } from "./models";
+import { GameMessageCommunicationEvent, GameMessageEvent } from "./models";
 
 jest.mock("@oigamez/communication", () => {
   return {
@@ -158,13 +158,13 @@ describe("game message subscriber handler tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as GenericCommunicationEvent
+          .calls[0][1] as GameMessageCommunicationEvent
       ).action
     ).toBe(action);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as GenericCommunicationEvent
+          .calls[0][1] as GameMessageCommunicationEvent
       ).payload
     ).toBe(payload);
   });
@@ -218,13 +218,13 @@ describe("game message subscriber handler tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as GenericCommunicationEvent
+          .calls[0][1] as GameMessageCommunicationEvent
       ).action
     ).toBe(action);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as GenericCommunicationEvent
+          .calls[0][1] as GameMessageCommunicationEvent
       ).payload
     ).toBe(payload);
   });

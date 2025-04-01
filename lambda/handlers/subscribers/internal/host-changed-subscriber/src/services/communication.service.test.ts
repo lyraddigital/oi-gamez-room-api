@@ -1,13 +1,12 @@
 import { broadcast } from "@oigamez/communication";
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   HostChangeCommunicationEvent,
   HostTransferCommunicationEvent,
 } from "../models";
-
 import { communicateHostChanged } from "./communication.service";
 
 jest.mock("@oigamez/communication", () => {

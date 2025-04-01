@@ -1,8 +1,7 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { handleHostDisconnection, handleUserLeft } from "@oigamez/services";
 
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { LeaveRoomPayload } from "../models";
-
 import { processLeavingRoom } from "./processor.service";
 
 jest.mock("@oigamez/services");

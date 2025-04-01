@@ -1,5 +1,4 @@
 import { Room } from "/opt/nodejs/oigamez-core";
-
 import { isUserHost } from "./is-user-host.service";
 
 describe("isUserHost tests", () => {

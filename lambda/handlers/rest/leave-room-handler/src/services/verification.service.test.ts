@@ -1,10 +1,10 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { ValidationResult } from "/opt/nodejs/oigamez-http";
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,
 } from "@oigamez/services";
 
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { ValidationResult } from "/opt/nodejs/oigamez-http";
 import { LeaveRoomPayload } from "../models";
 import { runLeaveRoomRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";

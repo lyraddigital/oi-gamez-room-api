@@ -1,6 +1,6 @@
-import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { getRoomByCode } from "@oigamez/repositories";
 
+import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { CurrentRoomStatus } from "../models";
 
 export const getRoomStatus = async (

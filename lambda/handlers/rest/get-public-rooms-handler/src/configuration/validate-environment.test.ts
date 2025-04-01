@@ -2,7 +2,6 @@ import {
   verifyCorsAllowedOrigin,
   verifyDynamoTableName,
 } from "/opt/nodejs/oigamez-core";
-
 import { verifyPublicRoomsToRetrieve } from "./public-rooms-to-retrieve";
 import { verifyDynamoVisibleRoomIndexName } from "./visible-room-index-name";
 import { validateEnvironment } from "./validate-environment";

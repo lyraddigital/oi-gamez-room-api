@@ -1,8 +1,8 @@
 import { broadcast, closeConnection } from "@oigamez/communication";
-import { Room } from "/opt/nodejs/oigamez-core";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
+import { Room } from "/opt/nodejs/oigamez-core";
 import {
   DisableGameStartCommunicationEvent,
   UserLeftCommunicationEvent,

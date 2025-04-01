@@ -1,7 +1,5 @@
 import { validateOrigin, validateUsername } from "/opt/nodejs/oigamez-http";
-
 import { CreateRoomPayload } from "../models";
-
 import { validateGameTypeId } from "./game-type-id.validator";
 import { validateRoomTitle } from "./room-title.validator";
 import { validateRoomVisibility } from "./room-visibility.validator";

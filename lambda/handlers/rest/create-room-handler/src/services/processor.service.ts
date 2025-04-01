@@ -1,3 +1,5 @@
+import { getNow } from "@oigamez/services";
+
 import {
   ENCRYPTION_KEY,
   ENCRYPTION_IV,
@@ -8,8 +10,6 @@ import {
   encryptCustomDataToString,
   generateAccessToken,
 } from "/opt/nodejs/oigamez-security";
-import { getNow } from "@oigamez/services";
-
 import { CONNECT_WINDOW_IN_SECONDS } from "../configuration";
 import { CreateRoomPayload, ProcessRoomCreationResponse } from "../models";
 import {
@@ -17,7 +17,6 @@ import {
   getAllUnavailableDivisionAndGroupCodes,
   getUniqueRoomCode,
 } from "../repositories";
-
 import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service";
 import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service";
 

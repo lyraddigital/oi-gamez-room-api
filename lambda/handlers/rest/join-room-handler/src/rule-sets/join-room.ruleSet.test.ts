@@ -1,5 +1,5 @@
-import { runJoinRoomRuleSet } from "./join-room.ruleSet";
 import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
+import { runJoinRoomRuleSet } from "./join-room.ruleSet";
 
 jest.mock("/opt/nodejs/oigamez-core");
 

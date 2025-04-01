@@ -2,9 +2,9 @@ import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,
 } from "@oigamez/services";
+
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { ValidationResult } from "/opt/nodejs/oigamez-http";
-
 import { JoinRoomPayload } from "../models";
 import { runJoinRoomRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";

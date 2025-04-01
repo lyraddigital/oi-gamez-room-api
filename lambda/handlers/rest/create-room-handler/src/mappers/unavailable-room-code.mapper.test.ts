@@ -1,4 +1,5 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
+
 import { mapFromDynamoToUnavailableRoomCode } from "./unavailable-room-code.mapper";
 
 describe("mapFromDynamoToUnavailableRoomCode tests", () => {

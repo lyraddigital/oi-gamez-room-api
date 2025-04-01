@@ -5,7 +5,6 @@ import { CreateRoomPayload } from "../models";
 import { getRoomHostingData } from "../repositories";
 import { runCreateRoomRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";
-
 import { verifyRequestData } from "./verification.service";
 
 jest.mock("../repositories");

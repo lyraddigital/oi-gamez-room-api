@@ -1,5 +1,4 @@
 import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-
 import { runEnsureRoomConnectionRuleSet } from "./ensure-room-connection.ruleSet";
 
 describe("runEnsureRoomConnectionRuleSet tests", () => {
