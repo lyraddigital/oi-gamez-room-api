@@ -2,6 +2,7 @@ import { APIGatewayProxyResult } from "aws-lambda";
 
 import { corsOkResponseWithData, fatalErrorResponse } from "@oigamez/responses";
 
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
 import { validateEnvironment } from "./configuration";
 import { getPublicRooms } from "./repositories";
 
@@ -11,7 +12,7 @@ export const handler = async (): Promise<APIGatewayProxyResult> => {
   try {
     const publicRooms = await getPublicRooms();
 
-    return corsOkResponseWithData(publicRooms);
+    return corsOkResponseWithData(CORS_ALLOWED_ORIGINS, publicRooms);
   } catch (e) {
     console.log(e);
 

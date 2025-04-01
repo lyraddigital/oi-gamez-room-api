@@ -20,9 +20,15 @@ import { handler } from ".";
 import { LeaveRoomPayload } from "./models";
 import { processLeavingRoom, verifyRequestData } from "./services";
 
-jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
 
+jest.mock("/opt/nodejs/oigamez-core", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    CORS_ALLOWED_ORIGINS: "http://localhost:3000",
+  };
+});
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("./configuration");
 jest.mock("./services");
 
@@ -80,6 +86,7 @@ describe("create room handler tests", () => {
       requestTimeEpoch
     );
     expect(corsBadRequestResponse).toHaveBeenCalledWith(
+      "http://localhost:3000",
       verifyRequestDataResult.errorMessages
     );
   });
@@ -136,7 +143,7 @@ describe("create room handler tests", () => {
       requestTimeEpoch
     );
     expect(processLeavingRoom).toHaveBeenCalledWith(room, connections, payload);
-    expect(corsOkResponse).toHaveBeenCalledWith(204);
+    expect(corsOkResponse).toHaveBeenCalledWith("http://localhost:3000", 204);
   });
 
   test("an error is thrown, returns an server error response", async () => {

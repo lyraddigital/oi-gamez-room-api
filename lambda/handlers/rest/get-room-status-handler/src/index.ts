@@ -7,6 +7,7 @@ import {
   fatalErrorResponse,
 } from "@oigamez/responses";
 
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
 import { validateEnvironment } from "./configuration";
 import { processStatusRetrieval, verifyRequestData } from "./services";
 
@@ -21,12 +22,16 @@ export const handler = async (
     const verificationResult = verifyRequestData(origin, roomCode);
 
     if (!verificationResult.isSuccessful) {
-      return corsBadRequestResponse(verificationResult.errorMessages);
+      return corsBadRequestResponse(
+        CORS_ALLOWED_ORIGINS,
+        verificationResult.errorMessages
+      );
     }
 
     const requestTimeEpoch = event.requestContext.requestTimeEpoch;
 
     return corsOkResponseWithData(
+      CORS_ALLOWED_ORIGINS,
       await processStatusRetrieval(roomCode!, requestTimeEpoch)
     );
   } catch (e) {

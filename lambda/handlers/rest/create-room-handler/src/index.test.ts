@@ -1,5 +1,3 @@
-import { GameType, VerificationResultWithData } from "/opt/nodejs/oigamez-core";
-import { extractHeader, parseBody } from "/opt/nodejs/oigamez-http";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
@@ -7,10 +5,18 @@ import {
 } from "@oigamez/responses";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { GameType, VerificationResultWithData } from "/opt/nodejs/oigamez-core";
+import { extractHeader, parseBody } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { CreateRoomPayload } from "./models";
 import { processRoomCreation, verifyRequestData } from "./services";
 
+jest.mock("/opt/nodejs/oigamez-core", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    CORS_ALLOWED_ORIGINS: "http://localhost:3000",
+  };
+});
 jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
 
@@ -52,6 +58,7 @@ describe("create room handler tests", () => {
     expect(result).toBe(response);
     expect(verifyRequestData).toHaveBeenCalledWith(undefined, undefined);
     expect(corsBadRequestResponse).toHaveBeenCalledWith(
+      "http://localhost:3000",
       verifyRequestDataResult.errorMessages
     );
   });
@@ -61,10 +68,10 @@ describe("create room handler tests", () => {
     const roomCode = "ABCD";
     const token = "token292938434848";
     const websocketSessionId = "fjewoifjwioefowifjweoifjo@#$#";
+    const origin = "https://localhost:3000";
     const requestTimeEpoch = 22929383;
     const gameType = {} as GameType;
     const payload = {} as CreateRoomPayload;
-    const origin = "https://localhost:3000";
     const verifyRequestDataResult: VerificationResultWithData<GameType> = {
       isSuccessful: true,
       errorMessages: [],
@@ -105,11 +112,14 @@ describe("create room handler tests", () => {
       gameType,
       event.requestContext.requestTimeEpoch
     );
-    expect(corsOkResponseWithData).toHaveBeenCalledWith({
-      roomCode,
-      token,
-      websocketSessionId,
-    });
+    expect(corsOkResponseWithData).toHaveBeenCalledWith(
+      "http://localhost:3000",
+      {
+        roomCode,
+        token,
+        websocketSessionId,
+      }
+    );
   });
 
   test("an error is thrown, returns an server error response", async () => {

@@ -8,6 +8,12 @@ import { getAllGameTypes } from "./repositories";
 jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/responses");
 
+jest.mock("/opt/nodejs/oigamez-core", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    CORS_ALLOWED_ORIGINS: "http://localhost:3000",
+  };
+});
 jest.mock("./repositories");
 jest.mock("./configuration");
 
@@ -35,7 +41,10 @@ describe("get game types handler tests", () => {
     // Assert
     expect(result).toBe(response);
     expect(getAllGameTypes).toHaveBeenCalled();
-    expect(corsOkResponseWithData).toHaveBeenCalledWith(gameTypes);
+    expect(corsOkResponseWithData).toHaveBeenCalledWith(
+      "http://localhost:3000",
+      gameTypes
+    );
   });
 
   test("an error is thrown, returns an server error response", async () => {

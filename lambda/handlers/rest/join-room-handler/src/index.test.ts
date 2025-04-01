@@ -15,8 +15,14 @@ import { handler } from ".";
 import { JoinRoomPayload } from "./models";
 import { processRoomJoin, verifyRequestData } from "./services";
 
-jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
+jest.mock("/opt/nodejs/oigamez-core", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    CORS_ALLOWED_ORIGINS: "http://localhost:3000",
+  };
+});
+jest.mock("/opt/nodejs/oigamez-http");
 
 jest.mock("./configuration");
 jest.mock("./services");
@@ -75,6 +81,7 @@ describe("create room handler tests", () => {
       requestTimeEpoch
     );
     expect(corsBadRequestResponse).toHaveBeenCalledWith(
+      "http://localhost:3000",
       verifyRequestDataResult.errorMessages
     );
     expect(corsOkResponseWithData).not.toHaveBeenCalled();
@@ -134,10 +141,13 @@ describe("create room handler tests", () => {
       payload,
       requestTimeEpoch
     );
-    expect(corsOkResponseWithData).toHaveBeenCalledWith({
-      token: accessToken,
-      websocketSessionId,
-    });
+    expect(corsOkResponseWithData).toHaveBeenCalledWith(
+      "http://localhost:3000",
+      {
+        token: accessToken,
+        websocketSessionId,
+      }
+    );
     expect(corsBadRequestResponse).not.toHaveBeenCalled();
     expect(fatalErrorResponse).not.toHaveBeenCalled();
   });

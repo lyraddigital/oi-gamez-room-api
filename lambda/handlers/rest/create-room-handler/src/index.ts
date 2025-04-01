@@ -1,12 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { extractHeader, parseBody } from "/opt/nodejs/oigamez-http";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
 } from "@oigamez/responses";
 
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import { extractHeader, parseBody } from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
 import { CreateRoomPayload } from "./models";
 import {
@@ -26,7 +27,10 @@ export const handler = async (
     const verificationResult = await verifyRequestData(origin, payload);
 
     if (!verificationResult.isSuccessful) {
-      return corsBadRequestResponse(verificationResult.errorMessages);
+      return corsBadRequestResponse(
+        CORS_ALLOWED_ORIGINS,
+        verificationResult.errorMessages
+      );
     }
 
     const processRoomResult = await processRoomCreation(
@@ -35,7 +39,7 @@ export const handler = async (
       event.requestContext.requestTimeEpoch
     );
 
-    return corsOkResponseWithData(processRoomResult);
+    return corsOkResponseWithData(CORS_ALLOWED_ORIGINS, processRoomResult);
   } catch (e) {
     console.log(e);
 

@@ -6,7 +6,12 @@ import { getPublicRooms } from "./repositories";
 import { handler } from ".";
 
 jest.mock("@oigamez/responses");
-
+jest.mock("/opt/nodejs/oigamez-core", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    CORS_ALLOWED_ORIGINS: "http://localhost:3000",
+  };
+});
 jest.mock("./configuration");
 jest.mock("./repositories");
 
@@ -34,7 +39,10 @@ describe("get public rooms handler tests", () => {
     // Assert
     expect(result).toBe(response);
     expect(getPublicRooms).toHaveBeenCalled();
-    expect(corsOkResponseWithData).toHaveBeenCalledWith(publicRooms);
+    expect(corsOkResponseWithData).toHaveBeenCalledWith(
+      "http://localhost:3000",
+      publicRooms
+    );
   });
 
   test("an error is thrown, returns an server error response", async () => {

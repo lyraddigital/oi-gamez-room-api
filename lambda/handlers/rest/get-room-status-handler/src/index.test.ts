@@ -1,5 +1,3 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-core";
-import { extractHeader, extractFromPath } from "/opt/nodejs/oigamez-http";
 import {
   corsBadRequestResponse,
   corsOkResponseWithData,
@@ -7,13 +5,20 @@ import {
 } from "@oigamez/responses";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
+import { VerificationResult } from "/opt/nodejs/oigamez-core";
+import { extractHeader, extractFromPath } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { CurrentRoomStatus } from "./models";
 import { processStatusRetrieval, verifyRequestData } from "./services";
 
-jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("@oigamez/responses");
-
+jest.mock("/opt/nodejs/oigamez-core", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    CORS_ALLOWED_ORIGINS: "http://localhost:3000",
+  };
+});
+jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("./configuration");
 jest.mock("./services");
 
@@ -56,6 +61,7 @@ describe("create room handler tests", () => {
     expect(extractFromPath).toHaveBeenCalledWith(event, "roomCode");
     expect(verifyRequestData).toHaveBeenCalledWith(origin, roomCode);
     expect(corsBadRequestResponse).toHaveBeenCalledWith(
+      "http://localhost:3000",
       verifyRequestDataResult.errorMessages
     );
   });
@@ -111,7 +117,10 @@ describe("create room handler tests", () => {
       roomCode,
       requestTimeEpoch
     );
-    expect(corsOkResponseWithData).toHaveBeenCalledWith(roomStatus);
+    expect(corsOkResponseWithData).toHaveBeenCalledWith(
+      "http://localhost:3000",
+      roomStatus
+    );
   });
 
   test("an error is thrown, returns an server error response", async () => {

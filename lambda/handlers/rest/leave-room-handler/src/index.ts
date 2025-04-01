@@ -1,16 +1,17 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
 import {
-  extractFromPath,
-  extractHeader,
-  parseBody,
-} from "/opt/nodejs/oigamez-http";
-import {
   corsBadRequestResponse,
   corsOkResponse,
   fatalErrorResponse,
 } from "@oigamez/responses";
 
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import {
+  extractFromPath,
+  extractHeader,
+  parseBody,
+} from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
 import { LeaveRoomPayload } from "./models";
 import { processLeavingRoom, verifyRequestData } from "./services";
@@ -33,14 +34,17 @@ export const handler = async (
     );
 
     if (!verificationResult.isSuccessful) {
-      return corsBadRequestResponse(verificationResult.errorMessages);
+      return corsBadRequestResponse(
+        CORS_ALLOWED_ORIGINS,
+        verificationResult.errorMessages
+      );
     }
 
     const [room, connections] = verificationResult.data!;
 
     await processLeavingRoom(room, connections, payload!);
 
-    return corsOkResponse(204);
+    return corsOkResponse(CORS_ALLOWED_ORIGINS, 204);
   } catch (e) {
     console.log(e);
 
