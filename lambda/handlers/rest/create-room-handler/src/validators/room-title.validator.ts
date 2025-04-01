@@ -1,6 +1,6 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { ValidationResult } from "/opt/nodejs/oigamez-http";
 
-export const validateRoomTitle = (roomTitle?: string): VerificationResult => {
+export const validateRoomTitle = (roomTitle?: string): ValidationResult => {
   if (!roomTitle) {
     return {
       isSuccessful: false,

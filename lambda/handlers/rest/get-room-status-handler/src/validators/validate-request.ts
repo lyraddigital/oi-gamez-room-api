@@ -1,13 +1,13 @@
 import {
   validateOrigin,
   validateRoomCode,
-  VerificationResult,
+  ValidationResult,
 } from "/opt/nodejs/oigamez-http";
 
 export const validateRequest = (
   origin?: string,
   roomCode?: string
-): VerificationResult => {
+): ValidationResult => {
   const originValidationResult = validateOrigin(origin);
 
   if (!originValidationResult.isSuccessful) {

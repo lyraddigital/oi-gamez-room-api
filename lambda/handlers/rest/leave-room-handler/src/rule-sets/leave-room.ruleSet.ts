@@ -1,11 +1,11 @@
 import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { RuleSetResult } from "/opt/nodejs/oigamez-http";
 
 export const runLeaveRoomRuleSet = (
   username: string,
   room: Room | undefined,
   connections: RoomConnection[]
-): VerificationResult => {
+): RuleSetResult => {
   const errorMessages: string[] = [];
 
   if (!room) {

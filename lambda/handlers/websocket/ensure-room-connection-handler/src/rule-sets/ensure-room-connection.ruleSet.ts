@@ -1,12 +1,12 @@
 import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { RuleSetResult } from "/opt/nodejs/oigamez-http";
 
 export const runEnsureRoomConnectionRuleSet = (
   isUserHost: boolean,
   room: Room | undefined,
   username: string,
   connections: RoomConnection[]
-): VerificationResult => {
+): RuleSetResult => {
   if (!room) {
     return {
       isSuccessful: false,

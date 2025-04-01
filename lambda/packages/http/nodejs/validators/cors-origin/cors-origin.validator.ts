@@ -1,7 +1,7 @@
 import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
-import { VerificationResult } from "../models";
+import { ValidationResult } from "../models";
 
-export const validateOrigin = (origin?: string): VerificationResult => {
+export const validateOrigin = (origin?: string): ValidationResult => {
   if (
     !origin ||
     !CORS_ALLOWED_ORIGINS.toLowerCase().includes(origin.toLowerCase())

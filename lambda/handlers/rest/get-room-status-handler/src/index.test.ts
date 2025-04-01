@@ -6,7 +6,7 @@ import {
   fatalErrorResponse,
   extractHeader,
   extractFromPath,
-  VerificationResult,
+  ValidationResult,
 } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { CurrentRoomStatus } from "./models";
@@ -31,7 +31,7 @@ describe("create room handler tests", () => {
     // Arrange
     const origin = "http://localhost:8000";
     const roomCode = "ABCD";
-    const verifyRequestDataResult: VerificationResult = {
+    const verifyRequestDataResult: ValidationResult = {
       isSuccessful: false,
       errorMessages: [],
     };
@@ -75,7 +75,7 @@ describe("create room handler tests", () => {
       canJoin: false,
       reason: "Room is full",
     };
-    const verifyRequestDataResult: VerificationResult = {
+    const verifyRequestDataResult: ValidationResult = {
       isSuccessful: true,
       errorMessages: [],
     };

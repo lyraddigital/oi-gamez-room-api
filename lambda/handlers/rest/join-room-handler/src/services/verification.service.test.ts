@@ -3,7 +3,7 @@ import {
   getRoomAndConnections,
 } from "@oigamez/services";
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { ValidationResult } from "/opt/nodejs/oigamez-http";
 
 import { JoinRoomPayload } from "../models";
 import { runJoinRoomRuleSet } from "../rule-sets";
@@ -24,14 +24,14 @@ describe("verifyRequest data for join room tests", () => {
     const validateResult = {
       isSuccessful: false,
       errorMessages: ["Some validation error"],
-    } as VerificationResult;
+    } as ValidationResult;
 
     (
       validateRequest as jest.MockedFunction<typeof validateRequest>
     ).mockReturnValueOnce(validateResult);
 
     // Action
-    const verificationResult = await verifyRequestData(
+    const ValidationResult = await verifyRequestData(
       origin,
       roomCode,
       payload,
@@ -39,8 +39,8 @@ describe("verifyRequest data for join room tests", () => {
     );
 
     // Assert
-    expect(verificationResult.isSuccessful).toBe(false);
-    expect(verificationResult.errorMessages).toEqual(
+    expect(ValidationResult.isSuccessful).toBe(false);
+    expect(ValidationResult.errorMessages).toEqual(
       validateResult.errorMessages
     );
     expect(validateRequest).toHaveBeenCalledWith(origin, roomCode, payload);
@@ -63,11 +63,11 @@ describe("verifyRequest data for join room tests", () => {
     const validateResult = {
       isSuccessful: true,
       errorMessages: [],
-    } as VerificationResult;
+    } as ValidationResult;
     const rulesetResult = {
       isSuccessful: false,
       errorMessages: ["Some ruleset error"],
-    } as VerificationResult;
+    } as ValidationResult;
 
     (
       validateRequest as jest.MockedFunction<typeof validateRequest>
@@ -85,7 +85,7 @@ describe("verifyRequest data for join room tests", () => {
     ).mockReturnValueOnce(rulesetResult);
 
     // Action
-    const verificationResult = await verifyRequestData(
+    const ValidationResult = await verifyRequestData(
       origin,
       roomCode,
       payload,
@@ -93,10 +93,8 @@ describe("verifyRequest data for join room tests", () => {
     );
 
     // Assert
-    expect(verificationResult.isSuccessful).toBe(false);
-    expect(verificationResult.errorMessages).toEqual(
-      rulesetResult.errorMessages
-    );
+    expect(ValidationResult.isSuccessful).toBe(false);
+    expect(ValidationResult.errorMessages).toEqual(rulesetResult.errorMessages);
     expect(validateRequest).toHaveBeenCalledWith(origin, roomCode, payload);
     expect(convertFromMillisecondsToSeconds).toHaveBeenCalledWith(
       requestTimeEpochInMilliseconds
@@ -123,11 +121,11 @@ describe("verifyRequest data for join room tests", () => {
     const validateResult = {
       isSuccessful: true,
       errorMessages: [],
-    } as VerificationResult;
+    } as ValidationResult;
     const rulesetResult = {
       isSuccessful: true,
       errorMessages: [],
-    } as VerificationResult;
+    } as ValidationResult;
 
     (
       validateRequest as jest.MockedFunction<typeof validateRequest>
@@ -145,7 +143,7 @@ describe("verifyRequest data for join room tests", () => {
     ).mockReturnValueOnce(rulesetResult);
 
     // Action
-    const verificationResult = await verifyRequestData(
+    const ValidationResult = await verifyRequestData(
       origin,
       roomCode,
       payload,
@@ -153,8 +151,8 @@ describe("verifyRequest data for join room tests", () => {
     );
 
     // Assert
-    expect(verificationResult.isSuccessful).toBe(true);
-    expect(verificationResult.errorMessages).toHaveLength(0);
+    expect(ValidationResult.isSuccessful).toBe(true);
+    expect(ValidationResult.errorMessages).toHaveLength(0);
     expect(validateRequest).toHaveBeenCalledWith(origin, roomCode, payload);
     expect(convertFromMillisecondsToSeconds).toHaveBeenCalledWith(
       requestTimeEpochInMilliseconds

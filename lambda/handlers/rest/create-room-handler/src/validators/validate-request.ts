@@ -1,7 +1,7 @@
 import {
   validateOrigin,
   validateUsername,
-  VerificationResult,
+  ValidationResult,
 } from "/opt/nodejs/oigamez-http";
 
 import { CreateRoomPayload } from "../models";
@@ -12,7 +12,7 @@ import { validateRoomVisibility } from "./room-visibility.validator";
 export const validateRequest = (
   origin?: string,
   payload?: CreateRoomPayload
-): VerificationResult => {
+): ValidationResult => {
   const originValidationResult = validateOrigin(origin);
 
   if (!originValidationResult.isSuccessful) {

@@ -1,5 +1,5 @@
 import { GameType } from "/opt/nodejs/oigamez-core";
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { ValidationResult } from "/opt/nodejs/oigamez-http";
 
 import { CreateRoomPayload } from "../models";
 import { getRoomHostingData } from "../repositories";
@@ -21,7 +21,7 @@ describe("create room verification tests", () => {
     // Arrange
     const origin: string | undefined = undefined;
     const payload: CreateRoomPayload | undefined = undefined;
-    const validateRequestResult: VerificationResult = {
+    const validateRequestResult: ValidationResult = {
       isSuccessful: false,
       errorMessages: ["Some validation error"],
     };
@@ -53,11 +53,11 @@ describe("create room verification tests", () => {
       gameTypeId: 1,
       hostUsername: "daryl_duck",
     } as CreateRoomPayload;
-    const validateRequestResult: VerificationResult = {
+    const validateRequestResult: ValidationResult = {
       isSuccessful: true,
       errorMessages: [],
     };
-    const rulesetResult: VerificationResult = {
+    const rulesetResult: ValidationResult = {
       isSuccessful: false,
       errorMessages: ["Some ruleset error"],
     };
@@ -101,11 +101,11 @@ describe("create room verification tests", () => {
       gameTypeId: 1,
       hostUsername: "daryl_duck",
     } as CreateRoomPayload;
-    const validateRequestResult: VerificationResult = {
+    const validateRequestResult: ValidationResult = {
       isSuccessful: true,
       errorMessages: [],
     };
-    const rulesetResult: VerificationResult = {
+    const rulesetResult: ValidationResult = {
       isSuccessful: true,
       errorMessages: [],
     };

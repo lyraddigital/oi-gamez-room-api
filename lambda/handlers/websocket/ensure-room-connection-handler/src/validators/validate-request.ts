@@ -1,13 +1,13 @@
 import {
   validateRoomCode,
   validateUsername,
-  VerificationResult,
+  ValidationResult,
 } from "/opt/nodejs/oigamez-http";
 
 export const validateRequest = (
   username?: string,
   roomCode?: string
-): VerificationResult => {
+): ValidationResult => {
   const errorMessages: string[] = [];
   const usernameValidationResult = validateUsername(username);
   const roomCodeValidationResult = validateRoomCode(roomCode);

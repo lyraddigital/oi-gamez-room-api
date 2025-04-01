@@ -23,21 +23,21 @@ export const handler = async (
     const requestTimeEpoch = event.requestContext.requestTimeEpoch;
     const roomCode = extractFromPath(event, "roomCode");
     const payload = parseBody<LeaveRoomPayload>(event);
-    const verificationResult = await verifyRequestData(
+    const ValidationResult = await verifyRequestData(
       origin,
       roomCode,
       payload,
       requestTimeEpoch
     );
 
-    if (!verificationResult.isSuccessful) {
+    if (!ValidationResult.isSuccessful) {
       return corsBadRequestResponse(
         CORS_ALLOWED_ORIGINS,
-        verificationResult.errorMessages
+        ValidationResult.errorMessages
       );
     }
 
-    const [room, connections] = verificationResult.data!;
+    const [room, connections] = ValidationResult.data!;
 
     await processLeavingRoom(room, connections, payload!);
 

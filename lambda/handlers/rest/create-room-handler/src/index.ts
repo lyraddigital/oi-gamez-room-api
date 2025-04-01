@@ -1,12 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import { CORS_ALLOWED_ORIGINS, GameType } from "/opt/nodejs/oigamez-core";
 import {
   extractHeader,
   parseBody,
   corsBadRequestResponse,
   corsOkResponseWithData,
   fatalErrorResponse,
+  VerificationResultWithData,
 } from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
 import { CreateRoomPayload } from "./models";
@@ -33,9 +34,12 @@ export const handler = async (
       );
     }
 
+    const gameType = (
+      verificationResult as VerificationResultWithData<GameType>
+    ).data!;
     const processRoomResult = await processRoomCreation(
       payload!,
-      verificationResult.data!,
+      gameType,
       event.requestContext.requestTimeEpoch
     );
 

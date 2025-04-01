@@ -7,7 +7,7 @@ import {
   extractFromPath,
   fatalErrorResponse,
   parseBody,
-  VerificationResult,
+  ValidationResult,
 } from "/opt/nodejs/oigamez-http";
 import { handler } from ".";
 import { JoinRoomPayload } from "./models";
@@ -33,7 +33,7 @@ describe("create room handler tests", () => {
     const origin = "http://localhost:8000";
     const roomCode = "ABCD";
     const requestTimeEpoch = 93948485;
-    const verifyRequestDataResult: VerificationResult = {
+    const verifyRequestDataResult: ValidationResult = {
       isSuccessful: false,
       errorMessages: [],
     };
@@ -91,7 +91,7 @@ describe("create room handler tests", () => {
     const accessToken = "adflkjwlfjwwkfjwlkfjk";
     const websocketSessionId = "39320jf29fj30f92f0293";
     const requestTimeEpoch = 93948485;
-    const verifyRequestDataResult: VerificationResult = {
+    const verifyRequestDataResult: ValidationResult = {
       isSuccessful: true,
       errorMessages: [],
     };

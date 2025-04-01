@@ -2,7 +2,7 @@ import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { ValidationResult } from "/opt/nodejs/oigamez-http";
 import { runEnsureRoomConnectionRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";
 import { isUserHost } from "./is-user-host.service";
@@ -23,7 +23,7 @@ describe("verifyRequestData for ensure room connection tests", () => {
     const validateResult = {
       isSuccessful: false,
       errorMessages: ["Validation error"],
-    } as VerificationResult;
+    } as ValidationResult;
 
     (
       validateRequest as jest.MockedFunction<typeof validateRequest>
@@ -57,11 +57,11 @@ describe("verifyRequestData for ensure room connection tests", () => {
     const validateResult = {
       isSuccessful: true,
       errorMessages: [],
-    } as VerificationResult;
+    } as ValidationResult;
     const rulesetResult = {
       isSuccessful: false,
       errorMessages: ["Ruleset error"],
-    } as VerificationResult;
+    } as ValidationResult;
 
     (
       validateRequest as jest.MockedFunction<typeof validateRequest>
@@ -119,11 +119,11 @@ describe("verifyRequestData for ensure room connection tests", () => {
     const validateResult = {
       isSuccessful: true,
       errorMessages: [],
-    } as VerificationResult;
+    } as ValidationResult;
     const rulesetResult = {
       isSuccessful: true,
       errorMessages: [],
-    } as VerificationResult;
+    } as ValidationResult;
 
     (
       validateRequest as jest.MockedFunction<typeof validateRequest>

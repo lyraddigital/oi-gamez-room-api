@@ -1,6 +1,6 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { ValidationResult } from "/opt/nodejs/oigamez-http";
 
-export const validateGameTypeId = (gameTypeId?: number): VerificationResult => {
+export const validateGameTypeId = (gameTypeId?: number): ValidationResult => {
   if (!gameTypeId) {
     return {
       isSuccessful: false,

@@ -20,17 +20,17 @@ export const handler = async (
     const roomCode = extractFromQueryString(event, "roomCode");
     const connectionId = event.requestContext.connectionId;
     const epochTime = event.requestContext.requestTimeEpoch;
-    const verificationResult = await verifyRequestData(
+    const ValidationResult = await verifyRequestData(
       username,
       roomCode,
       epochTime
     );
 
-    if (!verificationResult.isSuccessful) {
-      return badRequestResponse(verificationResult.errorMessages);
+    if (!ValidationResult.isSuccessful) {
+      return badRequestResponse(ValidationResult.errorMessages);
     }
 
-    const { isHost, room, ttl } = verificationResult.data!;
+    const { isHost, room, ttl } = ValidationResult.data!;
 
     await processRoomConnection(room, isHost, username!, connectionId!, ttl);
 

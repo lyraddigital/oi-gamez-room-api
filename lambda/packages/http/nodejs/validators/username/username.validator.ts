@@ -1,6 +1,6 @@
-import { VerificationResult } from "../models";
+import { ValidationResult } from "../models";
 
-export const validateUsername = (username?: string): VerificationResult => {
+export const validateUsername = (username?: string): ValidationResult => {
   if (!username) {
     return {
       isSuccessful: false,

@@ -8,15 +8,15 @@ describe("runCreateRoomRuleSet tests", () => {
     const isAlreadyHosting = true;
 
     // Action
-    const validationResult = runCreateRoomRuleSet(undefined, isAlreadyHosting);
+    const ruleSetResult = runCreateRoomRuleSet(undefined, isAlreadyHosting);
 
     // Assert
-    expect(validationResult.isSuccessful).toBe(false);
-    expect(validationResult.errorMessages).toHaveLength(2);
-    expect(validationResult.errorMessages[0]).toBe(
+    expect(ruleSetResult.isSuccessful).toBe(false);
+    expect(ruleSetResult.errorMessages).toHaveLength(2);
+    expect(ruleSetResult.errorMessages[0]).toBe(
       "Incorrect game type set for room"
     );
-    expect(validationResult.errorMessages[1]).toBe(
+    expect(ruleSetResult.errorMessages[1]).toBe(
       "You are already hosting a room"
     );
   });
@@ -26,12 +26,12 @@ describe("runCreateRoomRuleSet tests", () => {
     const isAlreadyHosting = false;
 
     // Action
-    const validationResult = runCreateRoomRuleSet(undefined, isAlreadyHosting);
+    const ruleSetResult = runCreateRoomRuleSet(undefined, isAlreadyHosting);
 
     // Assert
-    expect(validationResult.isSuccessful).toBe(false);
-    expect(validationResult.errorMessages).toHaveLength(1);
-    expect(validationResult.errorMessages[0]).toBe(
+    expect(ruleSetResult.isSuccessful).toBe(false);
+    expect(ruleSetResult.errorMessages).toHaveLength(1);
+    expect(ruleSetResult.errorMessages[0]).toBe(
       "Incorrect game type set for room"
     );
   });
@@ -42,12 +42,12 @@ describe("runCreateRoomRuleSet tests", () => {
     const isAlreadyHosting = true;
 
     // Action
-    const validationResult = runCreateRoomRuleSet(gameType, isAlreadyHosting);
+    const ruleSetResult = runCreateRoomRuleSet(gameType, isAlreadyHosting);
 
     // Assert
-    expect(validationResult.isSuccessful).toBe(false);
-    expect(validationResult.errorMessages).toHaveLength(1);
-    expect(validationResult.errorMessages[0]).toBe(
+    expect(ruleSetResult.isSuccessful).toBe(false);
+    expect(ruleSetResult.errorMessages).toHaveLength(1);
+    expect(ruleSetResult.errorMessages[0]).toBe(
       "You are already hosting a room"
     );
   });
@@ -58,10 +58,10 @@ describe("runCreateRoomRuleSet tests", () => {
     const isAlreadyHosting = false;
 
     // Action
-    const validationResult = runCreateRoomRuleSet(gameType, isAlreadyHosting);
+    const ruleSetResult = runCreateRoomRuleSet(gameType, isAlreadyHosting);
 
     // Assert
-    expect(validationResult.isSuccessful).toBe(true);
-    expect(validationResult.errorMessages).toHaveLength(0);
+    expect(ruleSetResult.isSuccessful).toBe(true);
+    expect(ruleSetResult.errorMessages).toHaveLength(0);
   });
 });

@@ -1,6 +1,6 @@
-import { VerificationResult } from "../models";
+import { ValidationResult } from "../models";
 
-export const validateRoomCode = (roomCode?: string): VerificationResult => {
+export const validateRoomCode = (roomCode?: string): ValidationResult => {
   if (!roomCode) {
     return {
       isSuccessful: false,

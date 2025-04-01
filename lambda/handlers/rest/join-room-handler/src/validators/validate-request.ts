@@ -2,7 +2,7 @@ import {
   validateOrigin,
   validateRoomCode,
   validateUsername,
-  VerificationResult,
+  ValidationResult,
 } from "/opt/nodejs/oigamez-http";
 
 import { JoinRoomPayload } from "../models";
@@ -11,7 +11,7 @@ export const validateRequest = (
   origin?: string,
   roomCode?: string,
   payload?: JoinRoomPayload
-): VerificationResult => {
+): ValidationResult => {
   const originValidationResult = validateOrigin(origin);
 
   if (!originValidationResult.isSuccessful) {

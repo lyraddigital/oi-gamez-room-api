@@ -1,10 +1,10 @@
 import { GameType } from "/opt/nodejs/oigamez-core";
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { RuleSetResult } from "/opt/nodejs/oigamez-http";
 
 export const runCreateRoomRuleSet = (
   gameType: GameType | undefined,
   isAlreadyHosting: boolean
-): VerificationResult => {
+): RuleSetResult => {
   const errorMessages: string[] = [];
 
   if (!gameType) {
