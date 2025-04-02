@@ -1,7 +1,7 @@
 import { EventBridgeReceivedEvent } from "/opt/nodejs/oigamez-communication";
 
-export class GameCompletedEvent extends EventBridgeReceivedEvent {
+export class GameStartedEventReceivedEvent extends EventBridgeReceivedEvent {
   constructor(public roomCode: string) {
-    super("room-receive.game-completed");
+    super("room-receive.game-started");
   }
 }

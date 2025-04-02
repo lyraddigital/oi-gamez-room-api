@@ -1,6 +1,6 @@
-import { HostChangeExternalEvent } from "./host-change-external-event";
+import { HostChangeExternalEventBridgeEvent } from "./host-change-external-event-bridge-event";
 
-describe("HostChangeExternalEvent tests", () => {
+describe("HostChangeExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -9,7 +9,7 @@ describe("HostChangeExternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new HostChangeExternalEvent(
+    const event = new HostChangeExternalEventBridgeEvent(
       roomCode,
       oldHostUsername,
       newHostUsername,

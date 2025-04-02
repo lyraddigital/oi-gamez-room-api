@@ -1,6 +1,6 @@
-import { UserLeftExternalEvent } from "./user-left-external-event";
+import { UserLeftExternalEventBridgeEvent } from "./user-left-external-event-bridge-event";
 
-describe("UserLeftExternalEvent tests", () => {
+describe("UserLeftExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -9,7 +9,7 @@ describe("UserLeftExternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new UserLeftExternalEvent(
+    const event = new UserLeftExternalEventBridgeEvent(
       roomCode,
       username,
       isBelowMinimumUsers,

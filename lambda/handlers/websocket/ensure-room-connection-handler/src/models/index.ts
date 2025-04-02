@@ -1,1 +1,1 @@
-export * from "./room-created-external-event";
+export * from "./room-created-external-event-bridge-event";

@@ -1,6 +1,6 @@
-import { RoomCreatedExternalEvent } from "./room-created-external-event";
+import { RoomCreatedExternalEventBridgeEvent } from "./room-created-external-event-bridge-event";
 
-describe("RoomCreatedExternalEvent tests", () => {
+describe("RoomCreatedExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -8,7 +8,7 @@ describe("RoomCreatedExternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new RoomCreatedExternalEvent(
+    const event = new RoomCreatedExternalEventBridgeEvent(
       roomCode,
       hostUsername,
       gameTypeId

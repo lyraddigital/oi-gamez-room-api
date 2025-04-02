@@ -1,6 +1,6 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
 
-import { HostChangeExternalEvent } from "../models";
+import { HostChangeExternalEventBridgeEvent } from "../models";
 
 export const publishExternalHostChangedEvent = async (
   roomCode: string,
@@ -8,8 +8,8 @@ export const publishExternalHostChangedEvent = async (
   newHostUsername: string,
   gameTypeId: number
 ): Promise<void> => {
-  await publishExternalEvents<HostChangeExternalEvent>([
-    new HostChangeExternalEvent(
+  await publishExternalEvents<HostChangeExternalEventBridgeEvent>([
+    new HostChangeExternalEventBridgeEvent(
       roomCode,
       oldHostUsername,
       newHostUsername,

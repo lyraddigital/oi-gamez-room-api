@@ -1,6 +1,6 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
 
-import { HostChangeExternalEvent } from "../models";
+import { HostChangeExternalEventBridgeEvent } from "../models";
 import { publishExternalHostChangedEvent } from "./external-event.service";
 
 jest.mock("/opt/nodejs/oigamez-communication", () => {
@@ -34,7 +34,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as HostChangeExternalEventBridgeEvent
       ).detailType
     ).toBe("room.host-changed");
     expect(
@@ -43,7 +43,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as HostChangeExternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -52,7 +52,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as HostChangeExternalEventBridgeEvent
       ).newHostUsername
     ).toBe(newHostUsername);
     expect(
@@ -61,7 +61,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as HostChangeExternalEventBridgeEvent
       ).oldHostUsername
     ).toBe(oldHostUsername);
     expect(
@@ -70,7 +70,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeExternalEvent
+        ).mock.calls[0][0][0] as HostChangeExternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });

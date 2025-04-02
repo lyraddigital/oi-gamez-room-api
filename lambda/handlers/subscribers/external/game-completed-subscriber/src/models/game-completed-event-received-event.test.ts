@@ -1,12 +1,12 @@
-import { GameCompletedEvent } from "./game-completed-event";
+import { GameCompletedEventReceivedEvent } from "./game-completed-event-received-event";
 
-describe("GameCompletedEvent tests", () => {
+describe("GameCompletedEventReceivedEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
 
     // Action
-    const event = new GameCompletedEvent(roomCode);
+    const event = new GameCompletedEventReceivedEvent(roomCode);
 
     // Assert
     expect(event).toBeDefined();

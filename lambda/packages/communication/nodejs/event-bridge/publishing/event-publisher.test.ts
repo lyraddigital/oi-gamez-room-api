@@ -13,7 +13,7 @@ import {
 
 jest.mock("./publishing-options");
 
-class CustomEventBridgeInternalEvent extends EventBridgeEvent {
+class CustomEventBridgeInternalEventBridgeEvent extends EventBridgeEvent {
   constructor(
     public detailType: string,
     public gameTypeId: number,
@@ -23,7 +23,7 @@ class CustomEventBridgeInternalEvent extends EventBridgeEvent {
   }
 }
 
-class CustomEventBridgeExternallEvent extends EventBridgeEvent {
+class CustomEventBridgeExternallEventBridgeEvent extends EventBridgeEvent {
   constructor(
     public detailType: string,
     public gameTypeId: number,
@@ -48,7 +48,7 @@ describe("event publisher tests", () => {
         internalEventBusName: "InternalEbName",
         internalEventBusSourceName: "InternalEventSourceName",
       } as EventBridgePublishingOptions;
-      const customEvent = new CustomEventBridgeInternalEvent(
+      const customEvent = new CustomEventBridgeInternalEventBridgeEvent(
         "room-internal.user-joined",
         1,
         "testProp"
@@ -95,7 +95,7 @@ describe("event publisher tests", () => {
         internalEventBusSourceName: "InternalEventSourceName",
       } as EventBridgePublishingOptions;
       const randomError = { error: "Test error message" };
-      const customEvent = new CustomEventBridgeInternalEvent(
+      const customEvent = new CustomEventBridgeInternalEventBridgeEvent(
         "room-internal.user-joined",
         1,
         "testProp"
@@ -125,7 +125,7 @@ describe("event publisher tests", () => {
         externalEventBusName: "ExternalEbName",
         externalEventBusSourceName: "ExternalEventSourceName",
       } as EventBridgePublishingOptions;
-      const customEvent = new CustomEventBridgeExternallEvent(
+      const customEvent = new CustomEventBridgeExternallEventBridgeEvent(
         "room.random-event",
         1,
         "testProp"
@@ -173,7 +173,7 @@ describe("event publisher tests", () => {
         externalEventBusSourceName: "ExternalEventSourceName",
       } as EventBridgePublishingOptions;
       const randomError = { error: "Test error message" };
-      const customEvent = new CustomEventBridgeExternallEvent(
+      const customEvent = new CustomEventBridgeExternallEventBridgeEvent(
         "room.random-event",
         1,
         "testProp"

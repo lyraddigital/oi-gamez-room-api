@@ -5,7 +5,10 @@ import { EventBridgeEvent } from "aws-lambda";
 import { RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { broadcast } from "/opt/nodejs/oigamez-communication";
 import { handler } from ".";
-import { GameCompletedWebsocketEvent, GameCompletedEvent } from "./models";
+import {
+  GameCompletedWebsocketEvent,
+  GameCompletedEventReceivedEvent,
+} from "./models";
 
 jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/services");
@@ -28,7 +31,10 @@ describe("game completed subscriber handler tests", () => {
       detail: {
         roomCode,
       },
-    } as EventBridgeEvent<"room-receive.game-completed", GameCompletedEvent>;
+    } as EventBridgeEvent<
+      "room-receive.game-completed",
+      GameCompletedEventReceivedEvent
+    >;
 
     (
       getRoomConnections as jest.MockedFunction<typeof getRoomConnections>

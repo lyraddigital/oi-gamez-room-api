@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
-export class UserJoinedExternalEvent extends EventBridgeEvent {
+export class UserJoinedExternalEventBridgeEvent extends EventBridgeEvent {
   constructor(
     public roomCode: string,
     public username: string,

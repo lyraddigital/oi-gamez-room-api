@@ -5,7 +5,7 @@ import {
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
 
-import { RoomCreatedExternalEvent } from "../models";
+import { RoomCreatedExternalEventBridgeEvent } from "../models";
 import {
   establishHostConnection,
   establishJoinerConnection,
@@ -32,7 +32,11 @@ export const processRoomConnection = async (
 
     if (isFirstHostConnection) {
       await publishExternalEvents([
-        new RoomCreatedExternalEvent(room.code, username, room.gameTypeId),
+        new RoomCreatedExternalEventBridgeEvent(
+          room.code,
+          username,
+          room.gameTypeId
+        ),
       ]);
     }
   } else {

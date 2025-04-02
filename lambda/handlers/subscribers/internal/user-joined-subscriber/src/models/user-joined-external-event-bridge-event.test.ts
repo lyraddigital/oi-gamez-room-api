@@ -1,6 +1,6 @@
-import { UserJoinedExternalEvent } from "./user-joined-external-event";
+import { UserJoinedExternalEventBridgeEvent } from "./user-joined-external-event-bridge-event";
 
-describe("UserJoinedExternalEvent tests", () => {
+describe("UserJoinedExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -9,7 +9,7 @@ describe("UserJoinedExternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new UserJoinedExternalEvent(
+    const event = new UserJoinedExternalEventBridgeEvent(
       roomCode,
       username,
       isBelowMinimumUsers,

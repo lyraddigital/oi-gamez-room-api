@@ -5,14 +5,20 @@ import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { broadcast } from "/opt/nodejs/oigamez-communication";
 import { validateEnvironment } from "./configuration";
-import { GameInitializedWebsocketEvent, GameInitializedEvent } from "./models";
+import {
+  GameInitializedWebsocketEvent,
+  GameInitializedEventReceivedEvent,
+} from "./models";
 import { initializeLambda } from "./services";
 
 validateEnvironment();
 initializeLambda();
 
 export const handler = async (
-  event: EventBridgeEvent<"room-receive.game-initialized", GameInitializedEvent>
+  event: EventBridgeEvent<
+    "room-receive.game-initialized",
+    GameInitializedEventReceivedEvent
+  >
 ): Promise<void> => {
   const { roomCode } = event.detail;
   const roomConnections = await getRoomConnections(roomCode);

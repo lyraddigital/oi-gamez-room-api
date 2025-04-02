@@ -5,7 +5,7 @@ import {
 } from "/opt/nodejs/oigamez-communication";
 
 import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { RoomCreatedExternalEvent } from "../models";
+import { RoomCreatedExternalEventBridgeEvent } from "../models";
 import {
   establishHostConnection,
   establishJoinerConnection,
@@ -72,7 +72,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as RoomCreatedExternalEvent
+        ).mock.calls[0][0][0] as RoomCreatedExternalEventBridgeEvent
       ).detailType
     ).toBe("room.room-created");
     expect(
@@ -81,7 +81,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as RoomCreatedExternalEvent
+        ).mock.calls[0][0][0] as RoomCreatedExternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -90,7 +90,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as RoomCreatedExternalEvent
+        ).mock.calls[0][0][0] as RoomCreatedExternalEventBridgeEvent
       ).hostUsername
     ).toBe(username);
     expect(
@@ -99,7 +99,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as RoomCreatedExternalEvent
+        ).mock.calls[0][0][0] as RoomCreatedExternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });

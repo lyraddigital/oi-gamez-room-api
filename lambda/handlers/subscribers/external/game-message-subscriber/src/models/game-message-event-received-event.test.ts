@@ -1,6 +1,6 @@
-import { GameMessageEvent } from "./game-message-event";
+import { GameMessageEventReceivedEvent } from "./game-message-event-received-event";
 
-describe("GameMessageEvent tests", () => {
+describe("GameMessageEventReceivedEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -8,7 +8,11 @@ describe("GameMessageEvent tests", () => {
     const payload = { name: "something" };
 
     // Action
-    const event = new GameMessageEvent(roomCode, customAction, payload);
+    const event = new GameMessageEventReceivedEvent(
+      roomCode,
+      customAction,
+      payload
+    );
 
     // Assert
     expect(event).toBeDefined();

@@ -2,7 +2,7 @@ import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode } from "@oigamez/repositories";
 
 import { Room } from "/opt/nodejs/oigamez-core";
-import { UserJoinedExternalEvent } from "../models";
+import { UserJoinedExternalEventBridgeEvent } from "../models";
 import { publishExternalUserJoinedEvent } from "./external-event.service";
 
 jest.mock("/opt/nodejs/oigamez-communication", () => {
@@ -40,7 +40,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).detailType
     ).toBe("room.user-joined");
     expect(
@@ -49,7 +49,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -58,7 +58,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).username
     ).toBe(username);
     expect(
@@ -67,7 +67,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).isBelowMinimumUsers
     ).toBe(false);
     expect(
@@ -76,7 +76,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });
@@ -107,7 +107,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).detailType
     ).toBe("room.user-joined");
     expect(
@@ -116,7 +116,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -125,7 +125,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).username
     ).toBe(username);
     expect(
@@ -134,7 +134,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).isBelowMinimumUsers
     ).toBe(false);
     expect(
@@ -143,7 +143,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });
@@ -174,7 +174,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).detailType
     ).toBe("room.user-joined");
     expect(
@@ -183,7 +183,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -192,7 +192,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).username
     ).toBe(username);
     expect(
@@ -201,7 +201,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).isBelowMinimumUsers
     ).toBe(false);
     expect(
@@ -210,7 +210,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });
@@ -241,7 +241,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).detailType
     ).toBe("room.user-joined");
     expect(
@@ -250,7 +250,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -259,7 +259,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).username
     ).toBe(username);
     expect(
@@ -268,7 +268,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).isBelowMinimumUsers
     ).toBe(true);
     expect(
@@ -277,7 +277,7 @@ describe("publishExternalUserJoinedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedExternalEvent
+        ).mock.calls[0][0][0] as UserJoinedExternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });

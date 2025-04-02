@@ -1,12 +1,12 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
 
-import { RoomRemovedExternalEvent } from "../models";
+import { RoomRemovedExternalEventBridgeEvent } from "../models";
 
 export const publishExternalRoomRemovedEvent = async (
   roomCode: string,
   gameTypeId: number
 ): Promise<void> => {
-  await publishExternalEvents<RoomRemovedExternalEvent>([
-    new RoomRemovedExternalEvent(roomCode, gameTypeId),
+  await publishExternalEvents<RoomRemovedExternalEventBridgeEvent>([
+    new RoomRemovedExternalEventBridgeEvent(roomCode, gameTypeId),
   ]);
 };

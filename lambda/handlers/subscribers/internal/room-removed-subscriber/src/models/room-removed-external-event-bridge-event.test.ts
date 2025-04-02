@@ -1,13 +1,13 @@
-import { RoomRemovedExternalEvent } from "./room-removed-external-event";
+import { RoomRemovedExternalEventBridgeEvent } from "./room-removed-external-event-bridge-event";
 
-describe("RoomRemovedExternalEvent tests", () => {
+describe("RoomRemovedExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
     const gameTypeId = 1;
 
     // Action
-    const event = new RoomRemovedExternalEvent(roomCode, gameTypeId);
+    const event = new RoomRemovedExternalEventBridgeEvent(roomCode, gameTypeId);
 
     // Assert
     expect(event).toBeDefined();

@@ -1,7 +1,7 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode } from "@oigamez/repositories";
 
-import { UserJoinedExternalEvent } from "../models";
+import { UserJoinedExternalEventBridgeEvent } from "../models";
 
 export const publishExternalUserJoinedEvent = async (
   roomCode: string,
@@ -11,8 +11,8 @@ export const publishExternalUserJoinedEvent = async (
   const room = await getRoomByCode(roomCode);
   const isBelowMinimumUsers = !!room && room.curNumOfUsers < room.minNumOfUsers;
 
-  await publishExternalEvents<UserJoinedExternalEvent>([
-    new UserJoinedExternalEvent(
+  await publishExternalEvents<UserJoinedExternalEventBridgeEvent>([
+    new UserJoinedExternalEventBridgeEvent(
       roomCode,
       username,
       isBelowMinimumUsers,

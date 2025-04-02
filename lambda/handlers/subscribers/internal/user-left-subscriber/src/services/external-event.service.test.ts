@@ -1,6 +1,6 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
 
-import { UserLeftExternalEvent } from "../models";
+import { UserLeftExternalEventBridgeEvent } from "../models";
 import { publishExternalUserLeftEvent } from "./external-event.service";
 
 jest.mock("/opt/nodejs/oigamez-communication", () => {
@@ -34,7 +34,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftExternalEvent
+        ).mock.calls[0][0][0] as UserLeftExternalEventBridgeEvent
       ).detailType
     ).toBe("room.user-left");
     expect(
@@ -43,7 +43,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftExternalEvent
+        ).mock.calls[0][0][0] as UserLeftExternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -52,7 +52,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftExternalEvent
+        ).mock.calls[0][0][0] as UserLeftExternalEventBridgeEvent
       ).username
     ).toBe(username);
     expect(
@@ -61,7 +61,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftExternalEvent
+        ).mock.calls[0][0][0] as UserLeftExternalEventBridgeEvent
       ).isBelowMinimumUsers
     ).toBe(isBelowMinimumUsers);
     expect(
@@ -70,7 +70,7 @@ describe("publishExternalHostChangedEvent tests", () => {
           publishExternalEvents as jest.MockedFunction<
             typeof publishExternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftExternalEvent
+        ).mock.calls[0][0][0] as UserLeftExternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });

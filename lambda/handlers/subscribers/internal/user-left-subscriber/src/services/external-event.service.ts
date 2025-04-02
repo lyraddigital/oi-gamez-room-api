@@ -1,6 +1,6 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
 
-import { UserLeftExternalEvent } from "../models";
+import { UserLeftExternalEventBridgeEvent } from "../models";
 
 export const publishExternalUserLeftEvent = async (
   roomCode: string,
@@ -8,8 +8,8 @@ export const publishExternalUserLeftEvent = async (
   isBelowMinimumUsers: boolean,
   gameTypeId: number
 ): Promise<void> => {
-  await publishExternalEvents<UserLeftExternalEvent>([
-    new UserLeftExternalEvent(
+  await publishExternalEvents<UserLeftExternalEventBridgeEvent>([
+    new UserLeftExternalEventBridgeEvent(
       roomCode,
       username,
       isBelowMinimumUsers,

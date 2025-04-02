@@ -1,12 +1,12 @@
-import { GameInitializedEvent } from "./game-initialized-event";
+import { GameInitializedEventReceivedEvent } from "./game-initialized-event-received-event";
 
-describe("GameInitializedEvent tests", () => {
+describe("GameInitializedEventReceivedEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
 
     // Action
-    const event = new GameInitializedEvent(roomCode);
+    const event = new GameInitializedEventReceivedEvent(roomCode);
 
     // Assert
     expect(event).toBeDefined();

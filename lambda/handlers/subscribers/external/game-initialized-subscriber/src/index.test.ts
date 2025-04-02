@@ -5,7 +5,10 @@ import { EventBridgeEvent } from "aws-lambda";
 import { RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { broadcast } from "/opt/nodejs/oigamez-communication";
 import { handler } from ".";
-import { GameInitializedWebsocketEvent, GameInitializedEvent } from "./models";
+import {
+  GameInitializedWebsocketEvent,
+  GameInitializedEventReceivedEvent,
+} from "./models";
 
 jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/services");
@@ -30,7 +33,7 @@ describe("game initialized subscriber handler tests", () => {
       },
     } as EventBridgeEvent<
       "room-receive.game-initialized",
-      GameInitializedEvent
+      GameInitializedEventReceivedEvent
     >;
 
     (
