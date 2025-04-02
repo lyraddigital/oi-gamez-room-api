@@ -3,19 +3,15 @@ import { PutEventsCommand } from "@aws-sdk/client-eventbridge";
 import { client } from "../client";
 import { EventBridgeEvent } from "../events";
 import {
+  EventBridgePublishingOptions,
+  getPublishingOptions,
+} from "./publishing-options";
+import {
   publishExternalEvents,
   publishInternalEvents,
 } from "./event-publisher";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
-  return {
-    EB_EXTERNAL_EB_NAME: "ExternalEbName",
-    EB_EXTERNAL_EVENT_SOURCE_NAME: "ExternalEventSourceName",
-    EB_INTERNAL_EB_NAME: "InternalEbName",
-    EB_INTERNAL_EVENT_SOURCE_NAME: "InternalEventSourceName",
-    DYNAMO_TABLE_NAME: "SomeTable",
-  };
-});
+jest.mock("./publishing-options");
 
 class CustomEventBridgeInternalEvent extends EventBridgeEvent {
   constructor(
@@ -48,11 +44,18 @@ describe("event publisher tests", () => {
   describe("publishInternalEvents tests", () => {
     test("sends the correct PutEventsCommand to the event bus", async () => {
       // Arrange
+      const publishingOptions = {
+        internalEventBusName: "InternalEbName",
+        internalEventBusSourceName: "InternalEventSourceName",
+      } as EventBridgePublishingOptions;
       const customEvent = new CustomEventBridgeInternalEvent(
         "room-internal.user-joined",
         1,
         "testProp"
       );
+      (
+        getPublishingOptions as jest.MockedFunction<typeof getPublishingOptions>
+      ).mockReturnValueOnce(publishingOptions);
 
       sendFn.mockReturnValueOnce({} as any);
 
@@ -71,10 +74,10 @@ describe("event publisher tests", () => {
       expect(
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0]
           .EventBusName
-      ).toBe("InternalEbName");
+      ).toBe(publishingOptions.internalEventBusName);
       expect(
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0].Source
-      ).toBe("InternalEventSourceName");
+      ).toBe(publishingOptions.internalEventBusSourceName);
       expect(
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0].Detail
       ).toEqual(JSON.stringify(customEvent));
@@ -82,16 +85,24 @@ describe("event publisher tests", () => {
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0]
           .DetailType
       ).toBe("room-internal.user-joined");
+      expect(getPublishingOptions).toHaveBeenCalled();
     });
 
     test("logs the error if there is an issue while trying to publish an event", async () => {
       // Arrange
+      const publishingOptions = {
+        internalEventBusName: "InternalEbName",
+        internalEventBusSourceName: "InternalEventSourceName",
+      } as EventBridgePublishingOptions;
       const randomError = { error: "Test error message" };
       const customEvent = new CustomEventBridgeInternalEvent(
         "room-internal.user-joined",
         1,
         "testProp"
       );
+      (
+        getPublishingOptions as jest.MockedFunction<typeof getPublishingOptions>
+      ).mockReturnValueOnce(publishingOptions);
 
       sendFn.mockRejectedValueOnce(randomError as never);
 
@@ -103,17 +114,25 @@ describe("event publisher tests", () => {
         "Error while trying to send a message to the event bus InternalEbName with source InternalEventSourceName",
         randomError
       );
+      expect(getPublishingOptions).toHaveBeenCalled();
     });
   });
 
   describe("publishExternalEvents tests", () => {
     test("sends the correct PutEventsCommand to the event bus", async () => {
       // Arrange
+      const publishingOptions = {
+        externalEventBusName: "ExternalEbName",
+        externalEventBusSourceName: "ExternalEventSourceName",
+      } as EventBridgePublishingOptions;
       const customEvent = new CustomEventBridgeExternallEvent(
         "room.random-event",
         1,
         "testProp"
       );
+      (
+        getPublishingOptions as jest.MockedFunction<typeof getPublishingOptions>
+      ).mockReturnValueOnce(publishingOptions);
       const sendFn = jest.spyOn(client, "send");
 
       sendFn.mockReturnValueOnce({} as any);
@@ -133,10 +152,10 @@ describe("event publisher tests", () => {
       expect(
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0]
           .EventBusName
-      ).toBe("ExternalEbName");
+      ).toBe(publishingOptions.externalEventBusName);
       expect(
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0].Source
-      ).toBe("ExternalEventSourceName");
+      ).toBe(publishingOptions.externalEventBusSourceName);
       expect(
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0].Detail
       ).toEqual(JSON.stringify(customEvent));
@@ -144,16 +163,24 @@ describe("event publisher tests", () => {
         (sendFn.mock.calls[0][0] as PutEventsCommand).input.Entries![0]
           .DetailType
       ).toBe("room.random-event");
+      expect(getPublishingOptions).toHaveBeenCalled();
     });
 
     test("logs the error if there is an issue while trying to publish an event", async () => {
       // Arrange
+      const publishingOptions = {
+        externalEventBusName: "ExternalEbName",
+        externalEventBusSourceName: "ExternalEventSourceName",
+      } as EventBridgePublishingOptions;
       const randomError = { error: "Test error message" };
       const customEvent = new CustomEventBridgeExternallEvent(
         "room.random-event",
         1,
         "testProp"
       );
+      (
+        getPublishingOptions as jest.MockedFunction<typeof getPublishingOptions>
+      ).mockReturnValueOnce(publishingOptions);
 
       sendFn.mockRejectedValueOnce(randomError as never);
 
@@ -165,6 +192,7 @@ describe("event publisher tests", () => {
         "Error while trying to send a message to the event bus ExternalEbName with source ExternalEventSourceName",
         randomError
       );
+      expect(getPublishingOptions).toHaveBeenCalled();
     });
   });
 });

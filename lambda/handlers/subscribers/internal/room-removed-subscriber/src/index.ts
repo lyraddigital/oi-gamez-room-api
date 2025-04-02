@@ -4,10 +4,12 @@ import { EventBridgeEvent } from "aws-lambda";
 import { validateEnvironment } from "./configuration";
 import {
   communicateRoomRemoved,
+  initializeLambda,
   publishExternalRoomRemovedEvent,
 } from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   event: EventBridgeEvent<

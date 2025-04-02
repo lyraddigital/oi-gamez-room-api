@@ -3,9 +3,14 @@ import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { validateEnvironment } from "./configuration";
-import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
+import {
+  communicateUserLeft,
+  initializeLambda,
+  publishExternalUserLeftEvent,
+} from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   event: EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>

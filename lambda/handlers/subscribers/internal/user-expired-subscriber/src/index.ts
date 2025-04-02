@@ -5,8 +5,10 @@ import { getRoomByCode } from "@oigamez/repositories";
 import { handleUserLeft } from "@oigamez/services";
 
 import { validateEnvironment } from "./configuration";
+import { initializeLambda } from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   event: EventBridgeEvent<

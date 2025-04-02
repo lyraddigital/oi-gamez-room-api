@@ -5,11 +5,13 @@ import { validateEnvironment } from "./configuration";
 import { getAllExpiredConnections } from "./repositories";
 import {
   getAllHostedRoomsFromConnections,
+  initializeLambda,
   publishAllHostExpirations,
   publishAllUserExpirations,
 } from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   _: EventBridgeEvent<"room-internal.expired-connections", void>

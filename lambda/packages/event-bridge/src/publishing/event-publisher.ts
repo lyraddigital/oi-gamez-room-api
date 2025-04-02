@@ -4,15 +4,9 @@ import {
   PutEventsRequestEntry,
 } from "@aws-sdk/client-eventbridge";
 
-import {
-  EB_EXTERNAL_EB_NAME,
-  EB_INTERNAL_EB_NAME,
-  EB_EXTERNAL_EVENT_SOURCE_NAME,
-  EB_INTERNAL_EVENT_SOURCE_NAME,
-} from "/opt/nodejs/oigamez-core";
-
 import { client } from "../client";
 import { EventBridgeEvent } from "../events";
+import { getPublishingOptions } from "./publishing-options";
 
 const publishEvents = async <T extends EventBridgeEvent>(
   eventBusName: string,
@@ -45,9 +39,11 @@ const publishEvents = async <T extends EventBridgeEvent>(
 export const publishInternalEvents = async <T extends EventBridgeEvent>(
   items: T[]
 ): Promise<void> => {
+  const publishingOptions = getPublishingOptions();
+
   await publishEvents(
-    EB_INTERNAL_EB_NAME!,
-    EB_INTERNAL_EVENT_SOURCE_NAME!,
+    publishingOptions.internalEventBusName!,
+    publishingOptions.internalEventBusSourceName!,
     items
   );
 };
@@ -55,9 +51,11 @@ export const publishInternalEvents = async <T extends EventBridgeEvent>(
 export const publishExternalEvents = async <T extends EventBridgeEvent>(
   items: T[]
 ): Promise<void> => {
+  const publishingOptions = getPublishingOptions();
+
   await publishEvents(
-    EB_EXTERNAL_EB_NAME!,
-    EB_EXTERNAL_EVENT_SOURCE_NAME!,
+    publishingOptions.externalEventBusName!,
+    publishingOptions.externalEventBusSourceName!,
     items
   );
 };

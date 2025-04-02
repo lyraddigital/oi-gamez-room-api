@@ -7,8 +7,10 @@ import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { validateEnvironment } from "./configuration";
 import { GameMessageEvent, GameMessageCommunicationEvent } from "./models";
+import { initializeLambda } from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   event: EventBridgeEvent<"room-receive.game-message", GameMessageEvent>

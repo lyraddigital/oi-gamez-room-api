@@ -3,10 +3,13 @@ import {
   DeleteConnectionCommand,
 } from "@aws-sdk/client-apigatewaymanagementapi";
 
-import { client } from "../client";
+import { getClient, initialize } from "../client";
 import { broadcast, closeConnection } from "./communication-service";
 
 describe("communication service tests", () => {
+  initialize("");
+
+  const client = getClient();
   const logSpy = jest.spyOn(console, "log");
   const sendSpy = jest.spyOn(client, "send");
 

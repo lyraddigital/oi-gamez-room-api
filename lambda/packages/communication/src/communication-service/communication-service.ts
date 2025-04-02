@@ -3,7 +3,7 @@ import {
   PostToConnectionCommand,
 } from "@aws-sdk/client-apigatewaymanagementapi";
 
-import { client } from "../client";
+import { getClient } from "../client";
 
 const sendCommunicationEvent = async <T>(
   connectionId: string,
@@ -16,7 +16,7 @@ const sendCommunicationEvent = async <T>(
         Data: JSON.stringify(communicationEventPayload),
       });
 
-      await client.send(command);
+      await getClient().send(command);
     } catch (e: unknown) {
       console.log(
         "Error while trying to send a communication message to a socket",
@@ -44,7 +44,7 @@ export const closeConnection = async (connectionId: string): Promise<void> => {
         ConnectionId: connectionId,
       });
 
-      await client.send(command);
+      await getClient().send(command);
     } catch (e: unknown) {
       console.log("Error while trying to delete connection", e);
     }

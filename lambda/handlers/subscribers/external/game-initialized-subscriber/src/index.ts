@@ -10,8 +10,10 @@ import {
   GameInitializedCommunicationEvent,
   GameInitializedEvent,
 } from "./models";
+import { initializeLambda } from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   event: EventBridgeEvent<"room-receive.game-initialized", GameInitializedEvent>

@@ -4,10 +4,12 @@ import { HostChangeInternalEvent } from "@oigamez/event-bridge";
 import { validateEnvironment } from "./configuration";
 import {
   communicateHostChanged,
+  initializeLambda,
   publishExternalHostChangedEvent,
 } from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   event: EventBridgeEvent<"room-internal.change-host", HostChangeInternalEvent>

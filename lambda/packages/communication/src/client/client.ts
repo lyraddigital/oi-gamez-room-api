@@ -1,7 +1,13 @@
 import { ApiGatewayManagementApiClient } from "@aws-sdk/client-apigatewaymanagementapi";
 
-import { ROOM_SOCKET_API_ENDPOINT } from "/opt/nodejs/oigamez-core";
+let client: ApiGatewayManagementApiClient;
 
-export const client = new ApiGatewayManagementApiClient({
-  endpoint: ROOM_SOCKET_API_ENDPOINT,
-});
+export const initialize = (roomSocketApiEndpoint: string) => {
+  client = new ApiGatewayManagementApiClient({
+    endpoint: roomSocketApiEndpoint,
+  });
+};
+
+export const getClient = (): ApiGatewayManagementApiClient => {
+  return client;
+};

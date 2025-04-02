@@ -19,6 +19,7 @@ jest.mock("@oigamez/communication", () => {
 jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/services");
 jest.mock("./configuration");
+jest.mock("./services");
 
 describe("game initialized subscriber handler tests", () => {
   test("makes the correct calls", async () => {

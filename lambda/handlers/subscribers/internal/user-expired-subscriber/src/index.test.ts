@@ -9,6 +9,7 @@ import { handler } from ".";
 jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/services");
 jest.mock("./configuration");
+jest.mock("./services");
 
 describe("user expired subscriber handler tests", () => {
   test("makes the correct calls", async () => {
