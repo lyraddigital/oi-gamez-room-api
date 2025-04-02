@@ -1,7 +1,7 @@
 import {
   initializeEventPublisherForExternal,
   initializeEventPublisherForInternal,
-} from "@oigamez/event-bridge";
+} from "/opt/nodejs/oigamez-communication";
 
 import {
   EB_EXTERNAL_EB_NAME,

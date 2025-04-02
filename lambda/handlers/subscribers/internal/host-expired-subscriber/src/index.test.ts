@@ -1,4 +1,4 @@
-import { HostConnectionExpiredInternalEvent } from "@oigamez/event-bridge";
+import { HostConnectionExpiredInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { handleHostDisconnection } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";

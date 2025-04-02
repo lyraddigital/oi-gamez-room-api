@@ -1,16 +1,16 @@
 import {
   publishInternalEvents,
   UserLeftInternalEvent,
-} from "@oigamez/event-bridge";
+} from "/opt/nodejs/oigamez-communication";
 import { removeUserFromRoom } from "@oigamez/repositories";
 import { Room } from "/opt/nodejs/oigamez-core";
 
 import { handleUserLeft } from "./user-left.service";
 
 jest.mock("@oigamez/repositories");
-jest.mock("@oigamez/event-bridge", () => {
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/event-bridge"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     publishInternalEvents: jest.fn(),
   };
 });

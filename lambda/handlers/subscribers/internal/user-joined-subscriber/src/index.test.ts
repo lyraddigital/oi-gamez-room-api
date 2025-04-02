@@ -1,4 +1,4 @@
-import { UserJoinedInternalEvent } from "@oigamez/event-bridge";
+import { UserJoinedInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";

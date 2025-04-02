@@ -2,7 +2,7 @@ import {
   HostChangeInternalEvent,
   RoomRemovedInternalEvent,
   publishInternalEvents,
-} from "@oigamez/event-bridge";
+} from "/opt/nodejs/oigamez-communication";
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
 

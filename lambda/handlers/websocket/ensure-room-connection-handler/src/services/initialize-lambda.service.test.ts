@@ -1,12 +1,12 @@
 import {
   initializeEventPublisherForExternal,
   initializeEventPublisherForInternal,
-} from "@oigamez/event-bridge";
+} from "/opt/nodejs/oigamez-communication";
 
 import { initialize } from "/opt/nodejs/oigamez-communication";
 import { initializeLambda } from "./initialize-lambda.service";
 
-jest.mock("@oigamez/event-bridge");
+jest.mock("/opt/nodejs/oigamez-communication");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     EB_EXTERNAL_EB_NAME: "External Event Bus",

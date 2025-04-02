@@ -2,7 +2,7 @@ import {
   UserJoinedInternalEvent,
   publishExternalEvents,
   publishInternalEvents,
-} from "@oigamez/event-bridge";
+} from "/opt/nodejs/oigamez-communication";
 
 import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { RoomCreatedExternalEvent } from "../models";
@@ -13,9 +13,9 @@ import {
 } from "../repositories";
 import { processRoomConnection } from "./processor.service";
 
-jest.mock("@oigamez/event-bridge", () => {
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/event-bridge"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     publishExternalEvents: jest.fn(),
     publishInternalEvents: jest.fn(),
   };

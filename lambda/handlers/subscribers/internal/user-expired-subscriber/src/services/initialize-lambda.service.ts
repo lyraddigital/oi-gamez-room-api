@@ -1,4 +1,4 @@
-import { initializeEventPublisherForInternal } from "@oigamez/event-bridge";
+import { initializeEventPublisherForInternal } from "/opt/nodejs/oigamez-communication";
 
 import {
   EB_INTERNAL_EB_NAME,

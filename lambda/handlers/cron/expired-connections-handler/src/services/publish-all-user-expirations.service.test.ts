@@ -1,14 +1,14 @@
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   UserConnectionExpiredInternalEvent,
   publishInternalEvents,
-} from "@oigamez/event-bridge";
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-communication";
 
 import { publishAllUserExpirations } from "./publish-all-user-expirations.service";
 
-jest.mock("@oigamez/event-bridge", () => {
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/event-bridge"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     publishInternalEvents: jest.fn(),
   };
 });

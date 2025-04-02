@@ -1,4 +1,4 @@
-import { HostChangeInternalEvent } from "@oigamez/event-bridge";
+import { HostChangeInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { handler } from ".";

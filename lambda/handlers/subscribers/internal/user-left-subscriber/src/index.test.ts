@@ -1,4 +1,4 @@
-import { UserLeftInternalEvent } from "@oigamez/event-bridge";
+import { UserLeftInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 

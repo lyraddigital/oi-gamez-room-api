@@ -2,16 +2,16 @@ import {
   RoomRemovedInternalEvent,
   HostChangeInternalEvent,
   publishInternalEvents,
-} from "@oigamez/event-bridge";
+} from "/opt/nodejs/oigamez-communication";
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
 
 import { handleUserLeft } from "../handle-user-left";
 import { handleHostDisconnection } from "./handle-host-disconnection.service";
 
-jest.mock("@oigamez/event-bridge", () => {
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/event-bridge"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     publishInternalEvents: jest.fn(),
   };
 });

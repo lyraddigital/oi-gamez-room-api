@@ -1,4 +1,4 @@
-import { EventBridgeEvent } from "@oigamez/event-bridge";
+import { EventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
 export class RoomRemovedExternalEvent extends EventBridgeEvent {
   constructor(public roomCode: string, gameTypeId: number) {
