@@ -7,9 +7,14 @@ import {
   okResponse,
 } from "/opt/nodejs/oigamez-http";
 import { validateEnvironment } from "./configuration";
-import { verifyRequestData, processRoomConnection } from "./services";
+import {
+  verifyRequestData,
+  processRoomConnection,
+  initializeLambda,
+} from "./services";
 
 validateEnvironment();
+initializeLambda();
 
 export const handler = async (
   event: APIGatewayProxyEvent
