@@ -1,6 +1,6 @@
-import { UserLeftInternalEvent } from "./user-left-internal-event";
+import { UserLeftInternalEventBridgeEvent } from "./user-left-internal-event-bridge-event";
 
-describe("UserLeftInternalEvent tests", () => {
+describe("UserLeftInternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -9,7 +9,7 @@ describe("UserLeftInternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new UserLeftInternalEvent(
+    const event = new UserLeftInternalEventBridgeEvent(
       roomCode,
       username,
       connectionId,
@@ -32,7 +32,7 @@ describe("UserLeftInternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new UserLeftInternalEvent(
+    const event = new UserLeftInternalEventBridgeEvent(
       roomCode,
       username,
       undefined,

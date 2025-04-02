@@ -1,16 +1,16 @@
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   publishInternalEvents,
-  UserConnectionExpiredInternalEvent,
+  UserConnectionExpiredInternalEventBridgeEvent,
 } from "/opt/nodejs/oigamez-communication";
 
 export const publishAllUserExpirations = async (
   userConnections: RoomConnection[]
 ): Promise<void> => {
   await publishInternalEvents(
-    userConnections.map<UserConnectionExpiredInternalEvent>(
+    userConnections.map<UserConnectionExpiredInternalEventBridgeEvent>(
       (c: RoomConnection) => {
-        return new UserConnectionExpiredInternalEvent(
+        return new UserConnectionExpiredInternalEventBridgeEvent(
           c.roomCode,
           c.username,
           1

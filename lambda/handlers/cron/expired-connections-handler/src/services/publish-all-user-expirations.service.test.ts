@@ -1,6 +1,6 @@
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
-  UserConnectionExpiredInternalEvent,
+  UserConnectionExpiredInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
 
@@ -44,7 +44,7 @@ describe("publishAllUserExpirations tests", () => {
         publishInternalEvents as jest.MockedFunction<
           typeof publishInternalEvents
         >
-      ).mock.calls[0][0][i] as UserConnectionExpiredInternalEvent;
+      ).mock.calls[0][0][i] as UserConnectionExpiredInternalEventBridgeEvent;
 
       expect(event.detailType).toBe("room-internal.user-connection-expired");
       expect(event.roomCode).toBe(r.roomCode);

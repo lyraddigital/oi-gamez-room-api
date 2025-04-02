@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { UserJoinedInternalEvent } from "/opt/nodejs/oigamez-communication";
+import { UserJoinedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
 import { validateEnvironment } from "./configuration";
 import {
@@ -13,7 +13,10 @@ validateEnvironment();
 initializeLambda();
 
 export const handler = async (
-  event: EventBridgeEvent<"room-internal.user-joined", UserJoinedInternalEvent>
+  event: EventBridgeEvent<
+    "room-internal.user-joined",
+    UserJoinedInternalEventBridgeEvent
+  >
 ): Promise<void> => {
   const { roomCode, username, gameTypeId } = event.detail;
 

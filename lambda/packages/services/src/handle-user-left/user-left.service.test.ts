@@ -1,9 +1,10 @@
+import { removeUserFromRoom } from "@oigamez/repositories";
+
+import { Room } from "/opt/nodejs/oigamez-core";
 import {
   publishInternalEvents,
-  UserLeftInternalEvent,
+  UserLeftInternalEventBridgeEvent,
 } from "/opt/nodejs/oigamez-communication";
-import { removeUserFromRoom } from "@oigamez/repositories";
-import { Room } from "/opt/nodejs/oigamez-core";
 
 import { handleUserLeft } from "./user-left.service";
 
@@ -37,7 +38,7 @@ describe("handleUserLeft tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftInternalEvent
+        ).mock.calls[0][0][0] as UserLeftInternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
     expect(
@@ -46,7 +47,7 @@ describe("handleUserLeft tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftInternalEvent
+        ).mock.calls[0][0][0] as UserLeftInternalEventBridgeEvent
       ).username
     ).toBe(username);
     expect(
@@ -55,7 +56,7 @@ describe("handleUserLeft tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftInternalEvent
+        ).mock.calls[0][0][0] as UserLeftInternalEventBridgeEvent
       ).connectionId
     ).toBe(connectionId);
     expect(
@@ -64,7 +65,7 @@ describe("handleUserLeft tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftInternalEvent
+        ).mock.calls[0][0][0] as UserLeftInternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -73,7 +74,7 @@ describe("handleUserLeft tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserLeftInternalEvent
+        ).mock.calls[0][0][0] as UserLeftInternalEventBridgeEvent
       ).detailType
     ).toBe("room-internal.user-left");
   });

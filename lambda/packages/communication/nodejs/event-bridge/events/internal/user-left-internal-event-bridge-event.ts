@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "../event-bridge-event";
 
-export class UserLeftInternalEvent extends EventBridgeEvent {
+export class UserLeftInternalEventBridgeEvent extends EventBridgeEvent {
   constructor(
     public roomCode: string,
     public username: string,

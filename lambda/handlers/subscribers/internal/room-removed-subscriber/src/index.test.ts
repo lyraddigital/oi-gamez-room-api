@@ -1,5 +1,6 @@
-import { RoomRemovedInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { EventBridgeEvent } from "aws-lambda";
+
+import { RoomRemovedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
 import { handler } from ".";
 import {
@@ -24,7 +25,7 @@ describe("room removed subscriber handler tests", () => {
       },
     } as EventBridgeEvent<
       "room-internal.room-removed",
-      RoomRemovedInternalEvent
+      RoomRemovedInternalEventBridgeEvent
     >;
 
     // Action

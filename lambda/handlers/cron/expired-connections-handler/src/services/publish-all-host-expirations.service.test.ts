@@ -1,6 +1,6 @@
 import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
 import {
-  HostConnectionExpiredInternalEvent,
+  HostConnectionExpiredInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
 
@@ -95,7 +95,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][0] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(false);
     expect(
@@ -104,7 +104,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][1] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][1] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(true);
     expect(
@@ -113,7 +113,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][2] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][2] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(true);
     expect(
@@ -122,7 +122,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][3] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][3] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(false);
     expect(
@@ -131,7 +131,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][4] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][4] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(true);
     expect(
@@ -140,7 +140,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][5] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][5] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(true);
     expect(
@@ -149,7 +149,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][6] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][6] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(false);
     expect(
@@ -158,7 +158,7 @@ describe("publishAllHostExpirations tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][7] as HostConnectionExpiredInternalEvent
+        ).mock.calls[0][0][7] as HostConnectionExpiredInternalEventBridgeEvent
       ).shouldRemoveRoom
     ).toBe(false);
 
@@ -167,7 +167,7 @@ describe("publishAllHostExpirations tests", () => {
         publishInternalEvents as jest.MockedFunction<
           typeof publishInternalEvents
         >
-      ).mock.calls[0][0][i] as HostConnectionExpiredInternalEvent;
+      ).mock.calls[0][0][i] as HostConnectionExpiredInternalEventBridgeEvent;
 
       expect(event.detailType).toBe("room-internal.host-connection-expired");
       expect(event.gameTypeId).toBe(r.gameTypeId);

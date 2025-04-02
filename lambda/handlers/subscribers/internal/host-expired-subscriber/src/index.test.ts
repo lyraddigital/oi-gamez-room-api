@@ -1,9 +1,10 @@
-import { HostConnectionExpiredInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { handleHostDisconnection } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { HostConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+
 import { handler } from ".";
 
 jest.mock("@oigamez/repositories");
@@ -29,7 +30,7 @@ describe("host expired subscriber handler tests", () => {
       },
     } as EventBridgeEvent<
       "room-internal.host-connection-expired",
-      HostConnectionExpiredInternalEvent
+      HostConnectionExpiredInternalEventBridgeEvent
     >;
 
     (

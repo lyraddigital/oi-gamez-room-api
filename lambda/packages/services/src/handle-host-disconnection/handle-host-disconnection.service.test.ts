@@ -1,21 +1,22 @@
+import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
+
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
-  RoomRemovedInternalEvent,
-  HostChangeInternalEvent,
+  RoomRemovedInternalEventBridgeEvent,
+  HostChangeInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
 
 import { handleUserLeft } from "../handle-user-left";
 import { handleHostDisconnection } from "./handle-host-disconnection.service";
 
+jest.mock("@oigamez/repositories");
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     publishInternalEvents: jest.fn(),
   };
 });
-jest.mock("@oigamez/repositories");
 jest.mock("../handle-user-left");
 
 describe("handleHostDisconnection tests", () => {
@@ -60,7 +61,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as RoomRemovedInternalEvent
+        ).mock.calls[0][0][0] as RoomRemovedInternalEventBridgeEvent
       ).detailType
     ).toBe("room-internal.room-removed");
     expect(
@@ -69,7 +70,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as RoomRemovedInternalEvent
+        ).mock.calls[0][0][0] as RoomRemovedInternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -78,7 +79,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as RoomRemovedInternalEvent
+        ).mock.calls[0][0][0] as RoomRemovedInternalEventBridgeEvent
       ).hostConnectionId
     ).toBe(hostConnectionId);
     expect(
@@ -87,7 +88,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as RoomRemovedInternalEvent
+        ).mock.calls[0][0][0] as RoomRemovedInternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
     expect(updateRoomHost).not.toHaveBeenCalled();
@@ -179,7 +180,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeInternalEvent
+        ).mock.calls[0][0][0] as HostChangeInternalEventBridgeEvent
       ).detailType
     ).toBe("room-internal.change-host");
     expect(
@@ -188,7 +189,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeInternalEvent
+        ).mock.calls[0][0][0] as HostChangeInternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -197,7 +198,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeInternalEvent
+        ).mock.calls[0][0][0] as HostChangeInternalEventBridgeEvent
       ).oldHostUsername
     ).toBe(username);
     expect(
@@ -206,7 +207,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeInternalEvent
+        ).mock.calls[0][0][0] as HostChangeInternalEventBridgeEvent
       ).newHostUsername
     ).toBe(otherUserUsername);
     expect(
@@ -215,7 +216,7 @@ describe("handleHostDisconnection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as HostChangeInternalEvent
+        ).mock.calls[0][0][0] as HostChangeInternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
   });

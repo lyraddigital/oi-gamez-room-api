@@ -1,6 +1,6 @@
-import { HostConnectionExpiredInternalEvent } from "./host-connection-expired-internal-event";
+import { HostConnectionExpiredInternalEventBridgeEvent } from "./host-connection-expired-internal-event-bridge-event";
 
-describe("HostConnectionExpiredInternalEvent tests", () => {
+describe("HostConnectionExpiredInternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -9,7 +9,7 @@ describe("HostConnectionExpiredInternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new HostConnectionExpiredInternalEvent(
+    const event = new HostConnectionExpiredInternalEventBridgeEvent(
       roomCode,
       username,
       shouldRemoveRoom,

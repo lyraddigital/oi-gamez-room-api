@@ -1,8 +1,9 @@
-import { UserLeftInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { Room } from "/opt/nodejs/oigamez-core";
+import { UserLeftInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+
 import { handler } from ".";
 import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
 
@@ -24,7 +25,10 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
+    } as EventBridgeEvent<
+      "room-internal.user-left",
+      UserLeftInternalEventBridgeEvent
+    >;
 
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>
@@ -62,7 +66,10 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
+    } as EventBridgeEvent<
+      "room-internal.user-left",
+      UserLeftInternalEventBridgeEvent
+    >;
     const room = {
       curNumOfUsers: 3,
       minNumOfUsers: 2,
@@ -104,7 +111,10 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
+    } as EventBridgeEvent<
+      "room-internal.user-left",
+      UserLeftInternalEventBridgeEvent
+    >;
     const room = {
       curNumOfUsers: 2,
       minNumOfUsers: 2,
@@ -146,7 +156,10 @@ describe("user joined subscriber handler tests", () => {
         gameTypeId,
         connectionId,
       },
-    } as EventBridgeEvent<"room-internal.user-left", UserLeftInternalEvent>;
+    } as EventBridgeEvent<
+      "room-internal.user-left",
+      UserLeftInternalEventBridgeEvent
+    >;
     const room = {
       curNumOfUsers: 1,
       minNumOfUsers: 2,

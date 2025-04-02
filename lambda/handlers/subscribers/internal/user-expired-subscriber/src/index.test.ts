@@ -1,9 +1,10 @@
-import { UserConnectionExpiredInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode } from "@oigamez/repositories";
 import { handleUserLeft } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { Room } from "/opt/nodejs/oigamez-core";
+import { UserConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+
 import { handler } from ".";
 
 jest.mock("@oigamez/repositories");
@@ -26,7 +27,7 @@ describe("user expired subscriber handler tests", () => {
       },
     } as EventBridgeEvent<
       "room-internal.user-connection-expired",
-      UserConnectionExpiredInternalEvent
+      UserConnectionExpiredInternalEventBridgeEvent
     >;
     (
       getRoomByCode as jest.MockedFunction<typeof getRoomByCode>

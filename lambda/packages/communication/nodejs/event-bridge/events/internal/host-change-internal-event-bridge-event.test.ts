@@ -1,6 +1,6 @@
-import { HostChangeInternalEvent } from "./host-change-internal-event";
+import { HostChangeInternalEventBridgeEvent } from "./host-change-internal-event-bridge-event";
 
-describe("HostChangeInternalEvent tests", () => {
+describe("HostChangeInternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -9,7 +9,7 @@ describe("HostChangeInternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new HostChangeInternalEvent(
+    const event = new HostChangeInternalEventBridgeEvent(
       roomCode,
       oldHostUsername,
       newHostUsername,

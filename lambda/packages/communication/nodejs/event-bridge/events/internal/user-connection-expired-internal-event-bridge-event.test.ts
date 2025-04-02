@@ -1,6 +1,6 @@
-import { UserConnectionExpiredInternalEvent } from "./user-connection-expired-internal-event";
+import { UserConnectionExpiredInternalEventBridgeEvent } from "./user-connection-expired-internal-event-bridge-event";
 
-describe("UserConnectionExpiredInternalEvent tests", () => {
+describe("UserConnectionExpiredInternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -8,7 +8,7 @@ describe("UserConnectionExpiredInternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new UserConnectionExpiredInternalEvent(
+    const event = new UserConnectionExpiredInternalEventBridgeEvent(
       roomCode,
       username,
       gameTypeId

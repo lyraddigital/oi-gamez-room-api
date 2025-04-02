@@ -1,6 +1,6 @@
-import { UserJoinedInternalEvent } from "./user-joined-internal-event";
+import { UserJoinedInternalEventBridgeEvent } from "./user-joined-internal-event-bridge-event";
 
-describe("UserJoinedInternalEvent tests", () => {
+describe("UserJoinedInternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -8,7 +8,11 @@ describe("UserJoinedInternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new UserJoinedInternalEvent(roomCode, username, gameTypeId);
+    const event = new UserJoinedInternalEventBridgeEvent(
+      roomCode,
+      username,
+      gameTypeId
+    );
 
     // Assert
     expect(event).toBeDefined();

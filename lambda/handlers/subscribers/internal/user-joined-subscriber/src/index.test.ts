@@ -1,5 +1,6 @@
-import { UserJoinedInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { EventBridgeEvent } from "aws-lambda";
+
+import { UserJoinedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
 import { handler } from ".";
 import {
@@ -22,7 +23,10 @@ describe("user joined subscriber handler tests", () => {
         username,
         gameTypeId,
       },
-    } as EventBridgeEvent<"room-internal.user-joined", UserJoinedInternalEvent>;
+    } as EventBridgeEvent<
+      "room-internal.user-joined",
+      UserJoinedInternalEventBridgeEvent
+    >;
 
     // Action
     await handler(event);

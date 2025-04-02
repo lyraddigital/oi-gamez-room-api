@@ -1,5 +1,5 @@
 import {
-  UserJoinedInternalEvent,
+  UserJoinedInternalEventBridgeEvent,
   publishExternalEvents,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
@@ -183,7 +183,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedInternalEvent
+        ).mock.calls[0][0][0] as UserJoinedInternalEventBridgeEvent
       ).detailType
     ).toBe("room-internal.user-joined");
     expect(
@@ -192,7 +192,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedInternalEvent
+        ).mock.calls[0][0][0] as UserJoinedInternalEventBridgeEvent
       ).gameTypeId
     ).toBe(gameTypeId);
     expect(
@@ -201,7 +201,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedInternalEvent
+        ).mock.calls[0][0][0] as UserJoinedInternalEventBridgeEvent
       ).roomCode
     ).toBe(roomCode);
     expect(
@@ -210,7 +210,7 @@ describe("processRoomConnection for ensure room connection tests", () => {
           publishInternalEvents as jest.MockedFunction<
             typeof publishInternalEvents
           >
-        ).mock.calls[0][0][0] as UserJoinedInternalEvent
+        ).mock.calls[0][0][0] as UserJoinedInternalEventBridgeEvent
       ).username
     ).toBe(username);
   });

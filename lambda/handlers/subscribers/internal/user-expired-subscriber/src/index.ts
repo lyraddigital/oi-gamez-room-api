@@ -1,8 +1,8 @@
-import { EventBridgeEvent } from "aws-lambda";
-
-import { UserConnectionExpiredInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode } from "@oigamez/repositories";
 import { handleUserLeft } from "@oigamez/services";
+import { EventBridgeEvent } from "aws-lambda";
+
+import { UserConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
 import { validateEnvironment } from "./configuration";
 import { initializeLambda } from "./services";
@@ -13,7 +13,7 @@ initializeLambda();
 export const handler = async (
   event: EventBridgeEvent<
     "room-internal.user-connection-expired",
-    UserConnectionExpiredInternalEvent
+    UserConnectionExpiredInternalEventBridgeEvent
   >
 ): Promise<void> => {
   const { roomCode, username, gameTypeId } = event.detail;

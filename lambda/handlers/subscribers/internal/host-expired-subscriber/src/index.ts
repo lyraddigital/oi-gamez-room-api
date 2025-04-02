@@ -1,8 +1,9 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { HostConnectionExpiredInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { handleHostDisconnection } from "@oigamez/services";
+
+import { HostConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
 import { validateEnvironment } from "./configuration";
 import { initializeLambda } from "./services";
@@ -13,7 +14,7 @@ initializeLambda();
 export const handler = async (
   event: EventBridgeEvent<
     "room-internal.host-connection-expired",
-    HostConnectionExpiredInternalEvent
+    HostConnectionExpiredInternalEventBridgeEvent
   >
 ): Promise<void> => {
   const { roomCode, username, shouldRemoveRoom, gameTypeId } = event.detail;

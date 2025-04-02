@@ -1,6 +1,6 @@
-import { RoomRemovedInternalEvent } from "./room-removed-internal-event";
+import { RoomRemovedInternalEventBridgeEvent } from "./room-removed-internal-event-bridge-event";
 
-describe("RoomRemovedInternalEvent tests", () => {
+describe("RoomRemovedInternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {
     // Arrange
     const roomCode = "ABCD";
@@ -8,7 +8,7 @@ describe("RoomRemovedInternalEvent tests", () => {
     const gameTypeId = 1;
 
     // Action
-    const event = new RoomRemovedInternalEvent(
+    const event = new RoomRemovedInternalEventBridgeEvent(
       roomCode,
       hostConnectionId,
       gameTypeId

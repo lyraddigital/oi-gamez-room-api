@@ -1,10 +1,10 @@
+import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
 import {
-  UserJoinedInternalEvent,
+  UserJoinedInternalEventBridgeEvent,
   publishExternalEvents,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
 
-import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { RoomCreatedExternalEvent } from "../models";
 import {
   establishHostConnection,
@@ -42,8 +42,12 @@ export const processRoomConnection = async (
     await establishJoinerConnection(room, username, connectionId);
 
     if (room.status === RoomStatus.available && isNewConnection) {
-      await publishInternalEvents<UserJoinedInternalEvent>([
-        new UserJoinedInternalEvent(room.code, username, room.gameTypeId),
+      await publishInternalEvents<UserJoinedInternalEventBridgeEvent>([
+        new UserJoinedInternalEventBridgeEvent(
+          room.code,
+          username,
+          room.gameTypeId
+        ),
       ]);
     }
   }

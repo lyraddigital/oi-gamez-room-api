@@ -1,10 +1,11 @@
+import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
+
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
-  HostChangeInternalEvent,
-  RoomRemovedInternalEvent,
+  HostChangeInternalEventBridgeEvent,
+  RoomRemovedInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
 
 import { handleUserLeft } from "../handle-user-left";
 
@@ -22,8 +23,8 @@ const changeHost = async (
 
   if (nextHostUsername) {
     await updateRoomHost(room.code, nextHostUsername);
-    await publishInternalEvents<HostChangeInternalEvent>([
-      new HostChangeInternalEvent(
+    await publishInternalEvents<HostChangeInternalEventBridgeEvent>([
+      new HostChangeInternalEventBridgeEvent(
         room.code,
         hostUsername,
         nextHostUsername,
@@ -41,8 +42,12 @@ const closeRoom = async (
 ): Promise<void> => {
   await removeRoomAndHost(roomCode, hostUsername);
 
-  await publishInternalEvents<RoomRemovedInternalEvent>([
-    new RoomRemovedInternalEvent(roomCode, hostConnectionId, gameTypeId),
+  await publishInternalEvents<RoomRemovedInternalEventBridgeEvent>([
+    new RoomRemovedInternalEventBridgeEvent(
+      roomCode,
+      hostConnectionId,
+      gameTypeId
+    ),
   ]);
 };
 

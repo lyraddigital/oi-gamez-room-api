@@ -1,5 +1,6 @@
-import { RoomRemovedInternalEvent } from "/opt/nodejs/oigamez-communication";
 import { EventBridgeEvent } from "aws-lambda";
+
+import { RoomRemovedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 
 import { validateEnvironment } from "./configuration";
 import {
@@ -14,7 +15,7 @@ initializeLambda();
 export const handler = async (
   event: EventBridgeEvent<
     "room-internal.room-removed",
-    RoomRemovedInternalEvent
+    RoomRemovedInternalEventBridgeEvent
   >
 ): Promise<void> => {
   const { roomCode, hostConnectionId, gameTypeId } = event.detail;

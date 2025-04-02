@@ -1,9 +1,10 @@
+import { removeUserFromRoom } from "@oigamez/repositories";
+
+import { Room } from "/opt/nodejs/oigamez-core";
 import {
-  UserLeftInternalEvent,
+  UserLeftInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
-import { Room } from "/opt/nodejs/oigamez-core";
-import { removeUserFromRoom } from "@oigamez/repositories";
 
 export const handleUserLeft = async (
   room: Room,
@@ -13,7 +14,12 @@ export const handleUserLeft = async (
 ): Promise<void> => {
   await removeUserFromRoom(room, username);
 
-  await publishInternalEvents<UserLeftInternalEvent>([
-    new UserLeftInternalEvent(room.code, username, connectionId, gameTypeId),
+  await publishInternalEvents<UserLeftInternalEventBridgeEvent>([
+    new UserLeftInternalEventBridgeEvent(
+      room.code,
+      username,
+      connectionId,
+      gameTypeId
+    ),
   ]);
 };
