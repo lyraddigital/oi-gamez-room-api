@@ -1,2 +1,2 @@
-export * from "./game-started-communication-event";
+export * from "./game-started-websocket-event";
 export * from "./game-started-event";

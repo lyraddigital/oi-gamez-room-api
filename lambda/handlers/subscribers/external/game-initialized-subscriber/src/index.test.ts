@@ -1,23 +1,20 @@
-import { broadcast } from "@oigamez/communication";
 import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
+import { broadcast } from "/opt/nodejs/oigamez-communication";
 import { handler } from ".";
-import {
-  GameInitializedCommunicationEvent,
-  GameInitializedEvent,
-} from "./models";
+import { GameInitializedWebsocketEvent, GameInitializedEvent } from "./models";
 
-jest.mock("@oigamez/communication", () => {
+jest.mock("@oigamez/repositories");
+jest.mock("@oigamez/services");
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/communication"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     broadcast: jest.fn(),
   };
 });
-jest.mock("@oigamez/repositories");
-jest.mock("@oigamez/services");
 jest.mock("./configuration");
 jest.mock("./services");
 
@@ -65,7 +62,7 @@ describe("game initialized subscriber handler tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as GameInitializedCommunicationEvent
+          .calls[0][1] as GameInitializedWebsocketEvent
       ).action
     ).toBe("gameInitialized");
   });

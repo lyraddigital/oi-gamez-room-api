@@ -1,8 +1,8 @@
-import { broadcast } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
-import { UserJoinedCommunicationEvent } from "../models";
+import { broadcast } from "/opt/nodejs/oigamez-communication";
+import { UserJoinedWebsocketEvent } from "../models";
 
 export const communicateUserJoined = async (
   roomCode: string,
@@ -15,8 +15,8 @@ export const communicateUserJoined = async (
   const filteredConnectionIds =
     getConnectionIdsFromConnections(filteredConnections);
 
-  await broadcast<UserJoinedCommunicationEvent>(
+  await broadcast<UserJoinedWebsocketEvent>(
     filteredConnectionIds,
-    new UserJoinedCommunicationEvent(username)
+    new UserJoinedWebsocketEvent(username)
   );
 };

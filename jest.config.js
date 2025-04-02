@@ -7,6 +7,9 @@ module.exports = {
     "/opt/nodejs/oigamez-core": [
       "<rootDir>/lambda/packages/core/nodejs/oigamez-core",
     ],
+    "/opt/nodejs/oigamez-communication": [
+      "<rootDir>/lambda/packages/communication/nodejs/oigamez-communication",
+    ],
     "/opt/nodejs/oigamez-http": [
       "<rootDir>/lambda/packages/http/nodejs/oigamez-http",
     ],

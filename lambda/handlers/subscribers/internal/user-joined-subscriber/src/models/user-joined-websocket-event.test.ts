@@ -1,10 +1,10 @@
-import { UserJoinedCommunicationEvent } from "./user-joined-communication-event";
+import { UserJoinedWebsocketEvent } from "./user-joined-websocket-event";
 
-describe("UserJoinedCommunicationEvent tests", () => {
+describe("UserJoinedWebsocketEvent tests", () => {
   test("correct properties is set", () => {
     // Arrange / Action
     const username = "daryl_duck";
-    const event = new UserJoinedCommunicationEvent(username);
+    const event = new UserJoinedWebsocketEvent(username);
 
     // Assert
     expect(event.action).toBe("userJoined");

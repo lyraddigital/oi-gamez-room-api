@@ -35,8 +35,8 @@
       "/opt/nodejs/oigamez-security": [
         "./lambda/packages/security/nodejs/oigamez-security"
       ],
-      "@oigamez/communication": [
-        "./lambda/packages/communication/src"
+      "/opt/nodejs/oigamez-communication": [
+        "./lambda/packages/communication/nodejs/oigamez-communication"
       ],
       "@oigamez/dynamodb": [
         "./lambda/packages/dynamodb/src"

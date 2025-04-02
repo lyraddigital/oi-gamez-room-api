@@ -1,3 +1,3 @@
-export * from "./change-host-communication-event";
+export * from "./change-host-websocket-event";
 export * from "./host-change-external-event";
-export * from "./host-transfer-communication-event";
+export * from "./host-transfer-websocket-event";

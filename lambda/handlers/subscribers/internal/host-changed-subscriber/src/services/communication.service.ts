@@ -1,10 +1,10 @@
-import { broadcast } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
+import { broadcast } from "/opt/nodejs/oigamez-communication";
 import {
-  HostChangeCommunicationEvent,
-  HostTransferCommunicationEvent,
+  HostChangeWebsocketEvent,
+  HostTransferWebsocketEvent,
 } from "../models";
 
 export const communicateHostChanged = async (
@@ -24,14 +24,14 @@ export const communicateHostChanged = async (
   const newHostConnectionIds =
     getConnectionIdsFromConnections(newHostConnections);
 
-  const hostChangingPromise = broadcast<HostChangeCommunicationEvent>(
+  const hostChangingPromise = broadcast<HostChangeWebsocketEvent>(
     otherUserConnectionIds,
-    new HostChangeCommunicationEvent(oldHostUsername, newHostUsername)
+    new HostChangeWebsocketEvent(oldHostUsername, newHostUsername)
   );
 
-  const hostTransferPromise = broadcast<HostTransferCommunicationEvent>(
+  const hostTransferPromise = broadcast<HostTransferWebsocketEvent>(
     newHostConnectionIds,
-    new HostTransferCommunicationEvent()
+    new HostTransferWebsocketEvent()
   );
 
   await Promise.allSettled([hostChangingPromise, hostTransferPromise]);

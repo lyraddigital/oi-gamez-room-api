@@ -1,12 +1,11 @@
-import { initialize } from "@oigamez/communication";
 import {
   initializeEventPublisherForExternal,
   initializeEventPublisherForInternal,
 } from "@oigamez/event-bridge";
 
+import { initialize } from "/opt/nodejs/oigamez-communication";
 import { initializeLambda } from "./initialize-lambda.service";
 
-jest.mock("@oigamez/communication");
 jest.mock("@oigamez/event-bridge");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
@@ -17,6 +16,7 @@ jest.mock("/opt/nodejs/oigamez-core", () => {
     ROOM_SOCKET_API_ENDPOINT: "SomeRoomSocketAPIEndpoint",
   };
 });
+jest.mock("/opt/nodejs/oigamez-communication");
 
 describe("initializeLambda tests for game completed subscription lambda", () => {
   test("Calls initialize function", () => {

@@ -4,9 +4,9 @@ import {
   verifyRoomSocketApiEndpoint,
 } from "/opt/nodejs/oigamez-core";
 
-jest.mock("/opt/nodejs/oigamez-core");
-
 import { validateEnvironment } from "./validate-environment";
+
+jest.mock("/opt/nodejs/oigamez-core");
 
 describe("validateEnvironment for external game completed subscriptions", () => {
   test("correct verify mocks were called", () => {

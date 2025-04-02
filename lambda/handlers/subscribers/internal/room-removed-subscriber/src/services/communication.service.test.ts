@@ -1,8 +1,8 @@
-import { closeConnection } from "@oigamez/communication";
+import { closeConnection } from "/opt/nodejs/oigamez-communication";
 
 import { communicateRoomRemoved } from "./communication.service";
 
-jest.mock("@oigamez/communication");
+jest.mock("/opt/nodejs/oigamez-communication");
 
 describe("communicateRoomRemoved tests", () => {
   beforeEach(() => {

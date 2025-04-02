@@ -1,14 +1,14 @@
-import { broadcast } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
-import { UserJoinedCommunicationEvent } from "../models";
+import { broadcast } from "/opt/nodejs/oigamez-communication";
+import { UserJoinedWebsocketEvent } from "../models";
 import { communicateUserJoined } from "./communication.service";
 
-jest.mock("@oigamez/communication", () => {
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/communication"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     broadcast: jest.fn(),
   };
 });
@@ -59,13 +59,13 @@ describe("communicateUserJoined tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserJoinedCommunicationEvent
+          .calls[0][1] as UserJoinedWebsocketEvent
       ).action
     ).toBe("userJoined");
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserJoinedCommunicationEvent
+          .calls[0][1] as UserJoinedWebsocketEvent
       ).username
     ).toBe(userOneUsername);
   });

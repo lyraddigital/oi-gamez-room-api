@@ -1,5 +1,5 @@
-import { EventBridgeEvent } from "aws-lambda";
 import { HostChangeInternalEvent } from "@oigamez/event-bridge";
+import { EventBridgeEvent } from "aws-lambda";
 
 import { validateEnvironment } from "./configuration";
 import {

@@ -1,17 +1,17 @@
-import { broadcast } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
+import { broadcast } from "/opt/nodejs/oigamez-communication";
 import {
-  HostChangeCommunicationEvent,
-  HostTransferCommunicationEvent,
+  HostChangeWebsocketEvent,
+  HostTransferWebsocketEvent,
 } from "../models";
 import { communicateHostChanged } from "./communication.service";
 
-jest.mock("@oigamez/communication", () => {
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/communication"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     broadcast: jest.fn(),
   };
 });
@@ -73,19 +73,19 @@ describe("communicateHostChanged tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as HostChangeCommunicationEvent
+          .calls[0][1] as HostChangeWebsocketEvent
       ).action
     ).toBe("changeHost");
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as HostChangeCommunicationEvent
+          .calls[0][1] as HostChangeWebsocketEvent
       ).newHostName
     ).toBe(newHostUsername);
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as HostChangeCommunicationEvent
+          .calls[0][1] as HostChangeWebsocketEvent
       ).oldHostname
     ).toBe(oldHostUsername);
     expect(
@@ -95,7 +95,7 @@ describe("communicateHostChanged tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[1][1] as HostTransferCommunicationEvent
+          .calls[1][1] as HostTransferWebsocketEvent
       ).action
     ).toBe("hostTransfer");
   });

@@ -1,11 +1,11 @@
-import { broadcast, closeConnection } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { Room } from "/opt/nodejs/oigamez-core";
+import { broadcast, closeConnection } from "/opt/nodejs/oigamez-communication";
 import {
-  DisableGameStartCommunicationEvent,
-  UserLeftCommunicationEvent,
+  DisableGameStartWebsocketEvent,
+  UserLeftWebsocketEvent,
 } from "../models";
 
 export const communicateUserLeft = async (
@@ -21,9 +21,9 @@ export const communicateUserLeft = async (
   );
   const otherConnectionIds = getConnectionIdsFromConnections(otherConnections);
 
-  await broadcast<UserLeftCommunicationEvent>(
+  await broadcast<UserLeftWebsocketEvent>(
     otherConnectionIds,
-    new UserLeftCommunicationEvent(username)
+    new UserLeftWebsocketEvent(username)
   );
 
   if (isBelowMinimumUsers) {
@@ -33,9 +33,9 @@ export const communicateUserLeft = async (
     const hostConnectionIds = getConnectionIdsFromConnections(hostConnections);
 
     if (username !== room?.hostUsername) {
-      await broadcast<DisableGameStartCommunicationEvent>(
+      await broadcast<DisableGameStartWebsocketEvent>(
         hostConnectionIds,
-        new DisableGameStartCommunicationEvent()
+        new DisableGameStartWebsocketEvent()
       );
     }
   }

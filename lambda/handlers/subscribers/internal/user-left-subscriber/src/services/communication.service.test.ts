@@ -1,17 +1,17 @@
-import { broadcast, closeConnection } from "@oigamez/communication";
 import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { broadcast, closeConnection } from "/opt/nodejs/oigamez-communication";
 import {
-  DisableGameStartCommunicationEvent,
-  UserLeftCommunicationEvent,
+  DisableGameStartWebsocketEvent,
+  UserLeftWebsocketEvent,
 } from "../models";
 import { communicateUserLeft } from "./communication.service";
 
-jest.mock("@oigamez/communication", () => {
+jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("@oigamez/communication"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     broadcast: jest.fn(),
     closeConnection: jest.fn(),
   };
@@ -83,13 +83,13 @@ describe("communicateUserLeft tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).action
     ).toBe("userLeft");
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).username
     ).toBe(userOneUsername);
     expect(closeConnection).not.toHaveBeenCalled();
@@ -150,13 +150,13 @@ describe("communicateUserLeft tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).action
     ).toBe("userLeft");
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).username
     ).toBe(userOneUsername);
     expect(closeConnection).not.toHaveBeenCalled();
@@ -227,13 +227,13 @@ describe("communicateUserLeft tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).action
     ).toBe("userLeft");
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).username
     ).toBe(userTwoUsername);
     expect(
@@ -243,7 +243,7 @@ describe("communicateUserLeft tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[1][1] as DisableGameStartCommunicationEvent
+          .calls[1][1] as DisableGameStartWebsocketEvent
       ).action
     ).toBe("disableGameStart");
     expect(closeConnection).not.toHaveBeenCalled();
@@ -316,13 +316,13 @@ describe("communicateUserLeft tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).action
     ).toBe("userLeft");
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[0][1] as UserLeftCommunicationEvent
+          .calls[0][1] as UserLeftWebsocketEvent
       ).username
     ).toBe(userTwoUsername);
     expect(
@@ -332,7 +332,7 @@ describe("communicateUserLeft tests", () => {
     expect(
       (
         (broadcast as jest.MockedFunction<typeof broadcast>).mock
-          .calls[1][1] as DisableGameStartCommunicationEvent
+          .calls[1][1] as DisableGameStartWebsocketEvent
       ).action
     ).toBe("disableGameStart");
     expect(closeConnection).toHaveBeenCalledWith(connectionId);

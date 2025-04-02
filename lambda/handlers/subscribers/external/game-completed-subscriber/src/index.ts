@@ -1,12 +1,12 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { broadcast } from "@oigamez/communication";
 import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { RoomStatus } from "/opt/nodejs/oigamez-core";
+import { broadcast } from "/opt/nodejs/oigamez-communication";
 import { validateEnvironment } from "./configuration";
-import { GameCompletedCommunicationEvent, GameCompletedEvent } from "./models";
+import { GameCompletedWebsocketEvent, GameCompletedEvent } from "./models";
 import { initializeLambda } from "./services";
 
 validateEnvironment();
@@ -21,8 +21,8 @@ export const handler = async (
 
   await updateRoomStatus(roomCode, RoomStatus.completed);
 
-  await broadcast<GameCompletedCommunicationEvent>(
+  await broadcast<GameCompletedWebsocketEvent>(
     connectionIds,
-    new GameCompletedCommunicationEvent()
+    new GameCompletedWebsocketEvent()
   );
 };

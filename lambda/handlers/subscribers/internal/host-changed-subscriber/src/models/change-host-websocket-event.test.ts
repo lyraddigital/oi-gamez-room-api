@@ -1,4 +1,4 @@
-import { HostChangeCommunicationEvent } from "./change-host-communication-event";
+import { HostChangeWebsocketEvent } from "./change-host-websocket-event";
 
 describe("HostChangeCommunicationEvent tests", () => {
   test("correct properties is set", () => {
@@ -7,7 +7,7 @@ describe("HostChangeCommunicationEvent tests", () => {
     const newHostName = "new_user";
 
     // Action
-    const event = new HostChangeCommunicationEvent(oldHostname, newHostName);
+    const event = new HostChangeWebsocketEvent(oldHostname, newHostName);
 
     // Assert
     expect(event.action).toBe("changeHost");
