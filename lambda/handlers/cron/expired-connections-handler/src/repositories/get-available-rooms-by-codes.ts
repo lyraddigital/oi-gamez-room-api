@@ -3,14 +3,14 @@ import {
   BatchGetItemCommand,
   BatchGetItemCommandInput,
 } from "@aws-sdk/client-dynamodb";
+import { mapFromDynamoToRoom } from "@oigamez/mappers";
+
+import { DYNAMO_TABLE_NAME, Room } from "/opt/nodejs/oigamez-core";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
-} from "@oigamez/dynamodb";
-import { mapFromDynamoToRoom } from "@oigamez/mappers";
-
-import { DYNAMO_TABLE_NAME, Room } from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-data";
 
 const getRooms = async (
   roomGetEntries: Record<string, AttributeValue>[]

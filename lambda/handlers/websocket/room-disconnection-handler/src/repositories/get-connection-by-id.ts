@@ -1,15 +1,16 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
-import {
-  dbClient,
-  dynamoFieldNames,
-  dynamoFieldValues,
-} from "@oigamez/dynamodb";
 import { mapFromDynamoToConnection } from "@oigamez/mappers";
 
 import {
   CONNECTION_DYNAMO_TABLE_NAME,
   RoomConnection,
 } from "/opt/nodejs/oigamez-core";
+import {
+  dbClient,
+  dynamoFieldNames,
+  dynamoFieldValues,
+} from "/opt/nodejs/oigamez-data";
+
 import { CONNECTION_DYNAMO_INDEX_NAME } from "../configuration";
 
 export const getConnectionById = async (

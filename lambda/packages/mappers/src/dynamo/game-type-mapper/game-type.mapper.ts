@@ -1,11 +1,11 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
+import { GameType } from "/opt/nodejs/oigamez-core";
 import {
   dynamoFieldNames,
   getDynamoInt,
   getDynamoString,
-} from "@oigamez/dynamodb";
-import { GameType } from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-data";
 
 export const mapFromDynamoToGameType = (
   dynamoRecord: Record<string, AttributeValue>

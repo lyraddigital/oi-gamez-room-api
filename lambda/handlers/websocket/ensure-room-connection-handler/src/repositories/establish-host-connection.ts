@@ -3,9 +3,10 @@ import {
   TransactWriteItemsCommand,
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 
 import { Room } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+
 import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "../configuration";
 import {
   createOrUpdateRoomConnection,

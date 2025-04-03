@@ -1,11 +1,11 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
+import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   dynamoFieldNames,
   getOptionalDynamoInt,
   getDynamoString,
-} from "@oigamez/dynamodb";
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-data";
 
 export const mapFromDynamoToConnection = (
   dynamoRecord: Record<string, AttributeValue>

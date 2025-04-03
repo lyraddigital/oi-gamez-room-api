@@ -2,10 +2,10 @@ import {
   DynamoDBClient,
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 
-import { removeUserFromRoom } from "./remove-user-from-room";
 import { Room } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+import { removeUserFromRoom } from "./remove-user-from-room";
 
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {

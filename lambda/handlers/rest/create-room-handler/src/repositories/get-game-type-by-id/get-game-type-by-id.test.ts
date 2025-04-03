@@ -3,10 +3,11 @@ import {
   GetItemCommand,
   GetItemCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToGameType } from "@oigamez/mappers";
 
 import { GameType } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+
 import { getGameTypeById } from "./get-game-type-by-id";
 
 jest.mock("@oigamez/mappers");

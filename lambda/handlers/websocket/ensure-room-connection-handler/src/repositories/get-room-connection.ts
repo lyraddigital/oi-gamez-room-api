@@ -1,6 +1,7 @@
 import { GetItemCommand, GetItemCommandInput } from "@aws-sdk/client-dynamodb";
 
-import { dbClient, keys } from "@oigamez/dynamodb";
+import { dbClient, keys } from "/opt/nodejs/oigamez-data";
+
 import { mapFromDynamoToConnection } from "@oigamez/mappers";
 
 import {

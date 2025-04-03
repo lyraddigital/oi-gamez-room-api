@@ -1,6 +1,6 @@
 import { TransactWriteItemsCommand } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 
+import { dbClient } from "/opt/nodejs/oigamez-data";
 import { releaseRoomCode } from "./release-room-code";
 
 jest.mock("/opt/nodejs/oigamez-core", () => {

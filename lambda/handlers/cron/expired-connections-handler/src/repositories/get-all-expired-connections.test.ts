@@ -1,4 +1,3 @@
-import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToConnection } from "@oigamez/mappers";
 import {
   DynamoDBClient,
@@ -7,6 +6,7 @@ import {
 } from "@aws-sdk/client-dynamodb";
 
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
 import { getAllExpiredConnections } from "./get-all-expired-connections";
 
 jest.mock("@oigamez/mappers");

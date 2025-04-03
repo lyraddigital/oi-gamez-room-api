@@ -1,11 +1,12 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
+
+import { Room, RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
 import {
   dynamoFieldNames,
   getDynamoBoolean,
   getDynamoInt,
   getDynamoString,
-} from "@oigamez/dynamodb";
-import { Room, RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-data";
 
 export const mapFromDynamoToRoom = (
   dynamoRecord: Record<string, AttributeValue>

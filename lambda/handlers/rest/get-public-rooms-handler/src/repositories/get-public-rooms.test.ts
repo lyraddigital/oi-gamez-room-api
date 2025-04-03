@@ -3,11 +3,11 @@ import {
   QueryCommand,
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
+
+import { dbClient } from "/opt/nodejs/oigamez-data";
 
 import { PublicRoom } from "../models";
 import { mapFromDynamoToPublicRoom } from "../mappers";
-
 import { getPublicRooms } from "./get-public-rooms";
 
 jest.mock("/opt/nodejs/oigamez-core", () => {

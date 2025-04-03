@@ -1,7 +1,8 @@
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 
 import { RoomStatus } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+
 import { updateRoomStatus } from "./update-room-status";
 
 jest.mock("/opt/nodejs/oigamez-core", () => {

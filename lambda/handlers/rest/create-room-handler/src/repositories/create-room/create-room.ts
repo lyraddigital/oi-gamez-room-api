@@ -3,19 +3,20 @@ import {
   TransactWriteItemsCommand,
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
-import {
-  dbClient,
-  dynamoFieldNames,
-  dynamoFieldValues,
-  expressions,
-  keys,
-} from "@oigamez/dynamodb";
 
 import {
   DYNAMO_TABLE_NAME,
   RoomStatus,
   RoomVisiblityType,
 } from "/opt/nodejs/oigamez-core";
+import {
+  dbClient,
+  dynamoFieldNames,
+  dynamoFieldValues,
+  expressions,
+  keys,
+} from "/opt/nodejs/oigamez-data";
+
 import { RoomToCreate } from "../../models";
 
 const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({

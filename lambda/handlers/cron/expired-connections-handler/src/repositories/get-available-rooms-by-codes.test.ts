@@ -4,8 +4,9 @@ import {
   BatchGetItemCommandOutput,
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToRoom } from "@oigamez/mappers";
+
+import { dbClient } from "/opt/nodejs/oigamez-data";
 
 import { getAvailableRoomsByCodes } from "./get-available-rooms-by-codes";
 

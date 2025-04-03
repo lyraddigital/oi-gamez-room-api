@@ -10,7 +10,7 @@ import {
   dynamoFieldValues,
   expressions,
   keys,
-} from "@oigamez/dynamodb";
+} from "/opt/nodejs/oigamez-data";
 
 export const updateRoomHost = async (
   roomCode: string,

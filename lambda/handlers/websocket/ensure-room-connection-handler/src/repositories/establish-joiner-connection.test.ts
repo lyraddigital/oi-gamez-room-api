@@ -2,16 +2,17 @@ import {
   TransactWriteItem,
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 
 import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+
 import { establishJoinerConnection } from "./establish-joiner-connection";
 import {
   createOrUpdateRoomConnection,
   updateRoomUserCount,
 } from "./transact-writes";
 
-jest.mock("@oigamez/dynamodb");
+jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("./transact-writes", () => {
   return {
     createOrUpdateRoomConnection: jest.fn(),

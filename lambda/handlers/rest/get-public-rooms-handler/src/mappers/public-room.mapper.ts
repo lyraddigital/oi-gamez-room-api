@@ -1,9 +1,10 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
+
 import {
   dynamoFieldNames,
   getDynamoInt,
   getDynamoString,
-} from "@oigamez/dynamodb";
+} from "/opt/nodejs/oigamez-data";
 
 import { PublicRoom } from "../models";
 

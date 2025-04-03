@@ -1,11 +1,12 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
+
+import { DYNAMO_TABLE_NAME, GameType } from "/opt/nodejs/oigamez-core";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
-} from "@oigamez/dynamodb";
+} from "/opt/nodejs/oigamez-data";
 
-import { DYNAMO_TABLE_NAME, GameType } from "/opt/nodejs/oigamez-core";
 import { HOST_ROOM_INDEX_NAME } from "../../configuration";
 import { getGameTypeById } from "../get-game-type-by-id";
 

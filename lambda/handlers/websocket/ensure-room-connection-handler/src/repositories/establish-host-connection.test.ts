@@ -2,16 +2,17 @@ import {
   TransactWriteItem,
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 
 import { Room } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+
 import { establishHostConnection } from "./establish-host-connection";
 import {
   createOrUpdateRoomConnection,
   updateRoomHostDetails,
 } from "./transact-writes";
 
-jest.mock("@oigamez/dynamodb");
+jest.mock("/opt/nodejs/oigamez-data");
 
 jest.mock("../configuration", () => {
   return {

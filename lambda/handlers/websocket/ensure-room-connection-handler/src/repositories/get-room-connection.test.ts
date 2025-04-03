@@ -3,10 +3,11 @@ import {
   GetItemCommand,
   GetItemCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToConnection } from "@oigamez/mappers";
 
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+
 import { getRoomConnection } from "./get-room-connection";
 
 jest.mock("@oigamez/mappers");

@@ -3,9 +3,10 @@ import {
   QueryCommand,
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 import { mapFromDynamoToRoom } from "@oigamez/mappers";
+
 import { Room, RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
 
 import { getRoomByCode } from "./get-room-by-code";
 

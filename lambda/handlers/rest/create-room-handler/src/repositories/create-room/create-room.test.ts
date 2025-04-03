@@ -2,7 +2,8 @@ import {
   DynamoDBClient,
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
+
+import { dbClient } from "/opt/nodejs/oigamez-data";
 
 import { RoomToCreate } from "../../models";
 import { createRoom } from "./create-room";

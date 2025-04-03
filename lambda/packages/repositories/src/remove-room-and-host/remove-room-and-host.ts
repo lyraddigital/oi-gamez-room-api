@@ -3,7 +3,7 @@ import {
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { dbClient } from "@oigamez/dynamodb";
+import { dbClient } from "/opt/nodejs/oigamez-data";
 
 import { removeRoom, removeUserConnection } from "../transact-writes";
 

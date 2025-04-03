@@ -3,9 +3,10 @@ import {
   QueryCommand,
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
 
 import { GameType } from "/opt/nodejs/oigamez-core";
+import { dbClient } from "/opt/nodejs/oigamez-data";
+
 import { getGameTypeById } from "../get-game-type-by-id";
 import { getRoomHostingData } from "./get-room-hosting-data";
 

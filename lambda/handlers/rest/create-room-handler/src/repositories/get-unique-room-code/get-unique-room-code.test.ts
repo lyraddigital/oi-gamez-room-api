@@ -3,7 +3,8 @@ import {
   GetItemCommand,
   GetItemCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { dbClient } from "@oigamez/dynamodb";
+
+import { dbClient } from "/opt/nodejs/oigamez-data";
 
 import { getUniqueRoomCode } from "./get-unique-room-code";
 

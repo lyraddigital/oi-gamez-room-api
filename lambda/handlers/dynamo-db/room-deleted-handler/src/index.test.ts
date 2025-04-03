@@ -1,6 +1,6 @@
-import { RecordType } from "@oigamez/dynamodb";
 import { DynamoDBStreamEvent, DynamoDBRecord } from "aws-lambda";
 
+import { RecordType } from "/opt/nodejs/oigamez-data";
 import { handler } from ".";
 import { releaseRoomCode } from "./repositories";
 

@@ -2,18 +2,18 @@ import {
   UpdateItemCommand,
   UpdateItemCommandInput,
 } from "@aws-sdk/client-dynamodb";
+
+import {
+  CONNECTION_DYNAMO_TABLE_NAME,
+  RoomConnection,
+} from "/opt/nodejs/oigamez-core";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
   keys,
-} from "@oigamez/dynamodb";
-
-import {
-  CONNECTION_DYNAMO_TABLE_NAME,
-  RoomConnection,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-data";
 
 export const updateConnectionDisconnectionTime = async (
   connection: RoomConnection,
