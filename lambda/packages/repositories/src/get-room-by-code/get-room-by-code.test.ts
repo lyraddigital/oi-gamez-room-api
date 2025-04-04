@@ -3,18 +3,22 @@ import {
   QueryCommand,
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { mapFromDynamoToRoom } from "@oigamez/mappers";
 
 import { Room, RoomStatus, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { dbClient, mapFromDynamoToRoom } from "/opt/nodejs/oigamez-data";
 
 import { getRoomByCode } from "./get-room-by-code";
 
-jest.mock("@oigamez/mappers");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-core"),
     DYNAMO_TABLE_NAME: "SomeTable",
+  };
+});
+jest.mock("/opt/nodejs/oigamez-data", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-data"),
+    mapFromDynamoToRoom: jest.fn(),
   };
 });
 

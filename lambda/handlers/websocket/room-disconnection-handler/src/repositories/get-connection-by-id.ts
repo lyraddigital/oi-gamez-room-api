@@ -1,5 +1,4 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
-import { mapFromDynamoToConnection } from "@oigamez/mappers";
 
 import {
   CONNECTION_DYNAMO_TABLE_NAME,
@@ -9,6 +8,7 @@ import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
+  mapFromDynamoToConnection,
 } from "/opt/nodejs/oigamez-data";
 
 import { CONNECTION_DYNAMO_INDEX_NAME } from "../configuration";

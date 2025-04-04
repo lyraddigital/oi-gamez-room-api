@@ -1,4 +1,3 @@
-import { mapFromDynamoToConnection } from "@oigamez/mappers";
 import {
   DynamoDBClient,
   ScanCommand,
@@ -6,13 +5,18 @@ import {
 } from "@aws-sdk/client-dynamodb";
 
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { dbClient, mapFromDynamoToConnection } from "/opt/nodejs/oigamez-data";
 import { getAllExpiredConnections } from "./get-all-expired-connections";
 
-jest.mock("@oigamez/mappers");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "ConnectionTable",
+  };
+});
+jest.mock("/opt/nodejs/oigamez-data", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-data"),
+    mapFromDynamoToConnection: jest.fn(),
   };
 });
 jest.mock("../configuration", () => {

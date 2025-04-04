@@ -41,9 +41,6 @@
       "/opt/nodejs/oigamez-data": [
         "./lambda/packages/data/nodejs/oigamez-data"
       ],
-      "@oigamez/mappers": [
-        "./lambda/packages/mappers/src"
-      ],
       "@oigamez/repositories": [
         "./lambda/packages/repositories/src"
       ],

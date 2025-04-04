@@ -3,17 +3,21 @@ import {
   QueryCommand,
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { mapFromDynamoToConnection } from "@oigamez/mappers";
 
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { dbClient, mapFromDynamoToConnection } from "/opt/nodejs/oigamez-data";
 
 import { getRoomConnections } from "./get-room-connections";
 
-jest.mock("@oigamez/mappers");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "SomeTable",
+  };
+});
+jest.mock("/opt/nodejs/oigamez-data", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-data"),
+    mapFromDynamoToConnection: jest.fn(),
   };
 });
 

@@ -4,16 +4,20 @@ import {
   BatchGetItemCommandOutput,
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
-import { mapFromDynamoToRoom } from "@oigamez/mappers";
 
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { dbClient, mapFromDynamoToRoom } from "/opt/nodejs/oigamez-data";
 
 import { getAvailableRoomsByCodes } from "./get-available-rooms-by-codes";
 
-jest.mock("@oigamez/mappers");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
+  };
+});
+jest.mock("/opt/nodejs/oigamez-data", () => {
+  return {
+    ...jest.requireActual("/opt/nodejs/oigamez-data"),
+    mapFromDynamoToRoom: jest.fn(),
   };
 });
 

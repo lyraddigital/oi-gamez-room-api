@@ -3,19 +3,18 @@ import {
   QueryCommand,
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
-import { mapFromDynamoToGameType } from "@oigamez/mappers";
 
 import { GameType } from "/opt/nodejs/oigamez-core";
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { dbClient, mapFromDynamoToGameType } from "/opt/nodejs/oigamez-data";
 
 import { getAllGameTypes } from "./get-all-game-types";
 
-jest.mock("@oigamez/mappers");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });
+jest.mock("/opt/nodejs/oigamez-data");
 
 describe("getAllGameTypes tests", () => {
   const sendSpy = jest.spyOn<DynamoDBClient, "send">(dbClient, "send");
