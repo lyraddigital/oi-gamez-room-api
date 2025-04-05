@@ -1,22 +1,21 @@
-import { removeRoomAndHost, updateRoomHost } from "/opt/nodejs/oigamez-data";
-
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   RoomRemovedInternalEventBridgeEvent,
   HostChangeInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
+import { removeRoomAndHost, updateRoomHost } from "/opt/nodejs/oigamez-data";
 
 import { handleUserLeft } from "../handle-user-left";
 import { handleHostDisconnection } from "./handle-host-disconnection.service";
 
-jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     publishInternalEvents: jest.fn(),
   };
 });
+jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("../handle-user-left");
 
 describe("handleHostDisconnection tests", () => {
