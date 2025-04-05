@@ -1,9 +1,9 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { handleHostDisconnection } from "@oigamez/services";
 
 import { HostConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
 
 import { validateEnvironment } from "./configuration";
 import { initializeLambda } from "./services";

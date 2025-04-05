@@ -6,7 +6,7 @@ import {
   getDynamoBoolean,
   getDynamoInt,
   getDynamoString,
-} from "/opt/nodejs/oigamez-data";
+} from "../../../dynamodb";
 
 export const mapFromDynamoToRoom = (
   dynamoRecord: Record<string, AttributeValue>

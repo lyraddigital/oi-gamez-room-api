@@ -1,7 +1,7 @@
-import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { broadcast } from "/opt/nodejs/oigamez-communication";
+import { getRoomConnections } from "/opt/nodejs/oigamez-data";
 import {
   HostChangeWebsocketEvent,
   HostTransferWebsocketEvent,

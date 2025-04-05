@@ -1,10 +1,9 @@
-import { removeUserFromRoom } from "@oigamez/repositories";
-
 import { Room } from "/opt/nodejs/oigamez-core";
 import {
   UserLeftInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
+import { removeUserFromRoom } from "/opt/nodejs/oigamez-data";
 
 export const handleUserLeft = async (
   room: Room,

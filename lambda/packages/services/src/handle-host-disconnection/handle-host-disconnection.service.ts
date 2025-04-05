@@ -1,11 +1,10 @@
-import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
-
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
   HostChangeInternalEventBridgeEvent,
   RoomRemovedInternalEventBridgeEvent,
   publishInternalEvents,
 } from "/opt/nodejs/oigamez-communication";
+import { removeRoomAndHost, updateRoomHost } from "/opt/nodejs/oigamez-data";
 
 import { handleUserLeft } from "../handle-user-left";
 

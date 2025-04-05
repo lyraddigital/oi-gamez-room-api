@@ -1,4 +1,4 @@
-import { removeRoomAndHost, updateRoomHost } from "@oigamez/repositories";
+import { removeRoomAndHost, updateRoomHost } from "/opt/nodejs/oigamez-data";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import {
@@ -10,7 +10,7 @@ import {
 import { handleUserLeft } from "../handle-user-left";
 import { handleHostDisconnection } from "./handle-host-disconnection.service";
 
-jest.mock("@oigamez/repositories");
+jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-communication"),

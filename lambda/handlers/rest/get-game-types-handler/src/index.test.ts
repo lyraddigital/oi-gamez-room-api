@@ -8,13 +8,13 @@ import {
 import { handler } from ".";
 import { getAllGameTypes } from "./repositories";
 
-jest.mock("@oigamez/repositories");
 jest.mock("/opt/nodejs/oigamez-core", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-core"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });
+jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("/opt/nodejs/oigamez-http");
 jest.mock("./repositories");
 jest.mock("./configuration");

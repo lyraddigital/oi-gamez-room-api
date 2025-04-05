@@ -1,5 +1,5 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
-import { getRoomByCode } from "@oigamez/repositories";
+import { getRoomByCode } from "/opt/nodejs/oigamez-data";
 
 import { Room } from "/opt/nodejs/oigamez-core";
 import { UserJoinedExternalEventBridgeEvent } from "../models";
@@ -11,7 +11,7 @@ jest.mock("/opt/nodejs/oigamez-communication", () => {
     publishExternalEvents: jest.fn(),
   };
 });
-jest.mock("@oigamez/repositories");
+jest.mock("/opt/nodejs/oigamez-data");
 
 describe("publishExternalUserJoinedEvent tests", () => {
   beforeEach(() => {

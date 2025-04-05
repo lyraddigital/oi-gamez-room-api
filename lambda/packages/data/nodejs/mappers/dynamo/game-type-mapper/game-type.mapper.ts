@@ -5,7 +5,7 @@ import {
   dynamoFieldNames,
   getDynamoInt,
   getDynamoString,
-} from "/opt/nodejs/oigamez-data";
+} from "../../../dynamodb";
 
 export const mapFromDynamoToGameType = (
   dynamoRecord: Record<string, AttributeValue>

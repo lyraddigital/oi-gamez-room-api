@@ -1,5 +1,5 @@
 import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
-import { getRoomByCode } from "@oigamez/repositories";
+import { getRoomByCode } from "/opt/nodejs/oigamez-data";
 
 import { UserJoinedExternalEventBridgeEvent } from "../models";
 

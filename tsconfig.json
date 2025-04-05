@@ -41,12 +41,6 @@
       "/opt/nodejs/oigamez-data": [
         "./lambda/packages/data/nodejs/oigamez-data"
       ],
-      "@oigamez/repositories": [
-        "./lambda/packages/repositories/src"
-      ],
-      "@oigamez/rule-sets": [
-        "./lambda/packages/rule-sets/src"
-      ],
       "@oigamez/services": [
         "./lambda/packages/services/src"
       ]

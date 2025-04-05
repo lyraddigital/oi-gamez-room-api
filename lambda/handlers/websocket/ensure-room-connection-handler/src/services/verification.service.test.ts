@@ -1,15 +1,15 @@
-import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
 import { ValidationResult } from "/opt/nodejs/oigamez-http";
 import { runEnsureRoomConnectionRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";
 import { isUserHost } from "./is-user-host.service";
 import { verifyRequestData } from "./verification.service";
 
-jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/services");
+jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("../rule-sets");
 jest.mock("../validators");
 jest.mock("./is-user-host.service");

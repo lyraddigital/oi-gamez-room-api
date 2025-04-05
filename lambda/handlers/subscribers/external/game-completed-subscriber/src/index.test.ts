@@ -1,16 +1,15 @@
-import { getRoomConnections, updateRoomStatus } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { broadcast } from "/opt/nodejs/oigamez-communication";
+import { getRoomConnections, updateRoomStatus } from "/opt/nodejs/oigamez-data";
 import { handler } from ".";
 import {
   GameCompletedWebsocketEvent,
   GameCompletedEventReceivedEvent,
 } from "./models";
 
-jest.mock("@oigamez/repositories");
 jest.mock("@oigamez/services");
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
@@ -18,6 +17,7 @@ jest.mock("/opt/nodejs/oigamez-communication", () => {
     broadcast: jest.fn(),
   };
 });
+jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("./configuration");
 jest.mock("./services");
 

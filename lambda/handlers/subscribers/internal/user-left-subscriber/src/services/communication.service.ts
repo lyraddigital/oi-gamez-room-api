@@ -1,7 +1,7 @@
-import { getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { Room } from "/opt/nodejs/oigamez-core";
+import { getRoomConnections } from "/opt/nodejs/oigamez-data";
 import { broadcast, closeConnection } from "/opt/nodejs/oigamez-communication";
 import {
   DisableGameStartWebsocketEvent,

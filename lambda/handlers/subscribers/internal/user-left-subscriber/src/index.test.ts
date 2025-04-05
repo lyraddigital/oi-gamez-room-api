@@ -1,13 +1,13 @@
-import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { Room } from "/opt/nodejs/oigamez-core";
 import { UserLeftInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+import { getRoomByCode } from "/opt/nodejs/oigamez-data";
 
 import { handler } from ".";
 import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
 
-jest.mock("@oigamez/repositories");
+jest.mock("/opt/nodejs/oigamez-data");
 jest.mock("./configuration");
 jest.mock("./services");
 

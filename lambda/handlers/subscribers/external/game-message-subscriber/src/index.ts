@@ -1,10 +1,10 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { getRoomByCode, getRoomConnections } from "@oigamez/repositories";
 import { getConnectionIdsFromConnections } from "@oigamez/services";
 
 import { RoomStatus } from "/opt/nodejs/oigamez-core";
 import { broadcast } from "/opt/nodejs/oigamez-communication";
+import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
 import { validateEnvironment } from "./configuration";
 import {
   GameMessageEventReceivedEvent,

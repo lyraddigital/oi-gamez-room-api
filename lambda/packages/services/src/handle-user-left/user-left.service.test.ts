@@ -1,20 +1,19 @@
-import { removeUserFromRoom } from "@oigamez/repositories";
-
 import { Room } from "/opt/nodejs/oigamez-core";
 import {
   publishInternalEvents,
   UserLeftInternalEventBridgeEvent,
 } from "/opt/nodejs/oigamez-communication";
+import { removeUserFromRoom } from "/opt/nodejs/oigamez-data";
 
 import { handleUserLeft } from "./user-left.service";
 
-jest.mock("@oigamez/repositories");
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
     ...jest.requireActual("/opt/nodejs/oigamez-communication"),
     publishInternalEvents: jest.fn(),
   };
 });
+jest.mock("/opt/nodejs/oigamez-data");
 
 describe("handleUserLeft tests", () => {
   test("Calls the correct mock methods", async () => {

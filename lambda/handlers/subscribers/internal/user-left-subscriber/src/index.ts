@@ -1,7 +1,7 @@
-import { getRoomByCode } from "@oigamez/repositories";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { UserLeftInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+import { getRoomByCode } from "/opt/nodejs/oigamez-data";
 
 import { validateEnvironment } from "./configuration";
 import {

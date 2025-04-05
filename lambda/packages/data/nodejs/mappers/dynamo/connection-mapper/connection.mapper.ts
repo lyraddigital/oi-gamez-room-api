@@ -5,7 +5,7 @@ import {
   dynamoFieldNames,
   getOptionalDynamoInt,
   getDynamoString,
-} from "/opt/nodejs/oigamez-data";
+} from "../../../dynamodb";
 
 export const mapFromDynamoToConnection = (
   dynamoRecord: Record<string, AttributeValue>
