@@ -1,15 +1,10 @@
 import { validateOrigin } from "./cors-origin.validator";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
-  return {
-    CORS_ALLOWED_ORIGINS: "http://localhost,http://www.testsite.com",
-  };
-});
-
 describe("validateOrigin tests", () => {
   test("origin is not, returns unsuccessful", () => {
     // Arrange / Action
-    const result = validateOrigin(undefined);
+    const corsAllowedOrigins = "http://localhost,http://www.testsite.com";
+    const result = validateOrigin(corsAllowedOrigins, undefined);
 
     // Assert
     expect(result).toBeDefined();
@@ -21,10 +16,11 @@ describe("validateOrigin tests", () => {
 
   test("origin is set and in allowed cors list, returns success", () => {
     // Arrange
+    const corsAllowedOrigins = "http://localhost,http://www.testsite.com";
     const origin = "http://localhost";
 
     // Action
-    const result = validateOrigin(origin);
+    const result = validateOrigin(corsAllowedOrigins, origin);
 
     // Assert
     expect(result).toBeDefined();
@@ -34,10 +30,11 @@ describe("validateOrigin tests", () => {
 
   test("origin is set and not in allowed cors list, returns unsuccessful", () => {
     // Arrange
+    const corsAllowedOrigins = "http://localhost,http://www.testsite.com";
     const origin = "http://www.notallowed.com";
 
     // Action
-    const result = validateOrigin(origin);
+    const result = validateOrigin(corsAllowedOrigins, origin);
 
     // Assert
     expect(result).toBeDefined();

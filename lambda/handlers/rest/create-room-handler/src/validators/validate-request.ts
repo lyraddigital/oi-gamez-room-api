@@ -1,3 +1,4 @@
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
 import {
   validateOrigin,
   validateUsername,
@@ -13,7 +14,7 @@ export const validateRequest = (
   origin?: string,
   payload?: CreateRoomPayload
 ): ValidationResult => {
-  const originValidationResult = validateOrigin(origin);
+  const originValidationResult = validateOrigin(CORS_ALLOWED_ORIGINS, origin);
 
   if (!originValidationResult.isSuccessful) {
     return originValidationResult;

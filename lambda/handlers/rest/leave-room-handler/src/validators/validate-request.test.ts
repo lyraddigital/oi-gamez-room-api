@@ -4,6 +4,11 @@ import {
   validateUsername,
 } from "/opt/nodejs/oigamez-http";
 
+jest.mock("/opt/nodejs/oigamez-core", () => {
+  return {
+    CORS_ALLOWED_ORIGINS: "http://localhost,http://www.testsite.com",
+  };
+});
 jest.mock("/opt/nodejs/oigamez-http", () => {
   return {
     validateOrigin: jest.fn(),
@@ -16,6 +21,8 @@ import { LeaveRoomPayload } from "../models";
 import { validateRequest } from "./validate-request";
 
 describe("validateRequest for leave room tests", () => {
+  const corsAllowedOrigins = "http://localhost,http://www.testsite.com";
+
   test("validateOrigin returns unsuccessful, returns origin validation result", () => {
     // Arrange
     const errorMessage = "Invalid origin";
@@ -36,7 +43,7 @@ describe("validateRequest for leave room tests", () => {
     expect(validationResult.isSuccessful).toBe(isOriginValidationSuccess);
     expect(validationResult.errorMessages).toHaveLength(1);
     expect(validationResult.errorMessages[0]).toBe(errorMessage);
-    expect(validateOrigin).toHaveBeenCalledWith(undefined);
+    expect(validateOrigin).toHaveBeenCalledWith(corsAllowedOrigins, undefined);
   });
 
   test("payload not set, returns correct validation result", () => {
@@ -60,7 +67,7 @@ describe("validateRequest for leave room tests", () => {
     expect(validationResult.errorMessages[0]).toBe(
       "Missing payload from request"
     );
-    expect(validateOrigin).toHaveBeenCalledWith(origin);
+    expect(validateOrigin).toHaveBeenCalledWith(corsAllowedOrigins, origin);
   });
 
   test("payload is set, but all data is invalid and room code not set, returns correct validation result", () => {
@@ -98,7 +105,7 @@ describe("validateRequest for leave room tests", () => {
     expect(validationResult.errorMessages).toHaveLength(2);
     expect(validationResult.errorMessages[0]).toBe(isUsernameErrorMessage);
     expect(validationResult.errorMessages[1]).toBe(isRoomCodeErrorMessage);
-    expect(validateOrigin).toHaveBeenCalledWith(origin);
+    expect(validateOrigin).toHaveBeenCalledWith(corsAllowedOrigins, origin);
     expect(validateRoomCode).toHaveBeenCalledWith(undefined);
     expect(validateUsername).toHaveBeenCalledWith(undefined);
   });
@@ -137,7 +144,7 @@ describe("validateRequest for leave room tests", () => {
     expect(validationResult.isSuccessful).toBe(false);
     expect(validationResult.errorMessages).toHaveLength(1);
     expect(validationResult.errorMessages[0]).toBe(isUsernameErrorMessage);
-    expect(validateOrigin).toHaveBeenCalledWith(origin);
+    expect(validateOrigin).toHaveBeenCalledWith(corsAllowedOrigins, origin);
     expect(validateRoomCode).toHaveBeenCalledWith(roomCode);
     expect(validateUsername).toHaveBeenCalledWith(undefined);
   });
@@ -177,7 +184,7 @@ describe("validateRequest for leave room tests", () => {
     expect(validationResult.isSuccessful).toBe(false);
     expect(validationResult.errorMessages).toHaveLength(1);
     expect(validationResult.errorMessages[0]).toBe(isRoomCodeErrorMessage);
-    expect(validateOrigin).toHaveBeenCalledWith(origin);
+    expect(validateOrigin).toHaveBeenCalledWith(corsAllowedOrigins, origin);
     expect(validateRoomCode).toHaveBeenCalledWith(undefined);
     expect(validateUsername).toHaveBeenCalledWith(payload.username);
   });
@@ -216,7 +223,7 @@ describe("validateRequest for leave room tests", () => {
     expect(validationResult).toBeDefined();
     expect(validationResult.isSuccessful).toBe(true);
     expect(validationResult.errorMessages).toHaveLength(0);
-    expect(validateOrigin).toHaveBeenCalledWith(origin);
+    expect(validateOrigin).toHaveBeenCalledWith(corsAllowedOrigins, origin);
     expect(validateRoomCode).toHaveBeenCalledWith(roomCode);
     expect(validateUsername).toHaveBeenCalledWith(payload.username);
   });
