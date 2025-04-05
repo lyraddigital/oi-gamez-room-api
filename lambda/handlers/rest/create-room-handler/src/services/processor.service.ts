@@ -1,5 +1,3 @@
-import { getNow } from "@oigamez/services";
-
 import {
   ENCRYPTION_KEY,
   ENCRYPTION_IV,
@@ -10,6 +8,7 @@ import {
   encryptCustomDataToString,
   generateAccessToken,
 } from "/opt/nodejs/oigamez-security";
+import { getNow } from "/opt/nodejs/oigamez-services";
 import { CONNECT_WINDOW_IN_SECONDS } from "../configuration";
 import { CreateRoomPayload, ProcessRoomCreationResponse } from "../models";
 import {

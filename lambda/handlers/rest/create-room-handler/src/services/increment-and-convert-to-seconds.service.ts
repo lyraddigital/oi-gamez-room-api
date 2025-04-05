@@ -1,4 +1,4 @@
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
 
 export const incrementAndReturnInSeconds = (
   ttlInMilliseconds: number,

@@ -1,9 +1,8 @@
+import { VerificationResult } from "/opt/nodejs/oigamez-http";
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,
-} from "@oigamez/services";
-
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-services";
 import { JoinRoomPayload } from "../models";
 import { runJoinRoomRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";

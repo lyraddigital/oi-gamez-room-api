@@ -41,8 +41,8 @@
       "/opt/nodejs/oigamez-data": [
         "./lambda/packages/data/nodejs/oigamez-data"
       ],
-      "@oigamez/services": [
-        "./lambda/packages/services/src"
+      "/opt/nodejs/oigamez-services": [
+        "./lambda/packages/services/nodejs/oigamez-services"
       ]
     }
   },

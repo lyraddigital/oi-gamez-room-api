@@ -1,7 +1,7 @@
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
 import { handler } from ".";
 import { getAllExpiredConnections } from "./repositories";
 import {
@@ -10,7 +10,7 @@ import {
   publishAllUserExpirations,
 } from "./services";
 
-jest.mock("@oigamez/services");
+jest.mock("/opt/nodejs/oigamez-services");
 jest.mock("./configuration");
 jest.mock("./repositories");
 jest.mock("./services");

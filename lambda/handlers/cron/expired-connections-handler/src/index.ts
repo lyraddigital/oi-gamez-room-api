@@ -1,6 +1,6 @@
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
 import { validateEnvironment } from "./configuration";
 import { getAllExpiredConnections } from "./repositories";
 import {

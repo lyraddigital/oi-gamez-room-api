@@ -1,8 +1,7 @@
-import { getConnectionIdsFromConnections } from "@oigamez/services";
-
 import { RoomConnection } from "/opt/nodejs/oigamez-core";
 import { broadcast } from "/opt/nodejs/oigamez-communication";
 import { getRoomConnections } from "/opt/nodejs/oigamez-data";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
 import { UserJoinedWebsocketEvent } from "../models";
 import { communicateUserJoined } from "./communication.service";
 
@@ -12,8 +11,8 @@ jest.mock("/opt/nodejs/oigamez-communication", () => {
     broadcast: jest.fn(),
   };
 });
-jest.mock("@oigamez/services");
 jest.mock("/opt/nodejs/oigamez-data");
+jest.mock("/opt/nodejs/oigamez-services");
 
 describe("communicateUserJoined tests", () => {
   test("broadcasts the correct events to the correct connections", async () => {

@@ -1,14 +1,14 @@
-import { handleHostDisconnection } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { HostConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
 import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
+import { handleHostDisconnection } from "/opt/nodejs/oigamez-services";
 
 import { handler } from ".";
 
-jest.mock("@oigamez/services");
 jest.mock("/opt/nodejs/oigamez-data");
+jest.mock("/opt/nodejs/oigamez-services");
 jest.mock("./configuration");
 jest.mock("./services");
 

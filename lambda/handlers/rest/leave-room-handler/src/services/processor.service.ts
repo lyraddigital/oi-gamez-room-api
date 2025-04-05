@@ -1,4 +1,7 @@
-import { handleHostDisconnection, handleUserLeft } from "@oigamez/services";
+import {
+  handleHostDisconnection,
+  handleUserLeft,
+} from "/opt/nodejs/oigamez-services";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { LeaveRoomPayload } from "../models";

@@ -1,5 +1,5 @@
-import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
 
 import { getRoomAndConnections } from "./get-room-and-connections.service";
 

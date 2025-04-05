@@ -1,9 +1,9 @@
-import { getConnectionIdsFromConnections } from "@oigamez/services";
 import { EventBridgeEvent } from "aws-lambda";
 
 import { RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
 import { broadcast } from "/opt/nodejs/oigamez-communication";
 import { getRoomConnections, updateRoomStatus } from "/opt/nodejs/oigamez-data";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
 import { handler } from ".";
 import {
   GameStartedWebsocketEvent,
@@ -16,8 +16,8 @@ jest.mock("/opt/nodejs/oigamez-communication", () => {
     broadcast: jest.fn(),
   };
 });
-jest.mock("@oigamez/services");
 jest.mock("/opt/nodejs/oigamez-data");
+jest.mock("/opt/nodejs/oigamez-services");
 jest.mock("./configuration");
 jest.mock("./services");
 

@@ -1,7 +1,7 @@
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,
-} from "@oigamez/services";
+} from "/opt/nodejs/oigamez-services";
 
 import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
 import { VerificationResultWithData } from "/opt/nodejs/oigamez-http";

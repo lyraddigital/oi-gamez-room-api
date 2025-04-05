@@ -1,16 +1,15 @@
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { ValidationResult } from "/opt/nodejs/oigamez-http";
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,
-} from "@oigamez/services";
-
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { ValidationResult } from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-services";
 import { LeaveRoomPayload } from "../models";
 import { runLeaveRoomRuleSet } from "../rule-sets";
 import { validateRequest } from "../validators";
 import { verifyRequestData } from "./verification.service";
 
-jest.mock("@oigamez/services");
+jest.mock("/opt/nodejs/oigamez-services");
 jest.mock("../rule-sets");
 jest.mock("../validators");
 

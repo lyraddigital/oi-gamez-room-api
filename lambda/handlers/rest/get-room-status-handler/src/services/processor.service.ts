@@ -1,4 +1,4 @@
-import { convertFromMillisecondsToSeconds } from "@oigamez/services";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
 
 import { CurrentRoomStatus } from "../models";
 import { getRoomStatus } from "./get-room-status.service";
