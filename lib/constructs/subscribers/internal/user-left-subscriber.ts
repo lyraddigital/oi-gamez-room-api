@@ -8,6 +8,7 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
+  ExternalLibraries,
 } from "../../../constants";
 import { UserLeftSubscriberProps } from "../../../props";
 
@@ -23,6 +24,7 @@ export class UserLeftSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.userLeftSubscriber),
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: [ExternalLibraries.oiGamezCore],
       },
       environment: {
         [EnvironmentVariables.userLeftSubscriber.tableName]:
@@ -37,6 +39,7 @@ export class UserLeftSubscriber extends Construct {
           .externalEventBusEventSourceName]:
           props.externalEventBusEventSourceName,
       },
+      layers: props.layers,
     });
 
     const tablePolicyDocument = new PolicyStatement({

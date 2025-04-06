@@ -36,6 +36,11 @@ export class CreateRoomLambda extends Construct {
           props.jwtExpiryInMinutes.toString(),
       },
       externalModules: [
+        ExternalLibraries.apiGatewayManagementSdk,
+        ExternalLibraries.crypto,
+        ExternalLibraries.dynamoDbSdk,
+        ExternalLibraries.eventBridgeSdk,
+        ExternalLibraries.jsonWebToken,
         ExternalLibraries.oiGamezCore,
         ExternalLibraries.oiGamezHttp,
       ],

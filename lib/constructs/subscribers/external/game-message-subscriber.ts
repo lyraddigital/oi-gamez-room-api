@@ -8,6 +8,7 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
+  ExternalLibraries,
 } from "../../../constants";
 import { GameMessageSubscriberProps } from "../../../props";
 
@@ -23,6 +24,7 @@ export class GameMessageSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.gameMessageSubscriber),
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: [ExternalLibraries.oiGamezCore],
       },
       environment: {
         [EnvironmentVariables.gameMessageSubscriber.tableName]:
@@ -32,6 +34,7 @@ export class GameMessageSubscriber extends Construct {
         [EnvironmentVariables.gameMessageSubscriber.roomSocketApiEndpoint]:
           props.roomSocketApiEndpoint,
       },
+      layers: props.layers,
     });
 
     const tablePolicyDocument = new PolicyStatement({

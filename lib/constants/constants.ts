@@ -187,6 +187,11 @@ interface GetPublicRoomsEnvironmentVariables {
 }
 
 interface ExternalLibraries {
+  apiGatewayManagementSdk: string;
+  crypto: string;
+  dynamoDbSdk: string;
+  eventBridgeSdk: string;
+  jsonWebToken: string;
   oiGamezCore: string;
   oiGamezHttp: string;
 }
@@ -415,6 +420,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
 };
 
 export const ExternalLibraries: ExternalLibraries = {
+  apiGatewayManagementSdk: "@aws-sdk/client-apigatewaymanagementapi",
+  crypto: "crypto",
+  dynamoDbSdk: "@aws-sdk/client-dynamodb",
+  eventBridgeSdk: "@aws-sdk/client-eventbridge",
+  jsonWebToken: "jsonwebtoken",
   oiGamezCore: "/opt/nodejs/oigamez-core",
   oiGamezHttp: "/opt/nodejs/oigamez-http",
 };

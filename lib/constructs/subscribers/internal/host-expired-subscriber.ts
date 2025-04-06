@@ -8,6 +8,7 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
+  ExternalLibraries,
 } from "../../../constants";
 import { HostExpiredSubscriberProps } from "../../../props";
 
@@ -23,6 +24,7 @@ export class HostExpiredSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.hostExpiredSubscriber),
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: [ExternalLibraries.oiGamezCore],
       },
       environment: {
         [EnvironmentVariables.hostExpiredSubscriber.tableName]:
@@ -34,6 +36,7 @@ export class HostExpiredSubscriber extends Construct {
         [EnvironmentVariables.hostExpiredSubscriber.eventBusEventSourceName]:
           props.eventBusEventSourceName,
       },
+      layers: props.layers,
     });
 
     const tablePolicyDocument = new PolicyStatement({

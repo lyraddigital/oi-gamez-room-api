@@ -1,5 +1,6 @@
 import { TableV2 } from "aws-cdk-lib/aws-dynamodb";
 import { IEventBus } from "aws-cdk-lib/aws-events";
+import { ILayerVersion } from "aws-cdk-lib/aws-lambda";
 
 export interface UserLeftSubscriberProps {
   table: TableV2;
@@ -9,4 +10,5 @@ export interface UserLeftSubscriberProps {
   roomSocketApiEndpoint: string;
   roomWebsocketApiPostArn: string;
   roomWebsocketApiDeleteArn: string;
+  layers: ILayerVersion[];
 }

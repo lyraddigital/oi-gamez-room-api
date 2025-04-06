@@ -36,6 +36,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         connectionTable: props.connectionTable,
         roomEventBus: props.eventBus,
         eventBusEventSourceName: props.eventBusSourceName,
+        layers: [props.coreLayer],
       }
     );
 
@@ -47,6 +48,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         connectionTable: props.connectionTable,
         roomEventBus: props.eventBus,
         eventBusEventSourceName: props.eventBusSourceName,
+        layers: [props.coreLayer],
       }
     );
 
@@ -60,6 +62,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
         externalEventBus: props.externalEventBus,
         externalEventBusEventSourceName: props.externalEventBusEventSourceName,
+        layers: [props.coreLayer],
       }
     );
 
@@ -73,6 +76,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
         externalEventBus: props.externalEventBus,
         externalEventBusEventSourceName: props.externalEventBusEventSourceName,
+        layers: [props.coreLayer],
       }
     );
 
@@ -87,6 +91,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         roomWebsocketApiDeleteArn: props.roomWebsocketApiDeleteArn,
         externalEventBus: props.externalEventBus,
         externalEventBusEventSourceName: props.externalEventBusEventSourceName,
+        layers: [props.coreLayer],
       }
     );
 
@@ -99,6 +104,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
         externalEventBus: props.externalEventBus,
         externalEventBusEventSourceName: props.externalEventBusEventSourceName,
+        layers: [props.coreLayer],
       }
     );
 
@@ -110,6 +116,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+        layers: [props.coreLayer],
       }
     );
 
@@ -121,6 +128,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+        layers: [props.coreLayer],
       }
     );
 
@@ -132,6 +140,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+        layers: [props.coreLayer],
       }
     );
 
@@ -143,6 +152,7 @@ export class RoomEventBridgeSubscribers extends Construct {
         connectionTable: props.connectionTable,
         roomWebsocketApiPostArn: props.roomWebsocketApiPostArn,
         roomSocketApiEndpoint: props.roomSocketApiEndpoint,
+        layers: [props.coreLayer],
       }
     );
 

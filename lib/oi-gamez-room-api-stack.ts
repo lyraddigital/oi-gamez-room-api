@@ -114,6 +114,7 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       roomSocketApiEndpoint: webSocketApi.roomWebsocketEndpoint,
       roomWebsocketApiPostArn: webSocketApi.roomWebsocketApiPostArn,
       roomWebsocketApiDeleteArn: webSocketApi.roomWebsocketApiDeleteArn,
+      coreLayer: coreLayer.layerVersion,
     });
   }
 }

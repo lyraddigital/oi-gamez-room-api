@@ -1,5 +1,6 @@
 import { TableV2 } from "aws-cdk-lib/aws-dynamodb";
 import { IEventBus } from "aws-cdk-lib/aws-events";
+import { ILayerVersion } from "aws-cdk-lib/aws-lambda";
 
 export interface RoomEventBridgeSubscribersProps {
   eventBus: IEventBus;
@@ -13,4 +14,5 @@ export interface RoomEventBridgeSubscribersProps {
   roomSocketApiEndpoint: string;
   roomWebsocketApiPostArn: string;
   roomWebsocketApiDeleteArn: string;
+  coreLayer: ILayerVersion;
 }

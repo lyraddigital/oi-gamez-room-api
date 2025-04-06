@@ -8,6 +8,7 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
+  ExternalLibraries,
 } from "../../../constants";
 import { HostChangedSubscriberProps } from "../../../props";
 
@@ -23,6 +24,7 @@ export class HostChangedSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.hostChangedSubscriber),
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: [ExternalLibraries.oiGamezCore],
       },
       environment: {
         [EnvironmentVariables.hostChangedSubscriber.connectionTableName]:
@@ -35,6 +37,7 @@ export class HostChangedSubscriber extends Construct {
           .externalEventBusEventSourceName]:
           props.externalEventBusEventSourceName,
       },
+      layers: props.layers,
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({

@@ -8,6 +8,7 @@ import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
+  ExternalLibraries,
 } from "../../../constants";
 import { RoomRemovedSubscriberProps } from "../../../props";
 
@@ -23,6 +24,7 @@ export class RoomRemovedSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.roomRemovedSubscriber),
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: [ExternalLibraries.oiGamezCore],
       },
       environment: {
         [EnvironmentVariables.roomRemovedSubscriber.connectionTableName]:
@@ -35,6 +37,7 @@ export class RoomRemovedSubscriber extends Construct {
           .externalEventBusEventSourceName]:
           props.externalEventBusEventSourceName,
       },
+      layers: props.layers,
     });
 
     const connectionTablePolicyDocument = new PolicyStatement({
