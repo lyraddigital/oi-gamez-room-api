@@ -3,6 +3,7 @@ import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 import {
   EnvironmentVariables,
+  ExternalLibraries,
   HandlerFilePaths,
   HandlerFunctionNames,
   IndexNames,
@@ -34,6 +35,11 @@ export class CreateRoomLambda extends Construct {
         [EnvironmentVariables.createRoom.jwtExpiryInMinutes]:
           props.jwtExpiryInMinutes.toString(),
       },
+      externalModules: [
+        ExternalLibraries.oiGamezCore,
+        ExternalLibraries.oiGamezHttp,
+      ],
+      layers: props.layers || [],
     });
 
     const dbTablePolicyDocument = new PolicyStatement({

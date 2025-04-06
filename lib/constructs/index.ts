@@ -1,5 +1,6 @@
 export * from "./connection-table";
 export * from "./handlers";
+export * from "./layers";
 export * from "./room-delete-stream-lambda";
 export * from "./room-event-bus";
 export * from "./rooms-rest-api";

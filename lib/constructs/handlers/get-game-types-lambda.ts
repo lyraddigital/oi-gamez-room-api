@@ -1,8 +1,15 @@
 import { Construct } from "constructs";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import {
+  Architecture,
+  Code,
+  LayerVersion,
+  Runtime,
+} from "aws-cdk-lib/aws-lambda";
 
 import {
   EnvironmentVariables,
+  ExternalLibraries,
   HandlerFilePaths,
   HandlerFunctionNames,
 } from "../../constants";
@@ -24,6 +31,11 @@ export class GetGameTypesLambda extends Construct {
         [EnvironmentVariables.getGameTypes.corsAllowedOrigins]:
           props.allowedOrigins,
       },
+      externalModules: [
+        ExternalLibraries.oiGamezCore,
+        ExternalLibraries.oiGamezHttp,
+      ],
+      layers: props.layers || [],
     });
 
     const dbTablePolicyDocument = new PolicyStatement({

@@ -31,6 +31,7 @@ export class RoomsRestApi extends Construct {
       table: props.table,
       resource: gameTypesResource,
       allowedOrigins: props.allowedOrigins,
+      layers: [props.coreLayer, props.httpLayer],
     });
 
     new CreateRoomLambda(this, "CreateRoomLambda", {
@@ -43,6 +44,7 @@ export class RoomsRestApi extends Construct {
       jwtExpiryInMinutes: props.jwtExpiryInMinutes,
       encryptionKey: props.encryptionKey,
       encryptionIV: props.encryptionIV,
+      layers: [props.coreLayer, props.httpLayer],
     });
 
     new GetPublicRoomsLambda(this, "GetPublicRoomsLambda", {
@@ -51,12 +53,14 @@ export class RoomsRestApi extends Construct {
       allowedOrigins: props.allowedOrigins,
       visibleRoomsIndexName: props.visibleRoomsIndexName,
       numberOfPublicRoomsToRetrieve: props.numberOfPublicRoomsToRetrieve,
+      layers: [props.coreLayer, props.httpLayer],
     });
 
     new GetRoomStatusLambda(this, "GetRoomStatusLambda", {
       table: props.table,
       resource: roomResource,
       allowedOrigins: props.allowedOrigins,
+      layers: [props.coreLayer, props.httpLayer],
     });
 
     new JoinRoomLambda(this, "JoinRoomLambda", {
@@ -68,6 +72,7 @@ export class RoomsRestApi extends Construct {
       jwtExpiryInMinutes: props.jwtExpiryInMinutes,
       encryptionKey: props.encryptionKey,
       encryptionIV: props.encryptionIV,
+      layers: [props.coreLayer, props.httpLayer],
     });
 
     new LeaveRoomLambda(this, "LeaveRoomLambda", {
@@ -77,6 +82,7 @@ export class RoomsRestApi extends Construct {
       allowedOrigins: props.allowedOrigins,
       eventBus: props.eventBus,
       eventBusEventSourceName: props.eventBusSourceName,
+      layers: [props.coreLayer, props.httpLayer],
     });
   }
 }

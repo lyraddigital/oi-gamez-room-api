@@ -186,6 +186,11 @@ interface GetPublicRoomsEnvironmentVariables {
   publicRoomsToRetrieve: string;
 }
 
+interface ExternalLibraries {
+  oiGamezCore: string;
+  oiGamezHttp: string;
+}
+
 interface HandlerFilePaths {
   getGameTypes: string;
   createRoom: string;
@@ -237,6 +242,12 @@ interface HandlerFunctionNames {
   gameCompletedSubscriber: string;
   gameMessageSubscriber: string;
   getPublicRooms: string;
+}
+
+interface LayerPaths {
+  communicationLayer: string;
+  coreLayer: string;
+  httpLayer: string;
 }
 
 interface IndexNames {
@@ -403,6 +414,11 @@ export const EnvironmentVariables: EnvironmentVariables = {
   },
 };
 
+export const ExternalLibraries: ExternalLibraries = {
+  oiGamezCore: "/opt/nodejs/oigamez-core",
+  oiGamezHttp: "/opt/nodejs/oigamez-http",
+};
+
 export const HandlerFilePaths: HandlerFilePaths = {
   getGameTypes:
     "../../../lambda/handlers/rest/get-game-types-handler/src/index.ts",
@@ -471,6 +487,12 @@ export const IndexNames: IndexNames = {
   visibleRooms: "VisibleRooms-index",
   connection: "Connection-index",
   lastDisconnected: "LastDisconnected-index",
+};
+
+export const LayerPaths: LayerPaths = {
+  communicationLayer: "./lambda/packages/communication",
+  coreLayer: "./lambda/packages/core",
+  httpLayer: "./lambda/packages/http",
 };
 
 export const EventTypes: EventTypes = {

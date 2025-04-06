@@ -2,6 +2,7 @@ import { Construct } from "constructs";
 
 import {
   EnvironmentVariables,
+  ExternalLibraries,
   HandlerFilePaths,
   HandlerFunctionNames,
   IndexNames,
@@ -29,6 +30,11 @@ export class GetPublicRoomsLambda extends Construct {
         [EnvironmentVariables.getPublicRooms.publicRoomsToRetrieve]:
           props.numberOfPublicRoomsToRetrieve.toString(),
       },
+      externalModules: [
+        ExternalLibraries.oiGamezCore,
+        ExternalLibraries.oiGamezHttp,
+      ],
+      layers: props.layers || [],
     });
 
     const dbHostVisibleIndexPolicyDocument = new PolicyStatement({

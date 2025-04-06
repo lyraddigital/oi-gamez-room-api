@@ -23,7 +23,9 @@ export class RestAPIHandlerFunction extends Construct {
       environment: props.environment,
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: props.externalModules || [],
       },
+      layers: props.layers || [],
     });
 
     props.resource.addMethod(

@@ -1,5 +1,6 @@
 import { TableV2 } from "aws-cdk-lib/aws-dynamodb";
 import { IEventBus } from "aws-cdk-lib/aws-events";
+import { ILayerVersion } from "aws-cdk-lib/aws-lambda";
 
 export interface RoomsRestApiProps {
   table: TableV2;
@@ -17,4 +18,6 @@ export interface RoomsRestApiProps {
   encryptionIV: string;
   jwtSecretKey: string;
   jwtExpiryInMinutes: number;
+  coreLayer: ILayerVersion;
+  httpLayer: ILayerVersion;
 }

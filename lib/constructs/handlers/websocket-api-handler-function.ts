@@ -18,7 +18,9 @@ export class WebsocketAPIHandlerFunction extends Construct {
       environment: props.environment,
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: props.externalModules || [],
       },
+      layers: props.layers || [],
     });
   }
 }

@@ -10,8 +10,9 @@ import {
   RoomsRestApi,
   RoomsSocketApi,
   RoomTable,
+  LambdaLayerVersion,
 } from "./constructs";
-import { IndexNames } from "./constants";
+import { IndexNames, LayerPaths } from "./constants";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -30,6 +31,19 @@ export class OiGamezRoomApiStack extends cdk.Stack {
     const roomEventBus = new RoomEventBus(this, "RoomInternalEventBus");
     const roomExternalEventBus = new RoomEventBus(this, "RoomExternalEventBus");
     const roomReceiveEventBus = new RoomEventBus(this, "RoomReceiveEventBus");
+    const coreLayer = new LambdaLayerVersion(this, "CoreLambdaLayerVersion", {
+      layerPath: LayerPaths.coreLayer,
+    });
+    const communicationLayer = new LambdaLayerVersion(
+      this,
+      "CommunicationLambdaLayerVersion",
+      {
+        layerPath: LayerPaths.communicationLayer,
+      }
+    );
+    const httpLayer = new LambdaLayerVersion(this, "HttpLambdaLayerVersion", {
+      layerPath: LayerPaths.httpLayer,
+    });
 
     // Change these to a parameters later.
     const roomEventBusSourceName = "room-internal";
@@ -51,6 +65,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       eventBusEventSourceName: roomEventBusSourceName,
       roomExternalEventBus: roomExternalEventBus.eventBus,
       roomExternalEventBusSourceName: roomExternalEventBusSourceName,
+      coreLayer: coreLayer.layerVersion,
+      httpLayer: httpLayer.layerVersion,
     });
 
     new RoomsRestApi(this, "RoomRestApi", {
@@ -69,6 +85,8 @@ export class OiGamezRoomApiStack extends cdk.Stack {
       jwtExpiryInMinutes,
       encryptionKey,
       encryptionIV,
+      coreLayer: coreLayer.layerVersion,
+      httpLayer: httpLayer.layerVersion,
     });
 
     new RoomDeleteStreamLambda(this, "RoomDeleteStreamLambda", {

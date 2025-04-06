@@ -43,6 +43,7 @@ export class RoomsSocketApi extends Construct {
         eventBusEventSourceName: props.eventBusEventSourceName,
         roomExternalEventBus: props.roomExternalEventBus,
         roomExternalEventBusSourceName: props.roomExternalEventBusSourceName,
+        layers: [props.coreLayer, props.httpLayer],
       }
     );
 
@@ -52,6 +53,7 @@ export class RoomsSocketApi extends Construct {
       {
         connectionTable: props.connectionTable,
         connectionTableIndexName: props.connectionTableIndexName,
+        layers: [props.coreLayer, props.httpLayer],
       }
     );
 
