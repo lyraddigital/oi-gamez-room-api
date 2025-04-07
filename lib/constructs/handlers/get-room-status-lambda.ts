@@ -25,10 +25,6 @@ export class GetRoomStatusLambda extends Construct {
         [EnvironmentVariables.getRoomStatus.corsAllowedOrigins]:
           props.allowedOrigins,
       },
-      externalModules: [
-        ExternalLibraries.oiGamezCore,
-        ExternalLibraries.oiGamezHttp,
-      ],
       layers: props.layers || [],
     });
 

@@ -31,10 +31,6 @@ export class LeaveRoomLambda extends Construct {
         [EnvironmentVariables.leaveRoom.eventBusEventSourceName]:
           props.eventBusEventSourceName,
       },
-      externalModules: [
-        ExternalLibraries.oiGamezCore,
-        ExternalLibraries.oiGamezHttp,
-      ],
       layers: props.layers || [],
     });
 

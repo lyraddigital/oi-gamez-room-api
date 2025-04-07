@@ -32,10 +32,6 @@ export class JoinRoomLambda extends Construct {
         [EnvironmentVariables.joinRoom.jwtExpiryInMinutes]:
           props.jwtExpiryInMinutes.toString(),
       },
-      externalModules: [
-        ExternalLibraries.oiGamezCore,
-        ExternalLibraries.oiGamezHttp,
-      ],
       layers: props.layers || [],
     });
 

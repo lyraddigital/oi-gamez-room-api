@@ -3,6 +3,7 @@ import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import { join } from "path";
 
+import { ExternalLibraries } from "../../constants";
 import { APIHandlerFunctionProps } from "../../props";
 
 export class WebsocketAPIHandlerFunction extends Construct {
@@ -18,7 +19,7 @@ export class WebsocketAPIHandlerFunction extends Construct {
       environment: props.environment,
       bundling: {
         format: OutputFormat.ESM,
-        externalModules: props.externalModules || [],
+        externalModules: ExternalLibraries.getAllExternalLibraries(),
       },
       layers: props.layers || [],
     });

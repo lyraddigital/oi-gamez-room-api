@@ -1,11 +1,5 @@
 import { Construct } from "constructs";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
-import {
-  Architecture,
-  Code,
-  LayerVersion,
-  Runtime,
-} from "aws-cdk-lib/aws-lambda";
 
 import {
   EnvironmentVariables,
@@ -31,10 +25,6 @@ export class GetGameTypesLambda extends Construct {
         [EnvironmentVariables.getGameTypes.corsAllowedOrigins]:
           props.allowedOrigins,
       },
-      externalModules: [
-        ExternalLibraries.oiGamezCore,
-        ExternalLibraries.oiGamezHttp,
-      ],
       layers: props.layers || [],
     });
 

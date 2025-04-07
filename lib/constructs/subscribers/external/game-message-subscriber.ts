@@ -24,7 +24,7 @@ export class GameMessageSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.gameMessageSubscriber),
       bundling: {
         format: OutputFormat.ESM,
-        externalModules: [ExternalLibraries.oiGamezCore],
+        externalModules: ExternalLibraries.getAllExternalLibraries(),
       },
       environment: {
         [EnvironmentVariables.gameMessageSubscriber.tableName]:

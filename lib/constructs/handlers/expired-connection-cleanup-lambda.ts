@@ -6,12 +6,13 @@ import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import { join } from "path";
 
-import { ExpiredConnectionCleanupLambdaProps } from "../../props";
 import {
   HandlerFunctionNames,
   HandlerFilePaths,
   EnvironmentVariables,
+  ExternalLibraries,
 } from "../../constants";
+import { ExpiredConnectionCleanupLambdaProps } from "../../props";
 
 export class ExpiredConnectionCleanupLambda extends Construct {
   constructor(
@@ -42,6 +43,7 @@ export class ExpiredConnectionCleanupLambda extends Construct {
       },
       bundling: {
         format: OutputFormat.ESM,
+        externalModules: ExternalLibraries.getAllExternalLibraries(),
       },
     });
 

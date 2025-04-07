@@ -24,7 +24,7 @@ export class RoomRemovedSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.roomRemovedSubscriber),
       bundling: {
         format: OutputFormat.ESM,
-        externalModules: [ExternalLibraries.oiGamezCore],
+        externalModules: ExternalLibraries.getAllExternalLibraries(),
       },
       environment: {
         [EnvironmentVariables.roomRemovedSubscriber.connectionTableName]:

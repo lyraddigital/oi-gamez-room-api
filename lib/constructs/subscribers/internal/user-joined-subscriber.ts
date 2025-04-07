@@ -24,7 +24,7 @@ export class UserJoinedSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.userJoinedSubscriber),
       bundling: {
         format: OutputFormat.ESM,
-        externalModules: [ExternalLibraries.oiGamezCore],
+        externalModules: ExternalLibraries.getAllExternalLibraries(),
       },
       environment: {
         [EnvironmentVariables.userJoinedSubscriber.tableName]:

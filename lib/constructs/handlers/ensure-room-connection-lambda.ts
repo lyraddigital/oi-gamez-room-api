@@ -3,7 +3,6 @@ import { Construct } from "constructs";
 
 import {
   EnvironmentVariables,
-  ExternalLibraries,
   HandlerFilePaths,
   HandlerFunctionNames,
 } from "../../constants";
@@ -45,10 +44,6 @@ export class EnsureRoomConnectionLambda extends Construct {
             .externalEventBusEventSourceName]:
             props.roomExternalEventBusSourceName,
         },
-        externalModules: [
-          ExternalLibraries.oiGamezCore,
-          ExternalLibraries.oiGamezHttp,
-        ],
         layers: props.layers,
       }
     );

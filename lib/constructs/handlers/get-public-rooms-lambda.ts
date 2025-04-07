@@ -30,10 +30,6 @@ export class GetPublicRoomsLambda extends Construct {
         [EnvironmentVariables.getPublicRooms.publicRoomsToRetrieve]:
           props.numberOfPublicRoomsToRetrieve.toString(),
       },
-      externalModules: [
-        ExternalLibraries.oiGamezCore,
-        ExternalLibraries.oiGamezHttp,
-      ],
       layers: props.layers || [],
     });
 

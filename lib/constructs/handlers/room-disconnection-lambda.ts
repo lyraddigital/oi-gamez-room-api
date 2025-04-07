@@ -34,10 +34,6 @@ export class RoomDisconnectionLambda extends Construct {
           [EnvironmentVariables.roomDisconnection.connectionIndexName]:
             props.connectionTableIndexName,
         },
-        externalModules: [
-          ExternalLibraries.oiGamezCore,
-          ExternalLibraries.oiGamezHttp,
-        ],
         layers: props.layers,
       }
     );

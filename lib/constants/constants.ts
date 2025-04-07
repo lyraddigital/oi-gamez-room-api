@@ -193,7 +193,11 @@ interface ExternalLibraries {
   eventBridgeSdk: string;
   jsonWebToken: string;
   oiGamezCore: string;
+  oiGamezData: string;
   oiGamezHttp: string;
+  oiGamezSecurity: string;
+  oiGamezServices: string;
+  getAllExternalLibraries: () => string[];
 }
 
 interface HandlerFilePaths {
@@ -426,7 +430,22 @@ export const ExternalLibraries: ExternalLibraries = {
   eventBridgeSdk: "@aws-sdk/client-eventbridge",
   jsonWebToken: "jsonwebtoken",
   oiGamezCore: "/opt/nodejs/oigamez-core",
+  oiGamezData: "/opt/nodejs/oigamez-data",
   oiGamezHttp: "/opt/nodejs/oigamez-http",
+  oiGamezSecurity: "/opt/nodejs/oigamez-security",
+  oiGamezServices: "/opt/nodejs/oigamez-services",
+  getAllExternalLibraries: () => [
+    ExternalLibraries.apiGatewayManagementSdk,
+    ExternalLibraries.crypto,
+    ExternalLibraries.dynamoDbSdk,
+    ExternalLibraries.eventBridgeSdk,
+    ExternalLibraries.jsonWebToken,
+    ExternalLibraries.oiGamezCore,
+    ExternalLibraries.oiGamezData,
+    ExternalLibraries.oiGamezHttp,
+    ExternalLibraries.oiGamezSecurity,
+    ExternalLibraries.oiGamezServices,
+  ],
 };
 
 export const HandlerFilePaths: HandlerFilePaths = {

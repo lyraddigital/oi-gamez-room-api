@@ -24,7 +24,7 @@ export class HostExpiredSubscriber extends Construct {
       entry: join(__dirname, HandlerFilePaths.hostExpiredSubscriber),
       bundling: {
         format: OutputFormat.ESM,
-        externalModules: [ExternalLibraries.oiGamezCore],
+        externalModules: ExternalLibraries.getAllExternalLibraries(),
       },
       environment: {
         [EnvironmentVariables.hostExpiredSubscriber.tableName]:

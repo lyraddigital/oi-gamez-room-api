@@ -6,6 +6,5 @@ import { APIHandlerFunctionProps } from "./api-handler-function-props";
 export interface RestAPIHandlerFunctionProps extends APIHandlerFunctionProps {
   method: string;
   resource: IResource;
-  externalModules?: string[];
   layers?: ILayerVersion[];
 }
