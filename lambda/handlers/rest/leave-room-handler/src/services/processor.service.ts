@@ -1,4 +1,4 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { Room, RoomConnection } from "@oigamez/core";
 import {
   handleHostDisconnection,
   handleUserLeft,

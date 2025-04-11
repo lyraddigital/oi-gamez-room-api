@@ -1,5 +1,5 @@
-import { RoomStatus } from "/opt/nodejs/oigamez-core.js";
-import { getRoomByCode } from "/opt/nodejs/oigamez-data.js";
+import { RoomStatus } from "@oigamez/core";
+import { getRoomByCode } from "@oigamez/data";
 
 import { CurrentRoomStatus } from "../models/index.js";
 

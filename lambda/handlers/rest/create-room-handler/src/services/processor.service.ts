@@ -3,7 +3,7 @@ import {
   ENCRYPTION_IV,
   JWT_EXPIRY_IN_MINUTES,
   GameType,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 import {
   encryptCustomDataToString,
   generateAccessToken,

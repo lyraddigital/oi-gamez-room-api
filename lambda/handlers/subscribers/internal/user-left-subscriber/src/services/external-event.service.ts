@@ -1,4 +1,4 @@
-import { publishExternalEvents } from "/opt/nodejs/oigamez-communication.js";
+import { publishExternalEvents } from "@oigamez/communication";
 
 import { UserLeftExternalEventBridgeEvent } from "../models/index.js";
 

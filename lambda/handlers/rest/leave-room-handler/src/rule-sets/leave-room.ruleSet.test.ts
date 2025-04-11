@@ -1,4 +1,4 @@
-import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { Room, RoomConnection, RoomStatus } from "@oigamez/core";
 
 import { runLeaveRoomRuleSet } from "./leave-room.ruleSet.js";
 

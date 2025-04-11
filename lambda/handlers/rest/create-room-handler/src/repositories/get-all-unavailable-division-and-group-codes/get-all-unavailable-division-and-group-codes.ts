@@ -1,11 +1,7 @@
 import { QueryCommandInput, QueryCommand } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core.js";
-import {
-  dbClient,
-  dynamoFieldNames,
-  dynamoFieldValues,
-} from "/opt/nodejs/oigamez-data.js";
+import { DYNAMO_TABLE_NAME } from "@oigamez/core";
+import { dbClient, dynamoFieldNames, dynamoFieldValues } from "@oigamez/data";
 
 import { mapFromDynamoToUnavailableRoomCode } from "../../mappers/index.js";
 

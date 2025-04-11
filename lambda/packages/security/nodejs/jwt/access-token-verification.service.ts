@@ -1,4 +1,4 @@
-import { JWT_SECRET_KEY } from "/opt/nodejs/oigamez-core.js";
+import { JWT_SECRET_KEY } from "@oigamez/core";
 import { verify } from "jsonwebtoken";
 
 export const verifyAccessToken = <T extends object>(accessToken: string): T => {

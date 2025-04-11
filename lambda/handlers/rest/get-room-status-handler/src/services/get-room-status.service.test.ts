@@ -1,9 +1,9 @@
-import { Room, RoomStatus } from "/opt/nodejs/oigamez-core.js";
-import { getRoomByCode } from "/opt/nodejs/oigamez-data.js";
+import { Room, RoomStatus } from "@oigamez/core";
+import { getRoomByCode } from "@oigamez/data";
 
 import { getRoomStatus } from "./get-room-status.service.js";
 
-jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("@oigamez/data");
 
 describe("getRoomStatus tests", () => {
   test("room is not found, returns a not found status", async () => {

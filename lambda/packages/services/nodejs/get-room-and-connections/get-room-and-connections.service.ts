@@ -1,5 +1,5 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
-import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { Room, RoomConnection } from "@oigamez/core";
+import { getRoomByCode, getRoomConnections } from "@oigamez/data";
 
 export const getRoomAndConnections = async (
   roomCode: string,

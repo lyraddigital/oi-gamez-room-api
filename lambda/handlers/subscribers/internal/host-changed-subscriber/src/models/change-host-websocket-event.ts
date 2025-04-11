@@ -1,4 +1,4 @@
-import { WebsocketEvent } from "/opt/nodejs/oigamez-communication.js";
+import { WebsocketEvent } from "@oigamez/communication";
 
 export class HostChangeWebsocketEvent extends WebsocketEvent {
   constructor(public oldHostname: string, public newHostName: string) {

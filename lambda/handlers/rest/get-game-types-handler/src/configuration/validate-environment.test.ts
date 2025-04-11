@@ -1,9 +1,6 @@
-import {
-  verifyCorsAllowedOrigin,
-  verifyDynamoTableName,
-} from "/opt/nodejs/oigamez-core.js";
+import { verifyCorsAllowedOrigin, verifyDynamoTableName } from "@oigamez/core";
 
-jest.mock("/opt/nodejs/oigamez-core.js");
+jest.mock("@oigamez/core");
 
 import { validateEnvironment } from "./validate-environment.js";
 

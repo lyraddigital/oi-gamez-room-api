@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { Room, RoomConnection } from "@oigamez/core";
 import {
   corsBadRequestResponse,
   corsOkResponse,
@@ -16,9 +16,9 @@ import { handler } from "./index.js";
 import { LeaveRoomPayload } from "./models/index.js";
 import { processLeavingRoom, verifyRequestData } from "./services/index.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
+    ...jest.requireActual("@oigamez/core"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });

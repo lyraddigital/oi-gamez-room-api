@@ -13,9 +13,9 @@ import { handler } from "./index.js";
 import { CurrentRoomStatus } from "./models/index.js";
 import { processStatusRetrieval, verifyRequestData } from "./services/index.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
+    ...jest.requireActual("@oigamez/core"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });

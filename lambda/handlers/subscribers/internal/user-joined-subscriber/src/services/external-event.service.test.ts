@@ -1,17 +1,17 @@
-import { Room } from "/opt/nodejs/oigamez-core.js";
-import { publishExternalEvents } from "/opt/nodejs/oigamez-communication.js";
-import { getRoomByCode } from "/opt/nodejs/oigamez-data.js";
+import { Room } from "@oigamez/core";
+import { publishExternalEvents } from "@oigamez/communication";
+import { getRoomByCode } from "@oigamez/data";
 
 import { UserJoinedExternalEventBridgeEvent } from "../models/index.js";
 import { publishExternalUserJoinedEvent } from "./external-event.service.js";
 
-jest.mock("/opt/nodejs/oigamez-communication.js", () => {
+jest.mock("@oigamez/communication", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-communication.js"),
+    ...jest.requireActual("@oigamez/communication"),
     publishExternalEvents: jest.fn(),
   };
 });
-jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("@oigamez/data");
 
 describe("publishExternalUserJoinedEvent tests", () => {
   beforeEach(() => {

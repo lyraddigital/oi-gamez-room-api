@@ -1,5 +1,5 @@
-import { broadcast } from "/opt/nodejs/oigamez-communication.js";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { broadcast } from "@oigamez/communication";
+import { getRoomConnections } from "@oigamez/data";
 import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 import {
   HostChangeWebsocketEvent,

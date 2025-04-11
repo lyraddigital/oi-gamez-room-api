@@ -4,13 +4,13 @@ import {
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
 
-import { GameType } from "/opt/nodejs/oigamez-core.js";
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { GameType } from "@oigamez/core";
+import { dbClient } from "@oigamez/data";
 
 import { getGameTypeById } from "../get-game-type-by-id/index.js";
 import { getRoomHostingData } from "./get-room-hosting-data.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

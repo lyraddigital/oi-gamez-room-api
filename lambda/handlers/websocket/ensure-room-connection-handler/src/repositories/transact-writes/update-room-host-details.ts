@@ -1,16 +1,12 @@
 import { TransactWriteItem } from "@aws-sdk/client-dynamodb";
 
-import {
-  DYNAMO_TABLE_NAME,
-  Room,
-  RoomVisiblityType,
-} from "/opt/nodejs/oigamez-core.js";
+import { DYNAMO_TABLE_NAME, Room, RoomVisiblityType } from "@oigamez/core";
 import {
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
   keys,
-} from "/opt/nodejs/oigamez-data.js";
+} from "@oigamez/data";
 
 export const updateRoomHostDetails = (
   room: Room,

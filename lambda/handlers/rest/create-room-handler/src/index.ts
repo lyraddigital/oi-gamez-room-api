@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { CORS_ALLOWED_ORIGINS, GameType } from "/opt/nodejs/oigamez-core.js";
+import { CORS_ALLOWED_ORIGINS, GameType } from "@oigamez/core";
 import {
   extractHeader,
   parseBody,

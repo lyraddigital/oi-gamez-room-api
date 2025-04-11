@@ -5,7 +5,7 @@ import {
   verifyEbInternalEventSourceName,
   verifyExternalEbName,
   verifyEbExternalEventSourceName,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 
 import { verifyUpdatedConnectWindowInSeconds } from "./updated-connect-window/index.js";
 

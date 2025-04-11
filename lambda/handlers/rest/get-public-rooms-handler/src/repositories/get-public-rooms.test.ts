@@ -4,15 +4,15 @@ import {
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
 
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { dbClient } from "@oigamez/data";
 
 import { PublicRoom } from "../models/index.js";
 import { mapFromDynamoToPublicRoom } from "../mappers/index.js";
 import { getPublicRooms } from "./get-public-rooms.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
+    ...jest.requireActual("@oigamez/core"),
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });

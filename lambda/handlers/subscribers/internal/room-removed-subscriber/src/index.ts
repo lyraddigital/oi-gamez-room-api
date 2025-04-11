@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { RoomRemovedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
+import { RoomRemovedInternalEventBridgeEvent } from "@oigamez/communication";
 
 import { validateEnvironment } from "./configuration/index.js";
 import {

@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { UserJoinedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
+import { UserJoinedInternalEventBridgeEvent } from "@oigamez/communication";
 
 import { handler } from "./index.js";
 import {

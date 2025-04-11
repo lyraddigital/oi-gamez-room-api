@@ -2,7 +2,7 @@ import {
   verifyDynamoConnectionTableName,
   verifyDynamoTableName,
   verifyRoomSocketApiEndpoint,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 
 export const validateEnvironment = (): void => {
   verifyDynamoTableName();

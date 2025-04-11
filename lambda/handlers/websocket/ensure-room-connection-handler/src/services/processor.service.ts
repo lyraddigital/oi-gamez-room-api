@@ -1,9 +1,9 @@
-import { Room, RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { Room, RoomStatus } from "@oigamez/core";
 import {
   UserJoinedInternalEventBridgeEvent,
   publishExternalEvents,
   publishInternalEvents,
-} from "/opt/nodejs/oigamez-communication.js";
+} from "@oigamez/communication";
 
 import { RoomCreatedExternalEventBridgeEvent } from "../models/index.js";
 import {

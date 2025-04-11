@@ -5,12 +5,12 @@ import {
   verifyJwtSecretKey,
   verifyEncryptionKey,
   verifyEncryptionIV,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 import { verifyConnectionWindowInSeconds } from "./connect-window-in-seconds/index.js";
 import { verifyDynamoHostRoomIndexName } from "./host-room-index-name/index.js";
 import { validateEnvironment } from "./validate-environment.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js");
+jest.mock("@oigamez/core");
 jest.mock("./connect-window-in-seconds/index.js");
 jest.mock("./host-room-index-name/index.js");
 

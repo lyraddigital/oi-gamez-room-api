@@ -1,9 +1,9 @@
-import { initialize } from "/opt/nodejs/oigamez-communication.js";
+import { initialize } from "@oigamez/communication";
 
 import { initializeLambda } from "./initialize-lambda.service.js";
 
-jest.mock("/opt/nodejs/oigamez-communication.js");
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/communication");
+jest.mock("@oigamez/core", () => {
   return {
     ROOM_SOCKET_API_ENDPOINT: "SomeRoomSocketAPIEndpoint",
   };

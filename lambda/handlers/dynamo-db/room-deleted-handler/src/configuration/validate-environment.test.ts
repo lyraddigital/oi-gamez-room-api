@@ -1,6 +1,6 @@
-import { verifyDynamoTableName } from "/opt/nodejs/oigamez-core.js";
+import { verifyDynamoTableName } from "@oigamez/core";
 
-jest.mock("/opt/nodejs/oigamez-core.js");
+jest.mock("@oigamez/core");
 
 import { validateEnvironment } from "./validate-environment.js";
 

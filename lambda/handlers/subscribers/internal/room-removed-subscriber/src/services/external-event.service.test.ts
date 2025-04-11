@@ -1,11 +1,11 @@
-import { publishExternalEvents } from "/opt/nodejs/oigamez-communication.js";
+import { publishExternalEvents } from "@oigamez/communication";
 
 import { RoomRemovedExternalEventBridgeEvent } from "../models/index.js";
 import { publishExternalRoomRemovedEvent } from "./external-event.service.js";
 
-jest.mock("/opt/nodejs/oigamez-communication.js", () => {
+jest.mock("@oigamez/communication", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-communication.js"),
+    ...jest.requireActual("@oigamez/communication"),
     publishExternalEvents: jest.fn(),
   };
 });

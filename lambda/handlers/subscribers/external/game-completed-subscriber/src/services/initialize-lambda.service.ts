@@ -1,5 +1,5 @@
-import { ROOM_SOCKET_API_ENDPOINT } from "/opt/nodejs/oigamez-core.js";
-import { initialize } from "/opt/nodejs/oigamez-communication.js";
+import { ROOM_SOCKET_API_ENDPOINT } from "@oigamez/core";
+import { initialize } from "@oigamez/communication";
 
 export const initializeLambda = () => {
   initialize(ROOM_SOCKET_API_ENDPOINT);

@@ -1,4 +1,4 @@
-import { GameType } from "/opt/nodejs/oigamez-core.js";
+import { GameType } from "@oigamez/core";
 import {
   encryptCustomDataToString,
   generateAccessToken,
@@ -15,7 +15,7 @@ import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-gro
 import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service.js";
 import { processRoomCreation } from "./processor.service.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
     ENCRYPTION_KEY: "SomeRandomEncryptionKey",
     ENCRYPTION_IV: "SomeRandomEncryptionIV",

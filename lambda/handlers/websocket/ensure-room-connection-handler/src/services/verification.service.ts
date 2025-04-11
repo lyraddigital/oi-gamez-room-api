@@ -1,5 +1,5 @@
-import { Room } from "/opt/nodejs/oigamez-core.js";
-import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { Room } from "@oigamez/core";
+import { getRoomByCode, getRoomConnections } from "@oigamez/data";
 import { VerificationResultWithData } from "/opt/nodejs/oigamez-http.js";
 import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
 import { runEnsureRoomConnectionRuleSet } from "../rule-sets/index.js";

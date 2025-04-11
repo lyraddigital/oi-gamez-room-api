@@ -4,8 +4,8 @@ import {
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { Room, RoomStatus } from "/opt/nodejs/oigamez-core.js";
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { Room, RoomStatus } from "@oigamez/core";
+import { dbClient } from "@oigamez/data";
 
 import {
   createOrUpdateRoomConnection,

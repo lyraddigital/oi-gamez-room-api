@@ -1,4 +1,4 @@
-import { closeConnection } from "/opt/nodejs/oigamez-communication.js";
+import { closeConnection } from "@oigamez/communication";
 
 export const communicateRoomRemoved = async (
   hostConnectionId?: string

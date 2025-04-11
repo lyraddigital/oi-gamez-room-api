@@ -2,11 +2,11 @@ import {
   verifyDynamoConnectionTableName,
   verifyDynamoTableName,
   verifyRoomSocketApiEndpoint,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 
 import { validateEnvironment } from "./validate-environment.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js");
+jest.mock("@oigamez/core");
 
 describe("validateEnvironment for external game completed subscriptions", () => {
   test("correct verify mocks were called", () => {

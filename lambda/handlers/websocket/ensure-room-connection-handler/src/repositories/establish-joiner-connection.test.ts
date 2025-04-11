@@ -3,8 +3,8 @@ import {
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
 
-import { Room, RoomStatus } from "/opt/nodejs/oigamez-core.js";
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { Room, RoomStatus } from "@oigamez/core";
+import { dbClient } from "@oigamez/data";
 
 import { establishJoinerConnection } from "./establish-joiner-connection.js";
 import {
@@ -12,7 +12,7 @@ import {
   updateRoomUserCount,
 } from "./transact-writes/index.js";
 
-jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("@oigamez/data");
 jest.mock("./transact-writes/index.js", () => {
   return {
     createOrUpdateRoomConnection: jest.fn(),

@@ -8,9 +8,9 @@ import { handler } from "./index.js";
 import { PublicRoom } from "./models/index.js";
 import { getPublicRooms } from "./repositories/index.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
+    ...jest.requireActual("@oigamez/core"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });

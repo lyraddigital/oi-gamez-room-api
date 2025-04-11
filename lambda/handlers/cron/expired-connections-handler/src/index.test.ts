@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { Room, RoomConnection } from "@oigamez/core";
 import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
 
 import { handler } from "./index.js";

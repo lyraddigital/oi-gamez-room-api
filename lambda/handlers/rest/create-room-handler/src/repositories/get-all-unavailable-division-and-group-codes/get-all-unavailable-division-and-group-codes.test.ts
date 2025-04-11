@@ -4,12 +4,12 @@ import {
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
 
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { dbClient } from "@oigamez/data";
 
 import { mapFromDynamoToUnavailableRoomCode } from "../../mappers/index.js";
 import { getAllUnavailableDivisionAndGroupCodes } from "./get-all-unavailable-division-and-group-codes.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

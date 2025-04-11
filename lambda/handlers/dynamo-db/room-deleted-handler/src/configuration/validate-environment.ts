@@ -1,4 +1,4 @@
-import { verifyDynamoTableName } from "/opt/nodejs/oigamez-core.js";
+import { verifyDynamoTableName } from "@oigamez/core";
 
 export const validateEnvironment = (): void => {
   verifyDynamoTableName();

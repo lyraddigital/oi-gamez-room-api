@@ -1,11 +1,11 @@
 import { DynamoDBClient, UpdateItemCommand } from "@aws-sdk/client-dynamodb";
 
-import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { RoomConnection } from "@oigamez/core";
+import { dbClient } from "@oigamez/data";
 
 import { updateConnectionDisconnectionTime } from "./update-connection-disconnection-time.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
   };

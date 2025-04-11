@@ -1,4 +1,4 @@
-import { GameType } from "/opt/nodejs/oigamez-core.js";
+import { GameType } from "@oigamez/core";
 
 import { runCreateRoomRuleSet } from "./create-room.ruleSet.js";
 

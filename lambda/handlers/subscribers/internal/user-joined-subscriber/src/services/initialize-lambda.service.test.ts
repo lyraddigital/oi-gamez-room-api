@@ -1,17 +1,17 @@
-import { initializeEventPublisherForExternal } from "/opt/nodejs/oigamez-communication.js";
+import { initializeEventPublisherForExternal } from "@oigamez/communication";
 
-import { initialize } from "/opt/nodejs/oigamez-communication.js";
+import { initialize } from "@oigamez/communication";
 import { initializeLambda } from "./initialize-lambda.service.js";
 
-jest.mock("/opt/nodejs/oigamez-communication.js");
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/communication");
+jest.mock("@oigamez/core", () => {
   return {
     EB_EXTERNAL_EB_NAME: "External Event Bus",
     EB_EXTERNAL_EVENT_SOURCE_NAME: "External Event Bus Source",
     ROOM_SOCKET_API_ENDPOINT: "SomeRoomSocketAPIEndpoint",
   };
 });
-jest.mock("/opt/nodejs/oigamez-communication.js");
+jest.mock("@oigamez/communication");
 
 describe("initializeLambda tests for game completed subscription lambda", () => {
   test("Calls initialize function", () => {

@@ -1,4 +1,4 @@
-import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { RoomConnection } from "@oigamez/core";
 
 import { getConnectionIdsFromConnections } from "./get-connection-ids-from-connections.service.js";
 

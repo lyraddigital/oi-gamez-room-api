@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { Room } from "/opt/nodejs/oigamez-core.js";
+import { Room } from "@oigamez/core";
 import {
   badRequestResponse,
   extractFromQueryString,

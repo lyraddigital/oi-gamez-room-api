@@ -1,15 +1,12 @@
 import { ScanCommand } from "@aws-sdk/client-dynamodb";
 
-import {
-  CONNECTION_DYNAMO_TABLE_NAME,
-  RoomConnection,
-} from "/opt/nodejs/oigamez-core.js";
+import { CONNECTION_DYNAMO_TABLE_NAME, RoomConnection } from "@oigamez/core";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   mapFromDynamoToConnection,
-} from "/opt/nodejs/oigamez-data.js";
+} from "@oigamez/data";
 import {
   CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME,
   EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS,

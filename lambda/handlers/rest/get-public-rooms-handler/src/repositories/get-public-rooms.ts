@@ -1,14 +1,7 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
 
-import {
-  DYNAMO_TABLE_NAME,
-  RoomVisiblityType,
-} from "/opt/nodejs/oigamez-core.js";
-import {
-  dbClient,
-  dynamoFieldNames,
-  dynamoFieldValues,
-} from "/opt/nodejs/oigamez-data.js";
+import { DYNAMO_TABLE_NAME, RoomVisiblityType } from "@oigamez/core";
+import { dbClient, dynamoFieldNames, dynamoFieldValues } from "@oigamez/data";
 
 import {
   PUBLIC_ROOMS_TO_RETRIEVE,

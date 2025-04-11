@@ -3,14 +3,14 @@ import {
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
 
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { dbClient } from "@oigamez/data";
 
 import { RoomToCreate } from "../../models/index.js";
 import { createRoom } from "./create-room.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
+    ...jest.requireActual("@oigamez/core"),
     DYNAMO_TABLE_NAME: "SomeTable",
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
   };

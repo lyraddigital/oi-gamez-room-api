@@ -1,4 +1,4 @@
-import { JWT_SECRET_KEY } from "/opt/nodejs/oigamez-core.js";
+import { JWT_SECRET_KEY } from "@oigamez/core";
 import { sign } from "jsonwebtoken";
 
 export const generateAccessToken = <T extends object>(

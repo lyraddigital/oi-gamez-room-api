@@ -1,14 +1,7 @@
 import { GetItemCommand, GetItemCommandInput } from "@aws-sdk/client-dynamodb";
 
-import {
-  CONNECTION_DYNAMO_TABLE_NAME,
-  RoomConnection,
-} from "/opt/nodejs/oigamez-core.js";
-import {
-  dbClient,
-  keys,
-  mapFromDynamoToConnection,
-} from "/opt/nodejs/oigamez-data.js";
+import { CONNECTION_DYNAMO_TABLE_NAME, RoomConnection } from "@oigamez/core";
+import { dbClient, keys, mapFromDynamoToConnection } from "@oigamez/data";
 
 export const getRoomConnection = async (
   roomCode: string,

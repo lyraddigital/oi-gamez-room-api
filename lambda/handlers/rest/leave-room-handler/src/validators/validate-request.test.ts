@@ -4,7 +4,7 @@ import {
   validateUsername,
 } from "/opt/nodejs/oigamez-http.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
     CORS_ALLOWED_ORIGINS: "http://localhost,http://www.testsite.com",
   };

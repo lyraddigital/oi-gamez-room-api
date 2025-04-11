@@ -1,4 +1,4 @@
-import { GameType } from "/opt/nodejs/oigamez-core.js";
+import { GameType } from "@oigamez/core";
 import { VerificationResultWithData } from "/opt/nodejs/oigamez-http.js";
 
 import { CreateRoomPayload } from "../models/index.js";

@@ -1,4 +1,4 @@
-import { Room } from "/opt/nodejs/oigamez-core.js";
+import { Room } from "@oigamez/core";
 
 export const isUserHost = (room?: Room, username?: string): boolean => {
   if (!room?.hostUsername || !username) {

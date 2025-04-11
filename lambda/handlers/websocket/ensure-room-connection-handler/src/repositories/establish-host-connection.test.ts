@@ -3,8 +3,8 @@ import {
   TransactWriteItemsCommand,
 } from "@aws-sdk/client-dynamodb";
 
-import { Room } from "/opt/nodejs/oigamez-core.js";
-import { dbClient } from "/opt/nodejs/oigamez-data.js";
+import { Room } from "@oigamez/core";
+import { dbClient } from "@oigamez/data";
 
 import { establishHostConnection } from "./establish-host-connection.js";
 import {
@@ -12,7 +12,7 @@ import {
   updateRoomHostDetails,
 } from "./transact-writes/index.js";
 
-jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("@oigamez/data");
 
 jest.mock("../configuration", () => {
   return {

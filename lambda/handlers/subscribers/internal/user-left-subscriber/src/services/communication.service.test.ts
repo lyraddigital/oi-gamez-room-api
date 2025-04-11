@@ -1,9 +1,6 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
-import {
-  broadcast,
-  closeConnection,
-} from "/opt/nodejs/oigamez-communication.js";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { Room, RoomConnection } from "@oigamez/core";
+import { broadcast, closeConnection } from "@oigamez/communication";
+import { getRoomConnections } from "@oigamez/data";
 import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 import {
   DisableGameStartWebsocketEvent,
@@ -18,7 +15,7 @@ jest.mock("/opt/nodejs/oigamez-communication", () => {
     closeConnection: jest.fn(),
   };
 });
-jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("@oigamez/data");
 jest.mock("/opt/nodejs/oigamez-services.js");
 
 describe("communicateUserLeft tests", () => {

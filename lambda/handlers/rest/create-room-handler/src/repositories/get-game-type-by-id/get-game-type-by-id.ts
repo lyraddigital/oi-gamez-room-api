@@ -1,11 +1,7 @@
 import { GetItemCommand, GetItemCommandInput } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME, GameType } from "/opt/nodejs/oigamez-core.js";
-import {
-  dbClient,
-  keys,
-  mapFromDynamoToGameType,
-} from "/opt/nodejs/oigamez-data.js";
+import { DYNAMO_TABLE_NAME, GameType } from "@oigamez/core";
+import { dbClient, keys, mapFromDynamoToGameType } from "@oigamez/data";
 
 export const getGameTypeById = async (
   gameTypeId: number

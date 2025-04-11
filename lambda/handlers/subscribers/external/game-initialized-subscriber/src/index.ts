@@ -1,11 +1,8 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { RoomStatus } from "/opt/nodejs/oigamez-core.js";
-import { broadcast } from "/opt/nodejs/oigamez-communication.js";
-import {
-  getRoomConnections,
-  updateRoomStatus,
-} from "/opt/nodejs/oigamez-data.js";
+import { RoomStatus } from "@oigamez/core";
+import { broadcast } from "@oigamez/communication";
+import { getRoomConnections, updateRoomStatus } from "@oigamez/data";
 import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 import { validateEnvironment } from "./configuration/index.js";
 import {

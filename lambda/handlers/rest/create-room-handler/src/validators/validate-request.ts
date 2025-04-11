@@ -1,4 +1,4 @@
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core.js";
+import { CORS_ALLOWED_ORIGINS } from "@oigamez/core";
 import {
   validateOrigin,
   validateUsername,

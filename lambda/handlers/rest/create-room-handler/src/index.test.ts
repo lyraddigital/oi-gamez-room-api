@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { GameType } from "/opt/nodejs/oigamez-core.js";
+import { GameType } from "@oigamez/core";
 import {
   extractHeader,
   parseBody,
@@ -14,9 +14,9 @@ import { handler } from "./index.js";
 import { CreateRoomPayload } from "./models/index.js";
 import { processRoomCreation, verifyRequestData } from "./services/index.js";
 
-jest.mock("/opt/nodejs/oigamez-core.js", () => {
+jest.mock("@oigamez/core", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
+    ...jest.requireActual("@oigamez/core"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });

@@ -1,4 +1,4 @@
-import { WebsocketEvent } from "/opt/nodejs/oigamez-communication.js";
+import { WebsocketEvent } from "@oigamez/communication";
 
 export class GameMessageWebsocketEvent extends WebsocketEvent {
   constructor(action: string, public payload: unknown) {

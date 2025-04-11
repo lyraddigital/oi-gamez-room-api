@@ -2,9 +2,9 @@ import {
   verifyDynamoConnectionTableName,
   verifyEbName,
   verifyEbInternalEventSourceName,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 
-jest.mock("/opt/nodejs/oigamez-core.js");
+jest.mock("@oigamez/core");
 
 import { validateEnvironment } from "./validate-environment.js";
 

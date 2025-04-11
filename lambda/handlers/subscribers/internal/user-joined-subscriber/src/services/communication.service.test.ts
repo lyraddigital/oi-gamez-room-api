@@ -1,18 +1,18 @@
-import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
-import { broadcast } from "/opt/nodejs/oigamez-communication.js";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { RoomConnection } from "@oigamez/core";
+import { broadcast } from "@oigamez/communication";
+import { getRoomConnections } from "@oigamez/data";
 import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 
 import { UserJoinedWebsocketEvent } from "../models/index.js";
 import { communicateUserJoined } from "./communication.service.js";
 
-jest.mock("/opt/nodejs/oigamez-communication.js", () => {
+jest.mock("@oigamez/communication", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-communication.js"),
+    ...jest.requireActual("@oigamez/communication"),
     broadcast: jest.fn(),
   };
 });
-jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("@oigamez/data");
 jest.mock("/opt/nodejs/oigamez-services.js");
 
 describe("communicateUserJoined tests", () => {

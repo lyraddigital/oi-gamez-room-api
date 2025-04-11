@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core.js";
+import { CORS_ALLOWED_ORIGINS } from "@oigamez/core";
 import {
   corsBadRequestResponse,
   corsOkResponse,

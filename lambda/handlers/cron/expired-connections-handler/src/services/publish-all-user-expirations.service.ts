@@ -1,8 +1,8 @@
-import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { RoomConnection } from "@oigamez/core";
 import {
   publishInternalEvents,
   UserConnectionExpiredInternalEventBridgeEvent,
-} from "/opt/nodejs/oigamez-communication.js";
+} from "@oigamez/communication";
 
 export const publishAllUserExpirations = async (
   userConnections: RoomConnection[]

@@ -8,14 +8,14 @@ import {
   DYNAMO_TABLE_NAME,
   RoomStatus,
   RoomVisiblityType,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
   keys,
-} from "/opt/nodejs/oigamez-data.js";
+} from "@oigamez/data";
 
 import { RoomToCreate } from "../../models/index.js";
 

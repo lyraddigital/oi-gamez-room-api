@@ -1,0 +1,20 @@
+{
+  "name": "@oigamez/data",
+  "version": "1.0.0",
+  "description": "The library that handles storing room data",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsconfig": "^7.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.787.0"
+  }
+}

@@ -1,6 +1,6 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { HostChangeInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
+import { HostChangeInternalEventBridgeEvent } from "@oigamez/communication";
 
 import { validateEnvironment } from "./configuration/index.js";
 import {

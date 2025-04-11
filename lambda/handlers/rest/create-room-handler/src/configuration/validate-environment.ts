@@ -5,7 +5,7 @@ import {
   verifyEncryptionIV,
   verifyJwtExpiryInMinutes,
   verifyJwtSecretKey,
-} from "/opt/nodejs/oigamez-core.js";
+} from "@oigamez/core";
 import { verifyConnectionWindowInSeconds } from "./connect-window-in-seconds/index.js";
 import { verifyDynamoHostRoomIndexName } from "./host-room-index-name/index.js";
 

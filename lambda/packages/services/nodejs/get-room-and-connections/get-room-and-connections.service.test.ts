@@ -1,9 +1,9 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
-import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { Room, RoomConnection } from "@oigamez/core";
+import { getRoomByCode, getRoomConnections } from "@oigamez/data";
 
 import { getRoomAndConnections } from "./get-room-and-connections.service.js";
 
-jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("@oigamez/data");
 
 describe("getRoomAndConnections tests", () => {
   test("Correct reponse is generated with correct status code", async () => {
