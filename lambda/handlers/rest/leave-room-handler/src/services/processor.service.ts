@@ -1,9 +1,10 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
 import {
   handleHostDisconnection,
   handleUserLeft,
-} from "/opt/nodejs/oigamez-services";
-import { LeaveRoomPayload } from "../models";
+} from "/opt/nodejs/oigamez-services.js";
+
+import { LeaveRoomPayload } from "../models/index.js";
 
 export const processLeavingRoom = async (
   room: Room,

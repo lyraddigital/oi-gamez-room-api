@@ -1,2 +1,2 @@
-export * from "./get-all-expired-connections";
-export * from "./get-available-rooms-by-codes";
+export * from "./get-all-expired-connections.js";
+export * from "./get-available-rooms-by-codes.js";

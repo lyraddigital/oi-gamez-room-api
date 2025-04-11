@@ -1,1 +1,1 @@
-export * from "./release-room-code";
+export * from "./release-room-code.js";

@@ -1,8 +1,9 @@
 import { DynamoDBStreamEvent } from "aws-lambda";
 
-import { RecordType, dynamoFieldNames } from "/opt/nodejs/oigamez-data";
-import { validateEnvironment } from "./configuration";
-import { releaseRoomCode } from "./repositories";
+import { RecordType, dynamoFieldNames } from "/opt/nodejs/oigamez-data.js";
+
+import { validateEnvironment } from "./configuration/index.js";
+import { releaseRoomCode } from "./repositories/index.js";
 
 validateEnvironment();
 

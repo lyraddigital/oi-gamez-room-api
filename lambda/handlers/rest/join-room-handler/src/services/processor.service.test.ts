@@ -1,11 +1,11 @@
 import {
   encryptCustomDataToString,
   generateAccessToken,
-} from "/opt/nodejs/oigamez-security";
+} from "/opt/nodejs/oigamez-security.js";
 
-import { processRoomJoin } from "./processor.service";
+import { processRoomJoin } from "./processor.service.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     ENCRYPTION_KEY: "SomeRandomEncryptionKey",
     ENCRYPTION_IV: "SomeRandomEncryptionIV",

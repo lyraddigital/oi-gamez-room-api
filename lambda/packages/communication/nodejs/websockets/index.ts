@@ -1,3 +1,3 @@
-export * from "./client";
-export * from "./events";
-export * from "./services";
+export * from "./client/index.js";
+export * from "./events/index.js";
+export * from "./services/index.js";

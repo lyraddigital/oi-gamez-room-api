@@ -1,4 +1,4 @@
-import { CONNECTION_DYNAMO_INDEX_NAME } from "./dynamo-connection-index-name";
+import { CONNECTION_DYNAMO_INDEX_NAME } from "./dynamo-connection-index-name.js";
 
 export const verifyDynamoConnectionIndexName = (): void => {
   if (!CONNECTION_DYNAMO_INDEX_NAME) {

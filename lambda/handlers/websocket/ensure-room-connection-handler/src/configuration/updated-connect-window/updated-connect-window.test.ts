@@ -13,7 +13,7 @@ describe("UPDATED_CONNECT_WINDOW_IN_SECONDS variable", () => {
   test("Environment variable not set, returns NaN", async () => {
     // Arrange / Action
     const { UPDATED_CONNECT_WINDOW_IN_SECONDS } = await import(
-      "./updated-connect-window"
+      "./updated-connect-window.js"
     );
 
     // Assert
@@ -26,7 +26,7 @@ describe("UPDATED_CONNECT_WINDOW_IN_SECONDS variable", () => {
 
     // / Action
     const { UPDATED_CONNECT_WINDOW_IN_SECONDS } = await import(
-      "./updated-connect-window"
+      "./updated-connect-window.js"
     );
 
     // Assert

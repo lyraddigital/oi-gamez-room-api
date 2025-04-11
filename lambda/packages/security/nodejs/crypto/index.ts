@@ -1,1 +1,1 @@
-export * from "./data-to-string-encryption.service";
+export * from "./data-to-string-encryption.service.js";

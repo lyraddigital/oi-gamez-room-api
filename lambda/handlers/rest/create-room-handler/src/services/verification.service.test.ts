@@ -1,11 +1,11 @@
-import { GameType } from "/opt/nodejs/oigamez-core";
-import { ValidationResult } from "/opt/nodejs/oigamez-http";
+import { GameType } from "/opt/nodejs/oigamez-core.js";
+import { ValidationResult } from "/opt/nodejs/oigamez-http.js";
 
-import { CreateRoomPayload } from "../models";
-import { getRoomHostingData } from "../repositories";
-import { runCreateRoomRuleSet } from "../rule-sets";
-import { validateRequest } from "../validators";
-import { verifyRequestData } from "./verification.service";
+import { CreateRoomPayload } from "../models/index.js";
+import { getRoomHostingData } from "../repositories/index.js";
+import { runCreateRoomRuleSet } from "../rule-sets/index.js";
+import { validateRequest } from "../validators/index.js";
+import { verifyRequestData } from "./verification.service.js";
 
 jest.mock("../repositories");
 jest.mock("../rule-sets");

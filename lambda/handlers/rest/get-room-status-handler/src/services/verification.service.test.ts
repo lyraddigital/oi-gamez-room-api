@@ -1,6 +1,7 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
-import { validateRequest } from "../validators";
-import { verifyRequestData } from "./verification.service";
+import { VerificationResult } from "/opt/nodejs/oigamez-http.js";
+
+import { validateRequest } from "../validators/index.js";
+import { verifyRequestData } from "./verification.service.js";
 
 jest.mock("../validators");
 

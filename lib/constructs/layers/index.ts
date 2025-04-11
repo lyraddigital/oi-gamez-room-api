@@ -1,1 +1,1 @@
-export * from "./lambda-layer-version";
+export * from "./lambda-layer-version.js";

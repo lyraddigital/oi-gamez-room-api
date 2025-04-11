@@ -1,10 +1,10 @@
-import { broadcast } from "/opt/nodejs/oigamez-communication";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
+import { broadcast } from "/opt/nodejs/oigamez-communication.js";
+import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 import {
   HostChangeWebsocketEvent,
   HostTransferWebsocketEvent,
-} from "../models";
+} from "../models/index.js";
 
 export const communicateHostChanged = async (
   roomCode: string,

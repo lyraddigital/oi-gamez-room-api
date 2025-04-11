@@ -1,11 +1,11 @@
-import { Room } from "/opt/nodejs/oigamez-core";
+import { Room } from "/opt/nodejs/oigamez-core.js";
 import {
   publishInternalEvents,
   UserLeftInternalEventBridgeEvent,
-} from "/opt/nodejs/oigamez-communication";
-import { removeUserFromRoom } from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-communication.js";
+import { removeUserFromRoom } from "/opt/nodejs/oigamez-data.js";
 
-import { handleUserLeft } from "./user-left.service";
+import { handleUserLeft } from "./user-left.service.js";
 
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
@@ -13,7 +13,7 @@ jest.mock("/opt/nodejs/oigamez-communication", () => {
     publishInternalEvents: jest.fn(),
   };
 });
-jest.mock("/opt/nodejs/oigamez-data");
+jest.mock("/opt/nodejs/oigamez-data.js");
 
 describe("handleUserLeft tests", () => {
   test("Calls the correct mock methods", async () => {

@@ -6,14 +6,14 @@ describe("verifyAccessToken tests", () => {
     const jwtSecretKey = "SomeJWTSecretKey";
     const expiryInMinutes = -5;
 
-    jest.doMock("/opt/nodejs/oigamez-core", () => {
+    jest.doMock("/opt/nodejs/oigamez-core.js", () => {
       return {
         JWT_SECRET_KEY: jwtSecretKey,
       };
     });
 
     const { verifyAccessToken } = await import(
-      "./access-token-verification.service"
+      "./access-token-verification.service.js"
     );
     const payload = {
       roomCode: "ABCD",
@@ -32,14 +32,14 @@ describe("verifyAccessToken tests", () => {
     const jwtSecretKey = "SomeJWTSecretKey";
     const expiryInMinutes = 5;
 
-    jest.doMock("/opt/nodejs/oigamez-core", () => {
+    jest.doMock("/opt/nodejs/oigamez-core.js", () => {
       return {
         JWT_SECRET_KEY: jwtSecretKey,
       };
     });
 
     const { verifyAccessToken } = await import(
-      "./access-token-verification.service"
+      "./access-token-verification.service.js"
     );
     const payload = {
       roomCode: "ABCD",

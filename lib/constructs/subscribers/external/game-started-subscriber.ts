@@ -9,8 +9,8 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
   ExternalLibraries,
-} from "../../../constants";
-import { GameStartedSubscriberProps } from "../../../props";
+} from "../../../constants/index.js";
+import { GameStartedSubscriberProps } from "../../../props/index.js";
 
 export class GameStartedSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;

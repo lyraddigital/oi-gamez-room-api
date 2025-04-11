@@ -1,2 +1,2 @@
-export * from "./dynamo-connection-index-name";
-export * from "./verify-dynamo-connection-index-name";
+export * from "./dynamo-connection-index-name.js";
+export * from "./verify-dynamo-connection-index-name.js";

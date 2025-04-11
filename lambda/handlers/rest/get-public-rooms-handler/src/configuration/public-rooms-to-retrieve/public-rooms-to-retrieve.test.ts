@@ -13,7 +13,7 @@ describe("PUBLIC_ROOMS_TO_RETRIEVE variable", () => {
   test("Environment variable not set, returns NaN", async () => {
     // Arrange / Action
     const { PUBLIC_ROOMS_TO_RETRIEVE } = await import(
-      "./public-rooms-to-retrieve"
+      "./public-rooms-to-retrieve.js"
     );
 
     // Assert
@@ -26,7 +26,7 @@ describe("PUBLIC_ROOMS_TO_RETRIEVE variable", () => {
 
     // / Action
     const { PUBLIC_ROOMS_TO_RETRIEVE } = await import(
-      "./public-rooms-to-retrieve"
+      "./public-rooms-to-retrieve.js"
     );
 
     // Assert

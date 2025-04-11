@@ -3,7 +3,7 @@ import {
   PostToConnectionCommand,
 } from "@aws-sdk/client-apigatewaymanagementapi";
 
-import { getClient } from "../client";
+import { getClient } from "../client/index.js";
 
 const sendCommunicationEvent = async <T>(
   connectionId: string,

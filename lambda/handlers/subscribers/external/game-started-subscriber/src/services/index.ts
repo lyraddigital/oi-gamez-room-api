@@ -1,1 +1,1 @@
-export * from "./initialize-lambda.service";
+export * from "./initialize-lambda.service.js";

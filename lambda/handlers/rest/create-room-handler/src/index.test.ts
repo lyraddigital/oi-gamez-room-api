@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { GameType } from "/opt/nodejs/oigamez-core";
+import { GameType } from "/opt/nodejs/oigamez-core.js";
 import {
   extractHeader,
   parseBody,
@@ -8,22 +8,23 @@ import {
   corsOkResponseWithData,
   fatalErrorResponse,
   VerificationResultWithData,
-} from "/opt/nodejs/oigamez-http";
-import { handler } from ".";
-import { CreateRoomPayload } from "./models";
-import { processRoomCreation, verifyRequestData } from "./services";
+} from "/opt/nodejs/oigamez-http.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+import { handler } from "./index.js";
+import { CreateRoomPayload } from "./models/index.js";
+import { processRoomCreation, verifyRequestData } from "./services/index.js";
+
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });
-jest.mock("/opt/nodejs/oigamez-http");
-jest.mock("./configuration");
-jest.mock("./services", () => {
+jest.mock("/opt/nodejs/oigamez-http.js");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js", () => {
   return {
-    ...jest.requireActual("./services"),
+    ...jest.requireActual("./services/index.js"),
     processRoomCreation: jest.fn(),
     verifyRequestData: jest.fn(),
   };

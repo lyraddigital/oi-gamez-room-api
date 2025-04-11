@@ -1,21 +1,21 @@
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
-import { broadcast } from "/opt/nodejs/oigamez-communication";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
+import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { broadcast } from "/opt/nodejs/oigamez-communication.js";
+import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 import {
   HostChangeWebsocketEvent,
   HostTransferWebsocketEvent,
-} from "../models";
-import { communicateHostChanged } from "./communication.service";
+} from "../models/index.js";
+import { communicateHostChanged } from "./communication.service.js";
 
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication.js"),
     broadcast: jest.fn(),
   };
 });
-jest.mock("/opt/nodejs/oigamez-data");
-jest.mock("/opt/nodejs/oigamez-services");
+jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("/opt/nodejs/oigamez-services.js");
 
 describe("communicateHostChanged tests", () => {
   test("broadcasts the correct events to the correct connections", async () => {

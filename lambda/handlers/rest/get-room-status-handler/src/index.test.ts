@@ -7,20 +7,21 @@ import {
   extractHeader,
   extractFromPath,
   ValidationResult,
-} from "/opt/nodejs/oigamez-http";
-import { handler } from ".";
-import { CurrentRoomStatus } from "./models";
-import { processStatusRetrieval, verifyRequestData } from "./services";
+} from "/opt/nodejs/oigamez-http.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+import { handler } from "./index.js";
+import { CurrentRoomStatus } from "./models/index.js";
+import { processStatusRetrieval, verifyRequestData } from "./services/index.js";
+
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });
-jest.mock("/opt/nodejs/oigamez-http");
-jest.mock("./configuration");
-jest.mock("./services");
+jest.mock("/opt/nodejs/oigamez-http.js");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("create room handler tests", () => {
   beforeEach(() => {

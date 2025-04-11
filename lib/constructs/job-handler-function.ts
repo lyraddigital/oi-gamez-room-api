@@ -3,8 +3,8 @@ import { NodejsFunction, OutputFormat } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 import { join } from "path";
 
-import { ExternalLibraries } from "../constants";
-import { JobHandlerFunctionProps } from "../props";
+import { ExternalLibraries } from "../constants/index.js";
+import { JobHandlerFunctionProps } from "../props/index.js";
 
 export class JobHandlerFunction extends Construct {
   public lambdaFunction: NodejsFunction;

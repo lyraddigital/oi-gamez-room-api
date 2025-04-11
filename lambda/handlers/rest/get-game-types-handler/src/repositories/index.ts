@@ -1,1 +1,1 @@
-export * from "./get-all-game-types";
+export * from "./get-all-game-types.js";

@@ -4,14 +4,14 @@ import {
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { Room } from "/opt/nodejs/oigamez-core";
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { Room } from "/opt/nodejs/oigamez-core.js";
+import { dbClient } from "/opt/nodejs/oigamez-data.js";
 
-import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "../configuration";
+import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "../configuration/index.js";
 import {
   createOrUpdateRoomConnection,
   updateRoomHostDetails,
-} from "./transact-writes";
+} from "./transact-writes/index.js";
 
 export const establishHostConnection = async (
   room: Room,

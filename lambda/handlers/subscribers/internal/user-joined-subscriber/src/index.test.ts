@@ -1,15 +1,15 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { UserJoinedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+import { UserJoinedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
 
-import { handler } from ".";
+import { handler } from "./index.js";
 import {
   communicateUserJoined,
   publishExternalUserJoinedEvent,
-} from "./services";
+} from "./services/index.js";
 
-jest.mock("./configuration");
-jest.mock("./services");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("user joined subscriber handler tests", () => {
   test("makes the correct calls", async () => {

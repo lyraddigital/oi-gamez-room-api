@@ -6,14 +6,14 @@ import {
 import {
   CONNECTION_DYNAMO_TABLE_NAME,
   RoomConnection,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
   keys,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
 export const updateConnectionDisconnectionTime = async (
   connection: RoomConnection,

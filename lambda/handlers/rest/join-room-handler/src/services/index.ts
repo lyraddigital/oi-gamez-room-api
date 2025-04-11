@@ -1,2 +1,2 @@
-export * from "./processor.service";
-export * from "./verification.service";
+export * from "./processor.service.js";
+export * from "./verification.service.js";

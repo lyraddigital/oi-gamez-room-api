@@ -3,13 +3,12 @@ import { Construct } from "constructs";
 
 import {
   EnvironmentVariables,
-  ExternalLibraries,
   HandlerFilePaths,
   HandlerFunctionNames,
-} from "../../constants";
-import { RoomDisconnectionLambdaProps } from "../../props";
+} from "../../constants/index.js";
+import { RoomDisconnectionLambdaProps } from "../../props/index.js";
 
-import { WebsocketAPIHandlerFunction } from "./websocket-api-handler-function";
+import { WebsocketAPIHandlerFunction } from "./websocket-api-handler-function.js";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 export class RoomDisconnectionLambda extends Construct {

@@ -1,4 +1,4 @@
-import { UserJoinedExternalEventBridgeEvent } from "./user-joined-external-event-bridge-event";
+import { UserJoinedExternalEventBridgeEvent } from "./user-joined-external-event-bridge-event.js";
 
 describe("UserJoinedExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {

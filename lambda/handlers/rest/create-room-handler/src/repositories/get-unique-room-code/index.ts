@@ -1,1 +1,1 @@
-export * from "./get-unique-room-code";
+export * from "./get-unique-room-code.js";

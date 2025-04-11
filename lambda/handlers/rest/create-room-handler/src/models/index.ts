@@ -1,3 +1,3 @@
-export * from "./create-room-payload";
-export * from "./process-room-creation-response";
-export * from "./room-to-create";
+export * from "./create-room-payload.js";
+export * from "./process-room-creation-response.js";
+export * from "./room-to-create.js";

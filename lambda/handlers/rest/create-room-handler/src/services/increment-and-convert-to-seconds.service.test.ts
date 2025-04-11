@@ -1,4 +1,4 @@
-import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service";
+import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service.js";
 
 describe("incrementAndReturnInSeconds tests", () => {
   test("Milliseconds fit perfectly into seconds, returns correct seconds after addition", () => {

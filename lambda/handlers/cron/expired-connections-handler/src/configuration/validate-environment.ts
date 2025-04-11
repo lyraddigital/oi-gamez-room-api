@@ -3,9 +3,9 @@ import {
   verifyDynamoTableName,
   verifyEbName,
   verifyEbInternalEventSourceName,
-} from "/opt/nodejs/oigamez-core";
-import { verifyDynamoLastDisconnectedIndexName } from "./dynamo-last-disconnected-index-name";
-import { verifyExpiredDisconnectionWindowInSeconds } from "./expired-disconnection-window-in-seconds";
+} from "/opt/nodejs/oigamez-core.js";
+import { verifyDynamoLastDisconnectedIndexName } from "./dynamo-last-disconnected-index-name/index.js";
+import { verifyExpiredDisconnectionWindowInSeconds } from "./expired-disconnection-window-in-seconds/index.js";
 
 export const validateEnvironment = (): void => {
   verifyDynamoTableName();

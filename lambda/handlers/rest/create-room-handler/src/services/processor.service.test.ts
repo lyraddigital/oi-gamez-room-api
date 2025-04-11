@@ -1,28 +1,29 @@
-import { GameType } from "/opt/nodejs/oigamez-core";
+import { GameType } from "/opt/nodejs/oigamez-core.js";
 import {
   encryptCustomDataToString,
   generateAccessToken,
-} from "/opt/nodejs/oigamez-security";
-import { getNow } from "/opt/nodejs/oigamez-services";
-import { CreateRoomPayload } from "../models";
+} from "/opt/nodejs/oigamez-security.js";
+import { getNow } from "/opt/nodejs/oigamez-services.js";
+
+import { CreateRoomPayload } from "../models/index.js";
 import {
   createRoom,
   getAllUnavailableDivisionAndGroupCodes,
   getUniqueRoomCode,
-} from "../repositories";
-import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service";
-import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service";
-import { processRoomCreation } from "./processor.service";
+} from "../repositories/index.js";
+import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service.js";
+import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service.js";
+import { processRoomCreation } from "./processor.service.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     ENCRYPTION_KEY: "SomeRandomEncryptionKey",
     ENCRYPTION_IV: "SomeRandomEncryptionIV",
     JWT_EXPIRY_IN_MINUTES: 5,
   };
 });
-jest.mock("/opt/nodejs/oigamez-security");
-jest.mock("/opt/nodejs/oigamez-services");
+jest.mock("/opt/nodejs/oigamez-security.js");
+jest.mock("/opt/nodejs/oigamez-services.js");
 jest.mock("../configuration", () => {
   return {
     CONNECT_WINDOW_IN_SECONDS: 30,

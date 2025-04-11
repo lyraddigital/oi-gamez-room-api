@@ -1,4 +1,4 @@
-import { validateGameTypeId } from "./game-type-id.validator";
+import { validateGameTypeId } from "./game-type-id.validator.js";
 
 describe("validateGameTypeId tests", () => {
   test("game type id not set, returns unsuccessful", () => {

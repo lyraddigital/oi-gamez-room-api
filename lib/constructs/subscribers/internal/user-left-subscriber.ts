@@ -9,8 +9,8 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
   ExternalLibraries,
-} from "../../../constants";
-import { UserLeftSubscriberProps } from "../../../props";
+} from "../../../constants/index.js";
+import { UserLeftSubscriberProps } from "../../../props/index.js";
 
 export class UserLeftSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;

@@ -1,6 +1,6 @@
-import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core.js";
 
-import { runLeaveRoomRuleSet } from "./leave-room.ruleSet";
+import { runLeaveRoomRuleSet } from "./leave-room.ruleSet.js";
 
 describe("runLeaveRoomRuleSet tests", () => {
   test("room is not set, returns correct error", () => {

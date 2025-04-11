@@ -1,12 +1,12 @@
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
+import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
 import {
   getConnectionById,
   updateConnectionDisconnectionTime,
-} from "../repositories";
-import { processDisconnection } from "./processor.service";
+} from "../repositories/index.js";
+import { processDisconnection } from "./processor.service.js";
 
-jest.mock("/opt/nodejs/oigamez-services");
+jest.mock("/opt/nodejs/oigamez-services.js");
 jest.mock("../repositories");
 
 describe("processDisconnection for ensure room connection tests", () => {

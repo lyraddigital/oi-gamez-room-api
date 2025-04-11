@@ -1,4 +1,4 @@
-import { GameCompletedWebsocketEvent } from "./game-completed-websocket-event";
+import { GameCompletedWebsocketEvent } from "./game-completed-websocket-event.js";
 
 describe("GameCompletedWebsocketEvent tests", () => {
   test("correct properties is set", () => {

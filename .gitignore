@@ -10,3 +10,6 @@ dist
 
 # Test Coverage
 coverage
+
+# Lambda Libraries
+nodejs

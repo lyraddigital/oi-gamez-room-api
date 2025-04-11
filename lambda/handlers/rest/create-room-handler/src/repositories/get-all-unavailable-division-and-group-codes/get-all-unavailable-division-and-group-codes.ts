@@ -1,13 +1,13 @@
 import { QueryCommandInput, QueryCommand } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
-import { mapFromDynamoToUnavailableRoomCode } from "../../mappers";
+import { mapFromDynamoToUnavailableRoomCode } from "../../mappers/index.js";
 
 export const getAllUnavailableDivisionAndGroupCodes = async (): Promise<
   string[]

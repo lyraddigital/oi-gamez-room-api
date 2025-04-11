@@ -1,1 +1,1 @@
-export * from "./create-room.ruleSet";
+export * from "./create-room.ruleSet.js";

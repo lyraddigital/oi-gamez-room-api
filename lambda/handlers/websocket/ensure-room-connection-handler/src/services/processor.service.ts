@@ -1,16 +1,16 @@
-import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
+import { Room, RoomStatus } from "/opt/nodejs/oigamez-core.js";
 import {
   UserJoinedInternalEventBridgeEvent,
   publishExternalEvents,
   publishInternalEvents,
-} from "/opt/nodejs/oigamez-communication";
+} from "/opt/nodejs/oigamez-communication.js";
 
-import { RoomCreatedExternalEventBridgeEvent } from "../models";
+import { RoomCreatedExternalEventBridgeEvent } from "../models/index.js";
 import {
   establishHostConnection,
   establishJoinerConnection,
   getRoomConnection,
-} from "../repositories";
+} from "../repositories/index.js";
 
 export const processRoomConnection = async (
   room: Room,

@@ -1,1 +1,1 @@
-export * from "./current-room-status";
+export * from "./current-room-status.js";

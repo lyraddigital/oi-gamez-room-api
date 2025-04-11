@@ -2,11 +2,11 @@ import { WebSocketApi, WebSocketStage } from "aws-cdk-lib/aws-apigatewayv2";
 import { WebSocketLambdaIntegration } from "aws-cdk-lib/aws-apigatewayv2-integrations";
 import { Construct } from "constructs";
 
-import { RoomSocketApiProps } from "../props";
+import { RoomSocketApiProps } from "../props/index.js";
 import {
   EnsureRoomConnectionLambda,
   RoomDisconnectionLambda,
-} from "./handlers";
+} from "./handlers/index.js";
 
 export class RoomsSocketApi extends Construct {
   public webSocketApi: WebSocketApi;

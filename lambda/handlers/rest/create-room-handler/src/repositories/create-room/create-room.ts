@@ -8,16 +8,16 @@ import {
   DYNAMO_TABLE_NAME,
   RoomStatus,
   RoomVisiblityType,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   expressions,
   keys,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
-import { RoomToCreate } from "../../models";
+import { RoomToCreate } from "../../models/index.js";
 
 const createNewRoomEntry = (roomToCreate: RoomToCreate): TransactWriteItem => ({
   Put: {

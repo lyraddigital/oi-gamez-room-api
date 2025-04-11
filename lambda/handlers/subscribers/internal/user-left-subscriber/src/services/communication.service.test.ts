@@ -1,12 +1,15 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { broadcast, closeConnection } from "/opt/nodejs/oigamez-communication";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import {
+  broadcast,
+  closeConnection,
+} from "/opt/nodejs/oigamez-communication.js";
+import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 import {
   DisableGameStartWebsocketEvent,
   UserLeftWebsocketEvent,
-} from "../models";
-import { communicateUserLeft } from "./communication.service";
+} from "../models/index.js";
+import { communicateUserLeft } from "./communication.service.js";
 
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
@@ -15,8 +18,8 @@ jest.mock("/opt/nodejs/oigamez-communication", () => {
     closeConnection: jest.fn(),
   };
 });
-jest.mock("/opt/nodejs/oigamez-data");
-jest.mock("/opt/nodejs/oigamez-services");
+jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("/opt/nodejs/oigamez-services.js");
 
 describe("communicateUserLeft tests", () => {
   beforeEach(() => {

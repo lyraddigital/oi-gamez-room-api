@@ -6,14 +6,14 @@ describe("generateAccessToken tests", () => {
     const jwtSecretKey = "SomeJWTSecretKey";
     const expiryInMinutes = 5;
 
-    jest.doMock("/opt/nodejs/oigamez-core", () => {
+    jest.doMock("/opt/nodejs/oigamez-core.js", () => {
       return {
         JWT_SECRET_KEY: jwtSecretKey,
       };
     });
 
     const { generateAccessToken } = await import(
-      "./access-token-generation.service"
+      "./access-token-generation.service.js"
     );
     const payload = {
       roomCode: "ABCD",

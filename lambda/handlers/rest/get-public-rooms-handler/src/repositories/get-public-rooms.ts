@@ -1,18 +1,21 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME, RoomVisiblityType } from "/opt/nodejs/oigamez-core";
+import {
+  DYNAMO_TABLE_NAME,
+  RoomVisiblityType,
+} from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
 import {
   PUBLIC_ROOMS_TO_RETRIEVE,
   VISIBLE_ROOM_INDEX_NAME,
-} from "../configuration";
-import { PublicRoom } from "../models";
-import { mapFromDynamoToPublicRoom } from "../mappers";
+} from "../configuration/index.js";
+import { PublicRoom } from "../models/index.js";
+import { mapFromDynamoToPublicRoom } from "../mappers/index.js";
 
 export const getPublicRooms = async (): Promise<PublicRoom[]> => {
   const queryCommandInput: QueryCommandInput = {

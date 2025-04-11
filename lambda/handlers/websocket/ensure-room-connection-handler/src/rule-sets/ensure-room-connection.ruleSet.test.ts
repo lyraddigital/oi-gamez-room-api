@@ -1,5 +1,5 @@
-import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { runEnsureRoomConnectionRuleSet } from "./ensure-room-connection.ruleSet";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { runEnsureRoomConnectionRuleSet } from "./ensure-room-connection.ruleSet.js";
 
 describe("runEnsureRoomConnectionRuleSet tests", () => {
   test("room not set, returns unsuccessful", () => {

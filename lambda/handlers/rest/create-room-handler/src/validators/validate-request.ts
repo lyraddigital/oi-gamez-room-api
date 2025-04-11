@@ -1,14 +1,14 @@
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core.js";
 import {
   validateOrigin,
   validateUsername,
   ValidationResult,
-} from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-http.js";
 
-import { CreateRoomPayload } from "../models";
-import { validateGameTypeId } from "./game-type-id.validator";
-import { validateRoomTitle } from "./room-title.validator";
-import { validateRoomVisibility } from "./room-visibility.validator";
+import { CreateRoomPayload } from "../models/index.js";
+import { validateGameTypeId } from "./game-type-id.validator.js";
+import { validateRoomTitle } from "./room-title.validator.js";
+import { validateRoomVisibility } from "./room-visibility.validator.js";
 
 export const validateRequest = (
   origin?: string,

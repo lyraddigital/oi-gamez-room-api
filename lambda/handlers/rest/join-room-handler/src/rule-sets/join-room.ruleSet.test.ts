@@ -1,7 +1,7 @@
-import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { runJoinRoomRuleSet } from "./join-room.ruleSet";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { runJoinRoomRuleSet } from "./join-room.ruleSet.js";
 
-jest.mock("/opt/nodejs/oigamez-core");
+jest.mock("/opt/nodejs/oigamez-core.js");
 
 describe("runJoinRoomRuleSet tests", () => {
   test("room is not set, returns correct error", () => {

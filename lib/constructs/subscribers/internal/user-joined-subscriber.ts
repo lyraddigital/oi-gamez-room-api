@@ -9,8 +9,8 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
   ExternalLibraries,
-} from "../../../constants";
-import { UserJoinedSubscriberProps } from "../../../props";
+} from "../../../constants/index.js";
+import { UserJoinedSubscriberProps } from "../../../props/index.js";
 
 export class UserJoinedSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;

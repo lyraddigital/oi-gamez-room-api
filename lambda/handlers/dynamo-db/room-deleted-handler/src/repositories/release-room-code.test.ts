@@ -1,9 +1,10 @@
 import { TransactWriteItemsCommand } from "@aws-sdk/client-dynamodb";
 
-import { dbClient } from "/opt/nodejs/oigamez-data";
-import { releaseRoomCode } from "./release-room-code";
+import { dbClient } from "/opt/nodejs/oigamez-data.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+import { releaseRoomCode } from "./release-room-code.js";
+
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

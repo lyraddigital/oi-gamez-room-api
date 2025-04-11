@@ -1,5 +1,5 @@
-import { validateOrigin, validateRoomCode } from "/opt/nodejs/oigamez-http";
-import { validateRequest } from "./validate-request";
+import { validateOrigin, validateRoomCode } from "/opt/nodejs/oigamez-http.js";
+import { validateRequest } from "./validate-request.js";
 
 jest.mock("/opt/nodejs/oigamez-http", () => {
   return {

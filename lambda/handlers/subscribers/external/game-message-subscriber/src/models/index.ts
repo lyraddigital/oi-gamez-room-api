@@ -1,2 +1,2 @@
-export * from "./game-message-websocket-event";
-export * from "./game-message-event-received-event";
+export * from "./game-message-websocket-event.js";
+export * from "./game-message-event-received-event.js";

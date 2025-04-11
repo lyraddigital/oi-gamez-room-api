@@ -1,10 +1,10 @@
-import { Room } from "/opt/nodejs/oigamez-core";
-import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { VerificationResultWithData } from "/opt/nodejs/oigamez-http";
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
-import { runEnsureRoomConnectionRuleSet } from "../rule-sets";
-import { validateRequest } from "../validators";
-import { isUserHost } from "./is-user-host.service";
+import { Room } from "/opt/nodejs/oigamez-core.js";
+import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { VerificationResultWithData } from "/opt/nodejs/oigamez-http.js";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
+import { runEnsureRoomConnectionRuleSet } from "../rule-sets/index.js";
+import { validateRequest } from "../validators/index.js";
+import { isUserHost } from "./is-user-host.service.js";
 
 export const verifyRequestData = async (
   username: string | undefined,

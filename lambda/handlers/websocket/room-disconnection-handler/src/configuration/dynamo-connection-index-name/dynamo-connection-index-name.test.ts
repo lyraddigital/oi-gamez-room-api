@@ -13,7 +13,7 @@ describe("CONNECTION_DYNAMO_INDEX_NAME variable", () => {
   test("Environment variable not set, returns empty string", async () => {
     // Arrange / Action
     const { CONNECTION_DYNAMO_INDEX_NAME } = await import(
-      "./dynamo-connection-index-name"
+      "./dynamo-connection-index-name.js"
     );
 
     // Assert
@@ -26,7 +26,7 @@ describe("CONNECTION_DYNAMO_INDEX_NAME variable", () => {
 
     // / Action
     const { CONNECTION_DYNAMO_INDEX_NAME } = await import(
-      "./dynamo-connection-index-name"
+      "./dynamo-connection-index-name.js"
     );
 
     // Assert

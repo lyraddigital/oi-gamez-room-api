@@ -1,9 +1,10 @@
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
-import { CurrentRoomStatus } from "../models";
-import { processStatusRetrieval } from "./processor.service";
-import { getRoomStatus } from "./get-room-status.service";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
 
-jest.mock("/opt/nodejs/oigamez-services");
+import { CurrentRoomStatus } from "../models/index.js";
+import { processStatusRetrieval } from "./processor.service.js";
+import { getRoomStatus } from "./get-room-status.service.js";
+
+jest.mock("/opt/nodejs/oigamez-services.js");
 jest.mock("./get-room-status.service");
 
 describe("get room status processor tests", () => {

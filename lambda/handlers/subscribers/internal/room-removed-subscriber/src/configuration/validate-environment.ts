@@ -3,7 +3,7 @@ import {
   verifyEbExternalEventSourceName,
   verifyExternalEbName,
   verifyRoomSocketApiEndpoint,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 
 export const validateEnvironment = (): void => {
   verifyDynamoConnectionTableName();

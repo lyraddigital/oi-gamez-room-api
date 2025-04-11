@@ -1,17 +1,17 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { ValidationResult } from "/opt/nodejs/oigamez-http";
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
-import { runEnsureRoomConnectionRuleSet } from "../rule-sets";
-import { validateRequest } from "../validators";
-import { isUserHost } from "./is-user-host.service";
-import { verifyRequestData } from "./verification.service";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { ValidationResult } from "/opt/nodejs/oigamez-http.js";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
+import { runEnsureRoomConnectionRuleSet } from "../rule-sets/index.js";
+import { validateRequest } from "../validators/index.js";
+import { isUserHost } from "./is-user-host.service.js";
+import { verifyRequestData } from "./verification.service.js";
 
-jest.mock("/opt/nodejs/oigamez-data");
-jest.mock("/opt/nodejs/oigamez-services");
-jest.mock("../rule-sets");
-jest.mock("../validators");
-jest.mock("./is-user-host.service");
+jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("/opt/nodejs/oigamez-services.js");
+jest.mock("../rule-sets/index.js");
+jest.mock("../validators/index.js");
+jest.mock("./is-user-host.service.js");
 
 describe("verifyRequestData for ensure room connection tests", () => {
   test("validation is unsuccessful, returns unsuccessful", async () => {

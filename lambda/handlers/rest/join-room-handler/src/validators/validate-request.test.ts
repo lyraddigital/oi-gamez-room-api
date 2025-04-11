@@ -2,11 +2,12 @@ import {
   validateOrigin,
   validateRoomCode,
   validateUsername,
-} from "/opt/nodejs/oigamez-http";
-import { JoinRoomPayload } from "../models";
-import { validateRequest } from "./validate-request";
+} from "/opt/nodejs/oigamez-http.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+import { JoinRoomPayload } from "../models/index.js";
+import { validateRequest } from "./validate-request.js";
+
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     CORS_ALLOWED_ORIGINS: "http://localhost,http://www.testsite.com",
   };

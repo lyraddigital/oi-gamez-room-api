@@ -1,3 +1,4 @@
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
 import { Construct } from "constructs";
 
@@ -5,11 +6,10 @@ import {
   EnvironmentVariables,
   HandlerFilePaths,
   HandlerFunctionNames,
-} from "../../constants";
-import { EnsureRoomConnectionLambdaProps } from "../../props";
+} from "../../constants/index.js";
+import { EnsureRoomConnectionLambdaProps } from "../../props/index.js";
 
-import { WebsocketAPIHandlerFunction } from "./websocket-api-handler-function";
-import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import { WebsocketAPIHandlerFunction } from "./websocket-api-handler-function.js";
 
 export class EnsureRoomConnectionLambda extends Construct {
   public lambdaFunction: NodejsFunction;

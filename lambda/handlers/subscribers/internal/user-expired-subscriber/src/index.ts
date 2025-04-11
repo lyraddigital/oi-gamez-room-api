@@ -1,11 +1,11 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { UserConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
-import { getRoomByCode } from "/opt/nodejs/oigamez-data";
-import { handleUserLeft } from "/opt/nodejs/oigamez-services";
+import { UserConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
+import { getRoomByCode } from "/opt/nodejs/oigamez-data.js";
+import { handleUserLeft } from "/opt/nodejs/oigamez-services.js";
 
-import { validateEnvironment } from "./configuration";
-import { initializeLambda } from "./services";
+import { validateEnvironment } from "./configuration/index.js";
+import { initializeLambda } from "./services/index.js";
 
 validateEnvironment();
 initializeLambda();

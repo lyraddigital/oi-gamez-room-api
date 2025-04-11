@@ -1,4 +1,4 @@
-import { UserLeftWebsocketEvent } from "./user-left-websocket-event";
+import { UserLeftWebsocketEvent } from "./user-left-websocket-event.js";
 
 describe("UserLeftWebsocketEvent tests", () => {
   test("correct properties is set", () => {

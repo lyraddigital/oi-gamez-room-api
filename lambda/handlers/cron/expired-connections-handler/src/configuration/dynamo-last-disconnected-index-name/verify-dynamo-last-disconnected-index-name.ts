@@ -1,4 +1,4 @@
-import { CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME } from "./dynamo-last-disconnected-index-name";
+import { CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME } from "./dynamo-last-disconnected-index-name.js";
 
 export const verifyDynamoLastDisconnectedIndexName = (): void => {
   if (!CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME) {

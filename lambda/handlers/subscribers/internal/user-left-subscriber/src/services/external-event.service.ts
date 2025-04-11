@@ -1,6 +1,6 @@
-import { publishExternalEvents } from "/opt/nodejs/oigamez-communication";
+import { publishExternalEvents } from "/opt/nodejs/oigamez-communication.js";
 
-import { UserLeftExternalEventBridgeEvent } from "../models";
+import { UserLeftExternalEventBridgeEvent } from "../models/index.js";
 
 export const publishExternalUserLeftEvent = async (
   roomCode: string,

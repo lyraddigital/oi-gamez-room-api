@@ -1,11 +1,12 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
+import { VerificationResult } from "/opt/nodejs/oigamez-http.js";
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,
-} from "/opt/nodejs/oigamez-services";
-import { JoinRoomPayload } from "../models";
-import { runJoinRoomRuleSet } from "../rule-sets";
-import { validateRequest } from "../validators";
+} from "/opt/nodejs/oigamez-services.js";
+
+import { JoinRoomPayload } from "../models/index.js";
+import { runJoinRoomRuleSet } from "../rule-sets/index.js";
+import { validateRequest } from "../validators/index.js";
 
 export const verifyRequestData = async (
   origin: string | undefined,

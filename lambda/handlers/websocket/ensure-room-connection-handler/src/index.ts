@@ -5,13 +5,13 @@ import {
   extractFromQueryString,
   fatalErrorResponse,
   okResponse,
-} from "/opt/nodejs/oigamez-http";
-import { validateEnvironment } from "./configuration";
+} from "/opt/nodejs/oigamez-http.js";
+import { validateEnvironment } from "./configuration/index.js";
 import {
   verifyRequestData,
   processRoomConnection,
   initializeLambda,
-} from "./services";
+} from "./services/index.js";
 
 validateEnvironment();
 initializeLambda();

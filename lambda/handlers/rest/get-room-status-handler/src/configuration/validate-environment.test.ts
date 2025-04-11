@@ -1,10 +1,11 @@
 import {
   verifyCorsAllowedOrigin,
   verifyDynamoTableName,
-} from "/opt/nodejs/oigamez-core";
-import { validateEnvironment } from "./validate-environment";
+} from "/opt/nodejs/oigamez-core.js";
 
-jest.mock("/opt/nodejs/oigamez-core");
+import { validateEnvironment } from "./validate-environment.js";
+
+jest.mock("/opt/nodejs/oigamez-core.js");
 
 describe("validateEnvironment for get room status handler tests", () => {
   test("correct verify mocks were called", () => {

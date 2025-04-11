@@ -1,12 +1,13 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
 import {
   handleHostDisconnection,
   handleUserLeft,
-} from "/opt/nodejs/oigamez-services";
-import { LeaveRoomPayload } from "../models";
-import { processLeavingRoom } from "./processor.service";
+} from "/opt/nodejs/oigamez-services.js";
 
-jest.mock("/opt/nodejs/oigamez-services");
+import { LeaveRoomPayload } from "../models/index.js";
+import { processLeavingRoom } from "./processor.service.js";
+
+jest.mock("/opt/nodejs/oigamez-services.js");
 
 describe("leave room processor tests", () => {
   beforeEach(() => {

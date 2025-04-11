@@ -1,5 +1,6 @@
-import { GameType } from "/opt/nodejs/oigamez-core";
-import { runCreateRoomRuleSet } from "./create-room.ruleSet";
+import { GameType } from "/opt/nodejs/oigamez-core.js";
+
+import { runCreateRoomRuleSet } from "./create-room.ruleSet.js";
 
 describe("runCreateRoomRuleSet tests", () => {
   test("game type not set and is already hosting, returns correct validation result data", () => {

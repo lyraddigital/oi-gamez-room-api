@@ -1,6 +1,6 @@
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
+import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
 
-import { getConnectionIdsFromConnections } from "./get-connection-ids-from-connections.service";
+import { getConnectionIdsFromConnections } from "./get-connection-ids-from-connections.service.js";
 
 describe("getConnectionIdsFromConnections tests", () => {
   test("Correct reponse is generated with correct status code", () => {

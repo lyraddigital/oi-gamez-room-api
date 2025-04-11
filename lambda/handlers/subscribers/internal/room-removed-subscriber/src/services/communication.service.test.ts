@@ -1,8 +1,8 @@
-import { closeConnection } from "/opt/nodejs/oigamez-communication";
+import { closeConnection } from "/opt/nodejs/oigamez-communication.js";
 
-import { communicateRoomRemoved } from "./communication.service";
+import { communicateRoomRemoved } from "./communication.service.js";
 
-jest.mock("/opt/nodejs/oigamez-communication");
+jest.mock("/opt/nodejs/oigamez-communication.js");
 
 describe("communicateRoomRemoved tests", () => {
   beforeEach(() => {

@@ -1,1 +1,1 @@
-export * from "./milliseconds-to-seconds.service";
+export * from "./milliseconds-to-seconds.service.js";

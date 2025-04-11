@@ -1,7 +1,7 @@
 import {
   initializeEventPublisherForExternal,
   initializeEventPublisherForInternal,
-} from "/opt/nodejs/oigamez-communication";
+} from "/opt/nodejs/oigamez-communication.js";
 
 import {
   EB_EXTERNAL_EB_NAME,
@@ -9,8 +9,8 @@ import {
   EB_INTERNAL_EB_NAME,
   EB_INTERNAL_EVENT_SOURCE_NAME,
   ROOM_SOCKET_API_ENDPOINT,
-} from "/opt/nodejs/oigamez-core";
-import { initialize } from "/opt/nodejs/oigamez-communication";
+} from "/opt/nodejs/oigamez-core.js";
+import { initialize } from "/opt/nodejs/oigamez-communication.js";
 
 export const initializeLambda = () => {
   initialize(ROOM_SOCKET_API_ENDPOINT);

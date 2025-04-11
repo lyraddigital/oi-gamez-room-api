@@ -1,1 +1,1 @@
-export * from "./leave-room.ruleSet";
+export * from "./leave-room.ruleSet.js";

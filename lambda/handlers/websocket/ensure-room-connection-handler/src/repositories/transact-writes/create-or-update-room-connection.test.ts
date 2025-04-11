@@ -1,7 +1,7 @@
-import { Room } from "/opt/nodejs/oigamez-core";
-import { createOrUpdateRoomConnection } from "./create-or-update-room-connection";
+import { Room } from "/opt/nodejs/oigamez-core.js";
+import { createOrUpdateRoomConnection } from "./create-or-update-room-connection.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "ConnectionTable",
   };

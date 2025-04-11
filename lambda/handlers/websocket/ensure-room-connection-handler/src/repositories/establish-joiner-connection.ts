@@ -4,13 +4,13 @@ import {
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { Room, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { Room, RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { dbClient } from "/opt/nodejs/oigamez-data.js";
 
 import {
   createOrUpdateRoomConnection,
   updateRoomUserCount,
-} from "./transact-writes";
+} from "./transact-writes/index.js";
 
 export const establishJoinerConnection = async (
   room: Room,

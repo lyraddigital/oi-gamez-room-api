@@ -1,1 +1,1 @@
-export * from "./access-token-generation.service";
+export * from "./access-token-generation.service.js";

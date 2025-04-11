@@ -1,9 +1,9 @@
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
 
 import {
   getConnectionById,
   updateConnectionDisconnectionTime,
-} from "../repositories";
+} from "../repositories/index.js";
 
 export const processDisconnection = async (
   connectionId: string,

@@ -1,9 +1,9 @@
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core.js";
 import {
   validateOrigin,
   validateRoomCode,
   ValidationResult,
-} from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-http.js";
 
 export const validateRequest = (
   origin?: string,

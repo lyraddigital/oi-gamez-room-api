@@ -1,9 +1,10 @@
-import { GameType } from "/opt/nodejs/oigamez-core";
-import { VerificationResultWithData } from "/opt/nodejs/oigamez-http";
-import { CreateRoomPayload } from "../models";
-import { getRoomHostingData } from "../repositories";
-import { runCreateRoomRuleSet } from "../rule-sets";
-import { validateRequest } from "../validators";
+import { GameType } from "/opt/nodejs/oigamez-core.js";
+import { VerificationResultWithData } from "/opt/nodejs/oigamez-http.js";
+
+import { CreateRoomPayload } from "../models/index.js";
+import { getRoomHostingData } from "../repositories/index.js";
+import { runCreateRoomRuleSet } from "../rule-sets/index.js";
+import { validateRequest } from "../validators/index.js";
 
 export const verifyRequestData = async (
   origin: string | undefined,

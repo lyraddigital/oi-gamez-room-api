@@ -1,4 +1,4 @@
-import { ValidationResult } from "/opt/nodejs/oigamez-http";
+import { ValidationResult } from "/opt/nodejs/oigamez-http.js";
 
 export const validateRoomTitle = (roomTitle?: string): ValidationResult => {
   if (!roomTitle) {

@@ -3,15 +3,15 @@ import {
   verifyDynamoTableName,
   verifyEbName,
   verifyEbInternalEventSourceName,
-} from "/opt/nodejs/oigamez-core";
-import { verifyDynamoLastDisconnectedIndexName } from "./dynamo-last-disconnected-index-name";
-import { verifyExpiredDisconnectionWindowInSeconds } from "./expired-disconnection-window-in-seconds";
+} from "/opt/nodejs/oigamez-core.js";
+import { verifyDynamoLastDisconnectedIndexName } from "./dynamo-last-disconnected-index-name/index.js";
+import { verifyExpiredDisconnectionWindowInSeconds } from "./expired-disconnection-window-in-seconds/index.js";
 
-jest.mock("/opt/nodejs/oigamez-core");
-jest.mock("./dynamo-last-disconnected-index-name");
-jest.mock("./expired-disconnection-window-in-seconds");
+jest.mock("/opt/nodejs/oigamez-core.js");
+jest.mock("./dynamo-last-disconnected-index-name.js");
+jest.mock("./expired-disconnection-window-in-seconds.js");
 
-import { validateEnvironment } from "./validate-environment";
+import { validateEnvironment } from "./validate-environment.js";
 
 describe("validateEnvironment for the expired connections cron job", () => {
   test("correct verify mocks were called", () => {

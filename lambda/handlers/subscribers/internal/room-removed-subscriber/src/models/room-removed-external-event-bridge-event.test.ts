@@ -1,4 +1,4 @@
-import { RoomRemovedExternalEventBridgeEvent } from "./room-removed-external-event-bridge-event";
+import { RoomRemovedExternalEventBridgeEvent } from "./room-removed-external-event-bridge-event.js";
 
 describe("RoomRemovedExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {

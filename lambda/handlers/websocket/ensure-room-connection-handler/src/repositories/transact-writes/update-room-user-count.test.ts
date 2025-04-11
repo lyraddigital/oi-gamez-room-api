@@ -1,9 +1,9 @@
-import { Room } from "/opt/nodejs/oigamez-core";
-import { updateRoomUserCount } from "./update-room-user-count";
+import { Room } from "/opt/nodejs/oigamez-core.js";
+import { updateRoomUserCount } from "./update-room-user-count.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
     DYNAMO_TABLE_NAME: "RoomTable",
   };
 });

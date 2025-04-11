@@ -1,1 +1,1 @@
-export * from "./processor.service";
+export * from "./processor.service.js";

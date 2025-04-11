@@ -1,8 +1,8 @@
 import { App, Stack } from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
-
-import { ConnectionTable } from "./connection-table";
 import { BillingMode } from "@aws-sdk/client-dynamodb";
+
+import { ConnectionTable } from "./connection-table.js";
 
 describe("Connection table construct tests", () => {
   test("creates the correct resources needed to set up the connection table", () => {

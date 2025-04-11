@@ -2,8 +2,8 @@ import { aws_events_targets } from "aws-cdk-lib";
 import { Rule } from "aws-cdk-lib/aws-events";
 import { Construct } from "constructs";
 
-import { EventTypes } from "../../constants";
-import { RoomEventBridgeSubscribersProps } from "../../props";
+import { EventTypes } from "../../constants/index.js";
+import { RoomEventBridgeSubscribersProps } from "../../props/index.js";
 
 import {
   HostChangedSubscriber,
@@ -12,13 +12,13 @@ import {
   RoomRemovedSubscriber,
   UserJoinedSubscriber,
   UserLeftSubscriber,
-} from "./internal";
+} from "./internal/index.js";
 import {
   GameCompletedSubscriber,
   GameInitializedSubscriber,
   GameMessageSubscriber,
   GameStartedSubscriber,
-} from "./external";
+} from "./external/index.js";
 
 export class RoomEventBridgeSubscribers extends Construct {
   constructor(

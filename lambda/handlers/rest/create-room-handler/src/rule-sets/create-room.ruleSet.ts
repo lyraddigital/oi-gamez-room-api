@@ -1,5 +1,5 @@
-import { GameType } from "/opt/nodejs/oigamez-core";
-import { RuleSetResult } from "/opt/nodejs/oigamez-http";
+import { GameType } from "/opt/nodejs/oigamez-core.js";
+import { RuleSetResult } from "/opt/nodejs/oigamez-http.js";
 
 export const runCreateRoomRuleSet = (
   gameType: GameType | undefined,

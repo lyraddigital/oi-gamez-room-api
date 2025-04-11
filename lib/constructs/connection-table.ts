@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { AttributeType, TableV2 } from "aws-cdk-lib/aws-dynamodb";
 
-import { ConnectionTableProps } from "../props";
+import { ConnectionTableProps } from "../props/index.js";
 
 export class ConnectionTable extends Construct {
   public table: TableV2;

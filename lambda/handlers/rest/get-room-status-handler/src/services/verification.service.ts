@@ -1,5 +1,6 @@
-import { VerificationResult } from "/opt/nodejs/oigamez-http";
-import { validateRequest } from "../validators";
+import { VerificationResult } from "/opt/nodejs/oigamez-http.js";
+
+import { validateRequest } from "../validators/index.js";
 
 export const verifyRequestData = (
   origin: string | undefined,

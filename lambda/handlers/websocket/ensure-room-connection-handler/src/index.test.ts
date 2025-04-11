@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { Room } from "/opt/nodejs/oigamez-core";
+import { Room } from "/opt/nodejs/oigamez-core.js";
 import {
   badRequestResponse,
   extractFromQueryString,
@@ -8,13 +8,13 @@ import {
   okResponse,
   VerificationResult,
   VerificationResultWithData,
-} from "/opt/nodejs/oigamez-http";
-import { handler } from ".";
-import { processRoomConnection, verifyRequestData } from "./services";
+} from "/opt/nodejs/oigamez-http.js";
+import { handler } from "./index.js";
+import { processRoomConnection, verifyRequestData } from "./services/index.js";
 
-jest.mock("/opt/nodejs/oigamez-http");
-jest.mock("./configuration");
-jest.mock("./services");
+jest.mock("/opt/nodejs/oigamez-http.js");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("ensure room connection handler tests", () => {
   let consoleLogSpy: jest.SpyInstance;

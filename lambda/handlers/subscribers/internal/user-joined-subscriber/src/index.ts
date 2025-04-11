@@ -1,13 +1,13 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { UserJoinedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+import { UserJoinedInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
 
-import { validateEnvironment } from "./configuration";
+import { validateEnvironment } from "./configuration/index.js";
 import {
   communicateUserJoined,
   initializeLambda,
   publishExternalUserJoinedEvent,
-} from "./services";
+} from "./services/index.js";
 
 validateEnvironment();
 initializeLambda();

@@ -3,21 +3,24 @@ import {
   ENCRYPTION_IV,
   JWT_EXPIRY_IN_MINUTES,
   GameType,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 import {
   encryptCustomDataToString,
   generateAccessToken,
-} from "/opt/nodejs/oigamez-security";
-import { getNow } from "/opt/nodejs/oigamez-services";
-import { CONNECT_WINDOW_IN_SECONDS } from "../configuration";
-import { CreateRoomPayload, ProcessRoomCreationResponse } from "../models";
+} from "/opt/nodejs/oigamez-security.js";
+import { getNow } from "/opt/nodejs/oigamez-services.js";
+import { CONNECT_WINDOW_IN_SECONDS } from "../configuration/index.js";
+import {
+  CreateRoomPayload,
+  ProcessRoomCreationResponse,
+} from "../models/index.js";
 import {
   createRoom,
   getAllUnavailableDivisionAndGroupCodes,
   getUniqueRoomCode,
-} from "../repositories";
-import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service";
-import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service";
+} from "../repositories/index.js";
+import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service.js";
+import { incrementAndReturnInSeconds } from "./increment-and-convert-to-seconds.service.js";
 
 export const processRoomCreation = async (
   payload: CreateRoomPayload,

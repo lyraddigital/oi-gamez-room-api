@@ -1,9 +1,9 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
 
-import { getAvailableRoomsByCodes } from "../repositories";
-import { getAllHostedRoomsFromConnections } from "./get-all-rooms-from-connections.service";
+import { getAvailableRoomsByCodes } from "../repositories/index.js";
+import { getAllHostedRoomsFromConnections } from "./get-all-rooms-from-connections.service.js";
 
-jest.mock("../repositories");
+jest.mock("../repositories/index.js");
 
 describe("getAllHostedRoomsFromConnections", () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { HostChangeWebsocketEvent } from "./change-host-websocket-event";
+import { HostChangeWebsocketEvent } from "./change-host-websocket-event.js";
 
 describe("HostChangeCommunicationEvent tests", () => {
   test("correct properties is set", () => {

@@ -2,25 +2,25 @@ import {
   UserJoinedInternalEventBridgeEvent,
   publishExternalEvents,
   publishInternalEvents,
-} from "/opt/nodejs/oigamez-communication";
+} from "/opt/nodejs/oigamez-communication.js";
 
-import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { RoomCreatedExternalEventBridgeEvent } from "../models";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { RoomCreatedExternalEventBridgeEvent } from "../models/index.js";
 import {
   establishHostConnection,
   establishJoinerConnection,
   getRoomConnection,
-} from "../repositories";
-import { processRoomConnection } from "./processor.service";
+} from "../repositories/index.js";
+import { processRoomConnection } from "./processor.service.js";
 
 jest.mock("/opt/nodejs/oigamez-communication", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication.js"),
     publishExternalEvents: jest.fn(),
     publishInternalEvents: jest.fn(),
   };
 });
-jest.mock("../repositories");
+jest.mock("../repositories/index.js");
 
 describe("processRoomConnection for ensure room connection tests", () => {
   beforeEach(() => {

@@ -2,13 +2,13 @@ import {
   ENCRYPTION_KEY,
   ENCRYPTION_IV,
   JWT_EXPIRY_IN_MINUTES,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 import {
   encryptCustomDataToString,
   generateAccessToken,
-} from "/opt/nodejs/oigamez-security";
+} from "/opt/nodejs/oigamez-security.js";
 
-import { ProcessRoomJoinResponse } from "../models";
+import { ProcessRoomJoinResponse } from "../models/index.js";
 
 export const processRoomJoin = (
   roomCode: string,

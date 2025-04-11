@@ -3,15 +3,15 @@ import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
 import {
   CONNECTION_DYNAMO_TABLE_NAME,
   RoomConnection,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   mapFromDynamoToConnection,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
-import { CONNECTION_DYNAMO_INDEX_NAME } from "../configuration";
+import { CONNECTION_DYNAMO_INDEX_NAME } from "../configuration/index.js";
 
 export const getConnectionById = async (
   connectionId: string

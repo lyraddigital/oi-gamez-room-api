@@ -1,15 +1,15 @@
 import { StartingPosition } from "aws-cdk-lib/aws-lambda";
 import { DynamoEventSource } from "aws-cdk-lib/aws-lambda-event-sources";
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 
 import {
   EnvironmentVariables,
   HandlerFilePaths,
   HandlerFunctionNames,
-} from "../constants";
-import { RoomDeleteStreamLambdaProps } from "../props";
-import { JobHandlerFunction } from "./job-handler-function";
-import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
+} from "../constants/index.js";
+import { RoomDeleteStreamLambdaProps } from "../props/index.js";
+import { JobHandlerFunction } from "./job-handler-function.js";
 
 export class RoomDeleteStreamLambda extends Construct {
   constructor(

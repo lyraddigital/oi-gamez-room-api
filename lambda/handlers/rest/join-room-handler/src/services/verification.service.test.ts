@@ -1,17 +1,18 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { ValidationResult } from "/opt/nodejs/oigamez-http";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { ValidationResult } from "/opt/nodejs/oigamez-http.js";
 import {
   convertFromMillisecondsToSeconds,
   getRoomAndConnections,
-} from "/opt/nodejs/oigamez-services";
-import { JoinRoomPayload } from "../models";
-import { runJoinRoomRuleSet } from "../rule-sets";
-import { validateRequest } from "../validators";
-import { verifyRequestData } from "./verification.service";
+} from "/opt/nodejs/oigamez-services.js";
 
-jest.mock("/opt/nodejs/oigamez-services");
-jest.mock("../rule-sets");
-jest.mock("../validators");
+import { JoinRoomPayload } from "../models/index.js";
+import { runJoinRoomRuleSet } from "../rule-sets/index.js";
+import { validateRequest } from "../validators/index.js";
+import { verifyRequestData } from "./verification.service.js";
+
+jest.mock("/opt/nodejs/oigamez-services.js");
+jest.mock("../rule-sets/index.js");
+jest.mock("../validators/index.js");
 
 describe("verifyRequest data for join room tests", () => {
   test("validation does not pass, returns unsuccessful", async () => {

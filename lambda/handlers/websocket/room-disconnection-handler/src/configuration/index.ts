@@ -1,2 +1,2 @@
-export * from "./dynamo-connection-index-name";
-export * from "./validate-environment";
+export * from "./dynamo-connection-index-name/index.js";
+export * from "./validate-environment.js";

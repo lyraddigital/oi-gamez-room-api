@@ -1,1 +1,1 @@
-export * from "./public-room.mapper";
+export * from "./public-room.mapper.js";

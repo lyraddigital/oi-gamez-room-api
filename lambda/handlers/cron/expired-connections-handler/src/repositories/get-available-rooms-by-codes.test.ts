@@ -5,18 +5,18 @@ import {
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
 
-import { dbClient, mapFromDynamoToRoom } from "/opt/nodejs/oigamez-data";
+import { dbClient, mapFromDynamoToRoom } from "/opt/nodejs/oigamez-data.js";
 
-import { getAvailableRoomsByCodes } from "./get-available-rooms-by-codes";
+import { getAvailableRoomsByCodes } from "./get-available-rooms-by-codes.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };
 });
-jest.mock("/opt/nodejs/oigamez-data", () => {
+jest.mock("/opt/nodejs/oigamez-data.js", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-data"),
+    ...jest.requireActual("/opt/nodejs/oigamez-data.js"),
     mapFromDynamoToRoom: jest.fn(),
   };
 });

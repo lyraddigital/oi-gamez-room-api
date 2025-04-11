@@ -1,4 +1,4 @@
-import { EventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+import { EventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
 
 export class HostChangeExternalEventBridgeEvent extends EventBridgeEvent {
   constructor(

@@ -6,7 +6,7 @@ describe("verifyDynamoConnectionTableName tests", () => {
   test("CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME variable not set, throws an error", async () => {
     // Arrange
     const { verifyDynamoLastDisconnectedIndexName } = await import(
-      "./verify-dynamo-last-disconnected-index-name"
+      "./verify-dynamo-last-disconnected-index-name.js"
     );
 
     // / Action / Assert
@@ -17,7 +17,7 @@ describe("verifyDynamoConnectionTableName tests", () => {
 
   test("CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME variable is set, does not throw an error", async () => {
     // Arrange
-    jest.doMock("./dynamo-last-disconnected-index-name", () => {
+    jest.doMock("./dynamo-last-disconnected-index-name.js", () => {
       return {
         CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME:
           "LastDisconnectionIndex",
@@ -25,7 +25,7 @@ describe("verifyDynamoConnectionTableName tests", () => {
     });
 
     const { verifyDynamoLastDisconnectedIndexName } = await import(
-      "./verify-dynamo-last-disconnected-index-name"
+      "./verify-dynamo-last-disconnected-index-name.js"
     );
 
     // / Action / Assert

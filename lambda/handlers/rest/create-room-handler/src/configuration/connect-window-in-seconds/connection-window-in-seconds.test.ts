@@ -13,7 +13,7 @@ describe("CONNECT_WINDOW_IN_SECONDS variable tests", () => {
   test("Environment variable not set, returns NaN", async () => {
     // Arrange / Action
     const { CONNECT_WINDOW_IN_SECONDS } = await import(
-      "./connection-window-in-seconds"
+      "./connection-window-in-seconds.js"
     );
 
     // Assert
@@ -26,7 +26,7 @@ describe("CONNECT_WINDOW_IN_SECONDS variable tests", () => {
 
     // / Action
     const { CONNECT_WINDOW_IN_SECONDS } = await import(
-      "./connection-window-in-seconds"
+      "./connection-window-in-seconds.js"
     );
 
     // Assert

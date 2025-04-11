@@ -4,9 +4,9 @@ import {
   dynamoFieldNames,
   getDynamoInt,
   getDynamoString,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
-import { PublicRoom } from "../models";
+import { PublicRoom } from "../models/index.js";
 
 export const mapFromDynamoToPublicRoom = (
   dynamoRecord: Record<string, AttributeValue>

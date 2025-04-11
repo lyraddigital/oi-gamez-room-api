@@ -1,15 +1,19 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { RoomStatus } from "/opt/nodejs/oigamez-core";
-import { broadcast } from "/opt/nodejs/oigamez-communication";
-import { getRoomConnections, updateRoomStatus } from "/opt/nodejs/oigamez-data";
-import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
-import { validateEnvironment } from "./configuration";
+import { RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { broadcast } from "/opt/nodejs/oigamez-communication.js";
+import {
+  getRoomConnections,
+  updateRoomStatus,
+} from "/opt/nodejs/oigamez-data.js";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
+
+import { validateEnvironment } from "./configuration/index.js";
 import {
   GameCompletedWebsocketEvent,
   GameCompletedEventReceivedEvent,
-} from "./models";
-import { initializeLambda } from "./services";
+} from "./models/index.js";
+import { initializeLambda } from "./services/index.js";
 
 validateEnvironment();
 initializeLambda();

@@ -1,14 +1,14 @@
 import { QueryCommand, QueryCommandInput } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME, GameType } from "/opt/nodejs/oigamez-core";
+import { DYNAMO_TABLE_NAME, GameType } from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
-import { HOST_ROOM_INDEX_NAME } from "../../configuration";
-import { getGameTypeById } from "../get-game-type-by-id";
+import { HOST_ROOM_INDEX_NAME } from "../../configuration/index.js";
+import { getGameTypeById } from "../get-game-type-by-id/index.js";
 
 export const getRoomHostingData = async (
   gameTypeId: number,

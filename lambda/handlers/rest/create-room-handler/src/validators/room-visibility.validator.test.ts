@@ -1,4 +1,4 @@
-import { validateRoomTitle } from "./room-title.validator";
+import { validateRoomTitle } from "./room-title.validator.js";
 
 describe("validateRoomTitle tests", () => {
   test("room title is not set, returns correct validation result data", () => {

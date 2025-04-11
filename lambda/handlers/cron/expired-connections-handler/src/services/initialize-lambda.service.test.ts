@@ -1,8 +1,8 @@
-import { initializeEventPublisherForInternal } from "/opt/nodejs/oigamez-communication";
+import { initializeEventPublisherForInternal } from "/opt/nodejs/oigamez-communication.js";
 
-import { initializeLambda } from "./initialize-lambda.service";
+import { initializeLambda } from "./initialize-lambda.service.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     EB_INTERNAL_EB_NAME: "Internal Event Bus",
     EB_INTERNAL_EVENT_SOURCE_NAME: "Internal Event Bus Source",

@@ -1,4 +1,4 @@
-import { HostChangeExternalEventBridgeEvent } from "./host-change-external-event-bridge-event";
+import { HostChangeExternalEventBridgeEvent } from "./host-change-external-event-bridge-event.js";
 
 describe("HostChangeExternalEventBridgeEvent tests", () => {
   test("all props are set correctly", () => {

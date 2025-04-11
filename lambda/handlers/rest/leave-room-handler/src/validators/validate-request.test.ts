@@ -2,9 +2,9 @@ import {
   validateOrigin,
   validateRoomCode,
   validateUsername,
-} from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-http.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     CORS_ALLOWED_ORIGINS: "http://localhost,http://www.testsite.com",
   };
@@ -17,8 +17,8 @@ jest.mock("/opt/nodejs/oigamez-http", () => {
   };
 });
 
-import { LeaveRoomPayload } from "../models";
-import { validateRequest } from "./validate-request";
+import { LeaveRoomPayload } from "../models/index.js";
+import { validateRequest } from "./validate-request.js";
 
 describe("validateRequest for leave room tests", () => {
   const corsAllowedOrigins = "http://localhost,http://www.testsite.com";

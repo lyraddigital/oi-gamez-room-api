@@ -1,4 +1,4 @@
-import { getClient, initialize } from "./client";
+import { getClient, initialize } from "./client.js";
 
 describe("communication client tests", () => {
   test("returns undefined when calling getClient if initialize is not previously called", () => {

@@ -1,12 +1,12 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
 import {
   HostChangeInternalEventBridgeEvent,
   RoomRemovedInternalEventBridgeEvent,
   publishInternalEvents,
-} from "/opt/nodejs/oigamez-communication";
-import { removeRoomAndHost, updateRoomHost } from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-communication.js";
+import { removeRoomAndHost, updateRoomHost } from "/opt/nodejs/oigamez-data.js";
 
-import { handleUserLeft } from "../handle-user-left";
+import { handleUserLeft } from "../handle-user-left/index.js";
 
 const changeHost = async (
   room: Room,

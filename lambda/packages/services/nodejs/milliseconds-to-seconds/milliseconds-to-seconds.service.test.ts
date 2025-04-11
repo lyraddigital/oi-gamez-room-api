@@ -1,4 +1,4 @@
-import { convertFromMillisecondsToSeconds } from "./milliseconds-to-seconds.service";
+import { convertFromMillisecondsToSeconds } from "./milliseconds-to-seconds.service.js";
 
 describe("convertFromMillisecondsToSeconds tests", () => {
   test("Milliseconds fit perfectly into seconds, returns correct seconds", () => {

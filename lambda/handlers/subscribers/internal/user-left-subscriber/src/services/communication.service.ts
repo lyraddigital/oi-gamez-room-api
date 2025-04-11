@@ -1,11 +1,14 @@
-import { Room } from "/opt/nodejs/oigamez-core";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { broadcast, closeConnection } from "/opt/nodejs/oigamez-communication";
-import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
+import { Room } from "/opt/nodejs/oigamez-core.js";
+import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import {
+  broadcast,
+  closeConnection,
+} from "/opt/nodejs/oigamez-communication.js";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
 import {
   DisableGameStartWebsocketEvent,
   UserLeftWebsocketEvent,
-} from "../models";
+} from "../models/index.js";
 
 export const communicateUserLeft = async (
   roomCode: string,

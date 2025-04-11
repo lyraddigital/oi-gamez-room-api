@@ -13,7 +13,7 @@ describe("VISIBLE_ROOM_INDEX_NAME variable", () => {
   test("Environment variable not set, returns empty string", async () => {
     // Arrange / Action
     const { VISIBLE_ROOM_INDEX_NAME } = await import(
-      "./visible-room-index-name"
+      "./visible-room-index-name.js"
     );
 
     // Assert
@@ -26,7 +26,7 @@ describe("VISIBLE_ROOM_INDEX_NAME variable", () => {
 
     // / Action
     const { VISIBLE_ROOM_INDEX_NAME } = await import(
-      "./visible-room-index-name"
+      "./visible-room-index-name.js"
     );
 
     // Assert

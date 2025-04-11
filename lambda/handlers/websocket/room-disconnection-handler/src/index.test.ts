@@ -1,12 +1,13 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { okResponse } from "/opt/nodejs/oigamez-http";
-import { handler } from ".";
-import { processDisconnection } from "./services";
+import { okResponse } from "/opt/nodejs/oigamez-http.js";
 
-jest.mock("/opt/nodejs/oigamez-http");
-jest.mock("./configuration");
-jest.mock("./services");
+import { handler } from "./index.js";
+import { processDisconnection } from "./services/index.js";
+
+jest.mock("/opt/nodejs/oigamez-http.js");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("room disconnection handler tests", () => {
   let consoleLogSpy: jest.SpyInstance;

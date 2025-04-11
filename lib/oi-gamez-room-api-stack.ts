@@ -11,8 +11,8 @@ import {
   RoomsSocketApi,
   RoomTable,
   LambdaLayerVersion,
-} from "./constructs";
-import { IndexNames, LayerPaths } from "./constants";
+} from "./constructs/index.js";
+import { IndexNames, LayerPaths } from "./constants/index.js";
 
 export class OiGamezRoomApiStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {

@@ -1,4 +1,4 @@
-import { GameMessageEventReceivedEvent } from "./game-message-event-received-event";
+import { GameMessageEventReceivedEvent } from "./game-message-event-received-event.js";
 
 describe("GameMessageEventReceivedEvent tests", () => {
   test("all props are set correctly", () => {

@@ -1,1 +1,1 @@
-export * from "./get-game-type-by-id";
+export * from "./get-game-type-by-id.js";

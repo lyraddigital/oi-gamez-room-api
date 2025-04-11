@@ -3,14 +3,14 @@ import { APIGatewayProxyResult } from "aws-lambda";
 import {
   corsOkResponseWithData,
   fatalErrorResponse,
-} from "/opt/nodejs/oigamez-http";
-import { handler } from ".";
-import { PublicRoom } from "./models";
-import { getPublicRooms } from "./repositories";
+} from "/opt/nodejs/oigamez-http.js";
+import { handler } from "./index.js";
+import { PublicRoom } from "./models/index.js";
+import { getPublicRooms } from "./repositories/index.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-core"),
+    ...jest.requireActual("/opt/nodejs/oigamez-core.js"),
     CORS_ALLOWED_ORIGINS: "http://localhost:3000",
   };
 });

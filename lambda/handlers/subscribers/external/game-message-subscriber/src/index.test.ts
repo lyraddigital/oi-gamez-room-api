@@ -1,25 +1,25 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core";
-import { broadcast } from "/opt/nodejs/oigamez-communication";
-import { getRoomConnections, getRoomByCode } from "/opt/nodejs/oigamez-data";
-import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
-import { handler } from ".";
+import { Room, RoomConnection, RoomStatus } from "/opt/nodejs/oigamez-core.js";
+import { broadcast } from "/opt/nodejs/oigamez-communication.js";
+import { getRoomConnections, getRoomByCode } from "/opt/nodejs/oigamez-data.js";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
+import { handler } from "./index.js";
 import {
   GameMessageWebsocketEvent,
   GameMessageEventReceivedEvent,
-} from "./models";
+} from "./models/index.js";
 
-jest.mock("/opt/nodejs/oigamez-communication", () => {
+jest.mock("/opt/nodejs/oigamez-communication.js", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-communication"),
+    ...jest.requireActual("/opt/nodejs/oigamez-communication.js"),
     broadcast: jest.fn(),
   };
 });
-jest.mock("/opt/nodejs/oigamez-data");
-jest.mock("/opt/nodejs/oigamez-services");
-jest.mock("./configuration");
-jest.mock("./services");
+jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("/opt/nodejs/oigamez-services.js");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("game message subscriber handler tests", () => {
   beforeEach(() => {

@@ -2,7 +2,7 @@ import {
   validateRoomCode,
   validateUsername,
   ValidationResult,
-} from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-http.js";
 
 export const validateRequest = (
   username?: string,

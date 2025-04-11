@@ -5,12 +5,12 @@ import {
   verifyEbInternalEventSourceName,
   verifyExternalEbName,
   verifyEbExternalEventSourceName,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 
-import { verifyUpdatedConnectWindowInSeconds } from "./updated-connect-window";
-import { validateEnvironment } from "./validate-environment";
+import { verifyUpdatedConnectWindowInSeconds } from "./updated-connect-window/index.js";
+import { validateEnvironment } from "./validate-environment.js";
 
-jest.mock("/opt/nodejs/oigamez-core");
+jest.mock("/opt/nodejs/oigamez-core.js");
 jest.mock("./updated-connect-window");
 
 describe("validateEnvironment for ensure room connection tests", () => {

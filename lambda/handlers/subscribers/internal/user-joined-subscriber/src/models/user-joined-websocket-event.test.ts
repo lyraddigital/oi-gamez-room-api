@@ -1,4 +1,4 @@
-import { UserJoinedWebsocketEvent } from "./user-joined-websocket-event";
+import { UserJoinedWebsocketEvent } from "./user-joined-websocket-event.js";
 
 describe("UserJoinedWebsocketEvent tests", () => {
   test("correct properties is set", () => {

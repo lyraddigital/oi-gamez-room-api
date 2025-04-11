@@ -1,4 +1,4 @@
-import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "./updated-connect-window";
+import { UPDATED_CONNECT_WINDOW_IN_SECONDS } from "./updated-connect-window.js";
 
 export const verifyUpdatedConnectWindowInSeconds = (): void => {
   if (isNaN(UPDATED_CONNECT_WINDOW_IN_SECONDS)) {

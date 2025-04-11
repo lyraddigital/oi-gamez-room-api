@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "nodenext",
     "lib": [
       "es2021",
       "dom"
@@ -9,6 +9,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "declaration": true,
+    "esModuleInterop": true,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -26,23 +27,23 @@
       "./node_modules/@types"
     ],
     "paths": {
-      "/opt/nodejs/oigamez-core": [
-        "./lambda/packages/core/nodejs/oigamez-core"
+      "/opt/nodejs/oigamez-core.js": [
+        "./lambda/packages/core/src/oigamez-core.ts"
       ],
-      "/opt/nodejs/oigamez-http": [
-        "./lambda/packages/http/nodejs/oigamez-http"
+      "/opt/nodejs/oigamez-http.js": [
+        "./lambda/packages/http/nodejs/oigamez-http.ts"
       ],
-      "/opt/nodejs/oigamez-security": [
-        "./lambda/packages/security/nodejs/oigamez-security"
+      "/opt/nodejs/oigamez-security.js": [
+        "./lambda/packages/security/nodejs/oigamez-security.ts"
       ],
-      "/opt/nodejs/oigamez-communication": [
-        "./lambda/packages/communication/nodejs/oigamez-communication"
+      "/opt/nodejs/oigamez-communication.js": [
+        "./lambda/packages/communication/nodejs/oigamez-communication.ts"
       ],
-      "/opt/nodejs/oigamez-data": [
-        "./lambda/packages/data/nodejs/oigamez-data"
+      "/opt/nodejs/oigamez-data.js": [
+        "./lambda/packages/data/src/oigamez-data.ts"
       ],
-      "/opt/nodejs/oigamez-services": [
-        "./lambda/packages/services/nodejs/oigamez-services"
+      "/opt/nodejs/oigamez-services.js": [
+        "./lambda/packages/services/nodejs/oigamez-services.ts"
       ]
     }
   },

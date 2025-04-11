@@ -1,7 +1,13 @@
 import { TransactWriteItem } from "@aws-sdk/client-dynamodb";
 
-import { CONNECTION_DYNAMO_TABLE_NAME, Room } from "/opt/nodejs/oigamez-core";
-import { dynamoFieldNames, dynamoFieldValues } from "/opt/nodejs/oigamez-data";
+import {
+  CONNECTION_DYNAMO_TABLE_NAME,
+  Room,
+} from "/opt/nodejs/oigamez-core.js";
+import {
+  dynamoFieldNames,
+  dynamoFieldValues,
+} from "/opt/nodejs/oigamez-data.js";
 
 export const createOrUpdateRoomConnection = (
   room: Room,

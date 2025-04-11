@@ -6,7 +6,7 @@ describe("verifyConnectionWindowInSeconds tests", () => {
   test("CONNECT_WINDOW_IN_SECONDS variable not set, throws an error", async () => {
     // Arrange
     const { verifyConnectionWindowInSeconds } = await import(
-      "./verify-connection-window-in-seconds"
+      "./verify-connection-window-in-seconds.js"
     );
 
     // / Action / Assert
@@ -17,12 +17,12 @@ describe("verifyConnectionWindowInSeconds tests", () => {
 
   test("CONNECT_WINDOW_IN_SECONDS variable is set as a non number, throws an error", async () => {
     // Arrange
-    jest.doMock("./connection-window-in-seconds", () => {
+    jest.doMock("./connection-window-in-seconds.js", () => {
       return { CONNECT_WINDOW_IN_SECONDS: "abc" };
     });
 
     const { verifyConnectionWindowInSeconds } = await import(
-      "./verify-connection-window-in-seconds"
+      "./verify-connection-window-in-seconds.js"
     );
 
     // / Action / Assert
@@ -33,12 +33,12 @@ describe("verifyConnectionWindowInSeconds tests", () => {
 
   test("CONNECT_WINDOW_IN_SECONDS variable is set as a number, does not throw an error", async () => {
     // Arrange
-    jest.doMock("./connection-window-in-seconds", () => {
+    jest.doMock("./connection-window-in-seconds.js", () => {
       return { CONNECT_WINDOW_IN_SECONDS: "60" };
     });
 
     const { verifyConnectionWindowInSeconds } = await import(
-      "./verify-connection-window-in-seconds"
+      "./verify-connection-window-in-seconds.js"
     );
 
     // / Action / Assert

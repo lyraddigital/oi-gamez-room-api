@@ -3,17 +3,17 @@ import { ScanCommand } from "@aws-sdk/client-dynamodb";
 import {
   CONNECTION_DYNAMO_TABLE_NAME,
   RoomConnection,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   mapFromDynamoToConnection,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 import {
   CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME,
   EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS,
-} from "../configuration";
+} from "../configuration/index.js";
 
 export const getAllExpiredConnections = async (
   currentTime: number

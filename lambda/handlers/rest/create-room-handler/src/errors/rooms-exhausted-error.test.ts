@@ -1,4 +1,4 @@
-import { RoomsExhaustedError } from "./rooms-exhausted-error";
+import { RoomsExhaustedError } from "./rooms-exhausted-error.js";
 
 describe("RoomsExhaustedError tests", () => {
   test("correct verify mocks were called", () => {

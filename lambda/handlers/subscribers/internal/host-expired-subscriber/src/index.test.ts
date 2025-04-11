@@ -1,16 +1,16 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { HostConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
-import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { handleHostDisconnection } from "/opt/nodejs/oigamez-services";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { HostConnectionExpiredInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
+import { getRoomByCode, getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { handleHostDisconnection } from "/opt/nodejs/oigamez-services.js";
 
-import { handler } from ".";
+import { handler } from "./index.js";
 
-jest.mock("/opt/nodejs/oigamez-data");
-jest.mock("/opt/nodejs/oigamez-services");
-jest.mock("./configuration");
-jest.mock("./services");
+jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("/opt/nodejs/oigamez-services.js");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("host expired subscriber handler tests", () => {
   test("makes the correct calls", async () => {

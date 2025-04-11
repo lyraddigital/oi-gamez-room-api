@@ -1,5 +1,5 @@
-import { RoomsExhaustedError } from "../errors";
-import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service";
+import { RoomsExhaustedError } from "../errors/index.js";
+import { getAnAvailableDivisionAndGroupCode } from "./available-division-and-group-code.service.js";
 
 describe("getAnAvailableDivisionAndGroupCode tests", () => {
   const randomSpy = jest.spyOn<Math, "random">(Math, "random");

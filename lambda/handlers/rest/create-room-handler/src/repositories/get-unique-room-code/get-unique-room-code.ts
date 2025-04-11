@@ -1,9 +1,9 @@
 import { GetItemCommand, GetItemCommandInput } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
-import { dbClient, dynamoFieldNames, keys } from "/opt/nodejs/oigamez-data";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core.js";
+import { dbClient, dynamoFieldNames, keys } from "/opt/nodejs/oigamez-data.js";
 
-import { RoomsExhaustedError } from "../../errors";
+import { RoomsExhaustedError } from "../../errors/index.js";
 
 export const getUniqueRoomCode = async (
   divisionCode: string,

@@ -1,7 +1,7 @@
 import { TableV2 } from "aws-cdk-lib/aws-dynamodb";
 
-import { CorsProps } from "../cors-props";
-import { LambdaHandlerProps } from "./lambda-handler-props";
+import { CorsProps } from "../cors-props.js";
+import { LambdaHandlerProps } from "./lambda-handler-props.js";
 
 export interface JoinRoomLambdaProps extends CorsProps, LambdaHandlerProps {
   connectionTable: TableV2;

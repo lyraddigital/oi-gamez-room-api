@@ -1,4 +1,4 @@
-import { EventBridgeReceivedEvent } from "/opt/nodejs/oigamez-communication";
+import { EventBridgeReceivedEvent } from "/opt/nodejs/oigamez-communication.js";
 
 export class GameMessageEventReceivedEvent extends EventBridgeReceivedEvent {
   constructor(

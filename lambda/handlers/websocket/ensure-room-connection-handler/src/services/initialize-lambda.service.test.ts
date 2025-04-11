@@ -1,13 +1,13 @@
 import {
   initializeEventPublisherForExternal,
   initializeEventPublisherForInternal,
-} from "/opt/nodejs/oigamez-communication";
+} from "/opt/nodejs/oigamez-communication.js";
+import { initialize } from "/opt/nodejs/oigamez-communication.js";
 
-import { initialize } from "/opt/nodejs/oigamez-communication";
-import { initializeLambda } from "./initialize-lambda.service";
+import { initializeLambda } from "./initialize-lambda.service.js";
 
-jest.mock("/opt/nodejs/oigamez-communication");
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-communication.js");
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     EB_EXTERNAL_EB_NAME: "External Event Bus",
     EB_EXTERNAL_EVENT_SOURCE_NAME: "External Event Bus Source",

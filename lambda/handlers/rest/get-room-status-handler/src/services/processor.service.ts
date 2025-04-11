@@ -1,7 +1,7 @@
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
 
-import { CurrentRoomStatus } from "../models";
-import { getRoomStatus } from "./get-room-status.service";
+import { CurrentRoomStatus } from "../models/index.js";
+import { getRoomStatus } from "./get-room-status.service.js";
 
 export const processStatusRetrieval = async (
   roomCode: string,

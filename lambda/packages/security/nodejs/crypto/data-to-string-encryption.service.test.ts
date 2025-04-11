@@ -1,6 +1,6 @@
 import { createDecipheriv } from "crypto";
 
-import { encryptCustomDataToString } from "./data-to-string-encryption.service";
+import { encryptCustomDataToString } from "./data-to-string-encryption.service.js";
 
 describe("encryptCustomDataToString tests", () => {
   test("encrypts the data successfully", async () => {

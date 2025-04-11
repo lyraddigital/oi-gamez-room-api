@@ -1,4 +1,4 @@
-import { VISIBLE_ROOM_INDEX_NAME } from "./visible-room-index-name";
+import { VISIBLE_ROOM_INDEX_NAME } from "./visible-room-index-name.js";
 
 export const verifyDynamoVisibleRoomIndexName = (): void => {
   if (!VISIBLE_ROOM_INDEX_NAME) {

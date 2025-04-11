@@ -1,11 +1,12 @@
-import { validateOrigin, validateUsername } from "/opt/nodejs/oigamez-http";
-import { CreateRoomPayload } from "../models";
-import { validateGameTypeId } from "./game-type-id.validator";
-import { validateRoomTitle } from "./room-title.validator";
-import { validateRoomVisibility } from "./room-visibility.validator";
-import { validateRequest } from "./validate-request";
+import { validateOrigin, validateUsername } from "/opt/nodejs/oigamez-http.js";
 
-jest.mock("/opt/nodejs/oigamez-http", () => {
+import { CreateRoomPayload } from "../models/index.js";
+import { validateGameTypeId } from "./game-type-id.validator.js";
+import { validateRoomTitle } from "./room-title.validator.js";
+import { validateRoomVisibility } from "./room-visibility.validator.js";
+import { validateRequest } from "./validate-request.js";
+
+jest.mock("/opt/nodejs/oigamez-http.js", () => {
   return {
     validateGameTypeId: jest.fn(),
     validateOrigin: jest.fn(),
@@ -13,9 +14,9 @@ jest.mock("/opt/nodejs/oigamez-http", () => {
   };
 });
 
-jest.mock("./game-type-id.validator");
-jest.mock("./room-title.validator");
-jest.mock("./room-visibility.validator");
+jest.mock("./game-type-id.validator.js");
+jest.mock("./room-title.validator.js");
+jest.mock("./room-visibility.validator.js");
 
 describe("validateRequest tests", () => {
   test("validateOrigin returns unsuccessful, returns origin validation result", () => {

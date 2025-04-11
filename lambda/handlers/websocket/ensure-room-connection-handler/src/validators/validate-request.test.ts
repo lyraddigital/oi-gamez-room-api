@@ -1,7 +1,10 @@
-import { validateRoomCode, validateUsername } from "/opt/nodejs/oigamez-http";
-import { validateRequest } from "./validate-request";
+import {
+  validateRoomCode,
+  validateUsername,
+} from "/opt/nodejs/oigamez-http.js";
+import { validateRequest } from "./validate-request.js";
 
-jest.mock("/opt/nodejs/oigamez-http", () => {
+jest.mock("/opt/nodejs/oigamez-http.js", () => {
   return {
     validateRoomCode: jest.fn(),
     validateUsername: jest.fn(),

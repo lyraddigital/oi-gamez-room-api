@@ -6,7 +6,7 @@ describe("verifyPublicRoomsToRetrieve tests", () => {
   test("PUBLIC_ROOMS_TO_RETRIEVE variable not set, throws an error", async () => {
     // Arrange
     const { verifyPublicRoomsToRetrieve } = await import(
-      "./verify-public-rooms-to-retrieve"
+      "./verify-public-rooms-to-retrieve.js"
     );
 
     // / Action / Assert
@@ -22,7 +22,7 @@ describe("verifyPublicRoomsToRetrieve tests", () => {
     });
 
     const { verifyPublicRoomsToRetrieve } = await import(
-      "./verify-public-rooms-to-retrieve"
+      "./verify-public-rooms-to-retrieve.js"
     );
 
     // / Action / Assert
@@ -38,7 +38,7 @@ describe("verifyPublicRoomsToRetrieve tests", () => {
     });
 
     const { verifyPublicRoomsToRetrieve } = await import(
-      "./verify-public-rooms-to-retrieve"
+      "./verify-public-rooms-to-retrieve.js"
     );
 
     // / Action / Assert

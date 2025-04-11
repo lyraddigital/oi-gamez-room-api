@@ -1,6 +1,6 @@
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
 
-import { getAvailableRoomsByCodes } from "../repositories";
+import { getAvailableRoomsByCodes } from "../repositories/index.js";
 
 export const getAllHostedRoomsFromConnections = async (
   connections: RoomConnection[]

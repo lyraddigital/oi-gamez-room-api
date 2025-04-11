@@ -1,4 +1,4 @@
-import { WebsocketEvent } from "/opt/nodejs/oigamez-communication";
+import { WebsocketEvent } from "/opt/nodejs/oigamez-communication.js";
 
 export class HostTransferWebsocketEvent extends WebsocketEvent {
   constructor() {

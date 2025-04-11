@@ -1,6 +1,6 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
-import { mapFromDynamoToUnavailableRoomCode } from "./unavailable-room-code.mapper";
+import { mapFromDynamoToUnavailableRoomCode } from "./unavailable-room-code.mapper.js";
 
 describe("mapFromDynamoToUnavailableRoomCode tests", () => {
   test("returns the correct something", () => {

@@ -1,6 +1,6 @@
 import { AttributeValue } from "@aws-sdk/client-dynamodb";
 
-import { mapFromDynamoToPublicRoom } from "./public-room.mapper";
+import { mapFromDynamoToPublicRoom } from "./public-room.mapper.js";
 
 describe("mapFromDynamoToPublicRoom tests", () => {
   test("maps a DynamoDb record to GameType correctly", () => {

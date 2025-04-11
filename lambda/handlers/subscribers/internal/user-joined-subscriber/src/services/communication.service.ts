@@ -1,7 +1,8 @@
-import { broadcast } from "/opt/nodejs/oigamez-communication";
-import { getRoomConnections } from "/opt/nodejs/oigamez-data";
-import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services";
-import { UserJoinedWebsocketEvent } from "../models";
+import { broadcast } from "/opt/nodejs/oigamez-communication.js";
+import { getRoomConnections } from "/opt/nodejs/oigamez-data.js";
+import { getConnectionIdsFromConnections } from "/opt/nodejs/oigamez-services.js";
+
+import { UserJoinedWebsocketEvent } from "../models/index.js";
 
 export const communicateUserJoined = async (
   roomCode: string,

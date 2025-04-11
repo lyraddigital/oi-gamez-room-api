@@ -1,14 +1,14 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
-import { validateEnvironment } from "./configuration";
-import { getAllExpiredConnections } from "./repositories";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
+import { validateEnvironment } from "./configuration/index.js";
+import { getAllExpiredConnections } from "./repositories/index.js";
 import {
   getAllHostedRoomsFromConnections,
   initializeLambda,
   publishAllHostExpirations,
   publishAllUserExpirations,
-} from "./services";
+} from "./services/index.js";
 
 validateEnvironment();
 initializeLambda();

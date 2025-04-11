@@ -1,2 +1,2 @@
-export * from "./event-bridge";
-export * from "./websockets";
+export * from "./event-bridge/index.js";
+export * from "./websockets/index.js";

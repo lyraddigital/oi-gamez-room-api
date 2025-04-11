@@ -9,8 +9,8 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
   ExternalLibraries,
-} from "../../../constants";
-import { HostExpiredSubscriberProps } from "../../../props";
+} from "../../../constants/index.js";
+import { HostExpiredSubscriberProps } from "../../../props/index.js";
 
 export class HostExpiredSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;

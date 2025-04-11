@@ -1,4 +1,4 @@
-import { validateRoomVisibility } from "./room-visibility.validator";
+import { validateRoomVisibility } from "./room-visibility.validator.js";
 
 describe("validateRoomVisibility tests", () => {
   test("isPublic is not set, returns correct validation result data", () => {

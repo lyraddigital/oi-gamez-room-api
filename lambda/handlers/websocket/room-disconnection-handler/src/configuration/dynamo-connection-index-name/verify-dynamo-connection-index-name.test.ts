@@ -6,7 +6,7 @@ describe("verifyDynamoConnectionIndexName tests", () => {
   test("CONNECTION_DYNAMO_INDEX_NAME variable not set, throws an error", async () => {
     // Arrange
     const { verifyDynamoConnectionIndexName } = await import(
-      "./verify-dynamo-connection-index-name"
+      "./verify-dynamo-connection-index-name.js"
     );
 
     // / Action / Assert
@@ -22,7 +22,7 @@ describe("verifyDynamoConnectionIndexName tests", () => {
     });
 
     const { verifyDynamoConnectionIndexName } = await import(
-      "./verify-dynamo-connection-index-name"
+      "./verify-dynamo-connection-index-name.js"
     );
 
     // / Action / Assert

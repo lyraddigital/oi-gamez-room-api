@@ -9,8 +9,8 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
   ExternalLibraries,
-} from "../../../constants";
-import { RoomRemovedSubscriberProps } from "../../../props";
+} from "../../../constants/index.js";
+import { RoomRemovedSubscriberProps } from "../../../props/index.js";
 
 export class RoomRemovedSubscriber extends Construct {
   public lambdaFunction: NodejsFunction;

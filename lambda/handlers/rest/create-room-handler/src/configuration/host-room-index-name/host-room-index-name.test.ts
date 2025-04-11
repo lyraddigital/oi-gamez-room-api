@@ -12,7 +12,7 @@ describe("HOST_ROOM_INDEX_NAME variable", () => {
 
   test("Environment variable not set, returns empty string", async () => {
     // Arrange / Action
-    const { HOST_ROOM_INDEX_NAME } = await import("./host-room-index-name");
+    const { HOST_ROOM_INDEX_NAME } = await import("./host-room-index-name.js");
 
     // Assert
     expect(HOST_ROOM_INDEX_NAME).toBe("");
@@ -23,7 +23,7 @@ describe("HOST_ROOM_INDEX_NAME variable", () => {
     process.env.HOST_ROOM_INDEX_NAME = "RoomIndex";
 
     // / Action
-    const { HOST_ROOM_INDEX_NAME } = await import("./host-room-index-name");
+    const { HOST_ROOM_INDEX_NAME } = await import("./host-room-index-name.js");
 
     // Assert
     expect(HOST_ROOM_INDEX_NAME).toBe("RoomIndex");

@@ -1,5 +1,5 @@
-import { CorsProps } from "../cors-props";
-import { LambdaHandlerProps } from "./lambda-handler-props";
+import { CorsProps } from "../cors-props.js";
+import { LambdaHandlerProps } from "./lambda-handler-props.js";
 
 export interface GetPublicRoomsLambdaProps
   extends LambdaHandlerProps,

@@ -1,12 +1,12 @@
-import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core";
+import { CORS_ALLOWED_ORIGINS } from "/opt/nodejs/oigamez-core.js";
 import {
   validateOrigin,
   validateRoomCode,
   validateUsername,
   ValidationResult,
-} from "/opt/nodejs/oigamez-http";
+} from "/opt/nodejs/oigamez-http.js";
 
-import { LeaveRoomPayload } from "../models";
+import { LeaveRoomPayload } from "../models/index.js";
 
 export const validateRequest = (
   origin?: string,

@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 
-import { CORS_ALLOWED_ORIGINS, GameType } from "/opt/nodejs/oigamez-core";
+import { CORS_ALLOWED_ORIGINS, GameType } from "/opt/nodejs/oigamez-core.js";
 import {
   extractHeader,
   parseBody,
@@ -8,14 +8,15 @@ import {
   corsOkResponseWithData,
   fatalErrorResponse,
   VerificationResultWithData,
-} from "/opt/nodejs/oigamez-http";
-import { validateEnvironment } from "./configuration";
-import { CreateRoomPayload } from "./models";
+} from "/opt/nodejs/oigamez-http.js";
+
+import { validateEnvironment } from "./configuration/index.js";
+import { CreateRoomPayload } from "./models/index.js";
 import {
   handleErrorResponse,
   processRoomCreation,
   verifyRequestData,
-} from "./services";
+} from "./services/index.js";
 
 validateEnvironment();
 

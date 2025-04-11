@@ -1,19 +1,20 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { Room, RoomConnection } from "/opt/nodejs/oigamez-core";
-import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services";
-import { handler } from ".";
-import { getAllExpiredConnections } from "./repositories";
+import { Room, RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import { convertFromMillisecondsToSeconds } from "/opt/nodejs/oigamez-services.js";
+
+import { handler } from "./index.js";
+import { getAllExpiredConnections } from "./repositories/index.js";
 import {
   getAllHostedRoomsFromConnections,
   publishAllHostExpirations,
   publishAllUserExpirations,
-} from "./services";
+} from "./services/index.js";
 
-jest.mock("/opt/nodejs/oigamez-services");
-jest.mock("./configuration");
-jest.mock("./repositories");
-jest.mock("./services");
+jest.mock("/opt/nodejs/oigamez-services.js");
+jest.mock("./configuration/index.js");
+jest.mock("./repositories/index.js");
+jest.mock("./services/index.js");
 
 describe("expired connections handler tests", () => {
   test("no connections have expired, makes the correct calls", async () => {

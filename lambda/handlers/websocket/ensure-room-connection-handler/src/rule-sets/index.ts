@@ -1,1 +1,1 @@
-export * from "./ensure-room-connection.ruleSet";
+export * from "./ensure-room-connection.ruleSet.js";

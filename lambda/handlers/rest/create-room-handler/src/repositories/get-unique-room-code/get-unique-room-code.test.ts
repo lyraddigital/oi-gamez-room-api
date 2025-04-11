@@ -4,11 +4,11 @@ import {
   GetItemCommandOutput,
 } from "@aws-sdk/client-dynamodb";
 
-import { dbClient } from "/opt/nodejs/oigamez-data";
+import { dbClient } from "/opt/nodejs/oigamez-data.js";
 
-import { getUniqueRoomCode } from "./get-unique-room-code";
+import { getUniqueRoomCode } from "./get-unique-room-code.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     DYNAMO_TABLE_NAME: "SomeTable",
   };

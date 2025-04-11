@@ -1,1 +1,1 @@
-export * from "./websocket-event";
+export * from "./websocket-event.js";

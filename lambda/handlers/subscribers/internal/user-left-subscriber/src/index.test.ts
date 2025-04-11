@@ -1,15 +1,18 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { Room } from "/opt/nodejs/oigamez-core";
-import { UserLeftInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
-import { getRoomByCode } from "/opt/nodejs/oigamez-data";
+import { Room } from "/opt/nodejs/oigamez-core.js";
+import { UserLeftInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
+import { getRoomByCode } from "/opt/nodejs/oigamez-data.js";
 
-import { handler } from ".";
-import { communicateUserLeft, publishExternalUserLeftEvent } from "./services";
+import { handler } from "./index.js";
+import {
+  communicateUserLeft,
+  publishExternalUserLeftEvent,
+} from "./services/index.js";
 
-jest.mock("/opt/nodejs/oigamez-data");
-jest.mock("./configuration");
-jest.mock("./services");
+jest.mock("/opt/nodejs/oigamez-data.js");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("user joined subscriber handler tests", () => {
   test("makes the correct calls when room could not find by room code", async () => {

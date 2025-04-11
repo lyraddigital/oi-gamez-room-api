@@ -1,4 +1,4 @@
-import { getNow } from "./dates.service";
+import { getNow } from "./dates.service.js";
 
 describe("getNow tests", () => {
   beforeAll(() => {

@@ -5,19 +5,22 @@ import {
   QueryCommandOutput,
 } from "@aws-sdk/client-dynamodb";
 
-import { RoomConnection } from "/opt/nodejs/oigamez-core";
-import { dbClient, mapFromDynamoToConnection } from "/opt/nodejs/oigamez-data";
+import { RoomConnection } from "/opt/nodejs/oigamez-core.js";
+import {
+  dbClient,
+  mapFromDynamoToConnection,
+} from "/opt/nodejs/oigamez-data.js";
 
-import { getConnectionById } from "./get-connection-by-id";
+import { getConnectionById } from "./get-connection-by-id.js";
 
-jest.mock("/opt/nodejs/oigamez-core", () => {
+jest.mock("/opt/nodejs/oigamez-core.js", () => {
   return {
     CONNECTION_DYNAMO_TABLE_NAME: "SomeConnectionTable",
   };
 });
-jest.mock("/opt/nodejs/oigamez-data", () => {
+jest.mock("/opt/nodejs/oigamez-data.js", () => {
   return {
-    ...jest.requireActual("/opt/nodejs/oigamez-data"),
+    ...jest.requireActual("/opt/nodejs/oigamez-data.js"),
     mapFromDynamoToConnection: jest.fn(),
   };
 });

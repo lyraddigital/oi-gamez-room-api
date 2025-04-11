@@ -1,4 +1,4 @@
-import { GameMessageWebsocketEvent } from "./game-message-websocket-event";
+import { GameMessageWebsocketEvent } from "./game-message-websocket-event.js";
 
 describe("GameMessageWebsocketEvent tests", () => {
   test("correct properties is set", () => {

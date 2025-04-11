@@ -5,7 +5,7 @@ import {
   TableV2,
 } from "aws-cdk-lib/aws-dynamodb";
 
-import { RoomTableProps } from "../props";
+import { RoomTableProps } from "../props/index.js";
 
 export class RoomTable extends Construct {
   public table: TableV2;

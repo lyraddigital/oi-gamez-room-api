@@ -1,4 +1,4 @@
-import { RoomsExhaustedError } from "../errors";
+import { RoomsExhaustedError } from "../errors/index.js";
 
 const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const allAvailableCodes: string[] = [];

@@ -1,16 +1,15 @@
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
 
 import {
   EnvironmentVariables,
-  ExternalLibraries,
   HandlerFilePaths,
   HandlerFunctionNames,
   IndexNames,
-} from "../../constants";
-import { GetPublicRoomsLambdaProps } from "../../props";
+} from "../../constants/index.js";
+import { GetPublicRoomsLambdaProps } from "../../props/index.js";
 
-import { RestAPIHandlerFunction } from "./rest-api-handler-function";
-import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import { RestAPIHandlerFunction } from "./rest-api-handler-function.js";
 
 export class GetPublicRoomsLambda extends Construct {
   constructor(scope: Construct, id: string, props: GetPublicRoomsLambdaProps) {

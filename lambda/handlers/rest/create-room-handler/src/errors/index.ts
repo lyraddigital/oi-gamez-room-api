@@ -1,1 +1,1 @@
-export * from "./rooms-exhausted-error";
+export * from "./rooms-exhausted-error.js";

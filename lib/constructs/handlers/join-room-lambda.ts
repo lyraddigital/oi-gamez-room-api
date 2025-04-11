@@ -3,13 +3,12 @@ import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 import {
   EnvironmentVariables,
-  ExternalLibraries,
   HandlerFilePaths,
   HandlerFunctionNames,
-} from "../../constants";
-import { JoinRoomLambdaProps } from "../../props";
+} from "../../constants/index.js";
+import { JoinRoomLambdaProps } from "../../props/index.js";
 
-import { RestAPIHandlerFunction } from "./rest-api-handler-function";
+import { RestAPIHandlerFunction } from "./rest-api-handler-function.js";
 
 export class JoinRoomLambda extends Construct {
   constructor(scope: Construct, id: string, props: JoinRoomLambdaProps) {

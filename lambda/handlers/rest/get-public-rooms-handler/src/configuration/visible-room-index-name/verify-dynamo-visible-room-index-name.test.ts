@@ -6,7 +6,7 @@ describe("verifyDynamoVisibleRoomIndexName tests", () => {
   test("VISIBLE_ROOM_INDEX_NAME variable not set, throws an error", async () => {
     // Arrange
     const { verifyDynamoVisibleRoomIndexName } = await import(
-      "./verify-dynamo-visible-room-index-name"
+      "./verify-dynamo-visible-room-index-name.js"
     );
 
     // / Action / Assert
@@ -24,7 +24,7 @@ describe("verifyDynamoVisibleRoomIndexName tests", () => {
     });
 
     const { verifyDynamoVisibleRoomIndexName } = await import(
-      "./verify-dynamo-visible-room-index-name"
+      "./verify-dynamo-visible-room-index-name.js"
     );
 
     // Action / Assert

@@ -11,8 +11,8 @@ import {
   HandlerFilePaths,
   EnvironmentVariables,
   ExternalLibraries,
-} from "../../constants";
-import { ExpiredConnectionCleanupLambdaProps } from "../../props";
+} from "../../constants/index.js";
+import { ExpiredConnectionCleanupLambdaProps } from "../../props/index.js";
 
 export class ExpiredConnectionCleanupLambda extends Construct {
   constructor(

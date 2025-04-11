@@ -1,8 +1,8 @@
 import { RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
-import { ResourcePaths } from "../constants";
-import { RoomsRestApiProps } from "../props";
+import { ResourcePaths } from "../constants/index.js";
+import { RoomsRestApiProps } from "../props/index.js";
 
 import {
   CreateRoomLambda,
@@ -11,7 +11,7 @@ import {
   GetRoomStatusLambda,
   JoinRoomLambda,
   LeaveRoomLambda,
-} from "./handlers";
+} from "./handlers/index.js";
 
 export class RoomsRestApi extends Construct {
   constructor(scope: Construct, id: string, props: RoomsRestApiProps) {

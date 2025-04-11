@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
-import { OiGamezRoomApiStack } from "../lib/oi-gamez-room-api-stack";
+import { OiGamezRoomApiStack } from "../lib/oi-gamez-room-api-stack.js";
 
 const app = new cdk.App();
 new OiGamezRoomApiStack(app, "OiGamezRoomApiStack", {

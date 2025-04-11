@@ -1,4 +1,4 @@
-import { GameStartedEventReceivedEvent } from "./game-started-event-received-event";
+import { GameStartedEventReceivedEvent } from "./game-started-event-received-event.js";
 
 describe("GameStartedEventReceivedEvent tests", () => {
   test("all props are set correctly", () => {

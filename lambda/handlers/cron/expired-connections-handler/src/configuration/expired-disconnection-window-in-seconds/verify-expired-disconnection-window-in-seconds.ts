@@ -1,4 +1,4 @@
-import { EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS } from "./expired-disconnection-window-in-seconds";
+import { EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS } from "./expired-disconnection-window-in-seconds.js";
 
 export const verifyExpiredDisconnectionWindowInSeconds = (): void => {
   if (isNaN(EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS)) {

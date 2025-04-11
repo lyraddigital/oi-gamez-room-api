@@ -1,3 +1,3 @@
-export * from "./create-or-update-room-connection";
-export * from "./update-room-user-count";
-export * from "./update-room-host-details";
+export * from "./create-or-update-room-connection.js";
+export * from "./update-room-user-count.js";
+export * from "./update-room-host-details.js";

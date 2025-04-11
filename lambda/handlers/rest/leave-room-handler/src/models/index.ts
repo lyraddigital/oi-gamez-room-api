@@ -1,1 +1,1 @@
-export * from "./leave-room-payload";
+export * from "./leave-room-payload.js";

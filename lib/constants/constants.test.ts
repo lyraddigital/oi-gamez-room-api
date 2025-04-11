@@ -5,7 +5,7 @@ import {
   HandlerFunctionNames,
   IndexNames,
   ResourcePaths,
-} from "./constants";
+} from "./constants.js";
 
 describe("lambda constants tests", () => {
   test("all rest resource path constants are correct", () => {

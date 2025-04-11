@@ -1,11 +1,12 @@
 import { DynamoDBStreamEvent, DynamoDBRecord } from "aws-lambda";
 
-import { RecordType } from "/opt/nodejs/oigamez-data";
-import { handler } from ".";
-import { releaseRoomCode } from "./repositories";
+import { RecordType } from "/opt/nodejs/oigamez-data.js";
 
-jest.mock("./configuration");
-jest.mock("./repositories");
+import { handler } from "./index.js";
+import { releaseRoomCode } from "./repositories/index.js";
+
+jest.mock("./configuration/index.js");
+jest.mock("./repositories/index.js");
 
 describe("room deleted handler tests", () => {
   beforeEach(() => {

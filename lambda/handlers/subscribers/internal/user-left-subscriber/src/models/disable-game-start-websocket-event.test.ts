@@ -1,4 +1,4 @@
-import { DisableGameStartWebsocketEvent } from "./disable-game-start-websocket-event";
+import { DisableGameStartWebsocketEvent } from "./disable-game-start-websocket-event.js";
 
 describe("DisableGameStartWebsocketEvent tests", () => {
   test("correct properties is set", () => {

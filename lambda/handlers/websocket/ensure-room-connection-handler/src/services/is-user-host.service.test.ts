@@ -1,5 +1,5 @@
-import { Room } from "/opt/nodejs/oigamez-core";
-import { isUserHost } from "./is-user-host.service";
+import { Room } from "/opt/nodejs/oigamez-core.js";
+import { isUserHost } from "./is-user-host.service.js";
 
 describe("isUserHost tests", () => {
   test("room and username is undefined, returns false", () => {

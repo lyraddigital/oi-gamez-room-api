@@ -1,1 +1,1 @@
-export * from "./room-event-bridge-subscribers";
+export * from "./room-event-bridge-subscribers.js";

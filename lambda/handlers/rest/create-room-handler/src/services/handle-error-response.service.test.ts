@@ -1,5 +1,5 @@
-import { RoomsExhaustedError } from "../errors";
-import { handleErrorResponse } from "./handle-error-response.service";
+import { RoomsExhaustedError } from "../errors/index.js";
+import { handleErrorResponse } from "./handle-error-response.service.js";
 
 describe("handleErrorResponse tests", () => {
   test("error is a RoomsExhausedError, returns a different error message", () => {

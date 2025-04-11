@@ -3,11 +3,11 @@ import {
   verifyEbExternalEventSourceName,
   verifyExternalEbName,
   verifyRoomSocketApiEndpoint,
-} from "/opt/nodejs/oigamez-core";
+} from "/opt/nodejs/oigamez-core.js";
 
-import { validateEnvironment } from "./validate-environment";
+import { validateEnvironment } from "./validate-environment.js";
 
-jest.mock("/opt/nodejs/oigamez-core");
+jest.mock("/opt/nodejs/oigamez-core.js");
 
 describe("validateEnvironment for internal user join subscriptions", () => {
   test("correct verify mocks were called", () => {

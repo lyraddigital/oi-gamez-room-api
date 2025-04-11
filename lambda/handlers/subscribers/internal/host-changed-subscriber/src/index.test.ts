@@ -1,15 +1,15 @@
 import { EventBridgeEvent } from "aws-lambda";
 
-import { HostChangeInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication";
+import { HostChangeInternalEventBridgeEvent } from "/opt/nodejs/oigamez-communication.js";
 
-import { handler } from ".";
+import { handler } from "./index.js";
 import {
   communicateHostChanged,
   publishExternalHostChangedEvent,
-} from "./services";
+} from "./services/index.js";
 
-jest.mock("./configuration");
-jest.mock("./services");
+jest.mock("./configuration/index.js");
+jest.mock("./services/index.js");
 
 describe("host changed subscriber handler tests", () => {
   test("makes the correct calls", async () => {

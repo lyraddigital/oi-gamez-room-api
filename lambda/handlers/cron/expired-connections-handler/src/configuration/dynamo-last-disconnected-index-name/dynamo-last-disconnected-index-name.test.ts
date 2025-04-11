@@ -13,7 +13,7 @@ describe("CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME variable", () => {
   test("Environment variable not set, returns empty string", async () => {
     // Arrange / Action
     const { CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME } = await import(
-      "./dynamo-last-disconnected-index-name"
+      "./dynamo-last-disconnected-index-name.js"
     );
 
     // Assert
@@ -27,7 +27,7 @@ describe("CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME variable", () => {
 
     // / Action
     const { CONNECTION_DYNAMO_LAST_DISCONNECTED_INDEX_NAME } = await import(
-      "./dynamo-last-disconnected-index-name"
+      "./dynamo-last-disconnected-index-name.js"
     );
 
     // Assert

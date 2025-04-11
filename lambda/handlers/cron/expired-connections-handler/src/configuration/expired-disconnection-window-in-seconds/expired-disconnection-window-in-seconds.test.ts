@@ -13,7 +13,7 @@ describe("EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS variable", () => {
   test("Environment variable not set, returns NaN", async () => {
     // Arrange / Action
     const { EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS } = await import(
-      "./expired-disconnection-window-in-seconds"
+      "./expired-disconnection-window-in-seconds.js"
     );
 
     // Assert
@@ -26,7 +26,7 @@ describe("EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS variable", () => {
 
     // / Action
     const { EXPIRED_DISCONNECTION_WINDOW_IN_SECONDS } = await import(
-      "./expired-disconnection-window-in-seconds"
+      "./expired-disconnection-window-in-seconds.js"
     );
 
     // Assert

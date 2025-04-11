@@ -4,13 +4,13 @@ import {
   TransactWriteItemsCommandInput,
 } from "@aws-sdk/client-dynamodb";
 
-import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core";
+import { DYNAMO_TABLE_NAME } from "/opt/nodejs/oigamez-core.js";
 import {
   dbClient,
   dynamoFieldNames,
   dynamoFieldValues,
   keys,
-} from "/opt/nodejs/oigamez-data";
+} from "/opt/nodejs/oigamez-data.js";
 
 const reAddAvailableDivisionSubCode = (
   divisionCode: string,
