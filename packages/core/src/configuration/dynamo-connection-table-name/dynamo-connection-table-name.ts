@@ -1,2 +1,0 @@
-export const CONNECTION_DYNAMO_TABLE_NAME =
-  process.env.CONNECTION_DYNAMO_TABLE_NAME || "";

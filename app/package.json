@@ -1,0 +1,13 @@
+{
+  "name": "oi-gamez-room-api",
+  "version": "1.0.0",
+  "author": "Lyrad Digital",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "lambda/handlers/cron/*",
+    "lambda/handlers/dynamo-db/*",
+    "lambda/handlers/rest/*",
+    "lambda/handlers/websocket/*"
+  ]
+}
